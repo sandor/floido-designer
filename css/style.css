@@ -1,0 +1,71 @@
+
+.image-builder-container {
+  position: relative;
+}
+.image-builder-container .image-builder {
+  background: transparent;
+  box-sizing: border-box;
+  border: 1px solid #cacaca;
+  min-height: 100%;
+	min-width: 100%;
+  text-align: center;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+.image-builder-container .image-builder .image-cover {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  position: absolute;
+  z-index: 2;
+}
+.image-builder-container .image-builder .fabric-container {
+  background: white;
+  border-radius: 1px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.4);
+  display: inline-block;
+  margin: 50px;
+  position: relative;
+  vertical-align: middle;
+  z-index: 0;
+}
+.image-builder-container .image-loading {
+  background: rgba(255, 255, 255, 0.4);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.image-builder-container .image-loading .loading-indicator {
+  background: white;
+  background-image: url(/images/squareLoader.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  margin: 300px auto 0;
+  height: 160px;
+  width: 160px;
+}
+.image-builder-container .object-controls-container {
+  position: relative;
+}
+.image-builder-container .object-controls-container .object-controls {
+  position: absolute;
+  z-index: 1;
+  background: white;
+  left: -250px;
+  top: 0px;
+  padding: 5px;
+  width: 240px;
+}
+.image-builder-container .object-controls-container .object-controls textarea {
+  font-size: 12px;
+}
+.object-font-family-preview {
+  text-transform: capitalize;
+}

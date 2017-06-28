@@ -1,0 +1,9 @@
+{
+  "name": "xel-electron-demo",
+  "version": "0.0.1",
+  "main": "main.js",
+  "dependencies": {
+    "ruler.js": "0.0.4",
+    "xel": "^0.0.15"
+  }
+}

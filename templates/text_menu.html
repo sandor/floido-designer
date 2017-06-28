@@ -1,0 +1,246 @@
+<head>
+    <link rel="stylesheet" href="../css/webflow.css">
+</head>
+
+<body>
+    <div class="kit-section typography-section open show-advanced">
+        <div class="kit-section-title">
+            <div class="label">Typography</div>
+        </div>
+        <div class="kit-section-body">
+            <div class="transition-parent kit-panel">
+                <div class="kit-field kit-field font-family compact">
+                    <div class="label kit-label">
+                        <div class="link upstream"><i></i>
+                        </div>
+                    </div>
+                    <div class="kit-select2 kit-input-control" tabindex="-1">
+                        <x-select skin="textured" style="width: 100% !Important;">
+                            <x-menu>
+                                <x-menuitem value="australia">
+                                    <x-label>Australia</x-label>
+                                </x-menuitem>
+
+                                <x-menuitem value="canada" selected="true">
+                                    <x-label>Canada</x-label>
+                                </x-menuitem>
+
+                                <x-menuitem value="ireland" disabled="">
+                                    <x-label>Ireland</x-label>
+                                </x-menuitem>
+
+                                <x-menuitem value="new-zealand">
+                                    <x-label>New Zealand</x-label>
+                                </x-menuitem>
+
+                                <x-menuitem value="uk">
+                                    <x-label>United Kingdom</x-label>
+                                </x-menuitem>
+
+                                <x-menuitem value="usa">
+                                    <x-label>United States</x-label>
+                                </x-menuitem>
+                            </x-menu>
+                        </x-select>
+
+                    </div>
+                </div>
+                <div class="kit-field kit-field font-weight compact pull-left">
+                    <div class="label kit-label">
+                        <div class="link upstream"><i></i>
+                        </div>
+                    </div>
+                    <div class="kit-select2 kit-input-control" tabindex="-1">
+                        <x-select style="width: 100% !Important;">
+                            <x-menu>
+                                <x-menuitem value="australia">
+                                    <x-label>Australia</x-label>
+                                </x-menuitem>
+
+                                <x-menuitem value="canada" selected="true">
+                                    <x-label>Canada</x-label>
+                                </x-menuitem>
+
+                                <x-menuitem value="ireland" disabled="">
+                                    <x-label>Ireland</x-label>
+                                </x-menuitem>
+
+                                <x-menuitem value="new-zealand">
+                                    <x-label>New Zealand</x-label>
+                                </x-menuitem>
+
+                                <x-menuitem value="uk">
+                                    <x-label>United Kingdom</x-label>
+                                </x-menuitem>
+
+                                <x-menuitem value="usa">
+                                    <x-label>United States</x-label>
+                                </x-menuitem>
+                            </x-menu>
+                        </x-select>
+
+                    </div>
+                </div>
+                <div class="kit-field font-style compact pull-right">
+                    <x-buttons tracking="2">
+                        <x-button toggled="">
+                            <x-icon name="format-bold"></x-icon>
+                        </x-button>
+
+                        <x-button>
+                            <x-icon name="format-underlined"></x-icon>
+                        </x-button>
+
+                        <x-button>
+                            <x-icon name="format-italic"></x-icon>
+                        </x-button>
+                    </x-buttons>
+                </div>
+                <div class="kit-field font-color compact">
+                    <x-colorselect value="#bada55">
+                        <x-popover>
+                            <x-wheelcolorpicker alphaslider="" value="#bada55"></x-wheelcolorpicker>
+                        </x-popover>
+                    </x-colorselect>
+                </div>
+                <div class="kit-field font-size compact pull-left">
+                    <div class="label kit-label" title="Font Size">
+                        <div class="link upstream"><i></i><span><!-- react-text: 857 -->Font Size<!-- /react-text --><span class="colon">:</span></span>
+                        </div>
+                    </div>
+                    <div class="kit-unit-box kit-text-input">
+                        <x-numberinput class="small" skin="condensed" value="10">
+                            <x-stepper></x-stepper>
+                        </x-numberinput>
+                    </div>
+                </div>
+                <div class="kit-field line-height compact pull-right">
+                    <div class="label kit-label" title="Line Height">
+                        <div class="link upstream"><i></i><span><!-- react-text: 873 -->Line Height<!-- /react-text --><span class="colon">:</span></span>
+                        </div>
+                    </div>
+                    <div class="kit-unit-box kit-text-input">
+                        <x-numberinput class="small" skin="condensed" value="10">
+                            <x-stepper></x-stepper>
+                        </x-numberinput>
+                    </div>
+                </div>
+                <div class="transition-child line clearfix" style="width: 562px;">
+                    <div class="kit-field letter-spacing compact pull-left">
+                        <div class="label kit-label" title="Letter Spacing">
+                            <div class="link"><i></i><span><!-- react-text: 890 -->Letter Spacing<!-- /react-text --><span class="colon">:</span></span>
+                            </div>
+                        </div>
+                        <div class="kit-unit-box kit-text-input">
+                            <x-numberinput class="small" skin="condensed" value="10">
+                                <x-stepper></x-stepper>
+                            </x-numberinput>
+                        </div>
+                    </div>
+                    <div class="kit-field text-indent compact pull-right">
+                        <div class="label kit-label" title="Text Indent">
+                            <div class="link"><i></i><span><!-- react-text: 906 -->Text Indent<!-- /react-text --><span class="colon">:</span></span>
+                            </div>
+                        </div>
+                        <div class="kit-unit-box kit-text-input">
+                            <x-numberinput class="small" skin="condensed" value="10">
+                                <x-stepper></x-stepper>
+                            </x-numberinput>
+                        </div>
+                    </div>
+                </div>
+                <div class="transition-child kit-divider"></div>
+                <div class="line clearfix">
+                    <div class="kit-field text-align compact pull-left">
+                        <div class="label kit-label" title="Text Align">
+                            <div class="link"><i></i><span><!-- react-text: 924 -->Text Align<!-- /react-text --><span class="colon">:</span></span>
+                            </div>
+                        </div>
+                        <div class="kit-radio-buttons kit-input-control clearfix">
+                            <div class="kit-button kit-radio-button active left" label="Left"><i class="sprite-main"></i><span>Left</span>
+                            </div>
+                            <div class="kit-button kit-radio-button center" label="Center"><i class="sprite-main"></i><span>Center</span>
+                            </div>
+                            <div class="kit-button kit-radio-button right" label="Right"><i class="sprite-main"></i><span>Right</span>
+                            </div>
+                            <div class="kit-button kit-radio-button justify" label="Justify"><i class="sprite-main"></i><span>Justify</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kit-field text-decoration compact pull-right">
+                        <div class="label kit-label" title="Text Decoration">
+                            <div class="link"><i></i><span><!-- react-text: 944 -->Text Decoration<!-- /react-text --><span class="colon">:</span></span>
+                            </div>
+                        </div>
+                        <div class="kit-radio-buttons kit-input-control clearfix">
+                            <div class="kit-button kit-radio-button active none" label="None"><i class="sprite-main"></i><span>None</span>
+                            </div>
+                            <div class="kit-button kit-radio-button underline" label="Underline"><i class="sprite-main"></i><span>Underline</span>
+                            </div>
+                            <div class="kit-button kit-radio-button line-through" label="Strikeout"><i class="sprite-main"></i><span>Strikeout</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="transition-child line clearfix">
+                    <div class="kit-field text-transform compact pull-left">
+                        <div class="label kit-label" title="Text Transform">
+                            <div class="link"><i></i><span><!-- react-text: 962 -->Text Transform<!-- /react-text --><span class="colon">:</span></span>
+                            </div>
+                        </div>
+                        <div class="kit-radio-buttons kit-input-control clearfix">
+                            <div class="kit-button kit-radio-button active none" label="None"><i class="sprite-main"></i><span>None</span>
+                            </div>
+                            <div class="kit-button kit-radio-button uppercase" label="Uppercase"><i class="sprite-main"></i><span>Uppercase</span>
+                            </div>
+                            <div class="kit-button kit-radio-button capitalize" label="Capitalize"><i class="sprite-main"></i><span>Capitalize</span>
+                            </div>
+                            <div class="kit-button kit-radio-button lowercase" label="Lowercase"><i class="sprite-main"></i><span>Lowercase</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kit-field text-direction compact pull-right">
+                        <div class="label kit-label" title="Direction">
+                            <div class="link"><i></i><span><!-- react-text: 982 -->Direction<!-- /react-text --><span class="colon">:</span></span>
+                            </div>
+                        </div>
+                        <div class="kit-radio-buttons kit-input-control clearfix">
+                            <div class="kit-button kit-radio-button active ltr" label="Left-to-Right"><i class="sprite-main"></i><span>Left-to-Right</span>
+                            </div>
+                            <div class="kit-button kit-radio-button rtl" label="Right-to-Left"><i class="sprite-main"></i><span>Right-to-Left</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="transition-child kit-divider"></div>
+                <div class="transition-child">
+                    <div class="guidance-panel-wrapper">
+                        <div class="guidance-panel-child">
+                            <div class="clearfix">
+                                <div class="kit-field text-column-count compact pull-left">
+                                    <div class="label kit-label" title="Text Column Count">
+                                        <div class="link"><i></i><span><!-- react-text: 1001 -->Text Column Count<!-- /react-text --><span class="colon">:</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="kit-unit-box kit-text-input">
+                                        <input type="text" class="input" tabindex="1" value="" placeholder="Auto">
+                                        <div class="right-control ticks">
+                                            <div class="tick sprite-mid up"><i></i>
+                                            </div><span class="sep"></span>
+                                            <div class="tick sprite-mid down"><i></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="kit-field text-column-count-settings pull-right icon-buttons">
+                                    <div class="kit-button add"><i class="sprite-main"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,1146 @@
+<link rel="stylesheet" href="../css/grvit.css">
+	<link rel="stylesheet" href="../node_modules/xel/stylesheets/macos.theme.css">
+	<link rel="import" href="../node_modules/xel/xel.min.html">
+<div id="right-sidebars" style="width: 280px; top: 83px;">
+	<div class="sidebar-container sidebar-inspector" style="">
+		<div class="panels scrolling-panels">
+			<hr style="">
+			<div class="toolbar main-toolbar" style="">
+				<button data-title="Distribute Horizontally" data-action="arrange.distribute.horizontal" class="svg-button primary" disabled=""><span><svg class="align-svg" xmlns="http://www.w3.org/2000/svg" style="isolation:isolate" viewBox="3 2 20 20" width="20" height="20"><rect id="align-area" x="4" y="6" width="4" height="12" fill="#FFF"></rect><rect id="align-area" x="18" y="8" width="4" height="8" fill="#FFF"></rect><rect id="align-shape" x="10" y="3" width="2" height="18" fill="#3A98FF"></rect><rect id="align-shape" x="14" y="3" width="2" height="18" fill="#3A98FF"></rect></svg></span></button>
+				<button data-title="Distribute Vertically" data-action="arrange.distribute.vertical" class="svg-button primary" disabled=""><span><svg class="align-svg" xmlns="http://www.w3.org/2000/svg" style="isolation:isolate" viewBox="28 2 20 20" width="20" height="20"><rect id="align-area" x="36" y="13" width="4" height="12" transform="rotate(-90 38 19)" fill="#FFF"></rect><rect id="align-area" x="36" y="1" width="4" height="8" transform="rotate(-90 38 5)" fill="#FFF"></rect><rect id="align-shape" x="37" y="5" width="2" height="18" transform="rotate(-90 38 14)" fill="#3A98FF"></rect><rect id="align-shape" x="37" y="1" width="2" height="18" transform="rotate(-90 38 10)" fill="#3A98FF"></rect></svg></span></button><span class="divider"></span>
+				<button data-title="Align Left" data-action="arrange.align.align-left" class="svg-button secondary"><span style="stroke: rgba(0, 0, 0, 0);"><svg class="align-svg" xmlns="http://www.w3.org/2000/svg" style="isolation:isolate" viewBox="53 2 20 20" width="20" height="20"><rect id="align-area" x="62" y="9" width="4" height="12" transform="rotate(-90 64 15)" fill="#FFF"></rect><rect id="align-area" x="60" y="5" width="4" height="8" transform="rotate(-90 62 9)" fill="#FFF"></rect><rect id="align-shape" x="54" y="3" width="2" height="18" transform="rotate(-180 55 12)" fill="#3A98FF"></rect></svg></span></button>
+				<button data-title="Align Center" data-action="arrange.align.align-center" class="svg-button secondary"><span style="stroke: rgba(0, 0, 0, 0);"><svg class="align-svg" xmlns="http://www.w3.org/2000/svg" style="isolation:isolate" viewBox="77 2 20 20" width="20" height="20"><rect id="align-shape" x="86" y="3" width="2" height="18" transform="rotate(180 87 12)" fill="#3A98FF"></rect><rect id="align-area" x="85" y="3" width="4" height="12" transform="rotate(90 87 9)" fill="#FFF"></rect><rect id="align-area" x="85" y="11" width="4" height="8" transform="rotate(90 87 15)" fill="#FFF"></rect></svg></span></button>
+				<button data-title="Align Right" data-action="arrange.align.align-right" class="svg-button secondary"><span style="stroke: rgba(0, 0, 0, 0);"><svg class="align-svg" xmlns="http://www.w3.org/2000/svg" style="isolation:isolate" viewBox="103 2 20 20" width="20" height="20"><rect id="align-area" x="110" y="9" width="4" height="12" transform="rotate(90 112 15)" fill="#FFF"></rect><rect id="align-area" x="112" y="5" width="4" height="8" transform="rotate(90 114 9)" fill="#FFF"></rect><rect id="align-shape" x="120" y="3" width="2" height="18" transform="rotate(180 121 12)" fill="#3A98FF"></rect></svg></span></button><span class="divider"></span>
+				<button data-title="Align Top" data-action="arrange.align.align-top" class="svg-button secondary"><span style="stroke: rgba(0, 0, 0, 0);"><svg class="align-svg" xmlns="http://www.w3.org/2000/svg" style="isolation:isolate" viewBox="128 2 20 20" width="20" height="20"><rect id="align-area" x="133" y="7" width="4" height="12" fill="#FFF"></rect><rect id="align-area" x="139" y="7" width="4" height="8" fill="#FFF"></rect><rect id="align-shape" x="137" y="-5" width="2" height="18" transform="rotate(-90 138 4)" fill="#3A98FF"></rect></svg></span></button>
+				<button data-title="Align Middle" data-action="arrange.align.align-middle" class="svg-button secondary"><span style="stroke: rgba(0, 0, 0, 0);"><svg class="align-svg" xmlns="http://www.w3.org/2000/svg" style="isolation:isolate" viewBox="156 1.9999999999999982 20 20" width="20" height="20"><rect id="align-shape" x="165" y="3" width="2" height="18" transform="rotate(90 166 12)" fill="#3A98FF"></rect><rect id="align-area" x="161" y="6" width="4" height="12" transform="rotate(-180 163 12)" fill="#FFF"></rect><rect id="align-area" x="167" y="8" width="4" height="8" transform="rotate(-180 169 12)" fill="#FFF"></rect></svg></span></button>
+				<button data-title="Align Bottom" data-action="arrange.align.align-bottom" class="svg-button secondary"><span style="stroke: rgba(0, 0, 0, 0);"><svg class="align-svg" xmlns="http://www.w3.org/2000/svg" style="isolation:isolate" viewBox="181 2 20 20" width="20" height="20"><rect id="align-area" x="186" y="5" width="4" height="12" transform="rotate(180 188 11)" fill="#FFF"></rect><rect id="align-area" x="192" y="9" width="4" height="8" transform="rotate(180 194 13)" fill="#FFF"></rect><rect id="align-shape" x="190" y="11" width="2" height="18" transform="rotate(-90 191 20)" fill="#3A98FF"></rect></svg></span></button>
+			</div>
+			<div class="properties-panel" style="">
+				<div class="g-property-row">
+					<label>Position</label>
+					<div class="columns">
+						<div class="column" style="width: 44%;">
+							<div class="content">
+								<div><span class="g-input-label">x</span>
+									<input type="text" data-dimension="x" style="padding-left: 20px; width: 100%;">
+								</div>
+							</div>
+						</div>
+						<div class="column no-padding" style="width: 12%;">&nbsp;</div>
+						<div class="column" style="width: 44%;">
+							<div class="content">
+								<div><span class="g-input-label">y</span>
+									<input type="text" data-dimension="y" style="padding-left: 20px; width: 100%;">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="g-property-row">
+					<label>Size</label>
+					<div class="columns">
+						<div class="column" style="width: 44%;">
+							<div class="content">
+								<div><span class="g-input-label">w</span>
+									<input type="text" data-dimension="w" style="padding-left: 20px; width: 100%;">
+								</div>
+							</div>
+						</div>
+						<div class="column" style="width: 12%;">
+							<div class="content"><span class="gravit-icon-unlinked" data-title="Keep Ratio" data-ratio="no" style="text-align: center; cursor: pointer;"></span></div>
+						</div>
+						<div class="column" style="width: 44%;">
+							<div class="content">
+								<div><span class="g-input-label">h</span>
+									<input type="text" data-dimension="h" style="padding-left: 20px; width: 100%;">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="g-property-row">
+					<label>Angle</label>
+					<div class="columns">
+						<div class="column" style="width: 44%;">
+							<div class="content">
+								<div><span class="g-input-label">R</span>
+									<input type="text" data-dimension="rotate" style="padding-left: 20px; width: 100%;">
+								</div>
+							</div>
+						</div>
+						<div class="column no-padding" style="width: 12%;">&nbsp;</div>
+						<label class="column" style="width: 44%;">
+							<div class="content">
+								<button class="transform-button">Transform</button>
+							</div>
+						</label>
+					</div>
+				</div>
+				<div class="g-property-row anchor-panel" style="">
+					<label>Anchors</label>
+					<div class="columns">
+						<div class="column" style="width: 44%;">
+							<div class="content">
+								<div class="anchor-buttons">
+									<div class="g-button g-group-start hacr-start" data-title="Anchor Left"><span class="gravit-icon-anchor-left"></span></div>
+									<div class="g-button g-group-element hacr-middle" data-title="Anchor Center"><span class="gravit-icon-anchor-center"></span></div>
+									<div class="g-button g-group-end hacr-end" data-title="Anchor Right"><span class="gravit-icon-anchor-right"></span></div>
+								</div>
+							</div>
+						</div>
+						<div class="column no-padding" style="width: 12%;">&nbsp;</div>
+						<div class="column" style="width: 44%;">
+							<div class="content">
+								<div class="anchor-buttons">
+									<div class="g-button g-group-start vacr-start" data-title="Anchor Top"><span class="gravit-icon-anchor-top"></span></div>
+									<div class="g-button g-group-element vacr-middle" data-title="Anchor Middle"><span class="gravit-icon-anchor-middle"></span></div>
+									<div class="g-button g-group-end vacr-end" data-title="Anchor Bottom"><span class="gravit-icon-anchor-bottom"></span></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr style="">
+			<div class="toolbar" style="">
+				<label>Transform</label>
+			</div>
+			<div class="properties-panel" style="">
+				<div class="g-property-row">
+					<label>Move</label>
+					<div class="columns">
+						<div class="column" style="width: 44%;">
+							<div class="content">
+								<div><span class="g-input-label">x</span>
+									<input type="text" data-property="move-x" style="padding-left: 20px; width: 100%;">
+								</div>
+							</div>
+						</div>
+						<div class="column no-padding" style="width: 12%;">&nbsp;</div>
+						<div class="column" style="width: 44%;">
+							<div class="content">
+								<div><span class="g-input-label">y</span>
+									<input type="text" data-property="move-y" style="padding-left: 20px; width: 100%;">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="g-property-row">
+					<label>Scale</label>
+					<div class="columns">
+						<div class="column" style="width: 44%;">
+							<div class="content">
+								<div><span class="g-input-label">w</span>
+									<input type="text" data-property="scale-x" style="padding-left: 20px; width: 100%;">
+								</div>
+							</div>
+						</div>
+						<div class="column no-padding" style="width: 12%;">&nbsp;</div>
+						<div class="column" style="width: 44%;">
+							<div class="content">
+								<div><span class="g-input-label">h</span>
+									<input type="text" data-property="scale-y" style="padding-left: 20px; width: 100%;">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="g-property-row">
+					<label>Rotate</label>
+					<div class="columns">
+						<div class="column" style="width: 44%;">
+							<div class="content">
+								<div><span class="g-input-label">↑</span>
+									<input type="text" data-property="rotate" style="padding-left: 20px; width: 100%;">
+								</div>
+							</div>
+						</div>
+						<div class="column no-padding" style="width: 12%;">&nbsp;</div>
+						<div class="column" style="width: 44%;">
+							<div class="content">
+								<div><span class="g-input-label">↓</span>
+									<input type="text" data-property="reflect" style="padding-left: 20px; width: 100%;">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="g-property-row">
+					<label>Skew</label>
+					<div class="columns">
+						<div class="column" style="width: 44%;">
+							<div class="content">
+								<div><span class="g-input-label">X</span>
+									<input type="text" data-property="skew-x" style="padding-left: 20px; width: 100%;">
+								</div>
+							</div>
+						</div>
+						<div class="column no-padding" style="width: 12%;">&nbsp;</div>
+						<div class="column" style="width: 44%;">
+							<div class="content">
+								<div><span class="g-input-label">Y</span>
+									<input type="text" data-property="skew-y" style="padding-left: 20px; width: 100%;">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr>
+				<div class="g-property-row">
+					<label>Copies</label>
+					<div class="columns">
+						<label class="column" style="width: 44%;">
+							<div class="content">
+								<input type="text" data-property="copies">
+							</div>
+						</label>
+						<div class="column no-padding" style="width: 12%;">&nbsp;</div>
+						<div class="column no-padding" style="width: 44%;">
+							<div style="width: 100%; display: flex; justify-content: center;">
+								<div data-property="pivot" class="g-pivot" style="align-self: center;">
+									<div class="borderline"></div>
+									<div class="side" data-side="tl"></div>
+									<div class="side" data-side="tc"></div>
+									<div class="side" data-side="tr"></div>
+									<div class="side" data-side="rc"></div>
+									<div class="side" data-side="br"></div>
+									<div class="side" data-side="bc"></div>
+									<div class="side" data-side="bl"></div>
+									<div class="side" data-side="lc"></div>
+									<div class="side g-active" data-side="cc"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="g-property-row">
+					<label></label>
+					<div class="columns">
+						<label class="column" style="width: 100%;">
+							<div class="content">
+								<button class="transform-button" style="margin-top: 5px;">Apply</button>
+							</div>
+						</label>
+					</div>
+				</div>
+			</div>
+			<hr style="">
+			<div class="toolbar filled page-toolbar" style="">
+				<label>Page (Page 2)</label>
+			</div>
+			<div class="properties-panel" style="">
+				<div data-property-row="background" class="g-property-row no-label">
+					<div class="columns">
+						<div class="column" style="width: 25%;">
+							<div class="content">
+								<div data-property="bck" class="g-pattern-chooser"><span class="preview g-button" draggable="true" style="height: 26px; min-width: 20px; background-image: linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IndoaXRlIi8+PHJlY3Qgd2lkdGg9IjQiIGhlaWdodD0iNCIgZmlsbD0iI0NEQ0RDRCIvPjxyZWN0IHg9IjQiIHk9IjQiIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNDRENEQ0QiLz48L3N2Zz4=); background-attachment: initial, initial; background-origin: initial, initial; background-clip: initial, initial; background-size: initial, initial; background-position: ; background-repeat: ;"><div class="eyedropper" data-title="Pick a color from anywhere on the canvas"><span class="gravit-icon-picker"></span></div>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="column" style="width: 25%;">
+						<div class="content">
+							<div><span class="g-input-label">w</span>
+								<input type="text" data-property="w" style="padding-left: 20px; width: 100%;">
+							</div>
+						</div>
+					</div>
+					<div class="column" style="width: 25%;">
+						<div class="content">
+							<div><span class="g-input-label">h</span>
+								<input type="text" data-property="h" style="padding-left: 20px; width: 100%;">
+							</div>
+						</div>
+					</div>
+					<label class="column" style="width: 25%;">
+						<div class="content">
+							<input type="text" data-property="bop">
+						</div>
+					</label>
+				</div>
+				<div class="labels">
+					<label style="width: 25%;"><span>Color</span></label>
+					<label style="width: 25%;"><span>Width</span></label>
+					<label style="width: 25%;"><span>Height</span></label>
+					<label style="width: 25%;"><span>Opacity</span></label>
+				</div>
+			</div>
+			<hr data-property-row="background">
+			<div class="g-property-row no-label">
+				<div class="columns">
+					<div class="column" style="width: 25%;">
+						<div class="content"><span>Bleed</span></div>
+					</div>
+					<label class="column" style="width: 25%;">
+						<div class="content">
+							<input type="text" data-property="bl">
+						</div>
+					</label>
+					<div class="column no-padding" style="width: 50%;">&nbsp;</div>
+				</div>
+			</div>
+			<hr>
+			<div class="g-property-row no-label">
+				<div class="columns">
+					<div class="column" style="width: 25%;">
+						<div class="content"><span>Margin</span></div>
+					</div>
+					<label class="column" style="width: 15%;">
+						<div class="content">
+							<input type="text" data-property="ml">
+						</div>
+					</label>
+					<label class="column" style="width: 15%;">
+						<div class="content">
+							<input type="text" data-property="mt">
+						</div>
+					</label>
+					<label class="column" style="width: 15%;">
+						<div class="content">
+							<input type="text" data-property="mr">
+						</div>
+					</label>
+					<label class="column" style="width: 15%;">
+						<div class="content">
+							<input type="text" data-property="mb">
+						</div>
+					</label>
+					<div class="column" style="width: 15%;">
+						<div class="content"><span class="g-button g-flat" data-title="Equal Margins" data-lock-margin="yes"><span class="gravit-icon-linked"></span></span>
+						</div>
+					</div>
+				</div>
+				<div class="labels">
+					<label style="width: 25%;">&nbsp;</label>
+					<label style="width: 15%;"><span>Left</span></label>
+					<label style="width: 15%;"><span>Top</span></label>
+					<label style="width: 15%;"><span>Right</span></label>
+					<label style="width: 15%;"><span>Bottom</span></label>
+					<label style="width: 15%;">&nbsp;</label>
+				</div>
+			</div>
+			<hr>
+			<div class="g-property-row no-label">
+				<div class="columns">
+					<div class="column" style="width: 25%;">
+						<div class="content"><span>Master</span></div>
+					</div>
+					<label class="column" style="width: 75%;">
+						<div class="content">
+							<select data-property="master-page">
+								<option></option>
+								<option value="0">Page 1</option>
+							</select>
+						</div>
+					</label>
+				</div>
+			</div>
+			<hr>
+			<div class="g-property-row no-label">
+				<div class="columns">
+					<div class="column no-padding" style="width: 25%;">&nbsp;</div>
+					<label class="column" style="width: 75%;">
+						<div class="content">
+							<button><span>Fit Canvas</span></button>
+						</div>
+					</label>
+				</div>
+			</div>
+		</div>
+		<hr style="">
+		<div class="toolbar" style="">
+			<label>Document</label>
+		</div>
+		<div class="properties-panel" style="">
+			<div class="g-property-row no-label">
+				<div class="columns">
+					<div class="column" style="width: 25%;">
+						<div class="content"><span>Unit</span></div>
+					</div>
+					<label class="column" style="width: 75%;">
+						<div class="content">
+							<select data-property="ut">
+								<option value="px">Pixels</option>
+								<option value="mm">Millimeters</option>
+								<option value="cm">Centimeters</option>
+								<option value="in">Inches</option>
+								<option value="pc">Picas</option>
+								<option value="pt">Points</option>
+							</select>
+						</div>
+					</label>
+				</div>
+			</div>
+			<hr>
+			<div class="g-property-row no-label">
+				<div class="columns">
+					<div class="column" style="width: 25%;">
+						<div class="content"><span>Grid</span></div>
+					</div>
+					<div class="column" style="width: 25%;">
+						<div class="content">
+							<label>
+								<input type="radio" data-property="gm-"><span>Off</span></label>
+						</div>
+					</div>
+					<div class="column" style="width: 25%;">
+						<div class="content">
+							<label>
+								<input type="radio" data-property="gm-box"><span>On</span></label>
+						</div>
+					</div>
+					<div class="column" style="width: 25%;">
+						<div class="content">
+							<label>
+								<input type="radio" data-property="gm-axo"><span>Isometric</span></label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div data-grid-mode="box" class="g-property-row" style="">
+				<label></label>
+				<div class="columns">
+					<label class="column" style="width: 33.3%;">
+						<div class="content">
+							<input type="text" data-property="gx">
+						</div>
+					</label>
+					<label class="column" style="width: 33.3%;">
+						<div class="content">
+							<input type="text" data-property="gy">
+						</div>
+					</label>
+				</div>
+				<div class="labels">
+					<label style="width: 33.3%;"><span>Width</span></label>
+					<label style="width: 33.3%;"><span>Height</span></label>
+				</div>
+			</div>
+			<div data-grid-mode="axo" class="g-property-row" style="">
+				<label></label>
+				<div class="columns">
+					<label class="column" style="width: 33.3%;">
+						<div class="content">
+							<input type="text" data-property="gx">
+						</div>
+					</label>
+					<label class="column" style="width: 33.3%;">
+						<div class="content">
+							<input type="text" data-property="ga1">
+						</div>
+					</label>
+					<label class="column" style="width: 33.3%;">
+						<div class="content">
+							<input type="text" data-property="ga2">
+						</div>
+					</label>
+				</div>
+				<div class="labels">
+					<label style="width: 33.3%;"><span>Size</span></label>
+					<label style="width: 33.3%;"><span>Angle 1</span></label>
+					<label style="width: 33.3%;"><span>Angle 2</span></label>
+				</div>
+			</div>
+		</div>
+		<hr style="">
+		<div class="properties-panel" style="">
+			<div major-item-only="true" class="g-property-row no-label">
+				<div class="columns">
+					<div class="column auto-grow">
+						<div class="content">
+							<label>
+								<input type="checkbox" data-item-property="clk"><span>Click-through this element</span></label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr class="appearance-divider" style="">
+		<div class="toolbar appearance-toolbar accordion" style="">
+			<label>Appearance</label>
+			<button class="g-accordion"><span class="gravit-icon-down"></span></button>
+			<div class="g-accordion-ghost"></div>
+			<div class="g-image-convert-status" style=" font-size: 8px;"><span>Checking CMYK Profile...</span></div>
+		</div>
+		<div class="properties-panel appearance-properties-panel" style="">
+			<div class="appearance-property-panel" style="">
+				<hr>
+				<div class="g-property-row no-label">
+					<div class="columns">
+						<label class="column" style="width: 45%;">
+							<div class="content">
+								<button data-action="arrange.align.align-justify-horizontal">Same Width</button>
+							</div>
+						</label>
+						<div class="column no-padding" style="width: 10%;">&nbsp;</div>
+						<label class="column" style="width: 45%;">
+							<div class="content">
+								<button data-action="arrange.align.align-justify-vertical">Same Height</button>
+							</div>
+						</label>
+					</div>
+				</div>
+				<div class="g-property-row no-label">
+					<div class="columns">
+						<label class="column" style="width: 45%;">
+							<div class="prefix" style="width: 50px;">Space X</div>
+							<div class="content">
+								<input type="text" data-dist="horizontal">
+							</div>
+						</label>
+						<div class="column no-padding" style="width: 10%;">&nbsp;</div>
+						<label class="column" style="width: 45%;">
+							<div class="prefix" style="width: 50px;">Space Y</div>
+							<div class="content">
+								<input type="text" data-dist="vertical">
+							</div>
+						</label>
+					</div>
+				</div>
+				<hr style="">
+			</div>
+			<div class="appearance-property-panel" style="">
+				<div class="g-property-row">
+					<label>Points</label>
+					<div class="columns">
+						<div class="column auto-grow">
+							<div class="content">
+								<div data-property="pts" class="g-input-slider generic" value="25" min="3" max="25">
+									<div class="g-input-slider-track generic">
+										<div class="g-input-slider-thumb generic" style="height: 10px; width: 10px;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<label class="column" style="width: 40px;">
+							<div class="content">
+								<input type="text" data-property="pts">
+							</div>
+						</label>
+					</div>
+				</div>
+				<div data-plain-edges="false" class="g-property-row">
+					<label>Size</label>
+					<div class="columns">
+						<div class="column auto-grow">
+							<div class="content">
+								<div data-property="size" class="g-input-slider generic" value="50" min="0" max="100">
+									<div class="g-input-slider-track generic">
+										<div class="g-input-slider-thumb generic" style="height: 10px; width: 10px;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<label class="column" style="width: 40px;">
+							<div class="content">
+								<input type="text" data-property="size">
+							</div>
+						</label>
+					</div>
+				</div>
+				<hr>
+				<div class="g-property-row corner-radius">
+					<label>Corner</label>
+					<div class="columns">
+						<div class="column auto-grow">
+							<div class="content">
+								<div data-property="corners-radius-slider" class="g-input-slider generic" value="50" min="0" max="100">
+									<div class="g-input-slider-track generic">
+										<div class="g-input-slider-thumb generic" style="height: 10px; width: 10px;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<label class="column" style="width: 35px;">
+							<div class="content">
+								<input type="text" data-property="corners-radius" class="corner-radius">
+							</div>
+						</label>
+						<div class="column" style="width: 35px;">
+							<div class="content">
+								<div data-title="Advanced Settings" class="g-button g-icon" style="display: flex; justify-content: center;"><span class="gravit-icon-settings" style="align-self: center;"></span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr style="">
+			</div>
+			<div class="appearance-property-panel" style="">
+				<div path-only="true" class="g-property-row no-label">
+					<div class="columns">
+						<div class="column" style="width: 40%;">
+							<div class="content">
+								<label>
+									<input type="checkbox" data-path-property="closed"><span>Closed</span></label>
+							</div>
+						</div>
+						<div class="column" style="width: 60%;">
+							<div class="content">
+								<label>
+									<input type="checkbox"><span>Autoscale Corners</span></label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div point-only="true" class="g-property-row">
+					<label>Position</label>
+					<div class="columns">
+						<div class="column" style="width: 32%;">
+							<div class="content">
+								<div><span class="g-input-label">x</span>
+									<input type="text" data-point-property="x" style="padding-left: 20px; width: 100%;">
+								</div>
+							</div>
+						</div>
+						<div class="column" style="width: 32%;">
+							<div class="content">
+								<div><span class="g-input-label">y</span>
+									<input type="text" data-point-property="y" style="padding-left: 20px; width: 100%;">
+								</div>
+							</div>
+						</div>
+						<label class="column auto-grow">
+							<div class="content">
+								<select data-point-property="tp">
+									<option value="-">Straight</option>
+									<option value="TM">Mirror</option>
+									<option value="TA">Disconnected</option>
+									<option value="TS">Symmetric</option>
+									<option value="TC">Connector</option>
+								</select>
+							</div>
+						</label>
+					</div>
+				</div>
+				<div point-only="true" class="g-property-row joint">
+					<label>Joint</label>
+					<div class="columns">
+						<label class="column no-padding" style="width: 25%;">
+							<div class="content">
+								<button class="g-button" data-node-type="-" data-title="Straight" style="border-top-left-radius: 3px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 3px;"><span class="gravit-icon-node-straight" style="font-size: 22px;"></span></button>
+							</div>
+						</label>
+						<label class="column no-padding" style="width: 25%;">
+							<div class="content">
+								<button class="g-button" data-node-type="TM" data-title="Mirror" style="border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;"><span class="gravit-icon-node-mirrored" style="font-size: 22px;"></span></button>
+							</div>
+						</label>
+						<label class="column no-padding" style="width: 25%;">
+							<div class="content">
+								<button class="g-button" data-node-type="TA" data-title="Discon." style="border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;"><span class="gravit-icon-node-disconnected" style="font-size: 22px;"></span></button>
+							</div>
+						</label>
+						<label class="column no-padding" style="width: 25%;">
+							<div class="content">
+								<button class="g-button" data-node-type="TS" data-title="Symmetric" style="border-top-left-radius: 0px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 0px;"><span class="gravit-icon-node-assymetric" style="font-size: 22px;"></span></button>
+							</div>
+						</label>
+					</div>
+				</div>
+				<hr point-only="true" corner-only="true">
+				<div point-only="true" corner-only="true" class="g-property-row corner-radius">
+					<label>Corner</label>
+					<div class="columns">
+						<div class="column auto-grow">
+							<div class="content">
+								<div data-point-property="cl" class="g-input-slider generic" value="50" min="0" max="100">
+									<div class="g-input-slider-track generic">
+										<div class="g-input-slider-thumb generic" style="height: 10px; width: 10px;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<label class="column" style="width: 35px;">
+							<div class="content">
+								<input type="text" data-point-property="cl" class="corner-radius">
+							</div>
+						</label>
+						<div class="column" style="width: 40px;">
+							<div class="content"><span class="clickable g-button corner-type" data-point-property="ctp"><span></span></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr style="">
+			</div>
+			<div class="appearance-property-panel" style="">
+				<div class="g-property-row">
+					<label>Angles</label>
+					<div class="columns">
+						<label class="column" style="width: 50%;">
+							<div class="content">
+								<input type="text" data-property="sa">
+							</div>
+						</label>
+						<label class="column" style="width: 50%;">
+							<div class="content">
+								<input type="text" data-property="ea">
+							</div>
+						</label>
+					</div>
+				</div>
+				<div class="g-property-row">
+					<label>Shape</label>
+					<div class="columns">
+						<div class="column" style="width: 33.3%;">
+							<div class="content">
+								<div data-property="etp-2" class="g-button g-icon"><span class="gravit-icon-ellipse-arc"></span></div>
+							</div>
+						</div>
+						<div class="column" style="width: 33.3%;">
+							<div class="content">
+								<div data-property="etp-1" class="g-button g-icon"><span class="gravit-icon-ellipse-chord"></span></div>
+							</div>
+						</div>
+						<div class="column" style="width: 33.3%;">
+							<div class="content">
+								<div data-property="etp-0" class="g-button g-icon"><span class="gravit-icon-circle-pie"></span></div>
+							</div>
+						</div>
+					</div>
+					<div class="labels">
+						<label style="width: 33.3%;"><span>Open</span></label>
+						<label style="width: 33.3%;"><span>Closed</span></label>
+						<label style="width: 33.3%;"><span>Pie</span></label>
+					</div>
+				</div>
+				<hr style="">
+			</div>
+			<div class="appearance-property-panel" style="">
+				<div class="g-property-row no-label">
+					<div class="columns">
+						<div class="column no-padding" style="width: 60px;">
+							<div class="content">
+								<div data-property="_fc" class="g-pattern-chooser" style="margin-top: 8px;"><span class="preview g-button" draggable="true" style="height: 26px; min-width: 20px;"><div class="eyedropper" data-title="Pick a color from anywhere on the canvas"><span class="gravit-icon-picker"></span></div>
+								</span>
+							</div>
+						</div>
+					</div>
+					<label class="column auto-grow">
+						<div class="content">
+							<input class="g-select" data-property="_tff" type="button">
+						</div>
+					</label>
+				</div>
+			</div>
+			<div class="g-property-row no-label">
+				<div class="columns">
+					<div class="column" style="width: 60px;">
+						<div class="content"><span style="display: flex; justify-content: center;">Color</span></div>
+					</div>
+					<label class="column auto-grow">
+						<div class="content">
+							<select data-property="style"></select>
+						</div>
+					</label>
+					<div class="column" style="width: 25%;">
+						<div class="content">
+							<div>
+								<input type="text" data-property="_tfi" class="g-select g-unitbox" style="width: 100%;">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="labels">
+					<label style="width: 60px;">&nbsp;</label>
+					<label class="auto-grow"><span>Weight</span></label>
+					<label style="width: 25%;"><span>Size</span></label>
+				</div>
+			</div>
+			<hr>
+			<div class="g-property-row">
+				<label>Alignment</label>
+				<div class="columns">
+					<div class="column" style="width: 100%;">
+						<div class="content">
+							<x-buttons tracking="1">
+  <x-button toggled>
+    <x-icon name="format-align-left"></x-icon>
+  </x-button>
+
+  <x-button>
+    <x-icon name="format-align-center"></x-icon>
+  </x-button>
+
+  <x-button>
+    <x-icon name="format-align-right"></x-icon>
+  </x-button>
+</x-buttons>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="g-property-row">
+				<label>Vertical</label>
+				<div class="columns">
+					<div class="column auto-grow">
+						<div class="content">
+							<div>
+								<button class="g-button g-group-start" data-property="va-t" data-title="Align Top" tabindex="-1" style="width: 25%; margin: 0px;"><span class="gravit-icon-text-align-top"></span></button>
+								<button class="g-button g-group-element" data-property="va-m" data-title="Align Middle" tabindex="-1" style="width: 25%; margin: 0px;"><span class="gravit-icon-text-align-middle"></span></button>
+								<button class="g-button g-group-end" data-property="va-b" data-title="Align Bottom" tabindex="-1" style="width: 25%; margin: 0px;"><span class="gravit-icon-text-align-bottom"></span></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="g-property-row">
+				<label>Spacing</label>
+				<div class="columns">
+					<label class="column" style="width: 30%;">
+						<div class="content">
+							<input type="text" data-property="_tcs">
+						</div>
+					</label>
+					<label class="column" style="width: 30%;">
+						<div class="content">
+							<input type="text" data-property="_tws">
+						</div>
+					</label>
+					<div class="column" style="width: 40%;">
+						<div class="content">
+							<div style="position: relative;">
+								<input type="text" data-property="_plh" style="width: 100%;">
+								<button class="g-flat" data-property="_plh_unit" tabindex="-1" style="position: absolute; right: 5px;">%</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="labels">
+					<label style="width: 30%;"><span>Char</span></label>
+					<label style="width: 30%;"><span>Word</span></label>
+					<label style="width: 40%;"><span>Line</span></label>
+				</div>
+			</div>
+			<hr>
+			<div class="g-property-row">
+				<label>Sizing</label>
+				<div class="columns">
+					<div class="column" style="width: 50%;">
+						<div class="content">
+							<div data-property="aw">
+								<button class="g-group-start g-button" tabindex="-1" style="width: 50%;">Auto</button>
+								<button class="g-group-end g-button" tabindex="-1" style="width: 50%;">Fix</button>
+							</div>
+						</div>
+					</div>
+					<div class="column" style="width: 50%;">
+						<div class="content">
+							<div data-property="ah">
+								<button class="g-group-start g-button" tabindex="-1" style="width: 50%;">Auto</button>
+								<button class="g-group-end g-button" tabindex="-1" style="width: 50%;">Fix</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="labels">
+					<label style="width: 50%;"><span>Width</span></label>
+					<label style="width: 50%;"><span>Height</span></label>
+				</div>
+			</div>
+			<div class="g-property-row">
+				<label>On Path</label>
+				<div class="columns">
+					<div class="column" style="width: 30%;">
+						<div class="content">
+							<label class="g-switch">
+								<input type="checkbox" data-property="tpths">
+								<div></div>
+							</label>
+						</div>
+					</div>
+					<div class="column" style="width: 30%;">
+						<div class="content">
+							<label class="g-switch">
+								<input type="checkbox" data-property="tpthd">
+								<div></div>
+							</label>
+						</div>
+					</div>
+					<label class="column" style="width: 40%;">
+						<div class="content">
+							<input type="text" data-property="tptho">
+						</div>
+					</label>
+				</div>
+				<div class="labels">
+					<label style="width: 30%;"><span>Outside</span></label>
+					<label style="width: 30%;"><span>Reverse</span></label>
+					<label style="width: 40%;"><span>Distance</span></label>
+				</div>
+			</div>
+			<hr style="">
+		</div>
+		<div class="appearance-property-panel" style="">
+			<div class="g-property-row no-label">
+				<div class="columns">
+					<label class="column" style="width: 25%;">
+						<div class="content">
+							<button class="g-flat" style="padding: 0px;"><span class="gravit-icon-picture"></span></button>
+						</div>
+					</label>
+					<label class="column" style="width: 25%;">
+						<div class="content">
+							<button class="g-flat" data-action="reset-size" style="padding: 0px;"><span class="gravit-icon-rectangle"></span></button>
+						</div>
+					</label>
+					<label class="column" style="width: 25%;">
+						<div class="content">
+							<button data-action="reset-cropping" class="g-flat" disabled="" style="padding: 0px;"><span class="gravit-icon-expand"></span></button>
+						</div>
+					</label>
+					<label class="column" style="width: 25%;">
+						<div class="content">
+							<button data-image-palette="button" class="g-flat" style="padding: 0px;"><span class="gravit-icon-fill"></span></button>
+						</div>
+					</label>
+				</div>
+				<div class="labels">
+					<label style="width: 25%;"><span>Replace</span></label>
+					<label style="width: 25%;"><span>Orig. size</span></label>
+					<label style="width: 25%;"><span>No crop</span></label>
+					<label style="width: 25%;"><span>Colors</span></label>
+				</div>
+			</div>
+			<div data-image-palette="palette" style="height: 27px; margin: 5px 10px 0px; "></div>
+			<hr style="">
+		</div>
+		<div class="appearance-property-panel" style="">
+			<div class="g-property-row corner-radius">
+				<label>Corner</label>
+				<div class="columns">
+					<div class="column auto-grow">
+						<div class="content">
+							<div data-property="corners-radius" class="g-input-slider generic" value="0" min="0" max="100">
+								<div class="g-input-slider-track generic">
+									<div class="g-input-slider-thumb generic" style="height: 10px; width: 10px; left: 0%;"></div>
+									<div class="g-input-slider-background" style="width: 0%;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<label class="column" style="width: 35px;">
+						<div class="content">
+							<input type="text" data-property="corners-radius" class="corner-radius">
+						</div>
+					</label>
+					<div class="column" style="width: 35px;">
+						<div class="content">
+							<div data-title="Advanced Settings" class="g-button g-icon" style="display: flex; justify-content: center;"><span class="gravit-icon-settings" style="align-self: center;"></span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr style="">
+		</div>
+		<div class="appearance-property-panel" style="">
+			<div class="g-property-row no-label">
+				<div class="columns">
+					<label class="column" style="width: 44%;">
+						<div class="prefix" style="width: 35px;">Left</div>
+						<div class="content">
+							<input type="text" data-property="x">
+						</div>
+					</label>
+					<div class="column no-padding" style="width: 12%;">&nbsp;</div>
+					<label class="column" style="width: 44%;">
+						<div class="prefix" style="width: 35px;">Top</div>
+						<div class="content">
+							<input type="text" data-property="y">
+						</div>
+					</label>
+				</div>
+			</div>
+			<div class="g-property-row no-label">
+				<div class="columns">
+					<label class="column" style="width: 44%;">
+						<div class="prefix" style="width: 35px;">Width</div>
+						<div class="content">
+							<input type="text" data-property="w">
+						</div>
+					</label>
+					<div class="column no-padding" style="width: 12%;">&nbsp;</div>
+					<label class="column" style="width: 44%;">
+						<div class="prefix" style="width: 35px;">Height</div>
+						<div class="content">
+							<input type="text" data-property="h">
+						</div>
+					</label>
+				</div>
+			</div>
+			<div class="g-property-row no-label">
+				<div class="columns">
+					<div class="column" style="width: 100%;">
+						<div class="content">
+							<label>
+								<input type="checkbox" data-property="trm"><span>Trim transparent pixels</span></label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="g-property-row no-label">
+				<div class="columns">
+					<div class="column" style="width: 80%;">
+						<div class="content">
+							<label>
+								<input type="checkbox" data-property="cls-check"><span>Background color</span></label>
+						</div>
+					</div>
+					<label class="column" style="width: 20%;">
+						<div class="content">
+							<button data-property="cls" class="g-pattern-chooser"><span class="preview g-button" draggable="true" style="height: 26px; min-width: 20px;"><div class="eyedropper" data-title="Pick a color from anywhere on the canvas"><span class="gravit-icon-picker"></span></div>
+						</span>
+						</button>
+				</div>
+				</label>
+			</div>
+		</div>
+		<hr style="">
+	</div>
+	<div class="appearance-property-panel" style="">
+		<div class="g-property-row" style="margin-top: 10px; margin-bottom: 10px;">
+			<label>Boolean</label>
+			<div class="columns">
+				<label class="column" style="width: 25%;">
+					<div class="content">
+						<button data-op="1" data-title="Union" style="height: 30px;"><span class="gravit-icon-merge-union"></span></button>
+					</div>
+				</label>
+				<label class="column" style="width: 25%;">
+					<div class="content">
+						<button data-op="3" data-title="Intersect" style="height: 30px;"><span class="gravit-icon-merge-intersect"></span></button>
+					</div>
+				</label>
+				<label class="column" style="width: 25%;">
+					<div class="content">
+						<button data-op="4" data-title="Subtract" style="height: 30px;"><span class="gravit-icon-merge-subtract"></span></button>
+					</div>
+				</label>
+				<label class="column" style="width: 25%;">
+					<div class="content">
+						<button data-op="2" data-title="Difference" style="height: 30px;"><span class="gravit-icon-merge-difference"></span></button>
+					</div>
+				</label>
+			</div>
+		</div>
+		<hr>
+		<hr style="">
+	</div>
+	<div class="appearance-property-panel" style="">
+		<div class="g-property-row">
+			<label>Opacity</label>
+			<div class="columns">
+				<div class="column auto-grow">
+					<div class="content">
+						<div data-property="_stop" class="g-input-slider custom opacity" value="100" min="0" max="100">
+							<div class="g-input-slider-track custom">
+								<div class="g-input-slider-thumb custom" style="height: 8px; width: 8px; left: 100%;"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<label class="column" style="width: 40px;">
+					<div class="content">
+						<input type="text" data-property="_stop">
+					</div>
+				</label>
+			</div>
+		</div>
+		<div class="g-property-row">
+			<label>Blending</label>
+			<div class="columns">
+				<label class="column" style="width: 100%;">
+					<div class="content">
+						<select data-property="_sbl">
+							<option value="m">Mask</option>
+							<option value="!m">Inverse Mask</option>
+							<optgroup label="Blending">
+								<option value="normal">Normal</option>
+								<option value="multiply">Multiply</option>
+								<option value="screen">Screen</option>
+								<option value="overlay">Overlay</option>
+								<option value="darken">Darken</option>
+								<option value="lighten">Lighten</option>
+								<option value="color-dodge">Color Dodge</option>
+								<option value="color-burn">Color Burn</option>
+								<option value="hard-light">Hard Light</option>
+								<option value="soft-light">Soft Light</option>
+								<option value="difference">Difference</option>
+								<option value="exclusion">Exclusion</option>
+								<option value="hue">Hue</option>
+								<option value="saturation">Saturation</option>
+								<option value="color">Color</option>
+								<option value="luminosity">Luminosity</option>
+								<option value="linear_burn">Linear Burn</option>
+								<option value="linear_dodge">Linear Dodge</option>
+								<option value="linear_light">Linear Light</option>
+								<option value="vivid_light">Vivid Light</option>
+								<option value="pin_light">Pin Light</option>
+								<option value="divide">Divide</option>
+								<option value="add">Add</option>
+								<option value="subtract">Subtract</option>
+								<option value="hardmix">Hard Mix</option>
+								<option value="power">Power</option>
+								<option value="harmonic">Harmonic</option>
+								<option value="sin">Sine</option>
+							</optgroup>
+						</select>
+					</div>
+				</label>
+			</div>
+		</div>
+		<div class="g-property-row">
+			<label>Style</label>
+			<div style="display: flex;">
+				<div style="display: flex; width: 100%; overflow: hidden;">
+					<div class="g-styles-preview" style="margin-right: 5px; align-self: center; "></div>
+					<div class="g-select g-styles-field-container" style="overflow: hidden; margin-right: 5px;"><span type="text" class="g-styles-field" data-property="_styles" style="width: 95%; align-self: center; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">No shared styles</span></div>
+				</div>
+				<button class="g-style-sync g-disabled" style="width: 50px;">Sync</button>
+			</div>
+		</div>
+		<hr style="">
+	</div>
+</div>
+<hr style="">
+<div class="toolbar list-toolbar accordion expanded empty-list" style="">
+	<label>Fills</label>
+	<button class="g-accordion"><span class="gravit-icon-down"></span></button>
+	<div class="g-accordion-ghost"></div>
+	<button data-action="settings" data-title="Advanced fill settings" style=""><span class="gravit-icon-settings"></span></button>
+	<button data-action="remove" data-title="Remove Selected Fill" style=""><span class="gravit-icon-trash"></span></button>
+	<button data-action="add" data-title="Add Fill"><span class="gravit-icon-plus"></span></button>
+</div>
+<div class="properties-panel fill-properties-panel" style=""></div>
+<hr style="">
+<div class="toolbar list-toolbar empty-list accordion" style="">
+	<label>Borders</label>
+	<button class="g-accordion"><span class="gravit-icon-down"></span></button>
+	<div class="g-accordion-ghost"></div>
+	<button data-action="stroke-settings" data-title="Advanced stroke settings" style=""><span class="gravit-icon-settings"></span></button>
+	<button data-action="remove" data-title="Remove Selected Border" style=""><span class="gravit-icon-trash"></span></button>
+	<button data-action="add" data-title="Add border"><span class="gravit-icon-plus"></span></button>
+</div>
+<div class="properties-panel border-properties-panel" style=""></div>
+<hr style="">
+<div class="toolbar list-toolbar accordion" style="">
+	<label>Effects</label>
+	<button class="g-accordion"><span class="gravit-icon-down"></span></button>
+	<div class="g-accordion-ghost"></div>
+	<button><span class="gravit-icon-plus"></span></button>
+</div>
+<div class="properties-panel effects-properties-panel" style="">
+	<div class="effects-panel">
+		<div class="effects"></div>
+	</div>
+	<div class="effects-default"><span class="effects-default-label">Blur</span><span>+</span></div>
+	<div class="effects-default"><span class="effects-default-label">Color Adjust</span><span>+</span></div>
+	<div class="effects-default"><span class="effects-default-label">Drop Shadow</span><span>+</span></div>
+	<div class="effects-default"><span class="effects-default-label">Inner Shadow</span><span>+</span></div>
+	<div class="effects-default"><span class="effects-default-label">More</span><span>+</span></div>
+</div>
+</div>
+<div class="panels sticky-panels"></div>
+</div>
+</div>
