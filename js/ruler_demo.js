@@ -1,18 +1,27 @@
 /**
  * Created by maor.frankel on 5/19/15.
  */
-var rul1 = new ruler({container: document.querySelector('#wrapper')});
-var guides1;
-var visible1 = true;
-var visibleGuides1 = true;
+
+
+
+
+	setTimeout(function () {
+      var ruler1 = new ruler({
+        container: document.querySelector('.image-builder'),// reference to DOM element to apply rulers on
+        rulerHeight: 25, // thickness of ruler
+        fontFamily: 'arial',// font for points
+        fontSize: '9px',
+        strokeStyle: 'grey',
+        lineWidth: 1,
+        enableMouseTracking: true,
+        enableToolTip: true
+      })
+
+     }, 0)
 
 
 function setPosX1(val){
-  rul1.api.setPos({x:val});
-}
-
-function setPosY1(val){
-  rul1.api.setPos({y:val});
+  ruler1.api.setPos({x:300, y:100})
 }
 
 function setScale1(val){

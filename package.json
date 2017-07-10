@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "main.js",
   "dependencies": {
-    "ruler.js": "0.0.4",
+    "ruler.js": "^1.0.0",
     "xel": "^0.0.15"
   }
 }

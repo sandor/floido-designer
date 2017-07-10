@@ -5,8 +5,8 @@
 .image-builder-container .image-builder {
   background: transparent;
   box-sizing: border-box;
-  border: 1px solid #cacaca;
-  min-height: 100%;
+  border: 0;
+  min-height: 100vh;
 	min-width: 100%;
   text-align: center;
   position: relative;

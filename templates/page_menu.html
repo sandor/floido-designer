@@ -1,41 +1,205 @@
-<style>
-	.menu{
-		padding: 5px;
-	}
-</style>
+<div class="grid-middle-noGutter">
+	<div class="col-12">
+		<h1 class="title_left">Page Settings</h1>
+		<hr>
+	</div>
 
-<div id="Page" class="tabcontent">
-	<h1 class="title_left">Page Settings</h1>
-<hr>
-<x-box class="middle">	
-<x-box>
-	<x-input type="color" value="#bada55">
-  <x-icon name="invert-colors"></x-icon>
-		<x-stepper></x-stepper>
-</x-input>
 
+	<div class="col-12">
+		<x-label class="discl_sm">Page Size</x-label>
+	</div>
+
+	<div class="spacer"></div>
+
+	<div class="col-3">
+		<x-label class="push-right pad"></x-label>
+	</div>
+	<div class="col-9">
+		<x-select skin="textured" style="width: 100%;">
+			<x-menu>
+				<x-menuitem value="no_bg" ng-click='setCanvasSize(size.width, size.height)' ng-repeat='size in presetSizes' selected="true">
+					<x-label>{{ size.name }}</x-label>
+				</x-menuitem>
+			</x-menu>
+		</x-select>
+	</div>
+
+	<div class="spacer"></div>
+
+	<div class="col-3 menu">
+		<x-label class="push-right pad">Size</x-label>
+	</div>
 	
-	</x-box>
-	<x-box>
-	<x-label>Top</x-label>
-	<x-numberinput skin="condensed" value="10" suffix=" px">
-		<x-stepper></x-stepper>
-	</x-numberinput>
-		</x-box>
-</x-box>
-<x-box class="middle">	
-<x-box>
-	<x-label>Width</x-label>
-	<x-numberinput skin="condensed" value="10" suffix=" px">
-		<x-stepper></x-stepper>
-	</x-numberinput>
 	
-	</x-box>
-	<x-box>
-	<x-label>Height</x-label>
-	<x-numberinput skin="condensed" value="10" suffix=" px">
-		<x-stepper></x-stepper>
-	</x-numberinput>
-		</x-box>
-</x-box>
-</div> 
+	<form>     
+    <input type="text" name="name" ng-model="width" />
+	<input type="text" name="name2" ng-model="height" />
+    <button ng-click="setNumeric(width, height)"></button>
+</form>
+	
+	
+	<div class="col-4">
+		<x-numberinput class="small" skin="condensed" ng-value="canvas.getWidth()"  suffix=" px" ng-model="width">
+			<x-stepper></x-stepper>
+		</x-numberinput>
+	</div>
+	<div class="col-1">
+	</div>
+	<div class="col-4">
+		<x-numberinput class="small" skin="condensed" value="canvas.getHeight()"  suffix=" px" ng-model="height" >
+			<x-stepper></x-stepper>
+		</x-numberinput>
+	</div>
+
+	<div class="col-3"></div>
+	<div class="col-4 centered_sm">Width</div>
+	<div class="col-1"></div>
+	<div class="col-4 centered_sm">Height</div>
+
+	<div class="col-3"></div>
+	<div class="col-9">
+		<x-button skin="textured" style="width:197px;" type='submit' ng-click="setNumeric(width, height)">
+			<x-box>
+				<x-label>Apply</x-label>
+			</x-box>
+		</x-button>
+	</div>
+
+	<div class="spacer"></div>
+
+	<hr>
+
+
+
+	<div class="col-12">
+		<x-label class="discl_sm">Background Color</x-label>
+	</div>
+	<div class="spacer"></div>
+
+
+	<div class="col-3">
+		<x-label class="push-right pad">Color</x-label>
+	</div>
+	<div class="col-5">
+		<input type="color" id="picker1" class="small" bind-value-to="canvasBgColor">
+
+	</div>
+	<div class="col-4">
+		<x-input id="select1" class="small form-control" value="#" bind-value-to="canvasBgColor">
+			<x-icon name="invert-colors"></x-icon>
+		</x-input>
+	</div>
+
+	<div class="spacer"></div>
+	<hr>
+
+	<div class="col-12">
+		<x-label class="discl_sm">Background Gradient</x-label>
+	</div>
+	<div class="spacer"></div>
+	<div class="col-3 menu">
+		<x-label class="push-right pad">Gradient</x-label>
+	</div>
+	<div class="col-5">
+		<x-colorselect class="small" value="#000000">
+
+		</x-colorselect>
+	</div>
+
+	<div class="col-4">
+		<x-colorselect class="small" value="#ffffff">
+
+		</x-colorselect>
+	</div>
+
+	<div class="col-3"></div>
+	<div class="col-4 centered_sm">Left</div>
+	<div class="col-1"></div>
+	<div class="col-4 centered_sm">Right</div>
+
+	<div class="col-3">
+		<x-label class="push-right pad"></x-label>
+	</div>
+	<div class="col-4">
+		<x-numberinput class="small" skin="condensed" value="90" suffix="°">
+			<x-stepper></x-stepper>
+		</x-numberinput>
+	</div>
+	<div class="col-1"></div>
+	<div class="col-4">
+		<x-buttons tracking="2">
+			<x-button skin="textured-condensed" class="halfsmall">
+				<x-icon name="swap-horiz"></x-icon>
+			</x-button>
+
+			<x-button skin="textured-condensed" class="halfsmall">
+				<x-icon name="swap-vert"></x-icon>
+			</x-button>
+
+		</x-buttons>
+	</div>
+
+	<div class="col-3"></div>
+	<div class="col-4 centered_sm">Direction</div>
+	<div class="col-1"></div>
+	<div class="col-4 centered_sm">Flip</div>
+
+	<div class="col-3"></div>
+	<div class="col-9">
+		<x-button skin="textured" style="width:197px;">
+			<x-box>
+				<x-label>Reset</x-label>
+			</x-box>
+		</x-button>
+	</div>
+
+	<div class="spacer"></div>
+	<hr>
+
+	<div class="col-12">
+		<x-label class="discl_sm">Background Image</x-label>
+	</div>
+
+	<div class="col-3 menu">
+		<x-label class="push-right pad">Image</x-label>
+	</div>
+	<div class="col-4">
+		<x-button class="imginput">
+			<x-icon name="insert-drive-file"></x-icon>
+		</x-button>
+	</div>
+
+	<div class="col-5">
+		<x-radios>
+			<x-box>
+				<x-radio id="first-radio" toggled></x-radio>
+				<x-label class="left_sm" for="first-radio" id="label-1">Size to fit</x-label>
+			</x-box>
+			<x-box>
+				<x-radio id="second-radio"></x-radio>
+				<x-label class="left_sm" for="second-radio" id="label-2">Repeat X/Y</x-label>
+			</x-box>
+			<x-box>
+				<x-radio id="third-radio"></x-radio>
+				<x-label class="left_sm" for="third-radio" id="label-3">Repeat X</x-label>
+			</x-box>
+			<x-box>
+				<x-radio id="fourth-radio"></x-radio>
+				<x-label class="left_sm" for="fourth-radio" id="label-4">Repeat Y</x-label>
+			</x-box>
+		</x-radios>
+	</div>
+
+	<div class="spacer"></div>
+
+	<div class="col-3"></div>
+	<div class="col-9">
+		<x-button skin="textured" style="width:197px;">
+			<x-box>
+				<x-label>Reset</x-label>
+			</x-box>
+		</x-button>
+	</div>
+
+	<div class="spacer"></div>
+	<hr>

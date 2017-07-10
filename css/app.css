@@ -1,10 +1,4 @@
-<style> * {
-    color: rgba(100, 100, 100, 0.9);
-}
-h1 {
-    color: rgba(0, 0, 0, 0.9);
-}
-</style> x-label {
+x-label {
     font-size: 13px;
     color: #737373;
 }
@@ -144,7 +138,7 @@ x-button[skin="tabnav"] x-label {
     !Important;
 }
 .content-empty {
-    background: #9096a0 url("../images/bg.png") repeat scroll top left;
+    background: url("../images/bg.png") repeat scroll top left;
 }
 .left_sm {
     text-align: left;
@@ -175,7 +169,8 @@ x-button[skin="tabnav"] x-label {
     justify-content: space-between;
 }
 .sidebar {
-    background-color: #d1cfd1;
+    background-color: rgba(209, 207, 209,0.2);
+	overflow: hidden;
 }
 .window-content {
     position: relative;
@@ -206,7 +201,7 @@ x-button[skin="tabnav"] x-label {
     border-right: 1px solid #c2c0c2;
 }
 .pane-right {
-    width: 270px;
+    width: 300px;
     border-left: 1px solid #c2c0c2;
 }
 .pane-mini {
@@ -302,7 +297,7 @@ x-button[skin="tabnav"] x-label {
     left: 0;
     display: flex;
     flex-direction: column;
-    background-color: #fff;
+    background-color: transparent;
 }
 .window-content {
     position: relative;
@@ -347,7 +342,7 @@ x-button[skin="tabnav"] x-label {
     margin: 0;
     padding: 0;
     min-height: 20px;
-    font-size: 13px;
+    font-size: 12px;
     line-height: 20px;
 }
 .dd-handle {
@@ -359,32 +354,34 @@ x-button[skin="tabnav"] x-label {
     text-decoration: none;
     font-weight: bold;
     border: 1px solid #ccc;
-    background: #ccc;
+    background: none;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
 }
 .dd-handle:hover {
     color: #2ea8e5;
-    background: #fff;
+    background: rgba(244, 244, 244, 0.4);
 }
 .dd-item > button {
     display: block;
     position: relative;
     cursor: pointer;
     float: left;
-    width: 25px;
-    height: 20px;
-    margin: 5px 0;
+    width: 15px;
+    height: 15px;
+    margin: 10px;
+	margin-top: 12px;
     padding: 0;
     text-indent: 100%;
     white-space: nowrap;
     overflow: hidden;
-    border: 0;
+    border: 1px solid #bbb;
     background: transparent;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 1;
     text-align: center;
-    font-weight: bold;
+    font-weight: lighter;
+	color: #bbb;
 }
 .dd-item > button:before {
     content: '+';
@@ -448,30 +445,7 @@ x-button[skin="tabnav"] x-label {
     margin: 20px 0;
 }
 #nestable-output,
-#nestable2-output {
-    width: 100%;
-    height: 7em;
-    font-size: 0.75em;
-    line-height: 1.333333em;
-    font-family: Consolas, monospace;
-    padding: 5px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-}
-#nestable2 .dd-handle {
-    color: #fff;
-    border: 1px solid #999;
-    background: #bbb;
-    background: -webkit-linear-gradient(top, #bbb 0%, #999 100%);
-    background: -moz-linear-gradient(top, #bbb 0%, #999 100%);
-    background: linear-gradient(top, #bbb 0%, #999 100%);
-}
-#nestable2 .dd-handle:hover {
-    background: #bbb;
-}
-#nestable2 .dd-item > button:before {
-    color: #fff;
-}
+
 @media only screen and (min-width: 700px) {
     .dd {
         float: left;
@@ -496,7 +470,7 @@ x-button[skin="tabnav"] x-label {
     padding: 5px 10px 5px 40px;
     color: #333;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: lighter;
     border: 1px solid #ccc;
     background: #fafafa;
     background: -webkit-linear-gradient(top, #fafafa 0%, #eee 100%);
