@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="node_modules/xel/stylesheets/macos.theme.css">
+	<link rel="import" href="node_modules/xel/xel.min.html">
+	<!--
+<link rel="stylesheet" href="css/photon.css">-->
+	<link rel="stylesheet" href="css/app.css">
+	<!--	<link rel="stylesheet" href="css/text_menu.css">-->
+	<link rel="stylesheet" href="css/gridlex.min.css">
+	<link rel="stylesheet" href="css/pretty.min.css">
+
+	<!--	this are the css an js files from the angular project-->
+
+	<!--	<link rel='stylesheet prefetch' href='css/bootstrap.min.css'>-->
+	<link rel='stylesheet prefetch' href='css/font-awesome.min.css'>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<!--	<script src="css/ruler.css"></script>-->
+
+
+
+	<!-- Insert this line above script imports  -->
+	<script>
+		if (typeof module === 'object') {
+			window.module = module;
+			module = undefined;
+		}
+	</script>
+
+
+
+
+	<script src='js/jquery.min.js'></script>
+	<script src='js/jquery.nestable.js'></script>
+	<script src='js/fabric.min.js'></script>
+	<script src='js/angular.min.js'></script>
+	<script src='assets/fabric.js'></script>
+	<script src='assets/fabricCanvas.js'></script>
+	<script src='assets/fabricConstants.js'></script>
+	<script src='assets/fabricDirective.js'></script>
+	<script src='assets/fabricDirtyStatus.js'></script>
+	<script src='assets/fabricUtilities.js'></script>
+	<script src='assets/fabricWindow.js'></script>
+	<!--	<script src='js/bootstrap.min.js'></script>-->
+
+	<script src="js/index.js"></script>
+	
+
+	
+	<!--	I am using this small script to inject HTML contents for the menus. Not needed if we use Angular.js-->
+
+	<script src="js/csi.min.js"></script>
+
+
+
+	<!-- just a dummy funtion for the tabs  -->
+	<script>
+		function openTab(evt, tabName) {
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(" active", "");
+			}
+			document.getElementById(tabName).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+	</script>
+	
+			<!-- Ruler script here – https://github.com/MrFrankel/ruler  -->
+	<link rel="stylesheet" href="node_modules/ruler.js/dist/ruler.min.css">
+  	<script src="node_modules/ruler.js/dist/ruler.min.js"></script>
+	<script src="js/ruler_demo.js"></script>
+
+<!--	<script>
+	setTimeout(function () {
+      var ruler1 = new ruler({
+        container: document.querySelector('.image-builder'),// reference to DOM element to apply rulers on
+        rulerHeight: 25, // thickness of ruler
+        fontFamily: 'arial',// font for points
+        fontSize: '9px',
+        strokeStyle: 'grey',
+        lineWidth: 1,
+        enableMouseTracking: true,
+        enableToolTip: true
+      })
+     }, 0)
+	
+	</script>
+	-->
+
+	<!-- this is not working as it should: change canvas color  -->
+	
+<!--	<script type="text/javascript">
+		function colorPicker() {
+			var x = document.getElementById("picker1").value;
+			var select = document.getElementById("select1");
+			select.value = x;
+		}
+		window.onload = colorPicker;
+	</script>-->
+
+	<!-- nestable side panel list demo  -->
+
+	<script>
+		$(document).ready(function() {
+
+			var updateOutput = function(e) {
+				var list = e.length ? e : $(e.target),
+					output = list.data('output');
+				if (window.JSON) {
+					output.val(window.JSON.stringify(list.nestable('serialize'))); //, null, 2));
+				} else {
+					output.val('JSON browser support required for this demo.');
+				}
+			};
+
+			// activate Nestable for list 1
+			$('#nestable').nestable({
+					group: 1
+				})
+				.on('change', updateOutput);
+
+			// activate Nestable for list 2
+			$('#nestable2').nestable({
+					group: 1
+				})
+				.on('change', updateOutput);
+
+			// output initial serialised data
+			updateOutput($('#nestable').data('output', $('#nestable-output')));
+
+			$('#nestable-menu').on('click', function(e) {
+				var target = $(e.target),
+					action = target.data('action');
+				if (action === 'expand-all') {
+					$('.dd').nestable('expandAll');
+				}
+				if (action === 'collapse-all') {
+					$('.dd').nestable('collapseAll');
+				}
+			});
+
+			$('#nestable3').nestable();
+
+		});
+	</script>
+
+
+	<!-- Insert this line after script imports -->
+	<script>
+		if (window.module) module = window.module;
+	</script>
+
+	<!-- dummy function – toggle left panel -->
+
+	<script>
+		function toggleLeft() {
+			var x = document.getElementById('left1');
+			if (x.style.display === 'none') {
+				x.style.display = 'block';
+			} else {
+				x.style.display = 'none';
+			}
+		}
+	</script>
+	
+
+</head>
+
+<body style="background: rgba(0, 0, 0, 0.0); -webkit-app-region: drag;" ng-app='example' ng-controller="ExampleCtrl">
+	<div class="window" style="background: rgba(255, 255, 255, 0.0)">
+		<header class="toolbar toolbar-header">
+			<h1 class="title">Untitled</h1>
+
+			<div class="toolbar-actions">
+				<x-box class="middle">
+					<x-buttons tracking="1">
+						<x-button skin="iconic" onclick="toggleLeft()">
+							<x-box vertical>
+								<x-icon name="layers"></x-icon>
+								<x-label>Layers</x-label>
+							</x-box>
+						</x-button>
+
+						<x-button skin="iconic">
+							<x-box vertical>
+								<x-icon name="pages"></x-icon>
+								<x-label>Pages</x-label>
+							</x-box>
+						</x-button>
+					</x-buttons>
+
+					<x-buttons tracking="1">
+						<x-button skin="iconic" ng-click="fabric.addText()">
+							<x-box vertical>
+								<x-icon name="text" iconset="images/icons.svg"></x-icon>
+								<x-label>Add Text</x-label>
+							</x-box>
+						</x-button>
+
+						<x-button skin="iconic">
+							<x-box vertical>
+								<x-icon name="add-box"></x-icon>
+								<x-label>Insert Element</x-label>
+							</x-box>
+							<x-menu>
+								<x-menuitem ng-click="fabric.addText()">
+									<x-icon name="title"></x-icon>
+									<x-label>Add Textfield</x-label>
+								</x-menuitem>
+
+								<x-menuitem>
+									<x-icon name="photo"></x-icon>
+									<x-label>Add Image...</x-label>
+								</x-menuitem>
+
+								<x-menuitem>
+									<x-icon name="videocam"></x-icon>
+									<x-label>Add Video...</x-label>
+								</x-menuitem>
+
+								<hr>
+
+								<x-menuitem ng-click="fabric.addRectangle()">
+									<x-icon name="content-copy"></x-icon>
+									<x-label>Add Rectangle</x-label>
+								</x-menuitem>
+
+								<x-menuitem ng-click="fabric.addRectangle()">
+									<x-icon name="crop-square"></x-icon>
+									<x-label>Add Rounded Rectangle</x-label>
+								</x-menuitem>
+
+								<x-menuitem>
+									<x-icon name="panorama-fish-eye"></x-icon>
+									<x-label>Add Circle</x-label>
+								</x-menuitem>
+
+								<x-menuitem>
+									<x-icon name="details"></x-icon>
+									<x-label>Add Triangle</x-label>
+								</x-menuitem>
+
+							</x-menu>
+						</x-button>
+
+						<x-button skin="iconic">
+							<x-box vertical>
+								<x-icon name="extension" ng-click="fabric.addRectangle()"></x-icon>
+								<x-label>Add Module</x-label>
+							</x-box>
+						</x-button>
+					</x-buttons>
+
+					<x-buttons tracking="1">
+						<x-button skin="iconic">
+							<x-box vertical>
+								<x-icon name="edit"></x-icon>
+								<x-label>Page Editor</x-label>
+							</x-box>
+						</x-button>
+
+						<x-button skin="iconic" disabled>
+							<x-box vertical>
+								<x-icon name="actions" iconset="images/icons.svg"></x-icon>
+								<x-label>Actions Editor</x-label>
+							</x-box>
+						</x-button>
+
+
+
+						<x-button skin="iconic" disabled>
+							<x-box vertical>
+								<x-icon name="view-module"></x-icon>
+								<x-label>Page Flow</x-label>
+							</x-box>
+						</x-button>
+
+					</x-buttons>
+
+					<x-buttons tracking="1">
+						<x-button skin="iconic" disabled>
+							<x-box vertical>
+								<x-icon name="visibility"></x-icon>
+								<x-label>Project Preview</x-label>
+							</x-box>
+						</x-button>
+
+						<x-button skin="iconic" disabled>
+							<x-box vertical>
+								<x-icon name="code"></x-icon>
+								<x-label>Code View</x-label>
+							</x-box>
+						</x-button>
+
+					</x-buttons>
+
+					<x-buttons tracking="1">
+						<x-button skin="iconic">
+							<x-box vertical>
+								<x-icon name="settings"></x-icon>
+								<x-label>Inspector</x-label>
+							</x-box>
+						</x-button>
+
+						<x-button skin="iconic" disabled>
+							<x-box vertical>
+								<x-icon name="image"></x-icon>
+								<x-label>Asset Library</x-label>
+							</x-box>
+						</x-button>
+
+						<x-button skin="iconic" disabled>
+							<x-box vertical>
+								<x-icon name="get-app"></x-icon>
+								<x-label>Export</x-label>
+							</x-box>
+						</x-button>
+
+					</x-buttons>
+				</x-box>
+
+
+
+
+
+
+			</div>
+		</header>
+
+		<div class="window-content">
+			<div class="pane-group">
+				<div id="left1" class="pane-sm sidebar">
+					<div class="col-12">
+						<h1 class="title_left">Layers</h1>
+						<hr>
+					</div>
+					<div class="dd" id="nestable">
+						<ol class="dd-list">
+							<li class="dd-item" data-id="1">
+								<div class="dd-handle">Item 2</div>
+							</li>
+							<li class="dd-item" data-id="2">
+								<div class="dd-handle">Item 2</div>
+								<ol class="dd-list">
+									<li class="dd-item" data-id="3">
+										<div class="dd-handle">Item 3</div>
+									</li>
+									<li class="dd-item" data-id="4">
+										<div class="dd-handle">Item 4</div>
+									</li>
+									<li class="dd-item" data-id="5">
+										<div class="dd-handle">Item 5</div>
+										<ol class="dd-list">
+											<li class="dd-item" data-id="6">
+												<div class="dd-handle">Item 6</div>
+											</li>
+											<li class="dd-item" data-id="7">
+												<div class="dd-handle">Item 7</div>
+											</li>
+											<li class="dd-item" data-id="8">
+												<div class="dd-handle">Item 8</div>
+											</li>
+										</ol>
+									</li>
+									<li class="dd-item" data-id="9">
+										<div class="dd-handle">Item 9</div>
+									</li>
+									<li class="dd-item" data-id="10">
+										<div class="dd-handle">Item 10</div>
+									</li>
+								</ol>
+							</li>
+							<li class="dd-item" data-id="11">
+								<div class="dd-handle">Item 11</div>
+							</li>
+							<li class="dd-item" data-id="12">
+								<div class="dd-handle">Item 12</div>
+							</li>
+						</ol>
+					</div>
+				</div>
+				<div class="pane content-empty image-builder-container">
+
+					<div id="wrapper" class='image-builder' parent-click="fabric.deactivateAll()">
+						<div class='fabric-container'>
+							<canvas id="fcontainer"  fabric='fabric'></canvas>
+						</div>
+					</div>
+				</div>
+				<div class="pane-right sidebar">
+
+					<x-box>
+						<x-buttons tracking="1">
+							<x-button class="tablinks" disabled skin="tabnav" onclick="openTab(event, 'Project')">
+								<x-icon name="phonelink-setup"></x-icon>
+							</x-button>
+
+							<x-button class="tablinks" skin="tabnav" onclick="openTab(event, 'Page')">
+								<x-icon name="insert-drive-file"></x-icon>
+							</x-button>
+
+							<x-button class="tablinks" skin="tabnav" onclick="openTab(event, 'Layout')">
+								<x-icon name="perm-data-setting"></x-icon>
+							</x-button>
+
+							<x-button class="tablinks" skin="tabnav" onclick="openTab(event, 'Style')">
+								<x-icon name="style"></x-icon>
+							</x-button>
+
+							<x-button class="tablinks" skin="tabnav" onclick="openTab(event, 'Text')">
+								<x-icon name="text" iconset="images/icons.svg"></x-icon>
+							</x-button>
+
+							<x-button class="tablinks" disabled skin="tabnav" onclick="openTab(event, 'Actions')">
+								<x-icon name="actions" iconset="images/icons.svg"></x-icon>
+							</x-button>
+						</x-buttons>
+					</x-box>
+					<hr>
+				
+
+
+
+					<div id="Project" class="tabcontent" data-include="templates/project_menu.html"></div>
+					<div id="Page" class="tabcontent" data-include="templates/page_menu.html"></div>
+					<div id="Layout" class="tabcontent" data-include="templates/layout_menu.html"></div>
+					<div id="Style" class="tabcontent" data-include="templates/style_menu.html"></div>
+					<div id="Text" class="tabcontent" data-include="templates/text1_menu.html"></div>
+					<div id="Actions" class="tabcontent" data-include="templates/actions_menu.html"></div>
+
+
+
+				</div>
+			</div>
+		</div>
+		<footer class="toolbar toolbar-footer">
+			<h1 class="title">Footer</h1>
+		</footer>
+	</div>
+
+
+</body>
+
+</html>

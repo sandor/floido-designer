@@ -8,8 +8,11 @@
         <input type="color" value="" id="text-bg-color" size="10" class="btn-object-action" bind-value-to="bgColor"><br />
         <label for="opacity">Opacity:</label>
         <input value="100" type="range" bind-value-to="opacity" class="btn-object-action"><br />
-        <label for="opacity">Stroke width:</label>
+        <label for="stroke">Stroke width:</label>
         <input value="1" min="0" max="30" type="range" bind-value-to="strokeWidth" class="btn-object-action"><br />
+		  <label for="corner">Corner Width:</label>
+        <input value="1" min="0" max="100" type="range" bind-value-to="cornerWidth" class="btn-object-action"><br />
+		  <input type="number" name="corner" bind-value-to="cornerWidth" value="cornerWidth" class="btn-object-action" />
         <div id="text-wrapper" ng-show="getText()">
           <div id="text-controls">
             <p>Text specific controls</p>
@@ -39,8 +42,12 @@
               <option>Right</option>
               <option>Justify</option>
             </select>
+			  <div>
+				  <label for="color">Text Color:</label>
+        <input type="color" style="width:40px" bind-value-to="fill" class="btn-object-action">
+			  </div>
             <div>
-              <label for="text-lines-bg-color">Background text color:</label>
+              <label for="text-lines-bg-color">Text Background Color:</label>
               <input type="color" value="" id="text-lines-bg-color" size="10" class="btn-object-action"
                 bind-value-to="textBgColor">
             </div>

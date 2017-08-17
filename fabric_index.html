@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJS and FabricJS</title>
+
+		<!-- Insert this line above script imports  -->
+	<script>
+		if (typeof module === 'object') {
+			window.module = module;
+			module = undefined;
+		}
+	</script>
+
+	<script src='js/jquery.min.js'></script>
+	<script src='js/fabric.min.js'></script>
+	
+		<!-- Insert this line after script imports -->
+	<script>
+		if (window.module) module = window.module;
+	</script>
+
+	<style>
+		#c {
+			background-color: grey;
+			margin-top: 10px;
+		}
+		
+		button {
+			padding: 10px 20px;
+		}
+	</style>
+
+
+
+
+</head>
+
+<body>
+	<button id="rect">Rect</button>
+	<button id="circ">Circ</button>
+	<button id="save">Save</button>
+	<br>
+	<canvas id="c" width="800" height="800"></canvas><p class="save">
+	</p>
+	
+		<script>
+		var canvas = new fabric.Canvas('c');
+
+		$("#rect").on("click", function(e) {
+			rect = new fabric.Rect({
+				left: 40,
+				top: 40,
+				width: 50,
+				height: 50,
+				fill: 'transparent',
+				stroke: 'green',
+				strokeWidth: 5,
+			});
+			canvas.add(rect);
+		});
+
+		$("#circ").on("click", function(e) {
+			rect = new fabric.Circle({
+				left: 40,
+				top: 40,
+				radius: 50,
+				fill: 'transparent',
+				stroke: 'green',
+				strokeWidth: 5,
+			});
+			canvas.add(rect);
+		});
+
+		$("#save").on("click", function(e) {
+			$(".save").html(canvas.toSVG());
+		});
+	</script>
+	
+</body>

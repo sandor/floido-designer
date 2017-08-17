@@ -121,8 +121,16 @@
 	<!-- dummy function – toggle left panel -->
 
 	<script>
-		function toggleLeft() {
-			var x = document.getElementById('left1');
+		function toggleLayers() {
+			var x = document.getElementById('layers');
+			if (x.style.display === 'none') {
+				x.style.display = 'block';
+			} else {
+				x.style.display = 'none';
+			}
+		}
+		function toggleInspector() {
+			var x = document.getElementById('inspector');
 			if (x.style.display === 'none') {
 				x.style.display = 'block';
 			} else {
@@ -147,7 +155,7 @@
 			<div class="toolbar-actions">
 				<x-box class="middle">
 					<x-buttons tracking="1">
-						<x-button skin="iconic" onclick="toggleLeft()">
+						<x-button skin="iconic" onclick="toggleLayers()">
 							<x-box vertical>
 								<x-icon name="layers"></x-icon>
 								<x-label>Layers</x-label>
@@ -273,7 +281,7 @@
 					</x-buttons>
 
 					<x-buttons tracking="1">
-						<x-button skin="iconic">
+						<x-button skin="iconic"  onclick="toggleInspector()">
 							<x-box vertical>
 								<x-icon name="settings"></x-icon>
 								<x-label>Inspector</x-label>
@@ -307,7 +315,7 @@
 
 		<div class="window-content">
 			<div class="pane-group">
-				<div id="left1" class="pane-sm sidebar">
+				<div id="layers" class="pane-sm sidebar">
 					<div class="col-12">
 						<h1 class="title_left">Layers</h1>
 						<hr>
@@ -368,7 +376,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="pane-right sidebar" ng-controller="TabsCtrl">
+				<div id="inspector" class="pane-right sidebar" ng-controller="TabsCtrl">
 
 					<x-box>
 						<x-buttons tracking="1">
@@ -399,6 +407,39 @@
 	<script>
 		var kitchensink = {};
 		var canvas = new fabric.Canvas('canvas');
+		
+/*
+getting some test data
+*/
+
+canvas.on('object:scaling', onObjectModification);
+canvas.on('object:moving', onObjectModification);
+canvas.on('object:rotating', onObjectModification);
+canvas.on('object:selected', onObjectModification);
+function onObjectModification(e) {
+    var activeObject = e.target;
+    if (!activeObject) {
+      return;
+    }
+    var canvasWidth = canvas.width;
+    var canvasHeight = canvas.height;
+    var reachedLimit = false;
+    var objectLeft = Math.round(activeObject.left);
+    var objectTop = Math.round(activeObject.top);
+	var objectAngle = Math.round( activeObject.angle * 10 ) / 10;
+	var objectWidth = Math.round(activeObject.width);
+	var objectHeight = Math.round(activeObject.height);
+	var objWidth = Math.round(activeObject.width * activeObject.scaleX);
+	var objHeight = Math.round(activeObject.height * activeObject.scaleY);
+	console.log(canvasWidth, canvasHeight, objectLeft, objectTop, objectAngle, objectWidth, objectHeight, objWidth, objHeight);
+	
+
+}
+
+
+/*end*/
+		
+		
 		
 /*
 		undo and redo functions – this should be integrated in the controllers later on  

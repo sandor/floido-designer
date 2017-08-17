@@ -59,7 +59,9 @@
 	</div>
 	<div class="col-1"></div>
 	<div class="col-4">
-		<x-numberinput class="small" skin="condensed" value="10" suffix=" px">
+		<input type="text" ng-value="objectTop" />
+
+		<x-numberinput ng-value="objectTop" class="small" skin="condensed" suffix=" px">
 			<x-stepper></x-stepper>
 		</x-numberinput>
 	</div>
@@ -95,7 +97,7 @@
 		<x-label class="push-right pad">Transform</x-label>
 	</div>
 	<div class="col-4">
-		<x-numberinput class="small" skin="condensed" value="10" suffix="°">
+		<x-numberinput id="angle-control" class="small" skin="condensed" value="10" suffix="°">
 			<x-stepper></x-stepper>
 		</x-numberinput>
 	</div>
@@ -181,3 +183,4 @@
 	<hr>
 	<div class="spacer"></div>
 </div>
+

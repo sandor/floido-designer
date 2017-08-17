@@ -31,12 +31,24 @@
 	</div>
 	
 	
-	<form>     
-    <input type="text" name="name" ng-model="width" />
-	<input type="text" name="name2" ng-model="height" />
-    <button ng-click="setNumeric(width, height)"></button>
-</form>
+<!--<form>     
+	<x-numberinput class="small" skin="condensed" name="name" ng-value="canvas.getWidth()" ng-model="width">
+	<x-stepper></x-stepper></x-numberinput>
+	<x-input type="number" name="name2" ng-value="canvas.getHeight()" ng-model="height" />
+    <x-button ng-click="setNumeric(width, height)">Change Size</x-button>
+</form>-->
 	
+<!--	<form>     
+    <x-numberinput type="number" class="small" name="name" ng-value="canvas.getWidth()" ng-model="width" bind-value-to="setNumeric"><x-stepper></x-stepper>
+		</x-numberinput>
+	<x-numberinput type="number" class="small" name="name2" ng-value="canvas.getHeight()" ng-model="height" bind-value-to="setNumeric"><x-stepper></x-stepper>
+		</x-numberinput>
+				<x-button ng-click="setNumeric(width, height)" skin="textured" style="width:197px;">
+			<x-box>
+				<x-label>Apply</x-label>
+			</x-box>
+		</x-button>
+</form>-->
 	
 	<div class="col-4">
 		<x-numberinput class="small" skin="condensed" ng-value="canvas.getWidth()"  suffix=" px" ng-model="width">
@@ -46,7 +58,7 @@
 	<div class="col-1">
 	</div>
 	<div class="col-4">
-		<x-numberinput class="small" skin="condensed" value="canvas.getHeight()"  suffix=" px" ng-model="height" >
+		<x-numberinput class="small" skin="condensed" ng-value="canvas.getHeight()"  suffix=" px" ng-model="height" >
 			<x-stepper></x-stepper>
 		</x-numberinput>
 	</div>
@@ -58,13 +70,42 @@
 
 	<div class="col-3"></div>
 	<div class="col-9">
-		<x-button skin="textured" style="width:197px;" type='submit' ng-click="setNumeric(width, height)">
+		<x-button skin="textured" style="width:197px;" ng-click="setNumeric(width, height)">
 			<x-box>
 				<x-label>Apply</x-label>
 			</x-box>
 		</x-button>
 	</div>
 
+<!--working	alternative1-->
+	
+	<div class="spacer"></div>
+	<hr>
+	<div class="col-4">
+		<x-input name="name1" ng-value="canvas.getHeight()" ng-model="width">
+			</x-input>
+	</div>
+	<div class="col-1">
+	</div>
+	<div class="col-4">
+		<x-input name="name2" ng-value="canvas.getHeight()" ng-model="height" >
+		</x-input>
+	</div>
+
+	<div class="col-3"></div>
+	<div class="col-4 centered_sm">Width</div>
+	<div class="col-1"></div>
+	<div class="col-4 centered_sm">Height</div>
+
+	<div class="col-3"></div>
+	<div class="col-9">
+		<x-button skin="textured" style="width:197px;" ng-click="setNumeric(width, height)">
+			<x-box>
+				<x-label>Apply</x-label>
+			</x-box>
+		</x-button>
+	</div>
+	
 	<div class="spacer"></div>
 
 	<hr>
@@ -85,9 +126,10 @@
 
 	</div>
 	<div class="col-4">
-		<x-input id="select1" class="small form-control" value="#" bind-value-to="canvasBgColor">
+		<x-input id="select1" class="small" ng-value="getCanvasBgColor(value)" bind-value-to="canvasBgColor">
 			<x-icon name="invert-colors"></x-icon>
 		</x-input>
+		<input type="text" name="name2" value="canvasBgColor" bind-value-to="canvasBgColor" />
 	</div>
 
 	<div class="spacer"></div>
