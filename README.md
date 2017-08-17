@@ -25,6 +25,9 @@ You can also open the index.html with the newest chrome version using a local se
 # Links
 
 [electron](https://electron.atom.io)
+
 [AngularJS](https://angularjs.org)
+
 [FabricJS](http://fabricjs.com)
+
 [XEL-toolkit](https://xel-toolkit.org/fallback.html)
