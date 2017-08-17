@@ -20,5 +20,5 @@ You can also open the index.html with the newest chrome version using a local se
 
 # Screenshots
 
-![]({{site.baseurl}}/https://github.com/sandor/floido/blob/master/floido.jpg)
+![](https://github.com/sandor/floido/blob/master/floido.jpg)
 
