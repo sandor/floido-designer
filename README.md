@@ -1,10 +1,10 @@
-# floido
+# floido designer
 
-**floido** is powerful visual editor based on open source libraries like electron, AngularJS, FabricJS and Xel widget toolkit for the UI. The final output of floido will be a serialized JSON file that you can use for your specific needs.
+**floido designer** is powerful visual editor based on open source libraries like electron, AngularJS, FabricJS and Xel widget toolkit for the UI. The final output of floido will be a serialized JSON file that you can use for your specific needs.
 
-**floido** is using the fabric.js canvas to insert, edit and style all type of contents, like text, JPEG, PNG, SVG and movie files.
+**floido designer** is using the fabric.js canvas to insert, edit and style all type of contents, like text, JPEG, PNG, SVG and movie files.
 
-**floido** will be a desktop application using electron and will be targeted for OSX in the first step.
+**floido designer** will be a desktop application using electron and will be targeted for OSX in the first step.
 
 # Setup
 
