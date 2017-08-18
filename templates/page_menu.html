@@ -82,8 +82,8 @@
 	<div class="spacer"></div>
 	<hr>
 	<div class="col-4">
-		<x-input name="name1" ng-value="canvas.getHeight()" ng-model="width">
-			</x-input>
+		<x-input name="name1" ng-value="canvas.getWidth()" ng-model="width">
+		</x-input>
 	</div>
 	<div class="col-1">
 	</div>
@@ -122,14 +122,14 @@
 		<x-label class="push-right pad">Color</x-label>
 	</div>
 	<div class="col-5">
-		<input type="color" id="picker1" class="small" bind-value-to="canvasBgColor">
+		<input type="color" id="picker1" class="small" ng-value="bgcolor" bind-value-to="canvasBgColor" ng-model="bgcolor">
 
 	</div>
 	<div class="col-4">
-		<x-input id="select1" class="small" ng-value="getCanvasBgColor(value)" bind-value-to="canvasBgColor">
+		<x-input id="select1" class="small" ng-value="bgcolor" bind-value-to="canvasBgColor" ng-model="bgcolor">
 			<x-icon name="invert-colors"></x-icon>
 		</x-input>
-		<input type="text" name="name2" value="canvasBgColor" bind-value-to="canvasBgColor" />
+		<input type="text" name="name2" ng-value="bgcolor" bind-value-to="canvasBgColor" ng-model="bgcolor" />
 	</div>
 
 	<div class="spacer"></div>

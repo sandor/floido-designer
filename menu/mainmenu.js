@@ -32,10 +32,18 @@ const template = [
         role: 'pasteandmatchstyle'
       },
       {
-//        role: 'delete',
+        role: 'delete',
 		label: 'Delete',
 		click (item, focusedWindow) {
-          if (focusedWindow) focusedWindow.webContents.send('ping', 'removeSelected()')
+          if (focusedWindow) focusedWindow.webContents.executeJavaScript('removeSelected()')
+        }
+      },	
+		
+	      {
+        role: 'delete',
+		label: 'Delete',
+		click (item, focusedWindow) {
+          if (focusedWindow) contents.executeJavaScript('removeSelected()')
         }
       },
       {
@@ -176,7 +184,7 @@ if (process.platform === 'darwin') {
 	{
         label: 'Open origninal index.html',
         click () {
-  const modalPath = path.join('file://${ __dirname}/ang_index.html')
+  const modalPath = path.join('floido.jpg')
   let win = new BrowserWindow({ width: 400, height: 320 })
   win.on('close', function () { win = null })
   win.loadURL(modalPath)
@@ -184,7 +192,9 @@ if (process.platform === 'darwin') {
     },
 	  {
         label: 'Open angular ang_index.html',
-        click () { mainWindow.loadURL('file://${ __dirname}/ang_index.html')}
+        click () { 
+			let win = new BrowserWindow({ width: 400, height: 320 })
+			BrowserWindow.loadURL('file://${ __dirname}/index.html')}
     },
     {
       type: 'separator'
