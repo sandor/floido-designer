@@ -6,10 +6,10 @@
 function initAligningGuidelines(canvas) {
 
   var ctx = canvas.getSelectionContext(),
-      aligningLineOffset = 5,
+      aligningLineOffset = 10,
       aligningLineMargin = 4,
       aligningLineWidth = 1,
-      aligningLineColor = 'rgb(0,255,0)',
+      aligningLineColor = 'hsl(205,100%,75%)',
       viewportTransform,
       zoom = 1;
 

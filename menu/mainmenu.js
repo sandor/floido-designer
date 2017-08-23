@@ -31,20 +31,15 @@ const template = [
       {
         role: 'pasteandmatchstyle'
       },
-      {
-        role: 'delete',
-		label: 'Delete',
-		click (item, focusedWindow) {
-          if (focusedWindow) focusedWindow.webContents.executeJavaScript('removeSelected()')
-        }
-      },	
+
 		
 	      {
-        role: 'delete',
+        //role: 'delete',
 		label: 'Delete',
-		click (item, focusedWindow) {
-          if (focusedWindow) contents.executeJavaScript('removeSelected()')
-        }
+		click: function() {
+      var focusedWindow = BrowserWindow.getFocusedWindow();
+      focusedWindow.webContents.send('delete');
+    }
       },
       {
         role: 'selectall'

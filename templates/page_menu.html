@@ -15,7 +15,7 @@
 		<x-label class="push-right pad"></x-label>
 	</div>
 	<div class="col-9">
-		<x-select skin="textured" style="width: 100%;">
+		<x-select style="width: 210px;">
 			<x-menu>
 				<x-menuitem value="no_bg" ng-click='setCanvasSize(size.width, size.height)' ng-repeat='size in presetSizes' selected="true">
 					<x-label>{{ size.name }}</x-label>
@@ -29,36 +29,17 @@
 	<div class="col-3 menu">
 		<x-label class="push-right pad">Size</x-label>
 	</div>
-	
-	
-<!--<form>     
-	<x-numberinput class="small" skin="condensed" name="name" ng-value="canvas.getWidth()" ng-model="width">
-	<x-stepper></x-stepper></x-numberinput>
-	<x-input type="number" name="name2" ng-value="canvas.getHeight()" ng-model="height" />
-    <x-button ng-click="setNumeric(width, height)">Change Size</x-button>
-</form>-->
-	
-<!--	<form>     
-    <x-numberinput type="number" class="small" name="name" ng-value="canvas.getWidth()" ng-model="width" bind-value-to="setNumeric"><x-stepper></x-stepper>
-		</x-numberinput>
-	<x-numberinput type="number" class="small" name="name2" ng-value="canvas.getHeight()" ng-model="height" bind-value-to="setNumeric"><x-stepper></x-stepper>
-		</x-numberinput>
-				<x-button ng-click="setNumeric(width, height)" skin="textured" style="width:197px;">
-			<x-box>
-				<x-label>Apply</x-label>
-			</x-box>
-		</x-button>
-</form>-->
-	
+
+
 	<div class="col-4">
-		<x-numberinput class="small" skin="condensed" ng-value="canvas.getWidth()"  suffix=" px" ng-model="width">
+		<x-numberinput class="small" id="myWidth" skin="condensed" ng-value="canvas.getWidth()" suffix=" px" ng-model="width">
 			<x-stepper></x-stepper>
 		</x-numberinput>
 	</div>
 	<div class="col-1">
 	</div>
 	<div class="col-4">
-		<x-numberinput class="small" skin="condensed" ng-value="canvas.getHeight()"  suffix=" px" ng-model="height" >
+		<x-numberinput class="small" id="myHeight" skin="condensed" ng-value="canvas.getHeight()" suffix=" px" ng-model="height">
 			<x-stepper></x-stepper>
 		</x-numberinput>
 	</div>
@@ -70,42 +51,15 @@
 
 	<div class="col-3"></div>
 	<div class="col-9">
-		<x-button skin="textured" style="width:197px;" ng-click="setNumeric(width, height)">
+		<x-button skin="textured" style="width:210px;" ng-click="setMySize()">
 			<x-box>
 				<x-label>Apply</x-label>
 			</x-box>
 		</x-button>
 	</div>
 
-<!--working	alternative1-->
-	
-	<div class="spacer"></div>
-	<hr>
-	<div class="col-4">
-		<x-input name="name1" ng-value="canvas.getWidth()" ng-model="width">
-		</x-input>
-	</div>
-	<div class="col-1">
-	</div>
-	<div class="col-4">
-		<x-input name="name2" ng-value="canvas.getHeight()" ng-model="height" >
-		</x-input>
-	</div>
 
-	<div class="col-3"></div>
-	<div class="col-4 centered_sm">Width</div>
-	<div class="col-1"></div>
-	<div class="col-4 centered_sm">Height</div>
 
-	<div class="col-3"></div>
-	<div class="col-9">
-		<x-button skin="textured" style="width:197px;" ng-click="setNumeric(width, height)">
-			<x-box>
-				<x-label>Apply</x-label>
-			</x-box>
-		</x-button>
-	</div>
-	
 	<div class="spacer"></div>
 
 	<hr>
@@ -129,7 +83,7 @@
 		<x-input id="select1" class="small" ng-value="bgcolor" bind-value-to="canvasBgColor" ng-model="bgcolor">
 			<x-icon name="invert-colors"></x-icon>
 		</x-input>
-		<input type="text" name="name2" ng-value="bgcolor" bind-value-to="canvasBgColor" ng-model="bgcolor" />
+
 	</div>
 
 	<div class="spacer"></div>
@@ -143,15 +97,11 @@
 		<x-label class="push-right pad">Gradient</x-label>
 	</div>
 	<div class="col-5">
-		<x-colorselect class="small" value="#000000">
-
-		</x-colorselect>
+		<input type="color" id="gradLeft" class="small" bind-value-to="addGradient()" ng-model="leftColor">
 	</div>
 
 	<div class="col-4">
-		<x-colorselect class="small" value="#ffffff">
-
-		</x-colorselect>
+		<input type="color" id="gradRight" class="small" bind-value-to="addGradient()" ng-model="rightColor">
 	</div>
 
 	<div class="col-3"></div>
@@ -188,9 +138,9 @@
 
 	<div class="col-3"></div>
 	<div class="col-9">
-		<x-button skin="textured" style="width:197px;">
+		<x-button skin="textured" style="width:210px;" ng-click="addGradient();">
 			<x-box>
-				<x-label>Reset</x-label>
+				<x-label>Set Background</x-label>
 			</x-box>
 		</x-button>
 	</div>
@@ -206,42 +156,47 @@
 		<x-label class="push-right pad">Image</x-label>
 	</div>
 	<div class="col-4">
-		<x-button class="imginput">
+		<x-button class="imginput" ng-click="bgImage()">
 			<x-icon name="insert-drive-file"></x-icon>
 		</x-button>
 	</div>
 
-	<div class="col-5">
-		<x-radios>
+	<div class="col-5" id="bgValue" ng-controller="bgContrl">
+		<x-radios >
 			<x-box>
-				<x-radio id="first-radio" toggled></x-radio>
-				<x-label class="left_sm" for="first-radio" id="label-1">Size to fit</x-label>
+				<x-radio name="bgValue" id="first-radio" value="no-repeat" toggled></x-radio>
+				<x-label class="left_sm" for="first-radio" id="label-1">No Repeat</x-label>
 			</x-box>
 			<x-box>
-				<x-radio id="second-radio"></x-radio>
+				<x-radio name="bgValue" id="second-radio" value="repeat"></x-radio>
 				<x-label class="left_sm" for="second-radio" id="label-2">Repeat X/Y</x-label>
 			</x-box>
 			<x-box>
-				<x-radio id="third-radio"></x-radio>
+				<x-radio name="bgValue" id="third-radio" value="repeat-x"></x-radio>
 				<x-label class="left_sm" for="third-radio" id="label-3">Repeat X</x-label>
 			</x-box>
 			<x-box>
-				<x-radio id="fourth-radio"></x-radio>
+				<x-radio name="bgValue" id="fourth-radio" value="repeat-y"></x-radio>
 				<x-label class="left_sm" for="fourth-radio" id="label-4">Repeat Y</x-label>
 			</x-box>
+			
+
 		</x-radios>
+		
 	</div>
 
 	<div class="spacer"></div>
 
 	<div class="col-3"></div>
 	<div class="col-9">
-		<x-button skin="textured" style="width:197px;">
+		<x-button skin="textured" style="width:210px;" ng-click="resetBgImage()">
 			<x-box>
-				<x-label>Reset</x-label>
+				<x-label>Reset Background</x-label>
 			</x-box>
 		</x-button>
 	</div>
+
+
 
 	<div class="spacer"></div>
 	<hr>

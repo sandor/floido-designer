@@ -28,6 +28,30 @@ function copy() {
        console.log(_clipboard);
 }
 
+/*function copy() {
+	var activeObject = canvas.getActiveObject(),
+		activeGroup = canvas.getActiveObject().type !== 'group';
+	
+	if (activeGroup) {
+		_clipboard = activeGroup;
+	} else if (activeObject) {
+		_clipboard = activeObject;
+	}
+
+	console.log(_clipboard);
+}*/
+
+/*function copy() {
+	var activeObject = canvas.getActiveObject(),
+		activeGroup = canvas.getActiveGroup();
+
+	if (activeGroup) {
+		_clipboard = activeGroup;
+	} else if (activeObject) {
+		_clipboard = activeObject;
+	}
+	return false;
+}*/
 
 function paste() {
 	var activeObject = canvas.getActiveObject();

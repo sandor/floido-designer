@@ -53,13 +53,12 @@
 		<x-label class="push-right pad">Position</x-label>
 	</div>
 	<div class="col-4">
-		<x-numberinput class="small" skin="condensed" value="10" suffix=" px">
+		<x-numberinput class="small" skin="condensed" ng-value="getPropLeft()" suffix=" px" bind-value-to="propLeft" ng-model="left" >
 			<x-stepper></x-stepper>
 		</x-numberinput>
 	</div>
 	<div class="col-1"></div>
 	<div class="col-4">
-		<input type="text" ng-value="objectTop" />
 
 		<x-numberinput ng-value="objectTop" class="small" skin="condensed" suffix=" px">
 			<x-stepper></x-stepper>

@@ -39,6 +39,8 @@
 	<script src='js/jquery.nestable.js'></script>
 	<script src='js/fabric.min.js'></script>
 	<script src='js/angular.min.js'></script>
+	<script src='js/aligning_guidelines.js'></script>
+	<script src='js/centering_guidelines.js'></script>
 
 	<!--	<script src='assets/fabric.js'></script>
 	<script src='assets/fabricCanvas.js'></script>
@@ -143,19 +145,19 @@
 	<!-- electron drag&drop test -->
 
 
-
-
 </head>
+	
+	
 
-<body style="background: rgba(0, 0, 0, 0.0); -webkit-app-region: drag;" ng-app="kitchensink" ng-controller="CanvasControls">
+<body style="background: rgba(0, 0, 0, 0.0);" ng-app="kitchensink" ng-controller="CanvasControls">
 	<div class="window" style="background: rgba(255, 255, 255, 0.0)">
 		<header class="toolbar toolbar-header">
 			<h1 class="title">Untitled</h1>
 
 			<div class="toolbar-actions">
 				<x-box class="middle">
-					<x-buttons tracking="1">
-						<x-button skin="iconic" onclick="toggleLayers()">
+					<x-buttons tracking="2">
+						<x-button skin="iconic" onclick="toggleLayers()" toggled>
 							<x-box vertical>
 								<x-icon name="layers"></x-icon>
 								<x-label>Layers</x-label>
@@ -280,8 +282,8 @@
 
 					</x-buttons>
 
-					<x-buttons tracking="1">
-						<x-button skin="iconic"  onclick="toggleInspector()">
+					<x-buttons tracking="2">
+						<x-button skin="iconic"  onclick="toggleInspector()" toggled>
 							<x-box vertical>
 								<x-icon name="settings"></x-icon>
 								<x-label>Inspector</x-label>
@@ -407,6 +409,8 @@
 	<script>
 		var kitchensink = {};
 		var canvas = new fabric.Canvas('canvas', {backgroundColor : "#FFFFFF"});
+		initAligningGuidelines(canvas);
+		initCenteringGuidelines(canvas);
 		
 /*
 getting some test data
@@ -551,6 +555,15 @@ function onObjectModification(e) {
 	<script>
 		require('electron').ipcRenderer.on('ping', function(event, message) {
 			console.log(message); // Prints "whoooooooh!"
+		});
+		
+/*		require('electron').ipcRenderer.on('file-save', function(event, message) {
+			console.log('save file...');
+			removeSelected();// Prints "whoooooooh!"
+		});*/
+		
+		require('electron').ipcRenderer.on('delete', function() {
+			remove();// Prints "whoooooooh!"
 		});
 
 	</script>

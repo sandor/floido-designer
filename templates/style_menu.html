@@ -1,149 +1,263 @@
-	<h1 class="title_left">Element Styling</h1>
-<hr>
-<x-box class="middle">	
-<x-box>
-    <div class="tab-pane" id="object">
-      <div class="object-controls" object-buttons-enabled="getSelected()">
-        <label for="color">Fill / Stroke / Background:</label>
-        <input type="color" style="width:40px" bind-value-to="fill" class="btn-object-action">
-        <input type="color" style="width:40px" bind-value-to="stroke" class="btn-object-action">
-        <input type="color" value="" id="text-bg-color" size="10" class="btn-object-action" bind-value-to="bgColor"><br />
-        <label for="opacity">Opacity:</label>
-        <input value="100" type="range" bind-value-to="opacity" class="btn-object-action"><br />
-        <label for="stroke">Stroke width:</label>
-        <input value="1" min="0" max="30" type="range" bind-value-to="strokeWidth" class="btn-object-action"><br />
-		  <label for="corner">Radius:</label>
-        <input value="1" min="0" max="100" type="range" bind-value-to="cornerWidth" class="btn-object-action"><br />
-		  <input type="number" name="corner" bind-value-to="cornerWidth" value="cornerWidth" class="btn-object-action" />
-		 <x-numberinput min="0" bind-value-to="cornerWidth" value="getRadius()" class="small" skin="condensed" suffix=" px">
+<div class="grid-middle-noGutter">
+	<div class="col-12">
+		<h1 class="title_left">Element Styling</h1>
+		<hr>
+	</div>
+
+	<div class="col-12">
+		<x-label class="discl_sm">Background</x-label>
+	</div>
+	<div class="spacer"></div>
+
+
+	<div class="col-3">
+		<x-label class="push-right pad">Fill</x-label>
+	</div>
+	<div class="col-5">
+		<input type="color" id="picker1" class="small" ng-value="bgcolor" bind-value-to="fill" ng-model="bgcolor">
+
+	</div>
+	<div class="col-4">
+		<x-input id="select1" class="small" ng-value="bgcolor" bind-value-to="fill" ng-model="bgcolor">
+			<x-icon name="invert-colors"></x-icon>
+		</x-input>
+
+	</div>
+
+
+
+	<div class="spacer"></div>
+
+	<div class="col-3">
+		<x-label class="push-right pad">BgColor</x-label>
+	</div>
+	<div class="col-5">
+		<input type="color" id="picker1" class="small" ng-value="bgcolor2" bind-value-to="bgColor" ng-model="bgcolor2">
+
+	</div>
+	<div class="col-4">
+		<x-input id="select1" class="small" ng-value="bgcolor2" bind-value-to="bgColor" ng-model="bgcolor2">
+			<x-icon name="invert-colors"></x-icon>
+		</x-input>
+
+	</div>
+
+	<div class="spacer"></div>
+
+	<hr>
+
+
+	<div class="col-3">
+		<x-label class="push-right pad">Opacity</x-label>
+	</div>
+	<div class="col-4">
+		<x-slider style="top: 6px; margin: 5px;" min="0" max="100" ng-value="opacity" bind-value-to="opacity" ng-model="opacity" skin="arrow">
+
+		</x-slider>
+
+	</div>
+		<div class="col-1">
+	</div>
+	<div class="col-4">
+
+
+		<x-numberinput style="width: 85px;" suffix=" %" skin="condensed" ng-value="opacity" bind-value-to="opacity" ng-model="opacity">
 			<x-stepper></x-stepper>
 		</x-numberinput>
 
-        <div style="margin-top:10px;">
-          <x-button togglable
-            ng-click="setHorizontalLock(!getHorizontalLock())"
-            ng-class="{'btn-inverse': getHorizontalLock()}">
-			  <x-label>{[ getHorizontalLock() ? 'Unlock horizontal movement' : 'Lock horizontal movement' ]}</x-label>
-            
-          </x-button>
-          <button class="btn btn-lock btn-object-action"
-            ng-click="setVerticalLock(!getVerticalLock())"
-            ng-class="{'btn-inverse': getVerticalLock()}">
-            {[ getVerticalLock() ? 'Unlock vertical movement' : 'Lock vertical movement' ]}
-          </button>
-          <br>
-          <button class="btn btn-lock btn-object-action"
-            ng-click="setScaleLockX(!getScaleLockX())"
-            ng-class="{'btn-inverse': getScaleLockX()}">
-            {[ getScaleLockX() ? 'Unlock horizontal scaling' : 'Lock horizontal scaling' ]}
-          </button>
-          <button class="btn btn-lock btn-object-action"
-            ng-click="setScaleLockY(!getScaleLockY())"
-            ng-class="{'btn-inverse': getScaleLockY()}">
-            {[ getScaleLockY() ? 'Unlock vertical scaling' : 'Lock vertical scaling' ]}
-          </button>
-          <button class="btn btn-lock btn-object-action"
-            ng-click="setRotationLock(!getRotationLock())"
-            ng-class="{'btn-inverse': getRotationLock()}">
-            {[ getRotationLock() ? 'Unlock rotation' : 'Lock rotation' ]}
-          </button>
-        </div>
+	</div>
 
-        <div style="margin-top:10px">
-          <p>
-            <span style="margin-right: 10px">Origin X: </span>
-            <label>
-              Left
-              <input type="radio" name="origin-x" class="origin-x btn-object-action" value="left"
-                bind-value-to="originX">
-            </label>
-            <label>
-              Center
-              <input type="radio" name="origin-x" class="origin-x btn-object-action" value="center"
-                bind-value-to="originX">
-            </label>
-            <label>
-              Right
-              <input type="radio" name="origin-x" class="origin-x btn-object-action" value="right"
-                bind-value-to="originX">
-            </label>
-          </p>
-          <p>
-            <span style="margin-right: 10px">Origin Y: </span>
-            <label>
-              Top
-              <input type="radio" name="origin-y" class="origin-y btn-object-action" value="top"
-                bind-value-to="originY">
-            </label>
-            <label>
-              Center
-              <input type="radio" name="origin-y" class="origin-y btn-object-action" value="center"
-                bind-value-to="originY">
-            </label>
-            <label>
-              Bottom
-              <input type="radio" name="origin-y" class="origin-y btn-object-action" value="bottom"
-                bind-value-to="originY">
-            </label>
-          </p>
-          <p>
-            <label>
-              Cache:
-              <input type="checkbox" name="object-caching" class="btn-object-action"
-                bind-value-to="objectCaching">
-            </label>
-            <label>
-              No scaling cache:
-              <input type="checkbox" name="no-scale-cache" class="btn-object-action"
-                bind-value-to="noScaleCache">
-            </label><br />
-            <label>
-              Controls:
-              <input type="checkbox" name="has-controls" class="btn-object-action"
-                bind-value-to="hasControls">
-            </label>
-            <label>
-              Trasparent corners:
-              <input type="checkbox" name="transparent-corners" class="btn-object-action"
-                bind-value-to="transparentCorners">
-            </label>
-            <label>
-              Borders:
-              <input type="checkbox" name="has-borders" class="btn-object-action"
-                bind-value-to="hasBorders">
-            </label>
-          </p>
-        </div>
+	
+		<hr>
 
-        <div style="margin-top:10px;">
-          <button id="send-backwards" class="btn btn-object-action"
-            ng-click="sendBackwards()">Send backwards</button>
-          <button id="send-to-back" class="btn btn-object-action"
-            ng-click="sendToBack()">Send to back</button>
-        </div>
+		<div class="col-12">
+		<x-label class="discl_sm">Stroke</x-label>
+	</div>
 
-        <div style="margin-top:4px;">
-          <button id="bring-forward" class="btn btn-object-action"
-            ng-click="bringForward()">Bring forwards</button>
-          <button id="bring-to-front" class="btn btn-object-action"
-            ng-click="bringToFront()">Bring to front</button>
-        </div>
+	<div class="col-3">
+		<x-label class="push-right pad">Width</x-label>
+	</div>
+	<div class="col-4">
+		<x-slider style="top: 6px;" min="0" max="100" ng-value="strokeWidth" bind-value-to="strokeWidth" ng-model="width" skin="arrow">
 
-        <div style="margin-top:10px;">
-          <button id="gradientify" class="btn btn-object-action" ng-click="gradientify()">
-            Gradientify
-          </button>
-          <button id="shadowify" class="btn btn-object-action" ng-click="shadowify()">
-            Shadowify
-          </button>
-          <button id="patternify" class="btn btn-object-action" ng-click="patternify()">
-            Patternify
-          </button>
-          <button id="clip" class="btn btn-object-action" ng-click="clip()">
-            Clip
-          </button>
-        </div>
-      </div>
-    </div>
+		</x-slider>
+
+	</div>
+		<div class="col-1">
+	</div>
+	<div class="col-4">
+
+
+		<x-numberinput style="width: 85px;" suffix=" px" skin="condensed" ng-value="strokeWidth" bind-value-to="strokeWidth" ng-model="width">
+			<x-stepper></x-stepper>
+		</x-numberinput>
+
+	</div>
+	
+
+	<div class="col-3">
+		<x-label class="push-right pad">Color</x-label>
+	</div>
+	<div class="col-5">
+		<input type="color" id="picker1" class="small" ng-value="bgcolor1" bind-value-to="stroke" ng-model="bgcolor1">
+
+	</div>
+	<div class="col-4">
+		<x-input id="select1" class="small" ng-value="bgcolor1" bind-value-to="stroke" ng-model="bgcolor1">
+			<x-icon name="invert-colors"></x-icon>
+		</x-input>
+
+	</div>
+	
+		<div class="spacer"></div>
+
+	
+		<hr>
+
+		<div class="col-12">
+		<x-label class="discl_sm">Rounded Corner</x-label>
+	</div>
+	
+	<div class="col-3">
+		<x-label class="push-right pad">Radius</x-label>
+	</div>
+	<div class="col-4">
+		<x-slider style="top: 6px; margin: 5px;" min="0" max="200" ng-value="0" bind-value-to="cornerWidth" ng-model="cornerWidth" skin="arrow">
+
+		</x-slider>
+
+	</div>
+		<div class="col-1">
+	</div>
+	<div class="col-4">
+
+
+		<x-numberinput style="width: 85px;" suffix=" px" skin="condensed" ng-value="0" bind-value-to="cornerWidth" ng-model="cornerWidth">
+			<x-stepper></x-stepper>
+		</x-numberinput>
+
+	</div>
+
+	<x-box class="middle">
+		<x-box>
+			<div class="tab-pane" id="object">
+				<div class="object-controls" object-buttons-enabled="getSelected()">
+
+					<label for="opacity">Opacity:</label>
+					<<x-slider value="100" bind-value-to="opacity" class="btn-object-action"></x-slider>
+						<br />
+						<label for="stroke">Stroke width:</label>
+						<input value="1" min="0" max="30" type="range" bind-value-to="strokeWidth" class="btn-object-action">
+						<br />
+						<label for="corner">Radius:</label>
+						<input value="1" min="0" max="100" type="range" bind-value-to="cornerWidth" class="btn-object-action">
+						<br />
+						<input type="number" name="corner" bind-value-to="cornerWidth" value="cornerWidth" class="btn-object-action" />
+						<x-numberinput min="0" bind-value-to="cornerWidth" value="getRadius()" class="small" skin="condensed" suffix=" px">
+							<x-stepper></x-stepper>
+						</x-numberinput>
+
+						<div style="margin-top:10px;">
+							<x-button togglable ng-click="setHorizontalLock(!getHorizontalLock())" ng-class="{'btn-inverse': getHorizontalLock()}">
+								<x-label>{[ getHorizontalLock() ? 'Unlock horizontal movement' : 'Lock horizontal movement' ]}</x-label>
+
+							</x-button>
+							<button class="btn btn-lock btn-object-action" ng-click="setVerticalLock(!getVerticalLock())" ng-class="{'btn-inverse': getVerticalLock()}">
+								{[ getVerticalLock() ? 'Unlock vertical movement' : 'Lock vertical movement' ]}
+							</button>
+							<br>
+							<button class="btn btn-lock btn-object-action" ng-click="setScaleLockX(!getScaleLockX())" ng-class="{'btn-inverse': getScaleLockX()}">
+								{[ getScaleLockX() ? 'Unlock horizontal scaling' : 'Lock horizontal scaling' ]}
+							</button>
+							<button class="btn btn-lock btn-object-action" ng-click="setScaleLockY(!getScaleLockY())" ng-class="{'btn-inverse': getScaleLockY()}">
+								{[ getScaleLockY() ? 'Unlock vertical scaling' : 'Lock vertical scaling' ]}
+							</button>
+							<button class="btn btn-lock btn-object-action" ng-click="setRotationLock(!getRotationLock())" ng-class="{'btn-inverse': getRotationLock()}">
+								{[ getRotationLock() ? 'Unlock rotation' : 'Lock rotation' ]}
+							</button>
+						</div>
+
+						<div style="margin-top:10px">
+							<p>
+								<span style="margin-right: 10px">Origin X: </span>
+								<label>
+									Left
+									<input type="radio" name="origin-x" class="origin-x btn-object-action" value="left" bind-value-to="originX">
+								</label>
+								<label>
+									Center
+									<input type="radio" name="origin-x" class="origin-x btn-object-action" value="center" bind-value-to="originX">
+								</label>
+								<label>
+									Right
+									<input type="radio" name="origin-x" class="origin-x btn-object-action" value="right" bind-value-to="originX">
+								</label>
+							</p>
+							<p>
+								<span style="margin-right: 10px">Origin Y: </span>
+								<label>
+									Top
+									<input type="radio" name="origin-y" class="origin-y btn-object-action" value="top" bind-value-to="originY">
+								</label>
+								<label>
+									Center
+									<input type="radio" name="origin-y" class="origin-y btn-object-action" value="center" bind-value-to="originY">
+								</label>
+								<label>
+									Bottom
+									<input type="radio" name="origin-y" class="origin-y btn-object-action" value="bottom" bind-value-to="originY">
+								</label>
+							</p>
+							<p>
+								<label>
+									Cache:
+									<input type="checkbox" name="object-caching" class="btn-object-action" bind-value-to="objectCaching">
+								</label>
+								<label>
+									No scaling cache:
+									<input type="checkbox" name="no-scale-cache" class="btn-object-action" bind-value-to="noScaleCache">
+								</label>
+								<br />
+								<label>
+									Controls:
+									<input type="checkbox" name="has-controls" class="btn-object-action" bind-value-to="hasControls">
+								</label>
+								<label>
+									Trasparent corners:
+									<input type="checkbox" name="transparent-corners" class="btn-object-action" bind-value-to="transparentCorners">
+								</label>
+								<label>
+									Borders:
+									<input type="checkbox" name="has-borders" class="btn-object-action" bind-value-to="hasBorders">
+								</label>
+							</p>
+						</div>
+
+						<div style="margin-top:10px;">
+							<button id="send-backwards" class="btn btn-object-action" ng-click="sendBackwards()">Send backwards</button>
+							<button id="send-to-back" class="btn btn-object-action" ng-click="sendToBack()">Send to back</button>
+						</div>
+
+						<div style="margin-top:4px;">
+							<button id="bring-forward" class="btn btn-object-action" ng-click="bringForward()">Bring forwards</button>
+							<button id="bring-to-front" class="btn btn-object-action" ng-click="bringToFront()">Bring to front</button>
+						</div>
+
+						<div style="margin-top:10px;">
+							<x-button id="gradientify" class="btn btn-object-action" ng-click="gradientify()">
+								Gradientify
+							</x-button>
+							<button id="shadowify" class="btn btn-object-action" ng-click="shadowify()">
+								Shadowify
+							</button>
+							<button id="patternify" class="btn btn-object-action" ng-click="patternify()">
+								Patternify
+							</button>
+							<button id="clip" class="btn btn-object-action" ng-click="clip()">
+								Clip
+							</button>
+						</div>
+				</div>
+			</div>
 		</x-box>
-</x-box>
+	</x-box>

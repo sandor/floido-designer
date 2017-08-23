@@ -13,7 +13,7 @@ function initCenteringGuidelines(canvas) {
       canvasWidthCenterMap = { },
       canvasHeightCenterMap = { },
       centerLineMargin = 4,
-      centerLineColor = 'rgba(255,0,241,0.5)',
+      centerLineColor = 'hsl(205,100%,75%)',
       centerLineWidth = 1,
       ctx = canvas.getSelectionContext(),
       viewportTransform;
