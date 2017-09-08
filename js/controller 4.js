@@ -404,9 +404,7 @@ function addAccessors($scope) {
 		scaleY: 1,
 		angle: 0,
 		strokeWidth: 0,
-		includeDefaultValues: true,
-		name: "Rectangle",
-		icon: "content-copy"
+		includeDefaultValues: true
     }));
 	  
 	  canvas.add(rect).setActiveObject(rect);
@@ -458,9 +456,7 @@ function addAccessors($scope) {
 		angle: 0,
       rx: 10,
       ry: 10,
-		strokeWidth: 0,
-		name: "Rounded Rectangle",
-		icon: "crop-square"
+		strokeWidth: 0
     }));
 	  canvas.add(roundrect).setActiveObject(roundrect);
   };
@@ -477,9 +473,7 @@ function addAccessors($scope) {
 		scaleX: 1,
 		scaleY: 1,
 		angle: 0,
-		strokeWidth: 0,
-		name: "Circle",
-		icon: "panorama-fish-eye"
+		strokeWidth: 0
     }));
 	  canvas.add(circle).setActiveObject(circle);
   };
@@ -487,7 +481,7 @@ function addAccessors($scope) {
   $scope.addTriangle = function() {
     var coord = getRandomLeftTop();
 
-    var triangle = (new fabric.Triangle({
+    var triangel = (new fabric.Triangle({
       left: coord.left,
       top: coord.top,
       fill: '#' + getRandomColor(),
@@ -497,9 +491,7 @@ function addAccessors($scope) {
 		scaleX: 1,
 		scaleY: 1,
 		angle: 0,
-		strokeWidth: 0,
-		name: "Triangle",
-		icon: "details"
+		strokeWidth: 0
     }));
 	  canvas.add(triangle).setActiveObject(triangle);
   };
@@ -513,9 +505,7 @@ function addAccessors($scope) {
       stroke: '#' + getRandomColor(),
 	scaleX: 1,
 		scaleY: 1,
-		angle: 0,
-		name: "Line Object",
-		icon: "remove"
+		angle: 0
     });
 
     /*		canvas.add(new fabric.Line([50, 5, 200, 5], {
@@ -595,15 +585,13 @@ function addAccessors($scope) {
       fontSize: 20,
       left: getRandomInt(350, 400),
       top: getRandomInt(350, 400),
-      fontFamily: 'roboto',
+      fontFamily: 'helvetica',
       fill: '#000000',
       fontWeight: '',
       originX: 'left',
       width: 300,
       hasRotatingPoint: true,
-      centerTransform: true,
-		name: "Text",
-		icon: "format-size"
+      centerTransform: true
     });
 
     canvas.add(textSample).setActiveObject(textSample);
@@ -623,9 +611,8 @@ function addAccessors($scope) {
       fontWeight: '',
       originX: 'left',
       hasRotatingPoint: true,
-      centerTransform: true,
+      centerTransform: true
     });
-	  
 
     canvas.add(textSample);
   };
@@ -680,13 +667,11 @@ function addAccessors($scope) {
 
         image.set({
           scaleX: 0.5,
-          scaleY: 0.5,
-		name: "Image",
-		icon: "photo"
+          scaleY: 0.5
         })
 
 
-        canvas.add(image).setActiveObject(image);
+        canvas.add(image);
       })
     })
 
@@ -711,12 +696,10 @@ function addAccessors($scope) {
         cImg = new fabric.Image(img, {
           left: 0,
           top: 0,
-          angle: 0,
-		name: "Image",
-		icon: "photo"
+          angle: 0
         });
 
-        canvas.add(cImg).setActiveObject(cImg);
+        canvas.add(cImg);
       };
 
       var onloadFile = function(e) {
@@ -1446,110 +1429,109 @@ kitchensink.controller('CanvasControls', function($scope) {
  // Layer panel test implementation
   // ================================================================
 
-kitchensink.controller('LayersController', ['$scope', '$rootScope', '$timeout', function($scope, $rootScope, $timeout) {
-		
-	$scope.objects = canvas._objects || [];
-	
-    $scope.sortableOptions = {
-        items: '.object:visible',
-        scroll: false,
-		axis: 'y',
-        containment: 'parent',
-        start: function(e, ui) {
-            ui.item.data('start', ui.item.index());
-        },
-        update: function(e, ui) {
-            var start = ui.item.data('start'),
-            end   = ui.item.index();
-
-           
-            obj = canvas.getObjects()[start];
-
-            if ( ! obj) return;
-
-            if (end > start) {
-                //send object forwards by the amount of objects it passed
-                for (var i = 0; i < (end - start); i++) {
-                    canvas.bringForward(obj);
-                }
-            } else {
-                //send object backwards by the amount of objects it passed
-                for (var i = 0; i < (start - end); i++) {
-                    canvas.sendBackwards(obj);
-                }
-            }
-               
-            $timeout(function() {
-                canvas.renderAll();
-                start = false; end = false;
-            });
-        },
-    }
-
-    $scope.setAsActive = function(object) {
-        if (object) {
-            canvas.setActiveObject(object);
-        }
-    };
-
-    $scope.toggleVisibility = function(object) {
-        if ( ! object) return;
-
-        if (object.visible) {
-            object.set({ visible: false, evented: false, selectable: false, hasBorders: false, hasCorners: false });
-        } else {
-            object.set({ visible: true, evented: true, selectable: true, hasBorders: true, hasCorners: true });
-            canvas.setActiveObject(object);
-        }
-
-        canvas.renderAll();
-    };
-
-    $scope.deleteObject = function(object) {
-        if (object) {
-            canvas.remove(object);
-            canvas.renderAll();
-        }
-    };
-
-    $scope.toggleLock = function(object) {
-        if ( ! object) return;
-
-        if (object.locked) {
-            object.set({
-                locked: false,
-                selectable: true,
-                evented: true,
-                lockMovementX: false,
-                lockMovementY: false,
-                lockRotation: false,
-                lockScalingX: false,
-                lockScalingY: false,
-                lockUniScaling: false,
-                hasControls: true,
-                hasBorders: true
-            });
-
-            canvas.setActiveObject(object);
-        } else {
-            object.set({
-                locked: true,
-                selectable: false,
-                evented: false,
-                lockMovementX: true,
-                lockMovementY: true,
-                lockRotation: true,
-                lockScalingX: true,
-                lockScalingY: true,
-                lockUniScaling: true,
-                hasControls: false,
-                hasBorders: false
-            });
-        }
-
-        canvas.renderAll();
-    }
-}])
+//kitchensink.controller('LayersController', ['$scope', '$rootScope', '$timeout', 'canvas', function($scope, $rootScope, $timeout, canvas) {
+//		
+//	$scope.objects = canvas._objects || [];
+//	
+//    $scope.sortableOptions = {
+//        items: '.object:visible',
+//        scroll: false,
+//        containment: 'parent',
+//        start: function(e, ui) {
+//            ui.item.data('start', ui.item.index());
+//        },
+//        update: function(e, ui) {
+//            var start = ui.item.data('start'),
+//            end   = ui.item.index();
+//
+//           
+//            obj = canvas.getObjects()[start];
+//
+//            if ( ! obj) return;
+//
+//            if (end > start) {
+//                //send object forwards by the amount of objects it passed
+//                for (var i = 0; i < (end - start); i++) {
+//                    canvas.bringForward(obj);
+//                }
+//            } else {
+//                //send object backwards by the amount of objects it passed
+//                for (var i = 0; i < (start - end); i++) {
+//                    canvas.sendBackwards(obj);
+//                }
+//            }
+//               
+//            $timeout(function() {
+//                canvas.renderAll();
+//                start = false; end = false;
+//            });
+//        },
+//    }
+//
+//    $scope.setAsActive = function(object) {
+//        if (object) {
+//            canvas.setActiveObject(object);
+//        }
+//    };
+//
+//    $scope.toggleVisibility = function(object) {
+//        if ( ! object) return;
+//
+//        if (object.visible) {
+//            object.set({ visible: false, evented: false, selectable: false, hasBorders: false, hasCorners: false });
+//        } else {
+//            object.set({ visible: true, evented: true, selectable: true, hasBorders: true, hasCorners: true });
+//            canvas.setActiveObject(object);
+//        }
+//
+//        canvas.fabric.renderAll();
+//    };
+//
+//    $scope.deleteObject = function(object) {
+//        if (object) {
+//            canvas.remove(object);
+//            canvas.renderAll();
+//        }
+//    };
+//
+//    $scope.toggleLock = function(object) {
+//        if ( ! object) return;
+//
+//        if (object.locked) {
+//            object.set({
+//                locked: false,
+//                selectable: true,
+//                evented: true,
+//                lockMovementX: false,
+//                lockMovementY: false,
+//                lockRotation: false,
+//                lockScalingX: false,
+//                lockScalingY: false,
+//                lockUniScaling: false,
+//                hasControls: true,
+//                hasBorders: true
+//            });
+//
+//            canvas.setActiveObject(object);
+//        } else {
+//            object.set({
+//                locked: true,
+//                selectable: false,
+//                evented: false,
+//                lockMovementX: true,
+//                lockMovementY: true,
+//                lockRotation: true,
+//                lockScalingX: true,
+//                lockScalingY: true,
+//                lockUniScaling: true,
+//                hasControls: false,
+//                hasBorders: false
+//            });
+//        }
+//
+//        canvas.renderAll();
+//    }
+//}])
 
 
 //Controller for manipulating the canvas size
@@ -1602,7 +1584,7 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function($scope) {
 
 }])
 
-kitchensink.controller('LeftTabsCtrl', ['$scope', function($scope) {
+kitchensink.controller('LeftTabsCtrl', ['$scope', '$rootScope', '$timeout', function($scope, $rootScope, $timeout) {
   $scope.tabs = [{
       title: 'One',
       url: 'templates/layers.html',
@@ -1620,5 +1602,108 @@ kitchensink.controller('LeftTabsCtrl', ['$scope', function($scope) {
   $scope.isActiveTab = function(tabUrl) {
     return tabUrl == $scope.currentTab;
   }
+  
+  
+  /////////////////
+  
+  $scope.objects = canvas._objects || [];
+	
+    $scope.sortableOptions = {
+        items: '.object:visible',
+        scroll: false,
+        containment: 'parent',
+        start: function(e, ui) {
+            ui.item.data('start', ui.item.index());
+        },
+        update: function(e, ui) {
+            var start = ui.item.data('start'),
+            end   = ui.item.index();
 
+           
+            obj = canvas.getObjects()[start];
+
+            if ( ! obj) return;
+
+            if (end > start) {
+                //send object forwards by the amount of objects it passed
+                for (var i = 0; i < (end - start); i++) {
+                    canvas.bringForward(obj);
+                }
+            } else {
+                //send object backwards by the amount of objects it passed
+                for (var i = 0; i < (start - end); i++) {
+                    canvas.sendBackwards(obj);
+                }
+            }
+               
+            $timeout(function() {
+                canvas.renderAll();
+                start = false; end = false;
+            });
+        },
+    }
+
+    $scope.setAsActive = function(object) {
+        if (object) {
+            canvas.setActiveObject(object);
+        }
+    };
+
+    $scope.toggleVisibility = function(object) {
+        if ( ! object) return;
+
+        if (object.visible) {
+            object.set({ visible: false, evented: false, selectable: false, hasBorders: false, hasCorners: false });
+        } else {
+            object.set({ visible: true, evented: true, selectable: true, hasBorders: true, hasCorners: true });
+            canvas.setActiveObject(object);
+        }
+
+        canvas.fabric.renderAll();
+    };
+
+    $scope.deleteObject = function(object) {
+        if (object) {
+            canvas.remove(object);
+            canvas.renderAll();
+        }
+    };
+
+    $scope.toggleLock = function(object) {
+        if ( ! object) return;
+
+        if (object.locked) {
+            object.set({
+                locked: false,
+                selectable: true,
+                evented: true,
+                lockMovementX: false,
+                lockMovementY: false,
+                lockRotation: false,
+                lockScalingX: false,
+                lockScalingY: false,
+                lockUniScaling: false,
+                hasControls: true,
+                hasBorders: true
+            });
+
+            canvas.setActiveObject(object);
+        } else {
+            object.set({
+                locked: true,
+                selectable: false,
+                evented: false,
+                lockMovementX: true,
+                lockMovementY: true,
+                lockRotation: true,
+                lockScalingX: true,
+                lockScalingY: true,
+                lockUniScaling: true,
+                hasControls: false,
+                hasBorders: false
+            });
+        }
+
+        canvas.renderAll();
+	}
 }])

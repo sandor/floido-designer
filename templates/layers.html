@@ -1,0 +1,30 @@
+<div class="grid-middle-noGutter" id="objects">
+	<div class="col-12">
+		<h1 class="title_left">Layers</h1>
+		<hr>
+	</div>
+
+	<ul class="list-group" ui-sortable ng-model="objects">
+
+		<li class="list-group-item" ng-repeat="object in objects" ng-click="setAsActive(object)" ng-if="!object.ignore">
+
+			<x-icon name={{object.icon}} class="media-object pull-left"></x-icon>
+
+			<x-button class="media-object pull-right" skin="flat-condensed" toggled togglable ng-click="toggleVisibility(object); $event.stopPropagation();">
+				<x-icon name="remove-red-eye"></x-icon>
+			</x-button>
+			<x-button class="media-object pull-right" skin="flat-condensed" togglable ng-click="toggleLock(object); $event.stopPropagation();">
+				<x-icon name="link"></x-icon>
+			</x-button>
+
+
+			<div class="media-body">
+				<strong>{{ object.name || object.type }}</strong>
+			</div>
+		</li>
+
+		<li ng-if="!canvas._objects.length" class="list-group-item">
+			<p>No layers yet.</p>
+		</li>
+	</ul>
+</div>

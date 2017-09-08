@@ -25,6 +25,7 @@ angular.module('example', [
 		$scope.addImage(obj.filename);
 	};
 
+
 	//
 	// Editing Canvas Size
 	// ================================================================

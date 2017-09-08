@@ -53,14 +53,14 @@
 		<x-label class="push-right pad">Position</x-label>
 	</div>
 	<div class="col-4">
-		<x-numberinput class="small" skin="condensed" ng-value="getPropLeft()" suffix=" px" bind-value-to="propLeft" ng-model="left" >
+		<x-numberinput class="small" skin="condensed" suffix=" px" bind-value-to="propLeft" ng-model="left">
 			<x-stepper></x-stepper>
 		</x-numberinput>
 	</div>
 	<div class="col-1"></div>
 	<div class="col-4">
 
-		<x-numberinput ng-value="objectTop" class="small" skin="condensed" suffix=" px">
+		<x-numberinput class="small" skin="condensed" suffix=" px" bind-value-to="propTop" ng-model="top">
 			<x-stepper></x-stepper>
 		</x-numberinput>
 	</div>
@@ -74,7 +74,7 @@
 		<x-label class="push-right pad">Size</x-label>
 	</div>
 	<div class="col-4">
-		<x-numberinput class="small" skin="condensed" value="10" suffix=" px">
+		<x-numberinput class="small" skin="condensed" suffix=" px" bind-value-to="propWidth" ng-model="width">
 			<x-stepper></x-stepper>
 		</x-numberinput>
 	</div>
@@ -82,7 +82,7 @@
 		<x-icon name="link"></x-icon>
 	</div>
 	<div class="col-4">
-		<x-numberinput class="small" skin="condensed" value="10" suffix=" px">
+		<x-numberinput class="small" skin="condensed" suffix=" px" bind-value-to="propHeight" ng-model="height">
 			<x-stepper></x-stepper>
 		</x-numberinput>
 	</div>
@@ -96,7 +96,9 @@
 		<x-label class="push-right pad">Transform</x-label>
 	</div>
 	<div class="col-4">
-		<x-numberinput id="angle-control" class="small" skin="condensed" value="10" suffix="°">
+		<x-numberinput id="angle-control" class="small" skin="condensed" suffix=" °" min="0" max="359" bind-value-to="propAngle" ng-model="angle">
+			<x-label>Angle</x-label>
+
 			<x-stepper></x-stepper>
 		</x-numberinput>
 	</div>
@@ -136,7 +138,7 @@
 		<x-label class="push-right pad">Scale</x-label>
 	</div>
 	<div class="col-4">
-		<x-numberinput class="small" skin="condensed" value="100" suffix=" %">
+		<x-numberinput class="small" skin="condensed" step="0.1" min="0.1" max="10" bind-value-to="propScaleX" ng-model="scaleX">
 			<x-stepper></x-stepper>
 		</x-numberinput>
 	</div>
@@ -144,7 +146,7 @@
 		<x-icon name="link"></x-icon>
 	</div>
 	<div class="col-4">
-		<x-numberinput class="small" skin="condensed" value="100" suffix=" %">
+		<x-numberinput class="small" skin="condensed" step="0.1" min="0.1" max="10" bind-value-to="propScaleY" ng-model="scaleY">
 			<x-stepper></x-stepper>
 		</x-numberinput>
 	</div>
@@ -158,28 +160,73 @@
 	<div class="spacer"></div>
 
 	<div class="col-3 menu">
-		<x-label class="push-right pad">Origin</x-label>
+		<x-label class="push-right pad">OriginX</x-label>
 	</div>
-	<div class="col-4">
-		<x-numberinput class="small" skin="condensed" value="50" suffix=" %">
-			<x-stepper></x-stepper>
-		</x-numberinput>
-	</div>
-	<div class="col-1">
-		<x-icon name="link"></x-icon>
-	</div>
-	<div class="col-4">
-		<x-numberinput class="small" skin="condensed" value="50" suffix=" %">
-			<x-stepper></x-stepper>
-		</x-numberinput>
-	</div>
+	<div class="col-9">
+		<x-buttons tracking="1">
+			<x-button toggled ng-value="left" bind-value-to="originX" ng-model="originX" click="setActiveProp('originX', left);">
+				<x-label>Left</x-label>
+			</x-button>
 
-	<div class="col-3"></div>
-	<div class="col-4 centered_sm">x-origin</div>
-	<div class="col-1"></div>
-	<div class="col-4 centered_sm">y-origin</div>
+			<x-button ng-value="center" bind-value-to="originX" ng-model="originX" ng-model="originX" click="setActiveProp('originX', center);">
+				<x-label>Center</x-label>
+			</x-button>
+
+			<x-button ng-value="right" bind-value-to="originX" ng-model="originX" ng-model="originX" click="setActiveProp('originX', right);">
+				<x-label>Right</x-label>
+			</x-button>
+		</x-buttons>
+	</div>
 
 	<hr>
 	<div class="spacer"></div>
-</div>
 
+	<div class="col-3 menu">
+		<x-label class="push-right pad">OriginX</x-label>
+	</div>
+	<div class="col-9">
+		<x-radios>
+			<x-box>
+				<x-radio id="first-radio" toggled value="left" bind-value-to="originX"></x-radio>
+				<x-label for="first-radio" id="label-1">Left</x-label>
+			</x-box>
+			<x-box>
+				<x-radio id="second-radio" value="center" bind-value-to="originX"></x-radio>
+				<x-label for="second-radio" id="label-2">Center</x-label>
+			</x-box>
+			<x-box>
+				<x-radio id="third-radio" value="right" bind-value-to="originX"></x-radio>
+				<x-label for="third-radio" id="label-3">Right</x-label>
+			</x-box>
+		</x-radios>
+	</div>
+
+	<hr>
+	
+		<div class="spacer"></div>
+
+	<div class="col-3 menu">
+		<x-label class="push-right pad">OriginX</x-label>
+	</div>
+	<div class="col-9">
+			<x-box>
+				            <label>
+              Left
+              <input type="radio" name="origin-x" class="origin-x btn-object-action" value="left"
+                bind-value-to="originX">
+            </label>
+            <label>
+              Center
+              <input type="radio" name="origin-x" class="origin-x btn-object-action" value="center"
+                bind-value-to="originX">
+            </label>
+            <label>
+              Right
+              <input type="radio" name="origin-x" class="origin-x btn-object-action" value="right"
+                bind-value-to="originX">
+            </label>
+			</x-box>
+
+		</x-radios>
+	</div>
+</div>
