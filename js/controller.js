@@ -10,194 +10,194 @@
 
 //dumb test with filters
 function addFilters($scope) {
-	
-				// manually initialize 2 filter backend to give ability to switch:
-				var webglBackend = new fabric.WebglFilterBackend();
-				var canvas2dBackend = new fabric.Canvas2dFilterBackend()
 
-				fabric.filterBackend = webglBackend;
-				var $ = function(id) {
-					return document.getElementById(id)
-				};
+    // manually initialize 2 filter backend to give ability to switch:
+    var webglBackend = new fabric.WebglFilterBackend();
+    var canvas2dBackend = new fabric.Canvas2dFilterBackend()
 
-				function applyFilter(index, filter) {
-					var obj = canvas.getActiveObject();
-					obj.filters[index] = filter;
-					var timeStart = +new Date();
-					obj.applyFilters();
-					var timeEnd = +new Date();
-					var dimString = canvas.getActiveObject().width + ' x ' +
-						canvas.getActiveObject().height;
-					$('bench').innerHTML = dimString + 'px ' +
-						parseFloat(timeEnd - timeStart) + 'ms';
-					canvas.renderAll();
-				}
+    fabric.filterBackend = webglBackend;
+    var $ = function (id) {
+        return document.getElementById(id)
+    };
 
-				function getFilter(index) {
-					var obj = canvas.getActiveObject();
-					return obj.filters[index];
-				}
+    function applyFilter(index, filter) {
+        var obj = canvas.getActiveObject();
+        obj.filters[index] = filter;
+        var timeStart = +new Date();
+        obj.applyFilters();
+        var timeEnd = +new Date();
+        var dimString = canvas.getActiveObject().width + ' x ' +
+            canvas.getActiveObject().height;
+        $('bench').innerHTML = dimString + 'px ' +
+            parseFloat(timeEnd - timeStart) + 'ms';
+        canvas.renderAll();
+    }
 
-				function applyFilterValue(index, prop, value) {
-					var obj = canvas.getActiveObject();
-					if (obj.filters[index]) {
-						obj.filters[index][prop] = value;
-						var timeStart = +new Date();
-						obj.applyFilters();
-						var timeEnd = +new Date();
-						var dimString = canvas.getActiveObject().width + ' x ' +
-							canvas.getActiveObject().height;
-						$('bench').innerHTML = dimString + 'px ' +
-							parseFloat(timeEnd - timeStart) + 'ms';
-						canvas.renderAll();
-					}
-				}
+    function getFilter(index) {
+        var obj = canvas.getActiveObject();
+        return obj.filters[index];
+    }
 
-				fabric.Object.prototype.padding = 5;
-				fabric.Object.prototype.transparentCorners = false;
+    function applyFilterValue(index, prop, value) {
+        var obj = canvas.getActiveObject();
+        if (obj.filters[index]) {
+            obj.filters[index][prop] = value;
+            var timeStart = +new Date();
+            obj.applyFilters();
+            var timeEnd = +new Date();
+            var dimString = canvas.getActiveObject().width + ' x ' +
+                canvas.getActiveObject().height;
+            $('bench').innerHTML = dimString + 'px ' +
+                parseFloat(timeEnd - timeStart) + 'ms';
+            canvas.renderAll();
+        }
+    }
 
-				f = fabric.Image.filters;
+    fabric.Object.prototype.padding = 5;
+    fabric.Object.prototype.transparentCorners = false;
 
-				canvas.on({
-					'object:selected': function() {
+    f = fabric.Image.filters;
+
+    canvas.on({
+        'object:selected': function () {
 
 
-						var filters = ['grayscale', 'invert', 'remove-color', 'sepia', 'brownie',
+            var filters = ['grayscale', 'invert', 'remove-color', 'sepia', 'brownie',
 							'brightness', 'contrast', 'saturation', 'noise', 'vintage',
 							'pixelate', 'blur', 'sharpen', 'emboss', 'technicolor',
 							'polaroid', 'blend-color', 'gamma', 'kodachrome',
 							'blackwhite', 'blend-image', 'hue'
 						];
 
-						for (var i = 0; i < filters.length; i++) {
-							filters[i] && (
-								$(filters[i]).checked = !!canvas.getActiveObject().filters[i]);
-						}
-					},
+            for (var i = 0; i < filters.length; i++) {
+                filters[i] && (
+                    $(filters[i]).checked = !!canvas.getActiveObject().filters[i]);
+            }
+        },
 
-				});
+    });
 
-				fabric.Image.fromURL('images/woman.png', function(img) {
-					var oImg = img.set({
-						left: 0,
-						top: 0
-					}).scale(1);
-					canvas.add(oImg);
-				});
-				var indexF;
-				$scope.webgl = function() {
-					if (this.checked) {
-						fabric.filterBackend = webglBackend;
-					} else {
-						fabric.filterBackend = canvas2dBackend;
-					}
-				};
-				$scope.brownie = function() {
-					applyFilter(4, this.checked && new f.Brownie());
-				};
-				$scope.vintage = function() {
-					applyFilter(9, this.checked && new f.Vintage());
-				};
-				$('technicolor').onclick = function() {
-					applyFilter(14, this.checked && new f.Technicolor());
-				};
-				$('polaroid').onclick = function() {
-					applyFilter(15, this.checked && new f.Polaroid());
-				};
-				$('kodachrome').onclick = function() {
-					applyFilter(18, this.checked && new f.Kodachrome());
-				};
-				$('blackwhite').onclick = function() {
-					applyFilter(19, this.checked && new f.BlackWhite());
-				};
-				$('grayscale').onclick = function() {
-					applyFilter(0, this.checked && new f.Grayscale());
-				};
-				$('average').onclick = function() {
-					applyFilterValue(0, 'mode', 'average');
-				};
-				$('luminosity').onclick = function() {
-					applyFilterValue(0, 'mode', 'luminosity');
-				};
-				$('lightness').onclick = function() {
-					applyFilterValue(0, 'mode', 'lightness');
-				};
-				$('invert').onclick = function() {
-					applyFilter(1, this.checked && new f.Invert());
-				};
-				$('sepia').onclick = function() {
-					applyFilter(3, this.checked && new f.Sepia());
-				};
-				$('brightness').onclick = function() {
-					applyFilter(5, this.checked && new f.Brightness({
-						brightness: parseFloat($('brightness-value').value)
-					}));
-				};
-				$('brightness-value').oninput = function() {
-					applyFilterValue(5, 'brightness', parseFloat(this.value));
-				};
-				$('contrast').onclick = function() {
-					applyFilter(6, this.checked && new f.Contrast({
-						contrast: parseFloat($('contrast-value').value)
-					}));
-				};
-				$('contrast-value').oninput = function() {
-					applyFilterValue(6, 'contrast', parseFloat(this.value));
-				};
-				$('saturation').onclick = function() {
-					applyFilter(7, this.checked && new f.Saturation({
-						saturation: parseFloat($('saturation-value').value)
-					}));
-				};
-				$('saturation-value').oninput = function() {
-					applyFilterValue(7, 'saturation', parseFloat(this.value));
-				};
-				$('noise').onclick = function() {
-					applyFilter(8, this.checked && new f.Noise({
-						noise: parseInt($('noise-value').value, 10)
-					}));
-				};
-				$('noise-value').oninput = function() {
-					applyFilterValue(8, 'noise', parseInt(this.value, 10));
-				};
-				$('blur').onclick = function() {
-					applyFilter(11, this.checked && new f.Blur({
-						value: parseFloat($('blur-value').value)
-					}));
-				};
-				$('blur-value').oninput = function() {
-					applyFilterValue(11, 'blur', parseFloat(this.value, 10));
-				};
+    fabric.Image.fromURL('images/woman.png', function (img) {
+        var oImg = img.set({
+            left: 0,
+            top: 0
+        }).scale(1);
+        canvas.add(oImg);
+    });
+    var indexF;
+    $scope.webgl = function () {
+        if (this.checked) {
+            fabric.filterBackend = webglBackend;
+        } else {
+            fabric.filterBackend = canvas2dBackend;
+        }
+    };
+    $scope.brownie = function () {
+        applyFilter(4, this.checked && new f.Brownie());
+    };
+    $scope.vintage = function () {
+        applyFilter(9, this.checked && new f.Vintage());
+    };
+    $('technicolor').onclick = function () {
+        applyFilter(14, this.checked && new f.Technicolor());
+    };
+    $('polaroid').onclick = function () {
+        applyFilter(15, this.checked && new f.Polaroid());
+    };
+    $('kodachrome').onclick = function () {
+        applyFilter(18, this.checked && new f.Kodachrome());
+    };
+    $('blackwhite').onclick = function () {
+        applyFilter(19, this.checked && new f.BlackWhite());
+    };
+    $('grayscale').onclick = function () {
+        applyFilter(0, this.checked && new f.Grayscale());
+    };
+    $('average').onclick = function () {
+        applyFilterValue(0, 'mode', 'average');
+    };
+    $('luminosity').onclick = function () {
+        applyFilterValue(0, 'mode', 'luminosity');
+    };
+    $('lightness').onclick = function () {
+        applyFilterValue(0, 'mode', 'lightness');
+    };
+    $('invert').onclick = function () {
+        applyFilter(1, this.checked && new f.Invert());
+    };
+    $('sepia').onclick = function () {
+        applyFilter(3, this.checked && new f.Sepia());
+    };
+    $('brightness').onclick = function () {
+        applyFilter(5, this.checked && new f.Brightness({
+            brightness: parseFloat($('brightness-value').value)
+        }));
+    };
+    $('brightness-value').oninput = function () {
+        applyFilterValue(5, 'brightness', parseFloat(this.value));
+    };
+    $('contrast').onclick = function () {
+        applyFilter(6, this.checked && new f.Contrast({
+            contrast: parseFloat($('contrast-value').value)
+        }));
+    };
+    $('contrast-value').oninput = function () {
+        applyFilterValue(6, 'contrast', parseFloat(this.value));
+    };
+    $('saturation').onclick = function () {
+        applyFilter(7, this.checked && new f.Saturation({
+            saturation: parseFloat($('saturation-value').value)
+        }));
+    };
+    $('saturation-value').oninput = function () {
+        applyFilterValue(7, 'saturation', parseFloat(this.value));
+    };
+    $('noise').onclick = function () {
+        applyFilter(8, this.checked && new f.Noise({
+            noise: parseInt($('noise-value').value, 10)
+        }));
+    };
+    $('noise-value').oninput = function () {
+        applyFilterValue(8, 'noise', parseInt(this.value, 10));
+    };
+    $('blur').onclick = function () {
+        applyFilter(11, this.checked && new f.Blur({
+            value: parseFloat($('blur-value').value)
+        }));
+    };
+    $('blur-value').oninput = function () {
+        applyFilterValue(11, 'blur', parseFloat(this.value, 10));
+    };
 
-				$('blend').onclick = function() {
-					applyFilter(16, this.checked && new f.BlendColor({
-						color: document.getElementById('blend-color').value,
-						mode: document.getElementById('blend-mode').value,
-						alpha: document.getElementById('blend-alpha').value
-					}));
-				};
+    $('blend').onclick = function () {
+        applyFilter(16, this.checked && new f.BlendColor({
+            color: document.getElementById('blend-color').value,
+            mode: document.getElementById('blend-mode').value,
+            alpha: document.getElementById('blend-alpha').value
+        }));
+    };
 
-				$('blend-mode').onchange = function() {
-					applyFilterValue(16, 'mode', this.value);
-				};
+    $('blend-mode').onchange = function () {
+        applyFilterValue(16, 'mode', this.value);
+    };
 
-				$('blend-color').onchange = function() {
-					applyFilterValue(16, 'color', this.value);
-				};
+    $('blend-color').onchange = function () {
+        applyFilterValue(16, 'color', this.value);
+    };
 
-				$('blend-alpha').oninput = function() {
-					applyFilterValue(16, 'alpha', this.value);
-				};
+    $('blend-alpha').oninput = function () {
+        applyFilterValue(16, 'alpha', this.value);
+    };
 
-				$('hue').onclick = function() {
-					applyFilter(21, this.checked && new f.HueRotation({
-						rotation: document.getElementById('hue-value').value,
-					}));
-				};
+    $('hue').onclick = function () {
+        applyFilter(21, this.checked && new f.HueRotation({
+            rotation: document.getElementById('hue-value').value,
+        }));
+    };
 
-				$('hue-value').oninput = function() {
-					applyFilterValue(21, 'rotation', this.value);
-				};
+    $('hue-value').oninput = function () {
+        applyFilterValue(21, 'rotation', this.value);
+    };
 
 }
 /*copy, paste and delete object – shortcuts are defined with keymaster.js https://github.com/madrobby/keymaster (see the index.html)*/
@@ -220,9 +220,9 @@ function ungroup() {
         return;
     }
     if (canvas.getActiveObject().type !== 'group') {
-		var object = canvas.getActiveObject();
-           object.set('name', "Grouped Objects");
-		 object.set('icon', "content-copy");
+        var object = canvas.getActiveObject();
+        object.set('name', "Grouped Objects");
+        object.set('icon', "content-copy");
         return;
     }
     canvas.getActiveObject().toActiveSelection();
@@ -241,10 +241,10 @@ function ungroup() {
 var customProperties = 'name icon'.split(' ');
 
 function copy() {
-  canvas.getActiveObject().clone(function(cloned) {
-    console.log(cloned);
-    _clipboard = cloned;
-  }, customProperties);
+    canvas.getActiveObject().clone(function (cloned) {
+        console.log(cloned);
+        _clipboard = cloned;
+    }, customProperties);
 }
 
 //function paste() {
@@ -373,12 +373,12 @@ function setActiveShadow(name, value) {
 
     var object = canvas.getActiveObject();
     if (!object) return;
-    if(object.shadow)
-     object.shadow[name] = value;
-    else{
-     var ob = {};
-     ob[name] = value;
-     object.setShadow(ob);
+    if (object.shadow)
+        object.shadow[name] = value;
+    else {
+        var ob = {};
+        ob[name] = value;
+        object.setShadow(ob);
     }
 
     object.setCoords();
@@ -395,49 +395,49 @@ function addAccessors($scope) {
 
     //////////////////
 
-	
-	var offsetXVal = 10;
-$scope.setShadowOffsetX = function (value) {
-    value = offsetXVal+=5;
-    setActiveShadow('offsetX', value);
-    canvas.renderAll();
-};
-	
-	var offsetYVal = 10;
-$scope.setShadowOffsetY = function (value) {
-    value = offsetYVal+=5;
-    setActiveShadow('offsetY', value);
-    canvas.renderAll();
-};
-//var offBlurVal = 10;
-$scope.setShadowBlur = function (value) {
-//    value =  offBlurVal += 5;
-    setActiveShadow('blur', value);
-    canvas.renderAll();
-};
 
-$scope.setShadowColor = function (value) {
-    value = 'black';
-    setActiveShadow('color', value);
-    canvas.renderAll();
-};
-	
-	$scope.shadowify = function () {
-    var obj = canvas.getActiveObject();
-    if (!obj) return;
+    var offsetXVal = 10;
+    $scope.setShadowOffsetX = function (value) {
+        value = offsetXVal += 5;
+        setActiveShadow('offsetX', value);
+        canvas.renderAll();
+    };
 
-    if (obj.shadow) {
-        obj.shadow = null;
-    } else {
-        obj.setShadow({
-            color: "#000000",
-            blur: 50,
-            offsetX: 10,
-            offsetY: 10
-        });
-    }
-    canvas.renderAll();
-};
+    var offsetYVal = 10;
+    $scope.setShadowOffsetY = function (value) {
+        value = offsetYVal += 5;
+        setActiveShadow('offsetY', value);
+        canvas.renderAll();
+    };
+    //var offBlurVal = 10;
+    $scope.setShadowBlur = function (value) {
+        //    value =  offBlurVal += 5;
+        setActiveShadow('blur', value);
+        canvas.renderAll();
+    };
+
+    $scope.setShadowColor = function (value) {
+        value = 'black';
+        setActiveShadow('color', value);
+        canvas.renderAll();
+    };
+
+    $scope.shadowify = function () {
+        var obj = canvas.getActiveObject();
+        if (!obj) return;
+
+        if (obj.shadow) {
+            obj.shadow = null;
+        } else {
+            obj.setShadow({
+                color: "#000000",
+                blur: 50,
+                offsetX: 10,
+                offsetY: 10
+            });
+        }
+        canvas.renderAll();
+    };
 
 
     //////////////////
@@ -1944,7 +1944,7 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
 
   ];
 
-    $scope.currentTab = 'templates/actions_menu.html';
+    $scope.currentTab = 'templates/style_menu.html';
 
     $scope.onClickTab = function (tab) {
         $scope.currentTab = tab.url;

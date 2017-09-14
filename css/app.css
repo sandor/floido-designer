@@ -97,8 +97,8 @@ li:nth-child(even) {
 /*****************************************************************************************************************/
 
 x-label {
-    font-size: 13px;
-    color: #737373;
+    font-size: 12px;
+    color: #5a5a5a;
 }
 
 /* Style the tab content */
@@ -254,7 +254,7 @@ x-button[skin="tabnav"] x-label {
 .discl_sm {
     text-align: left;
     font-size: 10px !Important;
-    color: #808080;
+    color: #969696;
     margin: 6px;
 }
 .centered_sm {
