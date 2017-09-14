@@ -1,0 +1,339 @@
+<div class="grid-middle-noGutter">
+    <div class="col-12">
+        <h1 class="title_left">Element Layout</h1>
+        <hr>
+    </div>
+    <div class="col-3">
+        <x-label class="push-right pad">Align</x-label>
+    </div>
+    <div class="col-9">
+        <x-buttons tracking="-1">
+            <x-button skin="tabnav_sm">
+                <x-icon name="dcenter" iconset="images/icons.svg"></x-icon>
+            </x-button>
+
+            <x-button skin="tabnav_sm">
+                <x-icon name="dmiddle" iconset="images/icons.svg"></x-icon>
+            </x-button>
+
+            <x-button id="objAlignLeft" skin="tabnav_sm" ng-click="alignLeft()">
+                <x-icon name="aleft" iconset="images/icons.svg"></x-icon>
+            </x-button>
+
+            <x-button id="objAlignMiddle" skin="tabnav_sm" ng-click="alignMiddle()">
+                <x-icon name="amiddle" iconset="images/icons.svg"></x-icon>
+            </x-button>
+
+            <x-button id="objAlignRight" skin="tabnav_sm" ng-click="alignRight()">
+                <x-icon name="aright" iconset="images/icons.svg"></x-icon>
+            </x-button>
+
+            <x-button skin="tabnav_sm">
+                <x-icon name="atop" iconset="images/icons.svg"></x-icon>
+            </x-button>
+
+            <x-button skin="tabnav_sm">
+                <x-icon name="amiddle" iconset="images/icons.svg"></x-icon>
+            </x-button>
+
+            <x-button skin="tabnav_sm">
+                <x-icon name="abottom" iconset="images/icons.svg"></x-icon>
+            </x-button>
+        </x-buttons>
+    </div>
+
+    <hr>
+
+    <div class="spacer"></div>
+
+
+
+
+    <div class="col-3">
+        <x-label class="push-right pad">Position</x-label>
+    </div>
+    <div class="col-4">
+        <x-numberinput class="small" skin="condensed" suffix=" px" bind-value-to="propLeft" ng-model="left">
+            <x-stepper></x-stepper>
+        </x-numberinput>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-4">
+
+        <x-numberinput class="small" skin="condensed" suffix=" px" bind-value-to="propTop" ng-model="top">
+            <x-stepper></x-stepper>
+        </x-numberinput>
+    </div>
+
+    <div class="col-3"></div>
+    <div class="col-4 centered_sm">X</div>
+    <div class="col-1"></div>
+    <div class="col-4 centered_sm">Y</div>
+
+    <div class="col-3 menu">
+        <x-label class="push-right pad">Size</x-label>
+    </div>
+    <div class="col-4">
+        <x-numberinput class="small" skin="condensed" suffix=" px" bind-value-to="propWidth" ng-model="width">
+            <x-stepper></x-stepper>
+        </x-numberinput>
+    </div>
+    <div class="col-1">
+        <x-button skin="flat-condensed" togglable>
+            <x-icon name="link"></x-icon>
+        </x-button>
+    </div>
+    <div class="col-4">
+        <x-numberinput class="small" skin="condensed" suffix=" px" bind-value-to="propHeight" ng-model="height">
+            <x-stepper></x-stepper>
+        </x-numberinput>
+    </div>
+
+    <div class="col-3"></div>
+    <div class="col-4 centered_sm">Width</div>
+    <div class="col-1"></div>
+    <div class="col-4 centered_sm">Height</div>
+
+    <div class="col-3">
+        <x-label class="push-right pad">Transform</x-label>
+    </div>
+    <div class="col-4">
+        <x-numberinput id="angle-control" class="small" skin="condensed" suffix=" °" min="0" max="359" bind-value-to="propAngle" ng-model="angle">
+            <x-label>Angle</x-label>
+
+            <x-stepper></x-stepper>
+        </x-numberinput>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-4">
+        <x-buttons tracking="2">
+            <x-button skin="textured-condensed" class="halfsmall" ng-click="flipX()">
+                <x-icon name="swap-horiz"></x-icon>
+            </x-button>
+
+            <x-button skin="textured-condensed" class="halfsmall" ng-click="flipY()">
+                <x-icon name="swap-vert"></x-icon>
+            </x-button>
+
+        </x-buttons>
+    </div>
+
+    <div class="col-3"></div>
+    <div class="col-4 centered_sm">Rotate</div>
+    <div class="col-1"></div>
+    <div class="col-4 centered_sm">Flip</div>
+
+    <div class="col-3"></div>
+    <div class="col-9">
+        <x-button skin="textured" disabled style="width:197px;">
+            <x-box>
+                <x-label>Set to original size</x-label>
+            </x-box>
+        </x-button>
+    </div>
+
+    <div class="spacer"></div>
+    <hr>
+    <div class="spacer"></div>
+
+    <div class="col-3 menu">
+        <x-label class="push-right pad">Scale</x-label>
+    </div>
+    <div class="col-4">
+        <x-numberinput class="small" skin="condensed" step="0.1" min="0.1" max="10" bind-value-to="propScaleX" ng-model="scaleX">
+            <x-stepper></x-stepper>
+        </x-numberinput>
+    </div>
+    <div class="col-1">
+        <x-button skin="flat-condensed" togglable>
+            <x-icon name="link"></x-icon>
+        </x-button>
+    </div>
+    <div class="col-4">
+        <x-numberinput class="small" skin="condensed" step="0.1" min="0.1" max="10" bind-value-to="propScaleY" ng-model="scaleY">
+            <x-stepper></x-stepper>
+        </x-numberinput>
+    </div>
+
+    <div class="col-3"></div>
+    <div class="col-4 centered_sm">Width</div>
+    <div class="col-1"></div>
+    <div class="col-4 centered_sm">Height</div>
+
+    <hr>
+    <div class="spacer"></div>
+
+    <div class="col-3 menu">
+        <x-label class="push-right pad">Origin</x-label>
+    </div>
+    <div class="col-4">
+        <x-select class="small" bind-value-to="originX">
+            <x-menu>
+                <x-menuitem value="left" selected="true">
+                    <x-label>Left</x-label>
+                </x-menuitem>
+
+                <x-menuitem value="center">
+                    <x-label>Center</x-label>
+                </x-menuitem>
+
+                <x-menuitem value="right">
+                    <x-label>Right</x-label>
+                </x-menuitem>
+
+            </x-menu>
+        </x-select>
+    </div>
+    <div class="col-1">
+    </div>
+    <div class="col-4">
+        <x-select class="small" bind-value-to="originY">
+            <x-menu>
+                <x-menuitem value="top" selected="true">
+                    <x-label>Top</x-label>
+                </x-menuitem>
+
+                <x-menuitem value="center">
+                    <x-label>Middle</x-label>
+                </x-menuitem>
+
+                <x-menuitem value="bottom">
+                    <x-label>Bottom</x-label>
+                </x-menuitem>
+            </x-menu>
+        </x-select>
+    </div>
+
+    <div class="col-3"></div>
+    <div class="col-4 centered_sm">OriginX</div>
+    <div class="col-1"></div>
+    <div class="col-4 centered_sm">OriginY</div>
+
+    <hr>
+    <div class="spacer"></div>
+
+
+
+    <div class="col-3 menu">
+        <x-label class="push-right pad">OriginX</x-label>
+    </div>
+    <div class="col-9">
+        <x-buttons tracking="1">
+            <x-button toggled ng-click="setActiveProp('originX', left);">
+                <x-label>Left</x-label>
+            </x-button>
+
+            <x-button ng-click="setActiveProp('originX', center);">
+                <x-label>Center</x-label>
+            </x-button>
+
+            <x-button ng-click="console.log(hallo)">
+                <x-label>Right</x-label>
+            </x-button>
+        </x-buttons>
+    </div>
+
+    <hr>
+    <div class="spacer"></div>
+
+    <div class="col-3 menu">
+        <x-label class="push-right pad">OriginX_1</x-label>
+    </div>
+    <div class="col-9">
+        <x-radios>
+            <x-box>
+                <x-radio id="first-radio" toggled value="left" ng-model="originX"></x-radio>
+                <x-label for="first-radio" id="label-1">Left</x-label>
+            </x-box>
+            <x-box>
+                <x-radio id="second-radio" value="center" ng-model="originX"></x-radio>
+                <x-label for="second-radio" id="label-2">Center</x-label>
+            </x-box>
+            <x-box>
+                <x-radio id="third-radio" value="right" ng-model="originX"></x-radio>
+                <x-label for="third-radio" id="label-3">Right</x-label>
+            </x-box>
+            <x-radios>
+    </div>
+
+    <hr>
+
+    <div class="col-9">
+        <x-radios>
+            <x-box>
+                <x-radio id="first-radio" toggled value="left" bind-value-to="originX" ce-interpolated></x-radio>
+                <x-label for="first-radio" id="label-1">Left</x-label>
+            </x-box>
+            <x-box>
+                <x-radio id="second-radio" value="center" bind-value-to="originX" ce-interpolated></x-radio>
+                <x-label for="second-radio" id="label-2">Center</x-label>
+            </x-box>
+            <x-box>
+                <x-radio id="third-radio" value="right" bind-value-to="originX" ce-interpolated></x-radio>
+                <x-label for="third-radio" id="label-3">Right</x-label>
+            </x-box>
+            <x-radios>
+    </div>
+
+    <hr>
+
+    <div class="spacer"></div>
+
+    <div class="col-3 menu">
+        <x-label class="push-right pad">OriginX</x-label>
+    </div>
+    <div class="col-9">
+        <x-box>
+            <label>
+                Left
+                <input type="radio" name="origin-x" class="x-select" value="left" bind-value-to="originX">
+            </label>
+            <label>
+                Center
+                <input type="radio" name="origin-x" class="x-select" value="center" bind-value-to="originX">
+            </label>
+            <label>
+                Right
+                <input type="radio" name="origin-x" class="x-select" value="right" bind-value-to="originX">
+            </label>
+        </x-box>
+
+        </x-radios>
+
+
+        <x-checkbox ng-true-value="right" bind-value-to="originX" ce-interpolated></x-checkbox>
+
+        <input type="checkbox" ng-true-value="true" ng-true-value="false" bind-value-to="FlipX">
+    </div>
+    <div class="col-9">
+
+        <x-select bind-value-to="originX">
+            <x-menu>
+                <x-menuitem value="left" selected="true">
+                    <x-label>Left</x-label>
+                </x-menuitem>
+
+                <x-menuitem value="center">
+                    <x-label>Center</x-label>
+                </x-menuitem>
+
+                <x-menuitem value="right">
+                    <x-label>Right</x-label>
+                </x-menuitem>
+
+            </x-menu>
+        </x-select>
+    </div>
+
+    <select bind-value-to="originX">
+        <option ng-value="left">
+            left
+        </option>
+        <option ng-value="center">
+            center
+        </option>
+        <option ng-value="right">
+            right
+        </option>
+    </select>
+</div>

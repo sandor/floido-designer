@@ -1,0 +1,88 @@
+<!--
+Copyright 2016 Google Inc. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!doctype html>
+
+<head>
+  <script src="/bower_components/angular/angular.js"></script>
+  <script src="/src/modules/ce-bind.module.js"></script>
+  <script src="/src/directives/ce-one-way/ce-one-way.directive.js"></script>
+  <script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link href="/bower_components/polymer/polymer.html" rel="import">
+  <link href="./elements/my-person.html" rel="import">
+  <meta charset="utf-8">
+</head>
+
+<body ng-app="test">
+
+  <section id="test1" ng-controller="testControllerNoAlias">
+    <!--  no alias -->
+
+    <p>Angular object is: <span>{{person.name}}</span></p>
+    <button ng-click="updateObj()">Update object in Angular for Test #1</button>
+    <my-person person="person"
+              on-person-changed="onPersonChanged($event)"
+              ce-one-way>
+  </section>
+
+  <section id="test2" ng-controller="testControllerAlias as ctrl">
+    <!--  'ctrl' alias -->
+
+    <p>Angular object is: <span>{{ctrl.person.name}}</span></p>
+    <button ng-click="ctrl.updateObj()">Update object in Angular for Test #2</button>
+    <my-person person="ctrl.person"
+              on-person-changed="ctrl.onPersonChanged($event)"
+              ce-one-way>
+  </section>
+
+  <section id="test3" ng-controller="testControllerAlias as $ctrl">
+    <!--  '$ctrl' alias -->
+
+    <p>Angular object is: <span>{{$ctrl.person.name}}</span></p>
+    <button ng-click="$ctrl.updateObj()">Update object in Angular for Test #3</button>
+    <my-person person="$ctrl.person"
+              on-person-changed="$ctrl.onPersonChanged($event)"
+              ce-one-way>
+  </section>
+
+  <section id="test4" ng-controller="testControllerAlias as $$$_ctrl42$$$">
+    <!--  '$$$_ctrl42$$$' alias -->
+
+    <p>Angular object is: <span>{{$$$_ctrl42$$$.person.name}}</span></p>
+    <button ng-click="$$$_ctrl42$$$.updateObj()">Update object in Angular for Test #4</button>
+    <my-person person="$$$_ctrl42$$$.person"
+              on-person-changed="$$$_ctrl42$$$.onPersonChanged($event)"
+              ce-one-way>
+  </section>
+
+  <script>
+    var app = angular.module('test', ['robdodson.ce-bind']);
+    app.controller('testControllerAlias', controllerCtor(false));
+    app.controller('testControllerNoAlias', controllerCtor(true));
+
+    function controllerCtor(useScope){
+      return function($scope) {
+        var vm = useScope ? $scope : this;
+        vm.person = { name: 'Lisa' };
+        vm.updateObj = function() {
+          vm.person = Object.assign({}, vm.person, { name: 'Joe' });
+          console.log('updateObj', vm.person);
+        }
+        vm.onPersonChanged = function(event) {
+          vm.person = Object.assign({}, vm.person, event.detail.person);
+          console.log('onPersonChanged', vm.person);
+        };
+      }
+    }
+  </script>
+</body>

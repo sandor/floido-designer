@@ -1,110 +1,94 @@
 /*****************************************************************************************************************/
 
-
 .list-group {
-  width: 100%;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 .list-group * {
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-
 .list-group-item {
-  padding: 5px;
-  font-size: 12px;
-  color: #414142;
-  border-top: 1px solid #ddd;
-	cursor: move;
+    padding: 5px;
+    font-size: 12px;
+    color: #414142;
+    border-top: 1px solid #ddd;
+    cursor: move;
 }
-
 li:nth-child(even) {
-  background-color: rgba(245, 245, 244, 0.5);
+    background-color: rgba(245, 245, 244, 0.5);
 }
-
 .list-group-item li:nth-child(even) {
-  background-color: rgba(245, 245, 244, 0.5);
+    background-color: rgba(245, 245, 244, 0.5);
 }
-
 .list-group-item:first-child {
-  border-top: 0;
+    border-top: 0;
 }
-
 .list-group-item:last-child {
-  border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
-
-.list-group-item.active, .list-group-item.selected {
-  color: #fff;
-  background-color: #116cd6;
+.list-group-item.active,
+.list-group-item.selected {
+    color: #fff;
+    background-color: #116cd6;
 }
-
 .list-group-header {
-  padding: 10px;
+    padding: 10px;
 }
-
 .media-object {
-  margin-top: 2px;
+    margin-top: 2px;
 }
-
 .media-object.pull-left {
-  margin-right: 10px;
-	margin-top: 4px;
-	color: #8b8b8b;
+    margin-right: 10px;
+    margin-top: 4px;
+    color: #8b8b8b;
 }
-
 .media-object.pull-right {
-  margin-left: 10px;
+    margin-left: 10px;
 }
-
 .media-body {
-  overflow: hidden;
-	margin-top: 3px;
+    overflow: hidden;
+    margin-top: 3px;
 }
-
 .nav-group {
-  font-size: 14px;
+    font-size: 14px;
 }
-
 .nav-group-item {
-  padding: 2px 10px 2px 25px;
-  display: block;
-  color: #333;
-  text-decoration: none;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    padding: 2px 10px 2px 25px;
+    display: block;
+    color: #333;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-.nav-group-item:active, .nav-group-item.active {
-  background-color: #dcdfe1;
+.nav-group-item:active,
+.nav-group-item.active {
+    background-color: #dcdfe1;
 }
 .nav-group-item .icon {
-  width: 19px;
-  height: 18px;
-  float: left;
-  color: #737475;
-  margin-top: -3px;
-  margin-right: 7px;
-  font-size: 18px;
-  text-align: center;
+    width: 19px;
+    height: 18px;
+    float: left;
+    color: #737475;
+    margin-top: -3px;
+    margin-right: 7px;
+    font-size: 18px;
+    text-align: center;
 }
-
 .nav-group-title {
-  margin: 0;
-  padding: 10px 10px 2px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #666666;
+    margin: 0;
+    padding: 10px 10px 2px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #666666;
 }
-
 
 /*****************************************************************************************************************/
-
-
 
 x-label {
     font-size: 13px;
@@ -234,6 +218,12 @@ x-button[skin="tabnav"] x-label {
 .push-right {
     float: right !Important;
 }
+.push-left {
+    float: left !Important;
+}
+.push-center {
+    margin: auto !Important;
+}
 .small {
     width: 85px !Important;
 }
@@ -277,8 +267,8 @@ x-button[skin="tabnav"] x-label {
     justify-content: space-between;
 }
 .sidebar {
-    background-color: rgba(209, 207, 209,0.2);
-	overflow: hidden;
+    background-color: rgba(209, 207, 209, 0.2);
+    overflow: hidden;
 }
 .window-content {
     position: relative;
@@ -304,6 +294,7 @@ x-button[skin="tabnav"] x-label {
     border-left: 0;
 }
 .pane-sm {
+    width: 300px;
     max-width: 320px;
     min-width: 250px;
     border-right: 1px solid #c2c0c2;
@@ -327,7 +318,7 @@ x-button[skin="tabnav"] x-label {
     min-height: 22px;
     box-shadow: inset 0 0px 0 #f5f4f5;
     background-color: rgba(232, 230, 232, 0.4);
-	-webkit-app-region: drag;
+    -webkit-app-region: drag;
     /*    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e8e6e8), color-stop(100%, #d1cfd1));
     background-image: -webkit-linear-gradient(top, #e8e6e8 0%, #d1cfd1 100%);
     background-image: linear-gradient(to bottom, #e8e6e8 0%, #d1cfd1 100%);*/
@@ -479,7 +470,7 @@ x-button[skin="tabnav"] x-label {
     width: 15px;
     height: 15px;
     margin: 10px;
-	margin-top: 12px;
+    margin-top: 12px;
     padding: 0;
     text-indent: 100%;
     white-space: nowrap;
@@ -490,7 +481,7 @@ x-button[skin="tabnav"] x-label {
     line-height: 1;
     text-align: center;
     font-weight: lighter;
-	color: #bbb;
+    color: #bbb;
 }
 .dd-item > button:before {
     content: '+';
@@ -554,7 +545,6 @@ x-button[skin="tabnav"] x-label {
     margin: 20px 0;
 }
 #nestable-output,
-
 @media only screen and (min-width: 700px) {
     .dd {
         float: left;

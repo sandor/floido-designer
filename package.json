@@ -3,8 +3,12 @@
   "version": "0.0.1",
   "main": "main.js",
   "dependencies": {
+    "angular-custom-elements": "^2.1.0",
     "angular-ui-sortable": "^0.17.2",
     "ruler.js": "^1.0.0",
     "xel": "^0.0.15"
+  },
+  "devDependencies": {
+    "electron": "^1.7.6"
   }
 }
