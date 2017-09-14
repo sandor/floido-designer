@@ -1,3 +1,205 @@
+//		var kitchensink = {};
+//		var canvas = new fabric.Canvas('canvas', {
+//			backgroundColor: "#FFFFFF",
+//			selectionColor: "rgba(0, 108, 223, 0.05)",
+//			selectionBorderColor: "rgba(0, 108, 223, 0.3)",
+//			selectionDashArray: [2, 2]
+//		});
+//		initAligningGuidelines(canvas);
+//		initCenteringGuidelines(canvas);
+
+//dumb test with filters
+function addFilters($scope) {
+	
+				// manually initialize 2 filter backend to give ability to switch:
+				var webglBackend = new fabric.WebglFilterBackend();
+				var canvas2dBackend = new fabric.Canvas2dFilterBackend()
+
+				fabric.filterBackend = webglBackend;
+				var $ = function(id) {
+					return document.getElementById(id)
+				};
+
+				function applyFilter(index, filter) {
+					var obj = canvas.getActiveObject();
+					obj.filters[index] = filter;
+					var timeStart = +new Date();
+					obj.applyFilters();
+					var timeEnd = +new Date();
+					var dimString = canvas.getActiveObject().width + ' x ' +
+						canvas.getActiveObject().height;
+					$('bench').innerHTML = dimString + 'px ' +
+						parseFloat(timeEnd - timeStart) + 'ms';
+					canvas.renderAll();
+				}
+
+				function getFilter(index) {
+					var obj = canvas.getActiveObject();
+					return obj.filters[index];
+				}
+
+				function applyFilterValue(index, prop, value) {
+					var obj = canvas.getActiveObject();
+					if (obj.filters[index]) {
+						obj.filters[index][prop] = value;
+						var timeStart = +new Date();
+						obj.applyFilters();
+						var timeEnd = +new Date();
+						var dimString = canvas.getActiveObject().width + ' x ' +
+							canvas.getActiveObject().height;
+						$('bench').innerHTML = dimString + 'px ' +
+							parseFloat(timeEnd - timeStart) + 'ms';
+						canvas.renderAll();
+					}
+				}
+
+				fabric.Object.prototype.padding = 5;
+				fabric.Object.prototype.transparentCorners = false;
+
+				f = fabric.Image.filters;
+
+				canvas.on({
+					'object:selected': function() {
+
+
+						var filters = ['grayscale', 'invert', 'remove-color', 'sepia', 'brownie',
+							'brightness', 'contrast', 'saturation', 'noise', 'vintage',
+							'pixelate', 'blur', 'sharpen', 'emboss', 'technicolor',
+							'polaroid', 'blend-color', 'gamma', 'kodachrome',
+							'blackwhite', 'blend-image', 'hue'
+						];
+
+						for (var i = 0; i < filters.length; i++) {
+							filters[i] && (
+								$(filters[i]).checked = !!canvas.getActiveObject().filters[i]);
+						}
+					},
+
+				});
+
+				fabric.Image.fromURL('images/woman.png', function(img) {
+					var oImg = img.set({
+						left: 0,
+						top: 0
+					}).scale(1);
+					canvas.add(oImg);
+				});
+				var indexF;
+				$scope.webgl = function() {
+					if (this.checked) {
+						fabric.filterBackend = webglBackend;
+					} else {
+						fabric.filterBackend = canvas2dBackend;
+					}
+				};
+				$scope.brownie = function() {
+					applyFilter(4, this.checked && new f.Brownie());
+				};
+				$scope.vintage = function() {
+					applyFilter(9, this.checked && new f.Vintage());
+				};
+				$('technicolor').onclick = function() {
+					applyFilter(14, this.checked && new f.Technicolor());
+				};
+				$('polaroid').onclick = function() {
+					applyFilter(15, this.checked && new f.Polaroid());
+				};
+				$('kodachrome').onclick = function() {
+					applyFilter(18, this.checked && new f.Kodachrome());
+				};
+				$('blackwhite').onclick = function() {
+					applyFilter(19, this.checked && new f.BlackWhite());
+				};
+				$('grayscale').onclick = function() {
+					applyFilter(0, this.checked && new f.Grayscale());
+				};
+				$('average').onclick = function() {
+					applyFilterValue(0, 'mode', 'average');
+				};
+				$('luminosity').onclick = function() {
+					applyFilterValue(0, 'mode', 'luminosity');
+				};
+				$('lightness').onclick = function() {
+					applyFilterValue(0, 'mode', 'lightness');
+				};
+				$('invert').onclick = function() {
+					applyFilter(1, this.checked && new f.Invert());
+				};
+				$('sepia').onclick = function() {
+					applyFilter(3, this.checked && new f.Sepia());
+				};
+				$('brightness').onclick = function() {
+					applyFilter(5, this.checked && new f.Brightness({
+						brightness: parseFloat($('brightness-value').value)
+					}));
+				};
+				$('brightness-value').oninput = function() {
+					applyFilterValue(5, 'brightness', parseFloat(this.value));
+				};
+				$('contrast').onclick = function() {
+					applyFilter(6, this.checked && new f.Contrast({
+						contrast: parseFloat($('contrast-value').value)
+					}));
+				};
+				$('contrast-value').oninput = function() {
+					applyFilterValue(6, 'contrast', parseFloat(this.value));
+				};
+				$('saturation').onclick = function() {
+					applyFilter(7, this.checked && new f.Saturation({
+						saturation: parseFloat($('saturation-value').value)
+					}));
+				};
+				$('saturation-value').oninput = function() {
+					applyFilterValue(7, 'saturation', parseFloat(this.value));
+				};
+				$('noise').onclick = function() {
+					applyFilter(8, this.checked && new f.Noise({
+						noise: parseInt($('noise-value').value, 10)
+					}));
+				};
+				$('noise-value').oninput = function() {
+					applyFilterValue(8, 'noise', parseInt(this.value, 10));
+				};
+				$('blur').onclick = function() {
+					applyFilter(11, this.checked && new f.Blur({
+						value: parseFloat($('blur-value').value)
+					}));
+				};
+				$('blur-value').oninput = function() {
+					applyFilterValue(11, 'blur', parseFloat(this.value, 10));
+				};
+
+				$('blend').onclick = function() {
+					applyFilter(16, this.checked && new f.BlendColor({
+						color: document.getElementById('blend-color').value,
+						mode: document.getElementById('blend-mode').value,
+						alpha: document.getElementById('blend-alpha').value
+					}));
+				};
+
+				$('blend-mode').onchange = function() {
+					applyFilterValue(16, 'mode', this.value);
+				};
+
+				$('blend-color').onchange = function() {
+					applyFilterValue(16, 'color', this.value);
+				};
+
+				$('blend-alpha').oninput = function() {
+					applyFilterValue(16, 'alpha', this.value);
+				};
+
+				$('hue').onclick = function() {
+					applyFilter(21, this.checked && new f.HueRotation({
+						rotation: document.getElementById('hue-value').value,
+					}));
+				};
+
+				$('hue-value').oninput = function() {
+					applyFilterValue(21, 'rotation', this.value);
+				};
+
+}
 /*copy, paste and delete object – shortcuts are defined with keymaster.js https://github.com/madrobby/keymaster (see the index.html)*/
 
 
@@ -18,46 +220,77 @@ function ungroup() {
         return;
     }
     if (canvas.getActiveObject().type !== 'group') {
+		var object = canvas.getActiveObject();
+           object.set('name', "Grouped Objects");
+		 object.set('icon', "content-copy");
         return;
     }
     canvas.getActiveObject().toActiveSelection();
     canvas.requestRenderAll();
 }
 
+//function copy() {
+//    canvas.getActiveObject().clone(function (cloned) {
+//        _clipboard = cloned;
+//    });
+//}
+
+
+
+
+var customProperties = 'name icon'.split(' ');
+
 function copy() {
-    // clone what are you copying since you may want copy and paste on different moment.
-    // and you do not want the changes happened later to reflect on the copy.
-    // maybe.
-    canvas.getActiveObject().clone(function (cloned) {
-        _clipboard = cloned;
-    });
+  canvas.getActiveObject().clone(function(cloned) {
+    console.log(cloned);
+    _clipboard = cloned;
+  }, customProperties);
 }
 
+//function paste() {
+//    _clipboard.clone(function (clonedObj) {
+//        canvas.discardActiveObject();
+//        clonedObj.set({
+//            left: clonedObj.left + 10,
+//            top: clonedObj.top + 10,
+//            evented: true,
+//            name: clonedObj.name,
+//            icon: clonedObj.icon,
+//        });
+//        if (clonedObj.type === 'activeSelection') {
+//            clonedObj.canvas = canvas;
+//            clonedObj.forEachObject(function (obj) {
+//                canvas.add(obj);
+//            });
+//            clonedObj.setCoords();
+//        } else {
+//            canvas.add(clonedObj);
+//        }
+//        canvas.setActiveObject(clonedObj);
+//        canvas.requestRenderAll();
+//    });
+//}
+
 function paste() {
-    // clone again, so you can do multiple copies.
-    _clipboard.clone(function (clonedObj) {
-        canvas.discardActiveObject();
-        clonedObj.set({
-            left: clonedObj.left + 10,
-            top: clonedObj.top + 10,
-            evented: true,
-            name: clonedObj.name,
-            icon: clonedObj.icon,
-        });
-        if (clonedObj.type === 'activeSelection') {
-            // active selection needs a reference to the canvas.
-            clonedObj.canvas = canvas;
-            clonedObj.forEachObject(function (obj) {
-                canvas.add(obj);
-            });
-            // this should solve the unselectability
-            clonedObj.setCoords();
-        } else {
-            canvas.add(clonedObj);
-        }
-        canvas.setActiveObject(clonedObj);
-        canvas.requestRenderAll();
+  var clonedObj = _clipboard;
+  console.log(clonedObj);
+  canvas.discardActiveObject();
+  clonedObj.set({
+    left: clonedObj.left + 10,
+    top: clonedObj.top + 10,
+    evented: true,
+  });
+  if (clonedObj.type === 'activeSelection') {
+    clonedObj.canvas = canvas;
+    clonedObj.forEachObject(function(obj) {
+      canvas.add(obj);
     });
+    clonedObj.setCoords();
+  } else {
+    canvas.add(clonedObj);
+  }
+  canvas.setActiveObject(clonedObj);
+  canvas.renderAll();
 }
 
 function remove() {
@@ -128,6 +361,7 @@ function setActiveProp(name, value) {
 
 ////////////
 
+
 function getActiveShadow(name) {
     var object = canvas.getActiveObject();
     if (!object) return '';
@@ -136,12 +370,22 @@ function getActiveShadow(name) {
 }
 
 function setActiveShadow(name, value) {
+
     var object = canvas.getActiveObject();
     if (!object) return;
-    object.setShadow(name, value);
+    if(object.shadow)
+     object.shadow[name] = value;
+    else{
+     var ob = {};
+     ob[name] = value;
+     object.setShadow(ob);
+    }
+
     object.setCoords();
-    canvas.renderAll();
 }
+
+
+
 
 
 
@@ -151,50 +395,49 @@ function addAccessors($scope) {
 
     //////////////////
 
+	
+	var offsetXVal = 10;
+$scope.setShadowOffsetX = function (value) {
+    value = offsetXVal+=5;
+    setActiveShadow('offsetX', value);
+    canvas.renderAll();
+};
+	
+	var offsetYVal = 10;
+$scope.setShadowOffsetY = function (value) {
+    value = offsetYVal+=5;
+    setActiveShadow('offsetY', value);
+    canvas.renderAll();
+};
+//var offBlurVal = 10;
+$scope.setShadowBlur = function (value) {
+//    value =  offBlurVal += 5;
+    setActiveShadow('blur', value);
+    canvas.renderAll();
+};
 
-    $scope.setShadowOffsetX = function (value) {
-        setActiveShadow('offsetX', value);
-        canvas.renderAll();
-    };
+$scope.setShadowColor = function (value) {
+    value = 'black';
+    setActiveShadow('color', value);
+    canvas.renderAll();
+};
+	
+	$scope.shadowify = function () {
+    var obj = canvas.getActiveObject();
+    if (!obj) return;
 
-
-    $scope.setShadowOffsetY = function (value) {
-        setActiveShadow('offsetY', value);
-        canvas.renderAll();
-    };
-
-    $scope.setShadowBlur = function (value) {
-        setActiveShadow('blur', value);
-        canvas.renderAll();
-    };
-
-    $scope.setShadowColor = function (value) {
-        setActiveShadow('color', value);
-        canvas.renderAll();
-        console.log, (value);
-    };
-
-
-    $scope.shadowify = function () {
-        //        var shadX = document.getElementById('shadX').value;
-        //        var shadY = document.getElementById('shadY').value;
-        //        var shadC = document.getElementById('shadC').value;
-        //        var shadB = document.getElementById('shadB').value;
-        var obj = canvas.getActiveObject();
-        if (!obj) return;
-
-        if (obj.shadow) {
-            obj.shadow = null;
-        } else {
-            obj.setShadow({
-                color: "#000000",
-                blur: 10,
-                offsetX: 10,
-                offsetY: 10
-            });
-        }
-        canvas.renderAll();
-    };
+    if (obj.shadow) {
+        obj.shadow = null;
+    } else {
+        obj.setShadow({
+            color: "#000000",
+            blur: 50,
+            offsetX: 10,
+            offsetY: 10
+        });
+    }
+    canvas.renderAll();
+};
 
 
     //////////////////
@@ -577,7 +820,7 @@ function addAccessors($scope) {
             left: coord.left,
             top: coord.top,
             fill: '#' + getRandomColor(),
-            radius: 250,
+            radius: 125,
             opacity: 1,
             scaleX: 1,
             scaleY: 1,
@@ -1701,7 +1944,7 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
 
   ];
 
-    $scope.currentTab = 'templates/style_menu.html';
+    $scope.currentTab = 'templates/actions_menu.html';
 
     $scope.onClickTab = function (tab) {
         $scope.currentTab = tab.url;

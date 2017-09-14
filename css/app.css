@@ -176,17 +176,20 @@ x-button[skin="tabnav"] {
     padding: 8px;
     /*    width: calc(100% + 10px);*/
     cursor: default;
+	
 }
 x-button[skin="tabnav"][toggled] {
-    background: rgba(0, 0, 0, 0.4);
-    color: rgb(219, 219, 219);
+/*    background: rgba(0, 0, 0, 0.4);*/
+    color: rgb(18, 131, 252);
+	border-bottom: 5px solid rgb(18, 131, 252);
+	
 }
 x-button[skin="tabnav"][pressed] {
-    background: rgba(0, 0, 0, 0.14);
+/*    background: rgb(18, 131, 252);*/
     color: #4a4a4a;
 }
 x-button[skin="tabnav"][toggled][pressed] {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgb(18, 131, 252);
 }
 x-button[skin="tabnav"] x-icon {
     width: 28px;
@@ -268,7 +271,6 @@ x-button[skin="tabnav"] x-label {
 }
 .sidebar {
     background-color: rgba(209, 207, 209, 0.2);
-    overflow: hidden;
 }
 .window-content {
     position: relative;
@@ -301,8 +303,15 @@ x-button[skin="tabnav"] x-label {
 }
 .pane-right {
     width: 300px;
+	overflow-y: auto;
+	overflow-x: hidden;
     border-left: 1px solid #c2c0c2;
 }
+
+.inner{
+    overflow-y: auto;
+}
+
 .pane-mini {
     width: 80px;
     flex: none;
