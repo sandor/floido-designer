@@ -1,3 +1,9 @@
+x-button[skin^="iconic"][toggled] {
+    /*  background: linear-gradient(to bottom, #D7D7D7, #C9C9C9);
+  */
+    color: hsl(var(--accent-color-h), var(--accent-color-s), calc(var(--accent-color-l) + 3%));
+}
+
 /*****************************************************************************************************************/
 
 .list-group {
@@ -176,20 +182,19 @@ x-button[skin="tabnav"] {
     padding: 8px;
     /*    width: calc(100% + 10px);*/
     cursor: default;
-	
 }
 x-button[skin="tabnav"][toggled] {
-/*    background: rgba(0, 0, 0, 0.4);*/
+    /*    background: rgba(0, 0, 0, 0.4);*/
     color: rgb(18, 131, 252);
-	border-bottom: 5px solid rgb(18, 131, 252);
-	
+    border-bottom: 5px solid hsl(var(--accent-color-h), var(--accent-color-s), calc(var(--accent-color-l) + 3%));
+    bottom: -3px;
 }
 x-button[skin="tabnav"][pressed] {
-/*    background: rgb(18, 131, 252);*/
+    /*    background: rgb(18, 131, 252);*/
     color: #4a4a4a;
 }
 x-button[skin="tabnav"][toggled][pressed] {
-    background: rgb(18, 131, 252);
+    background: hsl(var(--accent-color-h), var(--accent-color-s), calc(var(--accent-color-l) + 3%));
 }
 x-button[skin="tabnav"] x-icon {
     width: 28px;
@@ -303,15 +308,13 @@ x-button[skin="tabnav"] x-label {
 }
 .pane-right {
     width: 300px;
-	overflow-y: auto;
-	overflow-x: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     border-left: 1px solid #c2c0c2;
 }
-
-.inner{
+.inner {
     overflow-y: auto;
 }
-
 .pane-mini {
     width: 80px;
     flex: none;

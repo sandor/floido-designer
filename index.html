@@ -2,106 +2,106 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="node_modules/xel/stylesheets/macos.theme.css">
-	<!--	<link rel="import" href="node_modules/xel/xel.min.html">-->
-	<!--
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="node_modules/xel/stylesheets/macos.theme.css">
+    <!--	<link rel="import" href="node_modules/xel/xel.min.html">-->
+    <!--
 <link rel="stylesheet" href="css/photon.css">-->
-	<link rel="stylesheet" href="css/app.css">
-	<!--	<link rel="stylesheet" href="css/text_menu.css">-->
-	<link rel="stylesheet" href="css/gridlex.min.css">
-	<link rel="stylesheet" href="css/pretty.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <!--	<link rel="stylesheet" href="css/text_menu.css">-->
+    <link rel="stylesheet" href="css/gridlex.min.css">
+    <link rel="stylesheet" href="css/pretty.min.css">
 
-	<!--	this are the css an js files from the angular project-->
+    <!--	this are the css an js files from the angular project-->
 
-	<!--	<link rel='stylesheet prefetch' href='css/bootstrap.min.css'>-->
-	<link rel='stylesheet prefetch' href='css/font-awesome.min.css'>
+    <!--	<link rel='stylesheet prefetch' href='css/bootstrap.min.css'>-->
+    <link rel='stylesheet prefetch' href='css/font-awesome.min.css'>
 
-	<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
-	<!--	<script src="css/ruler.css"></script>-->
-
-
-
-	<!-- Insert this line above script imports  -->
-	<script>
-		if (typeof module === 'object') {
-			window.module = module;
-			module = undefined;
-		}
-
-	</script>
+    <!--	<script src="css/ruler.css"></script>-->
 
 
 
+    <!-- Insert this line above script imports  -->
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
 
-	<!--    <script src='js/xel.min.js'></script>-->
-	<script src='js/jquery.min.js'></script>
-	<script src='js/jquery.nestable.js'></script>
-	<script src='js/jquery-ui.min.js'></script>
-	<script src='js/fabric.min.js'></script>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/document-register-element/0.2.1/document-register-element.js"></script>
-
-	<script src='node_modules/xel/xel.min.js'></script>
-
-	<script src='js/angular.min.js'></script>
-	<script src="https://rawgit.com/eee-c/angular-bind-polymer/master/angular_bind_polymer.js"></script>
-
-
-	<script src='node_modules/angular-ui-sortable/dist/sortable.min.js'></script>
-	<script src='js/aligning_guidelines.js'></script>
-	<script src='js/centering_guidelines.js'></script>
-
-
-	<script src="js/utils.js"></script>
-	<script src="js/app_config.js"></script>
-	<script src="js/controller.js"></script>
-	<script src="js/keymaster.js"></script>
-
-	<script src="lib/font_definitions.js"></script>
-	<script src="js/paster.js"></script>
-
-	<!-- Ruler script here – https://github.com/MrFrankel/ruler  -->
-	<link rel="stylesheet" href="node_modules/ruler.js/dist/ruler.min.css">
-	<script src="node_modules/ruler.js/dist/ruler.min.js"></script>
-	<script src="js/ruler_demo.js"></script>
+    </script>
 
 
 
 
+    <!--    <script src='js/xel.min.js'></script>-->
+    <script src='js/jquery.min.js'></script>
+    <script src='js/jquery.nestable.js'></script>
+    <script src='js/jquery-ui.min.js'></script>
+    <script src='js/fabric.min.js'></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/document-register-element/0.2.1/document-register-element.js"></script>
+
+    <script src='node_modules/xel/xel.min.js'></script>
+
+    <script src='js/angular.min.js'></script>
+    <script src="https://rawgit.com/eee-c/angular-bind-polymer/master/angular_bind_polymer.js"></script>
 
 
-	<!-- Insert this line after script imports -->
-	<script>
-		if (window.module) module = window.module;
+    <script src='node_modules/angular-ui-sortable/dist/sortable.min.js'></script>
+    <script src='js/aligning_guidelines.js'></script>
+    <script src='js/centering_guidelines.js'></script>
 
-	</script>
 
-	<!-- dummy function – toggle left panel -->
+    <script src="js/utils.js"></script>
+    <script src="js/app_config.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/keymaster.js"></script>
 
-	<script>
-		function toggleLayers() {
-			var x = document.getElementById('layers');
-			if (x.style.display === 'none') {
-				x.style.display = 'block';
-			} else {
-				x.style.display = 'none';
-			}
-		}
+    <script src="lib/font_definitions.js"></script>
+    <script src="js/paster.js"></script>
 
-		function toggleInspector() {
-			var x = document.getElementById('inspector');
-			if (x.style.display === 'none') {
-				x.style.display = 'block';
-			} else {
-				x.style.display = 'none';
-			}
-		}
+    <!-- Ruler script here – https://github.com/MrFrankel/ruler  -->
+    <link rel="stylesheet" href="node_modules/ruler.js/dist/ruler.min.css">
+    <script src="node_modules/ruler.js/dist/ruler.min.js"></script>
+    <script src="js/ruler_demo.js"></script>
 
-	</script>
 
-	<!-- electron drag&drop test -->
+
+
+
+
+    <!-- Insert this line after script imports -->
+    <script>
+        if (window.module) module = window.module;
+
+    </script>
+
+    <!-- dummy function – toggle left panel -->
+
+    <script>
+        function toggleLayers() {
+            var x = document.getElementById('layers');
+            if (x.style.display === 'none') {
+                x.style.display = 'block';
+            } else {
+                x.style.display = 'none';
+            }
+        }
+
+        function toggleInspector() {
+            var x = document.getElementById('inspector');
+            if (x.style.display === 'none') {
+                x.style.display = 'block';
+            } else {
+                x.style.display = 'none';
+            }
+        }
+
+    </script>
+
+    <!-- electron drag&drop test -->
 
 
 </head>
@@ -109,193 +109,192 @@
 
 
 <body style="background: rgba(0, 0, 0, 0.0);" ng-app="kitchensink" ng-controller="CanvasControls">
-	<div class="window" style="background: rgba(255, 255, 255, 0.0)">
-		<header class="toolbar toolbar-header">
-			<h1 class="title">Untitled</h1>
+    <div class="window" style="background: rgba(255, 255, 255, 0.0)">
+        <header class="toolbar toolbar-header">
+            <h1 class="title">Untitled</h1>
 
-			<div class="toolbar-actions">
-				<x-box class="middle">
-					<x-buttons tracking="2">
-						<x-button skin="iconic" onclick="toggleLayers()" toggled>
-							<x-box vertical>
-								<x-icon name="layers"></x-icon>
-								<x-label>Layers</x-label>
-							</x-box>
-						</x-button>
+            <div class="toolbar-actions">
+                <x-box class="middle">
+                    <x-buttons tracking="2">
+                        <x-button skin="iconic" onclick="toggleLayers()" toggled>
+                            <x-box vertical>
+                                <x-icon name="layers"></x-icon>
+                                <x-label>Layers</x-label>
+                            </x-box>
+                        </x-button>
 
-						<x-button skin="iconic">
-							<x-box vertical>
-								<x-icon name="pages"></x-icon>
-								<x-label>Pages</x-label>
-							</x-box>
-						</x-button>
-					</x-buttons>
+                        <x-button skin="iconic">
+                            <x-box vertical>
+                                <x-icon name="pages"></x-icon>
+                                <x-label>Pages</x-label>
+                            </x-box>
+                        </x-button>
+                    </x-buttons>
 
-					<x-buttons tracking="1">
-						<x-button skin="iconic" ng-click="loadImage()">
-							<x-box vertical>
-								<x-icon name="text" iconset="images/icons.svg"></x-icon>
-								<x-label>Add Text</x-label>
-							</x-box>
-						</x-button>
+                    <x-buttons tracking="1">
+                        <x-button skin="iconic" ng-click="loadImage()">
+                            <x-box vertical>
+                                <x-icon name="text" iconset="images/icons.svg"></x-icon>
+                                <x-label>Add Text</x-label>
+                            </x-box>
+                        </x-button>
 
-						<x-button skin="iconic">
-							<x-box vertical>
-								<x-icon name="add-box"></x-icon>
-								<x-label>Insert Element</x-label>
-							</x-box>
-							<x-menu>
-								<x-menuitem ng-click="addTextbox()">
-									<x-icon name="title"></x-icon>
-									<x-label>Add Textfield</x-label>
-								</x-menuitem>
+                        <x-button skin="iconic">
+                            <x-box vertical>
+                                <x-icon name="add-box"></x-icon>
+                                <x-label>Insert Element</x-label>
+                            </x-box>
+                            <x-menu>
+                                <x-menuitem ng-click="addTextbox()">
+                                    <x-icon name="title"></x-icon>
+                                    <x-label>Add Textfield</x-label>
+                                </x-menuitem>
 
-								<x-menuitem ng-click="loadImage()">
-									<x-icon name="photo"></x-icon>
-									<x-label>Add Image...</x-label>
-								</x-menuitem>
+                                <x-menuitem ng-click="loadImage()">
+                                    <x-icon name="photo"></x-icon>
+                                    <x-label>Add Image...</x-label>
+                                </x-menuitem>
 
-								<x-menuitem>
-									<x-icon name="videocam"></x-icon>
-									<x-label>Add Video...</x-label>
-								</x-menuitem>
+                                <x-menuitem>
+                                    <x-icon name="videocam"></x-icon>
+                                    <x-label>Add Video...</x-label>
+                                </x-menuitem>
 
-								<hr>
+                                <hr>
 
-								<x-menuitem ng-click="addRect()">
-									<x-icon name="content-copy"></x-icon>
-									<x-label>Add Rectangle</x-label>
-								</x-menuitem>
+                                <x-menuitem ng-click="addRect()">
+                                    <x-icon name="content-copy"></x-icon>
+                                    <x-label>Add Rectangle</x-label>
+                                </x-menuitem>
 
-								<x-menuitem ng-click="addRoundRect()">
-									<x-icon name="crop-square"></x-icon>
-									<x-label>Add Rounded Rectangle</x-label>
-								</x-menuitem>
+                                <x-menuitem ng-click="addRoundRect()">
+                                    <x-icon name="crop-square"></x-icon>
+                                    <x-label>Add Rounded Rectangle</x-label>
+                                </x-menuitem>
 
-								<x-menuitem ng-click="addCircle()">
-									<x-icon name="panorama-fish-eye"></x-icon>
-									<x-label>Add Circle</x-label>
-								</x-menuitem>
+                                <x-menuitem ng-click="addCircle()">
+                                    <x-icon name="panorama-fish-eye"></x-icon>
+                                    <x-label>Add Circle</x-label>
+                                </x-menuitem>
 
-								<x-menuitem ng-click="addTriangle()">
-									<x-icon name="details"></x-icon>
-									<x-label>Add Triangle</x-label>
-								</x-menuitem>
+                                <x-menuitem ng-click="addTriangle()">
+                                    <x-icon name="details"></x-icon>
+                                    <x-label>Add Triangle</x-label>
+                                </x-menuitem>
 
-								<x-menuitem ng-click="addLine()">
-									<x-icon name="remove"></x-icon>
-									<x-label>Add Line</x-label>
-								</x-menuitem>
+                                <x-menuitem ng-click="addLine()">
+                                    <x-icon name="remove"></x-icon>
+                                    <x-label>Add Line</x-label>
+                                </x-menuitem>
 
-							</x-menu>
-						</x-button>
+                            </x-menu>
+                        </x-button>
 
-						<x-button skin="iconic">
-							<x-box vertical>
-								<x-icon name="cancel" ng-click="removeSelected()" code="8" dl-key-code="removeSelected()"></x-icon>
-								<x-label>Remove Selected</x-label>
-							</x-box>
-						</x-button>
-					</x-buttons>
+                        <x-button skin="iconic">
+                            <x-box vertical>
+                                <x-icon name="cancel" ng-click="removeSelected()" code="8" dl-key-code="removeSelected()"></x-icon>
+                                <x-label>Remove Selected</x-label>
+                            </x-box>
+                        </x-button>
+                    </x-buttons>
 
-					<x-buttons tracking="1">
-						<x-button skin="iconic">
-							<x-box vertical>
-								<x-icon name="edit"></x-icon>
-								<x-label>Page Editor</x-label>
-							</x-box>
-						</x-button>
+                    <x-buttons tracking="1">
+                        <x-button skin="iconic">
+                            <x-box vertical>
+                                <x-icon name="edit"></x-icon>
+                                <x-label>Page Editor</x-label>
+                            </x-box>
+                        </x-button>
 
-						<x-button skin="iconic" disabled>
-							<x-box vertical>
-								<x-icon name="actions" iconset="images/icons.svg"></x-icon>
-								<x-label>Actions Editor</x-label>
-							</x-box>
-						</x-button>
-
-
-
-						<x-button skin="iconic" disabled>
-							<x-box vertical>
-								<x-icon name="view-module"></x-icon>
-								<x-label>Page Flow</x-label>
-							</x-box>
-						</x-button>
-
-					</x-buttons>
-
-					<x-buttons tracking="1">
-						<x-button skin="iconic" disabled>
-							<x-box vertical>
-								<x-icon name="visibility"></x-icon>
-								<x-label>Project Preview</x-label>
-							</x-box>
-						</x-button>
-
-						<x-button skin="iconic" disabled>
-							<x-box vertical>
-								<x-icon name="code"></x-icon>
-								<x-label>Code View</x-label>
-							</x-box>
-						</x-button>
-
-					</x-buttons>
-
-					<x-buttons tracking="2">
-						<x-button skin="iconic" onclick="toggleInspector()" toggled>
-							<x-box vertical>
-								<x-icon name="settings"></x-icon>
-								<x-label>Inspector</x-label>
-							</x-box>
-						</x-button>
-
-						<x-button skin="iconic" disabled>
-							<x-box vertical>
-								<x-icon name="image"></x-icon>
-								<x-label>Asset Library</x-label>
-							</x-box>
-						</x-button>
-
-						<x-button skin="iconic" disabled>
-							<x-box vertical>
-								<x-icon name="get-app"></x-icon>
-								<x-label>Export</x-label>
-							</x-box>
-						</x-button>
-
-					</x-buttons>
-				</x-box>
+                        <x-button skin="iconic" disabled>
+                            <x-box vertical>
+                                <x-icon name="actions" iconset="images/icons.svg"></x-icon>
+                                <x-label>Actions Editor</x-label>
+                            </x-box>
+                        </x-button>
 
 
+
+                        <x-button skin="iconic" disabled>
+                            <x-box vertical>
+                                <x-icon name="view-module"></x-icon>
+                                <x-label>Page Flow</x-label>
+                            </x-box>
+                        </x-button>
+
+                    </x-buttons>
+
+                    <x-buttons tracking="1">
+                        <x-button skin="iconic" disabled>
+                            <x-box vertical>
+                                <x-icon name="visibility"></x-icon>
+                                <x-label>Project Preview</x-label>
+                            </x-box>
+                        </x-button>
+
+                        <x-button skin="iconic" disabled>
+                            <x-box vertical>
+                                <x-icon name="code"></x-icon>
+                                <x-label>Code View</x-label>
+                            </x-box>
+                        </x-button>
+
+                    </x-buttons>
+
+                    <x-buttons tracking="2">
+                        <x-button skin="iconic" onclick="toggleInspector()" toggled>
+                            <x-box vertical>
+                                <x-icon name="settings"></x-icon>
+                                <x-label>Inspector</x-label>
+                            </x-box>
+                        </x-button>
+
+                        <x-button skin="iconic" disabled>
+                            <x-box vertical>
+                                <x-icon name="image"></x-icon>
+                                <x-label>Asset Library</x-label>
+                            </x-box>
+                        </x-button>
+
+                        <x-button skin="iconic" disabled>
+                            <x-box vertical>
+                                <x-icon name="get-app"></x-icon>
+                                <x-label>Export</x-label>
+                            </x-box>
+                        </x-button>
+
+                    </x-buttons>
+                </x-box>
 
 
 
 
-			</div>
-		</header>
-
-		<div class="window-content">
-			<div class="pane-group">
-				<div id="layers" class="pane-sm sidebar" ng-controller="LeftTabsCtrl">
-
-					<x-box>
-						<x-buttons tracking="1">
-							<x-button ng-repeat="tab in tabs" skin="tabnav" ng-class="{active:isActiveTab(tab.url)}" ng-click="onClickTab(tab)">
-								<x-icon name="{{tab.micon}}"></x-icon>
-
-							</x-button>
-						</x-buttons>
-					</x-box>
-					<hr>
-
-					<div ng-include="currentTab" ng-controller="LayersController"></div>
 
 
+            </div>
+        </header>
 
-				</div>
-				<div class="pane content-empty image-builder-container">
+        <div class="window-content">
+            <div class="pane-group">
+                <div id="layers" class="pane-sm sidebar" ng-controller="LeftTabsCtrl">
 
-<!--
+                    <x-box>
+                        <x-buttons tracking="1">
+                            <x-button ng-repeat="tab in tabs" skin="tabnav" ng-class="{active:isActiveTab(tab.url)}" ng-click="onClickTab(tab)">
+                                <x-icon name="{{tab.micon}}"></x-icon>
+
+                            </x-button>
+                        </x-buttons>
+                    </x-box>
+                    <hr>
+                    <div ng-include="currentTab" ng-controller="LayersController"></div>
+
+
+
+                </div>
+                <div class="pane content-empty image-builder-container">
+
+                    <!--
 					<div class="controls">
 						<label>Use WebGl
 							<input type="checkbox" id="webgl" checked="">
@@ -463,305 +462,305 @@
 -->
 
 
-					<div id="wrapper" class='image-builder' parent-click="fabric.deactivateAll()">
-						<div class='fabric-container'>
-							<canvas id="canvas" width="1024" height="768"></canvas>
-						</div>
-					</div>
-				</div>
+                    <div id="wrapper" class='image-builder' parent-click="fabric.deactivateAll()">
+                        <div class='fabric-container'>
+                            <canvas id="canvas" width="1024" height="768"></canvas>
+                        </div>
+                    </div>
+                </div>
 
-				<div id="inspector" class="pane-right sidebar" ng-controller="RightTabsCtrl">
+                <div id="inspector" class="pane-right sidebar" ng-controller="RightTabsCtrl">
 
-					<x-box>
-						<x-buttons tracking="1">
-							<x-button ng-repeat="tab in tabs" skin="tabnav" ng-class="{active:isActiveTab(tab.url)}" ng-click="onClickTab(tab)">
-								<!--								<x-icon name="{{tab.ticon}}" iconset="{{tab.custom}}"></x-icon>-->
-								<x-icon name="{{tab.micon}}"></x-icon>
+                    <x-box>
+                        <x-buttons tracking="1">
+                            <x-button ng-repeat="tab in tabs" skin="tabnav" ng-class="{active:isActiveTab(tab.url)}" ng-click="onClickTab(tab)">
+                                <!--								<x-icon name="{{tab.ticon}}" iconset="{{tab.custom}}"></x-icon>-->
+                                <x-icon name="{{tab.micon}}"></x-icon>
 
-							</x-button>
-						</x-buttons>
-					</x-box>
-					<hr>
-
-
-
-
-					<div ng-include="currentTab" class="inner"></div>
+                            </x-button>
+                        </x-buttons>
+                    </x-box>
+                    <hr>
 
 
 
-				</div>
-			</div>
-		</div>
-		<footer class="toolbar toolbar-footer" ng-controller="CanvasControls">
-			<h1 class="title">{{ size.name }}</h1>
-		</footer>
-	</div>
 
-	<script>
-		var kitchensink = {};
-		var canvas = new fabric.Canvas('canvas', {
-			backgroundColor: "#FFFFFF",
-			selectionColor: "rgba(0, 108, 223, 0.05)",
-			selectionBorderColor: "rgba(0, 108, 223, 0.3)",
-			selectionDashArray: [2, 2]
-		});
-		initAligningGuidelines(canvas);
-		initCenteringGuidelines(canvas);
-
-		// create grid and snap to grid
+                    <div ng-include="currentTab" class="inner"></div>
 
 
-		//canvas.on('object:moving', function(options) {
-		//  options.target.set({
-		//    left: Math.round(options.target.left / gridSize) * gridSize,
-		//    top: Math.round(options.target.top / gridSize) * gridSize
-		//  });
-		//});
 
-		// ------------------
+                </div>
+            </div>
+        </div>
+        <footer class="toolbar toolbar-footer" ng-controller="CanvasControls">
+            <h1 class="title">{{ size.name }}</h1>
+        </footer>
+    </div>
 
-		/*
-		getting some test data
-		*/
+    <script>
+        var kitchensink = {};
+        var canvas = new fabric.Canvas('canvas', {
+            backgroundColor: "#FFFFFF",
+            selectionColor: "rgba(0, 108, 223, 0.05)",
+            selectionBorderColor: "rgba(0, 108, 223, 0.3)",
+            selectionDashArray: [2, 2]
+        });
+        initAligningGuidelines(canvas);
+        initCenteringGuidelines(canvas);
 
-		canvas.on('object:scaling', onObjectModification);
-		canvas.on('object:moving', onObjectModification);
-		canvas.on('object:rotating', onObjectModification);
-		canvas.on('object:selected', onObjectModification);
-
-		function onObjectModification(e) {
-			var activeObject = e.target;
-			if (!activeObject) {
-				return;
-			}
-			var canvasWidth = canvas.width;
-			var canvasHeight = canvas.height;
-			var reachedLimit = false;
-			var objectLeft = Math.round(activeObject.left);
-			var objectTop = Math.round(activeObject.top);
-			var objectAngle = Math.round(activeObject.angle * 10) / 10;
-			var objectWidth = Math.round(activeObject.width);
-			var objectHeight = Math.round(activeObject.height);
-			var objWidth = Math.round(activeObject.width * activeObject.scaleX);
-			var objHeight = Math.round(activeObject.height * activeObject.scaleY);
-			//	console.log(canvasWidth, canvasHeight, objectLeft, objectTop, objectAngle, objectWidth, objectHeight, objWidth, objHeight);
+        // create grid and snap to grid
 
 
-		}
+        //canvas.on('object:moving', function(options) {
+        //  options.target.set({
+        //    left: Math.round(options.target.left / gridSize) * gridSize,
+        //    top: Math.round(options.target.top / gridSize) * gridSize
+        //  });
+        //});
+
+        // ------------------
+
+        /*
+        getting some test data
+        */
+
+        canvas.on('object:scaling', onObjectModification);
+        canvas.on('object:moving', onObjectModification);
+        canvas.on('object:rotating', onObjectModification);
+        canvas.on('object:selected', onObjectModification);
+
+        function onObjectModification(e) {
+            var activeObject = e.target;
+            if (!activeObject) {
+                return;
+            }
+            var canvasWidth = canvas.width;
+            var canvasHeight = canvas.height;
+            var reachedLimit = false;
+            var objectLeft = Math.round(activeObject.left);
+            var objectTop = Math.round(activeObject.top);
+            var objectAngle = Math.round(activeObject.angle * 10) / 10;
+            var objectWidth = Math.round(activeObject.width);
+            var objectHeight = Math.round(activeObject.height);
+            var objWidth = Math.round(activeObject.width * activeObject.scaleX);
+            var objHeight = Math.round(activeObject.height * activeObject.scaleY);
+            //	console.log(canvasWidth, canvasHeight, objectLeft, objectTop, objectAngle, objectWidth, objectHeight, objWidth, objHeight);
 
 
-		//use scale width height insted of scleX scaleY
-
-		//fabric.Canvas.prototype.preserveObjectStacking = true;
-		//  // Resize objects programmatically to keep stroke width constant
-		//  fabric.Object.prototype.resizeToScale = function (scaleX, scaleY, belongsToGroup) {
-		//    var objectScaleX = scaleX || this.scaleX;
-		//    var objectScaleY = scaleY || this.scaleY;
-		//    switch (this.type) {
-		//      case 'ellipse':
-		//        this.rx *= objectScaleX;
-		//        this.ry *= objectScaleY;
-		//        this.width = this.rx * 2;
-		//        this.height = this.ry * 2;
-		//        this.scaleX = 1;
-		//        this.scaleY = 1;
-		//        if (belongsToGroup) {
-		//          // Object's left and top are relative to group's position so let's
-		//          // update them too
-		//          this.left *= objectScaleX;
-		//          this.top *= objectScaleY;
-		//        }
-		//        break;
-		//      case 'rect':
-		//      case 'triangle':
-		//      case 'group':
-		//        this.width *= objectScaleX;
-		//        this.height *= objectScaleY;
-		//        this.scaleX = 1;
-		//        this.scaleY = 1;
-		//        if (belongsToGroup) {
-		//          // Object's left and top are relative to group's position so let's
-		//          // update them too
-		//          this.left *= objectScaleX;
-		//          this.top *= objectScaleY;
-		//        }
-		//        break;
-		//      default:
-		//        // Do nothing
-		//    }
-		//  };
-		//    
-		//  // Observe object scale so we can keep strokeWidth constant
-		//  canvas.on('object:scaling', function (e) {
-		//    if (e.target.type === 'group') {
-		//      // Group scaleX and scaleY values
-		//      var groupScaleX = e.target.scaleX;
-		//      var groupScaleY = e.target.scaleY;
-		//      // Resize group first
-		//      e.target.resizeToScale();
-		//      // Resize each item of the group using groupScale[X-Y]
-		//      e.target._objects.forEach(function (object) {
-		//        object.resizeToScale(groupScaleX, groupScaleY, true);
-		//      });
-		//    } else {
-		//      e.target.resizeToScale();
-		//    }
-		//  });
-		//		
+        }
 
 
-		/*
-				undo and redo functions – this should be integrated in the controllers later on
-		*/
-		var _config = {
-			canvasState: [],
-			currentStateIndex: -1,
-			undoStatus: false,
-			redoStatus: false,
-			undoFinishedStatus: 1,
-			redoFinishedStatus: 1,
+        //use scale width height insted of scleX scaleY
 
-		};
-		canvas.on(
-			'object:modified',
-			function() {
-				updateCanvasState();
-			}
-		);
+        //fabric.Canvas.prototype.preserveObjectStacking = true;
+        //  // Resize objects programmatically to keep stroke width constant
+        //  fabric.Object.prototype.resizeToScale = function (scaleX, scaleY, belongsToGroup) {
+        //    var objectScaleX = scaleX || this.scaleX;
+        //    var objectScaleY = scaleY || this.scaleY;
+        //    switch (this.type) {
+        //      case 'ellipse':
+        //        this.rx *= objectScaleX;
+        //        this.ry *= objectScaleY;
+        //        this.width = this.rx * 2;
+        //        this.height = this.ry * 2;
+        //        this.scaleX = 1;
+        //        this.scaleY = 1;
+        //        if (belongsToGroup) {
+        //          // Object's left and top are relative to group's position so let's
+        //          // update them too
+        //          this.left *= objectScaleX;
+        //          this.top *= objectScaleY;
+        //        }
+        //        break;
+        //      case 'rect':
+        //      case 'triangle':
+        //      case 'group':
+        //        this.width *= objectScaleX;
+        //        this.height *= objectScaleY;
+        //        this.scaleX = 1;
+        //        this.scaleY = 1;
+        //        if (belongsToGroup) {
+        //          // Object's left and top are relative to group's position so let's
+        //          // update them too
+        //          this.left *= objectScaleX;
+        //          this.top *= objectScaleY;
+        //        }
+        //        break;
+        //      default:
+        //        // Do nothing
+        //    }
+        //  };
+        //    
+        //  // Observe object scale so we can keep strokeWidth constant
+        //  canvas.on('object:scaling', function (e) {
+        //    if (e.target.type === 'group') {
+        //      // Group scaleX and scaleY values
+        //      var groupScaleX = e.target.scaleX;
+        //      var groupScaleY = e.target.scaleY;
+        //      // Resize group first
+        //      e.target.resizeToScale();
+        //      // Resize each item of the group using groupScale[X-Y]
+        //      e.target._objects.forEach(function (object) {
+        //        object.resizeToScale(groupScaleX, groupScaleY, true);
+        //      });
+        //    } else {
+        //      e.target.resizeToScale();
+        //    }
+        //  });
+        //		
 
 
-		canvas.on(
-			'object:added',
-			function() {
-				updateCanvasState();
-			}
-		);
+        /*
+        		undo and redo functions – this should be integrated in the controllers later on
+        */
+        var _config = {
+            canvasState: [],
+            currentStateIndex: -1,
+            undoStatus: false,
+            redoStatus: false,
+            undoFinishedStatus: 1,
+            redoFinishedStatus: 1,
 
-		canvas.on(
-			'object:removed',
-			function() {
-				updateCanvasState();
-			}
-		);
-
-
-		canvas.on(
-			'selection:created',
-			function() {
-				updateCanvasState();
-			}
-		);
-
-		var updateCanvasState = function() {
-			if ((_config.undoStatus == false && _config.redoStatus == false)) {
-				var jsonData = canvas.toJSON();
-				var canvasAsJson = JSON.stringify(jsonData);
-				if (_config.currentStateIndex < _config.canvasState.length - 1) {
-					var indexToBeInserted = _config.currentStateIndex + 1;
-					_config.canvasState[indexToBeInserted] = canvasAsJson;
-					var numberOfElementsToRetain = indexToBeInserted + 1;
-					_config.canvasState = _config.canvasState.splice(0, numberOfElementsToRetain);
-				} else {
-					_config.canvasState.push(canvasAsJson);
-				}
-				_config.currentStateIndex = _config.canvasState.length - 1;
-				if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) {}
-			}
-		}
+        };
+        canvas.on(
+            'object:modified',
+            function() {
+                updateCanvasState();
+            }
+        );
 
 
-		var undo = function() {
-			if (_config.undoFinishedStatus) {
-				if (_config.currentStateIndex == -1) {
-					_config.undoStatus = false;
-				} else {
-					if (_config.canvasState.length >= 1) {
-						_config.undoFinishedStatus = 0;
-						if (_config.currentStateIndex != 0) {
-							_config.undoStatus = true;
-							canvas.loadFromJSON(_config.canvasState[_config.currentStateIndex - 1], function() {
-								var jsonData = JSON.parse(_config.canvasState[_config.currentStateIndex - 1]);
-								canvas.renderAll();
-								_config.undoStatus = false;
-								_config.currentStateIndex -= 1;
-								if (_config.currentStateIndex !== _config.canvasState.length - 1) {}
-								_config.undoFinishedStatus = 1;
-							});
-						} else if (_config.currentStateIndex == 0) {
-							canvas.clear();
-							_config.undoFinishedStatus = 1;
-							_config.currentStateIndex -= 1;
-						}
-					}
-				}
-			}
-		}
+        canvas.on(
+            'object:added',
+            function() {
+                updateCanvasState();
+            }
+        );
 
-		var redo = function() {
-			if (_config.redoFinishedStatus) {
-				if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) {} else {
-					if (_config.canvasState.length > _config.currentStateIndex && _config.canvasState.length != 0) {
-						_config.redoFinishedStatus = 0;
-						_config.redoStatus = true;
-						canvas.loadFromJSON(_config.canvasState[_config.currentStateIndex + 1], function() {
-							var jsonData = JSON.parse(_config.canvasState[_config.currentStateIndex + 1]);
-							canvas.renderAll();
-							_config.redoStatus = false;
-							_config.currentStateIndex += 1;
-							if (_config.currentStateIndex != -1) {}
-							_config.redoFinishedStatus = 1;
-							if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) {}
-						});
-					}
-				}
-			}
-		}
+        canvas.on(
+            'object:removed',
+            function() {
+                updateCanvasState();
+            }
+        );
 
-	</script>
 
-	<script>
-		require('electron').ipcRenderer.on('ping', function(event, message) {
-			console.log(message); // Prints "whoooooooh!"
-		});
+        canvas.on(
+            'selection:created',
+            function() {
+                updateCanvasState();
+            }
+        );
 
-		/*		require('electron').ipcRenderer.on('file-save', function(event, message) {
-					console.log('save file...');
-					removeSelected();// Prints "whoooooooh!"
-				});*/
+        var updateCanvasState = function() {
+            if ((_config.undoStatus == false && _config.redoStatus == false)) {
+                var jsonData = canvas.toJSON();
+                var canvasAsJson = JSON.stringify(jsonData);
+                if (_config.currentStateIndex < _config.canvasState.length - 1) {
+                    var indexToBeInserted = _config.currentStateIndex + 1;
+                    _config.canvasState[indexToBeInserted] = canvasAsJson;
+                    var numberOfElementsToRetain = indexToBeInserted + 1;
+                    _config.canvasState = _config.canvasState.splice(0, numberOfElementsToRetain);
+                } else {
+                    _config.canvasState.push(canvasAsJson);
+                }
+                _config.currentStateIndex = _config.canvasState.length - 1;
+                if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) {}
+            }
+        }
 
-		require('electron').ipcRenderer.on('delete', function() {
-			remove(); // Prints "whoooooooh!"
-		});
 
-	</script>
+        var undo = function() {
+            if (_config.undoFinishedStatus) {
+                if (_config.currentStateIndex == -1) {
+                    _config.undoStatus = false;
+                } else {
+                    if (_config.canvasState.length >= 1) {
+                        _config.undoFinishedStatus = 0;
+                        if (_config.currentStateIndex != 0) {
+                            _config.undoStatus = true;
+                            canvas.loadFromJSON(_config.canvasState[_config.currentStateIndex - 1], function() {
+                                var jsonData = JSON.parse(_config.canvasState[_config.currentStateIndex - 1]);
+                                canvas.renderAll();
+                                _config.undoStatus = false;
+                                _config.currentStateIndex -= 1;
+                                if (_config.currentStateIndex !== _config.canvasState.length - 1) {}
+                                _config.undoFinishedStatus = 1;
+                            });
+                        } else if (_config.currentStateIndex == 0) {
+                            canvas.clear();
+                            _config.undoFinishedStatus = 1;
+                            _config.currentStateIndex -= 1;
+                        }
+                    }
+                }
+            }
+        }
 
-	<script>
-		key('⌘+c, ctrl+c', function() {
-			copy();
-		});
-		key('⌘+v, ctrl+v', function() {
-			paste();
-		});
-		key('backspace, del', function() {
-			remove();
-		});
-		key('⌘+g', function() {
-			group();
-		});
-		key('⌘+u', function() {
-			ungroup();
-		});
-		key('⌘+z', function() {
-			undo();
-		});
-		key('shift+⌘+z', function() {
-			redo();
-		});
+        var redo = function() {
+            if (_config.redoFinishedStatus) {
+                if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) {} else {
+                    if (_config.canvasState.length > _config.currentStateIndex && _config.canvasState.length != 0) {
+                        _config.redoFinishedStatus = 0;
+                        _config.redoStatus = true;
+                        canvas.loadFromJSON(_config.canvasState[_config.currentStateIndex + 1], function() {
+                            var jsonData = JSON.parse(_config.canvasState[_config.currentStateIndex + 1]);
+                            canvas.renderAll();
+                            _config.redoStatus = false;
+                            _config.currentStateIndex += 1;
+                            if (_config.currentStateIndex != -1) {}
+                            _config.redoFinishedStatus = 1;
+                            if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) {}
+                        });
+                    }
+                }
+            }
+        }
 
-	</script>
+    </script>
 
-<!--
+    <script>
+        require('electron').ipcRenderer.on('ping', function(event, message) {
+            console.log(message); // Prints "whoooooooh!"
+        });
+
+        /*		require('electron').ipcRenderer.on('file-save', function(event, message) {
+        			console.log('save file...');
+        			removeSelected();// Prints "whoooooooh!"
+        		});*/
+
+        require('electron').ipcRenderer.on('delete', function() {
+            remove(); // Prints "whoooooooh!"
+        });
+
+    </script>
+
+    <script>
+        key('⌘+c, ctrl+c', function() {
+            copy();
+        });
+        key('⌘+v, ctrl+v', function() {
+            paste();
+        });
+        key('backspace, del', function() {
+            remove();
+        });
+        key('⌘+g', function() {
+            group();
+        });
+        key('⌘+u', function() {
+            ungroup();
+        });
+        key('⌘+z', function() {
+            undo();
+        });
+        key('shift+⌘+z', function() {
+            redo();
+        });
+
+    </script>
+
+    <!--
 	<script>
 		(function() {
 				// manually initialize 2 filter backend to give ability to switch:

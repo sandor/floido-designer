@@ -272,25 +272,25 @@ function copy() {
 //}
 
 function paste() {
-  var clonedObj = _clipboard;
-  console.log(clonedObj);
-  canvas.discardActiveObject();
-  clonedObj.set({
-    left: clonedObj.left + 10,
-    top: clonedObj.top + 10,
-    evented: true,
-  });
-  if (clonedObj.type === 'activeSelection') {
-    clonedObj.canvas = canvas;
-    clonedObj.forEachObject(function(obj) {
-      canvas.add(obj);
+    var clonedObj = _clipboard;
+    console.log(clonedObj);
+    canvas.discardActiveObject();
+    clonedObj.set({
+        left: clonedObj.left + 10,
+        top: clonedObj.top + 10,
+        evented: true,
     });
-    clonedObj.setCoords();
-  } else {
-    canvas.add(clonedObj);
-  }
-  canvas.setActiveObject(clonedObj);
-  canvas.renderAll();
+    if (clonedObj.type === 'activeSelection') {
+        clonedObj.canvas = canvas;
+        clonedObj.forEachObject(function (obj) {
+            canvas.add(obj);
+        });
+        clonedObj.setCoords();
+    } else {
+        canvas.add(clonedObj);
+    }
+    canvas.setActiveObject(clonedObj);
+    canvas.renderAll();
 }
 
 function remove() {
