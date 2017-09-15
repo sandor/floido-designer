@@ -229,68 +229,44 @@ function ungroup() {
     canvas.requestRenderAll();
 }
 
-//function copy() {
-//    canvas.getActiveObject().clone(function (cloned) {
-//        _clipboard = cloned;
-//    });
-//}
-
-
-
-
 var customProperties = 'name icon'.split(' ');
 
+
 function copy() {
-    canvas.getActiveObject().clone(function (cloned) {
-        console.log(cloned);
-        _clipboard = cloned;
-    }, customProperties);
+// clone what are you copying since you may want copy and paste on different moment.
+// and you do not want the changes happened later to reflect on the copy.
+// maybe.
+  canvas.getActiveObject().clone(function(cloned) {
+    _clipboard = cloned;
+  },customProperties);
 }
 
-//function paste() {
-//    _clipboard.clone(function (clonedObj) {
-//        canvas.discardActiveObject();
-//        clonedObj.set({
-//            left: clonedObj.left + 10,
-//            top: clonedObj.top + 10,
-//            evented: true,
-//            name: clonedObj.name,
-//            icon: clonedObj.icon,
-//        });
-//        if (clonedObj.type === 'activeSelection') {
-//            clonedObj.canvas = canvas;
-//            clonedObj.forEachObject(function (obj) {
-//                canvas.add(obj);
-//            });
-//            clonedObj.setCoords();
-//        } else {
-//            canvas.add(clonedObj);
-//        }
-//        canvas.setActiveObject(clonedObj);
-//        canvas.requestRenderAll();
-//    });
-//}
-
 function paste() {
-    var clonedObj = _clipboard;
-    console.log(clonedObj);
+// clone again, so you can do multiple copies.
+  _clipboard.clone(function(clonedObj) {
     canvas.discardActiveObject();
     clonedObj.set({
-        left: clonedObj.left + 10,
-        top: clonedObj.top + 10,
-        evented: true,
+      left: clonedObj.left + 10,
+      top: clonedObj.top + 10,
+      evented: true,
     });
     if (clonedObj.type === 'activeSelection') {
+        // active selection needs a reference to the canvas.
         clonedObj.canvas = canvas;
         clonedObj.forEachObject(function (obj) {
             canvas.add(obj);
         });
+        // this should solve the unselectability
         clonedObj.setCoords();
     } else {
-        canvas.add(clonedObj);
+       canvas.add(clonedObj);
     }
     canvas.setActiveObject(clonedObj);
-    canvas.renderAll();
+    canvas.requestRenderAll();
+    console.log(clonedObj);
+    
+    _clipboard = clonedObj;
+ },customProperties);
 }
 
 function remove() {

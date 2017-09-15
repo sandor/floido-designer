@@ -1,275 +1,428 @@
-<div class="grid-middle-noGutter inner">
-    <div class="col-12">
-        <h1 class="title_left">Element Styling</h1>
-        <hr>
-    </div>
+<div class="grid-middle-noGutter">
+	<div class="col-12">
+		<h1 class="title_left">Element Styling</h1>
+		<hr>
+	</div>
 
-    <div class="col-12">
-        <x-label class="discl_sm">Background</x-label>
-    </div>
-    <div class="spacer"></div>
-
-
-    <div class="col-3">
-        <x-label class="push-right pad">Fill</x-label>
-    </div>
-    <div class="col-5">
-        <input type="color" id="picker1" class="small" ng-value="bgcolor" bind-value-to="fill" ng-model="bgcolor">
-
-    </div>
-    <div class="col-4">
-        <x-input id="select1" class="small" ng-value="bgcolor" bind-value-to="fill" ng-model="bgcolor">
-            <x-icon name="invert-colors"></x-icon>
-        </x-input>
-
-    </div>
+	<div class="col-12">
+		<x-label class="discl_sm">Background</x-label>
+	</div>
+	<div class="spacer"></div>
 
 
+	<div class="col-3">
+		<x-label class="push-right pad">Fill</x-label>
+	</div>
+	<div class="col-5">
+		<input type="color" id="picker1" class="small" ng-value="bgcolor" bind-value-to="fill" ng-model="bgcolor">
 
-    <div class="spacer"></div>
+	</div>
+	<div class="col-4">
+		<x-input id="select1" class="small" ng-value="bgcolor" bind-value-to="fill" ng-model="bgcolor">
+			<x-icon name="invert-colors"></x-icon>
+		</x-input>
 
-    <div class="col-3">
-        <x-label class="push-right pad">BgColor</x-label>
-    </div>
-    <div class="col-5">
-        <input type="color" id="picker1" class="small" ng-value="bgcolor2" bind-value-to="bgColor" ng-model="bgcolor2">
-
-    </div>
-    <div class="col-4">
-        <x-input id="select1" class="small" ng-value="bgcolor2" bind-value-to="bgColor" ng-model="bgcolor2">
-            <x-icon name="invert-colors"></x-icon>
-        </x-input>
-
-    </div>
-
-    <div class="spacer"></div>
-
-    <hr>
+	</div>
 
 
-    <div class="col-3">
-        <x-label class="push-right pad">Opacity</x-label>
-    </div>
-    <div class="col-4">
-        <x-slider style="top: 6px; margin: 5px;" min="0" max="100" ng-value="opacity" bind-value-to="opacity" ng-model="opacity" skin="arrow">
 
-        </x-slider>
+	<div class="spacer"></div>
 
-    </div>
-    <div class="col-1">
-    </div>
-    <div class="col-4">
+	<div class="col-3">
+		<x-label class="push-right pad">BgColor</x-label>
+	</div>
+	<div class="col-5">
+		<input type="color" id="picker1" class="small" ng-value="bgcolor2" bind-value-to="bgColor" ng-model="bgcolor2">
 
+	</div>
+	<div class="col-4">
+		<x-input id="select1" class="small" ng-value="bgcolor2" bind-value-to="bgColor" ng-model="bgcolor2">
+			<x-icon name="invert-colors"></x-icon>
+		</x-input>
 
-        <x-numberinput style="width: 85px;" suffix=" %" skin="condensed" ng-value="opacity" bind-value-to="opacity" ng-model="opacity">
-            <x-stepper></x-stepper>
-        </x-numberinput>
+	</div>
 
-    </div>
+	<div class="spacer"></div>
 
-
-    <hr>
-
-    <div class="col-12">
-        <x-label class="discl_sm">Stroke</x-label>
-    </div>
-
-    <div class="col-3">
-        <x-label class="push-right pad">Width</x-label>
-    </div>
-    <div class="col-4">
-        <x-slider style="top: 6px;" min="0" max="100" ng-value="strokeWidth" bind-value-to="strokeWidth" ng-model="width" skin="arrow">
-
-        </x-slider>
-
-    </div>
-    <div class="col-1">
-    </div>
-    <div class="col-4">
+	<hr>
 
 
-        <x-numberinput style="width: 85px;" suffix=" px" skin="condensed" ng-value="strokeWidth" bind-value-to="strokeWidth" ng-model="width">
-            <x-stepper></x-stepper>
-        </x-numberinput>
+	<div class="col-3">
+		<x-label class="push-right pad">Opacity</x-label>
+	</div>
+	<div class="col-4">
+		<x-slider style="top: 6px; margin: 5px;" min="0" max="100" ng-value="opacity" bind-value-to="opacity" ng-model="opacity" skin="arrow">
 
-    </div>
+		</x-slider>
+
+	</div>
+	<div class="col-1">
+	</div>
+	<div class="col-4">
 
 
-    <div class="col-3">
-        <x-label class="push-right pad">Color</x-label>
-    </div>
-    <div class="col-5">
-        <input type="color" id="picker1" class="small" ng-value="bgcolor1" bind-value-to="stroke" ng-model="bgcolor1">
+		<x-numberinput style="width: 85px;" suffix=" %" skin="condensed" ng-value="opacity" bind-value-to="opacity" ng-model="opacity">
+			<x-stepper></x-stepper>
+		</x-numberinput>
 
-    </div>
-    <div class="col-4">
-        <x-input id="select1" class="small" ng-value="bgcolor1" bind-value-to="stroke" ng-model="bgcolor1">
-            <x-icon name="invert-colors"></x-icon>
-        </x-input>
+	</div>
 
-    </div>
 
-    <div class="spacer"></div>
-    <hr>
+	<hr>
 
-    <div class="col-12">
-        <x-label class="discl_sm">Rounded Corner</x-label>
-    </div>
+	<div class="col-12">
+		<x-label class="discl_sm">Stroke</x-label>
+	</div>
 
-    <div class="col-3">
-        <x-label class="push-right pad">Radius</x-label>
-    </div>
-    <div class="col-4">
-        <x-slider style="top: 6px; margin: 5px;" min="0" max="200" ng-value="0" bind-value-to="cornerWidth" ng-model="cornerWidth" skin="arrow">
-        </x-slider>
-    </div>
-    <div class="col-1">
-    </div>
-    <div class="col-4">
-        <x-numberinput style="width: 85px;" suffix=" px" skin="condensed" ng-value="0" ng-model="cornerWidth">
-            <x-stepper></x-stepper>
-        </x-numberinput>
-    </div>
+	<div class="col-3">
+		<x-label class="push-right pad">Width</x-label>
+	</div>
+	<div class="col-4">
+		<x-slider style="top: 6px;" min="0" max="100" ng-value="strokeWidth" bind-value-to="strokeWidth" ng-model="width" skin="arrow">
 
-    <div class="spacer"></div>
-    <hr>
+		</x-slider>
 
-    <div class="col-12">
-        <x-label class="discl_sm">Shadow Settings</x-label>
-    </div>
-    <div class="spacer"></div>
+	</div>
+	<div class="col-1">
+	</div>
+	<div class="col-4">
 
-    <div class="col-3">
-        <x-switch class="push-center" ng-click="shadowify()"></x-switch>
-    </div>
-    <div class="col-4">
-        <x-numberinput type="number" class="small" suffix=" px" id="shadX" skin="condensed" value="50" bind-value-to="shadowOffsetX" ng-model="offsetX">
-            <x-stepper></x-stepper>
-        </x-numberinput>
-    </div>
-    <div class="col-1"></div>
-    <div class="col-4">
-        <x-numberinput class="small" ng-value="10" id="shadY" skin="condensed" suffix=" px" bind-value-to="shadowOffsetY" ng-model="offsetY">
-            <x-stepper></x-stepper>
-        </x-numberinput>
-    </div>
 
-    <div class="col-3"></div>
-    <div class="col-4 centered_sm">Offset-X</div>
-    <div class="col-1"></div>
-    <div class="col-4 centered_sm">Offset-Y</div>
+		<x-numberinput style="width: 85px;" suffix=" px" skin="condensed" ng-value="strokeWidth" bind-value-to="strokeWidth" ng-model="width">
+			<x-stepper></x-stepper>
+		</x-numberinput>
 
-    <div class="col-3 menu">
-    </div>
-    <div class="col-4">
-        <input type="color" id="shadC" ng-value="color" class="small" bind-value-to="shadowColor" ng-model="color">
-    </div>
-    <div class="col-1">
-    </div>
-    <div class="col-4">
-        <x-numberinput class="small" value="blur" id="shadB" skin="condensed" suffix=" px" bind-value-to="shadowBlur" ng-model="blur">
-            <x-stepper></x-stepper>
-        </x-numberinput>
-    </div>
+	</div>
 
-    <div class="col-3"></div>
-    <div class="col-4 centered_sm">Shadow Color</div>
-    <div class="col-1"></div>
-    <div class="col-4 centered_sm">Blur</div>
 
-    <div class="spacer"></div>
+	<div class="col-3">
+		<x-label class="push-right pad">Color</x-label>
+	</div>
+	<div class="col-5">
+		<input type="color" id="picker1" class="small" ng-value="bgcolor1" bind-value-to="stroke" ng-model="bgcolor1">
 
-    <hr>
-    <div class="col-12">
-        <x-label class="discl_sm">Filters</x-label>
-    </div>
+	</div>
+	<div class="col-4">
+		<x-input id="select1" class="small" ng-value="bgcolor1" bind-value-to="stroke" ng-model="bgcolor1">
+			<x-icon name="invert-colors"></x-icon>
+		</x-input>
 
-    <div class="col-3">
-        <x-label class="push-right pad">Blur</x-label>
-    </div>
-    <div class="col-1" class="push-right">
-        <x-radio></x-radio>
-    </div>
-    <div class="col-4">
-        <x-slider style="top: 6px;margin: 5px;" min="0" max="100" ng-value="opacity" bind-value-to="opacity" ng-model="opacity" skin="arrow">
-        </x-slider>
-    </div>
-    <div class="col-1">
-    </div>
-    <div class="col-3">
-        <x-numberinput style="width: 60px;" suffix=" %" skin="condensed" ng-value="opacity" bind-value-to="opacity" ng-model="opacity">
-            <x-stepper></x-stepper>
-        </x-numberinput>
-    </div>
+	</div>
 
-    <div class="col-3">
-        <x-label class="push-right pad">Brightness</x-label>
-    </div>
-    <div class="col-1" class="push-right">
-        <x-radio></x-radio>
-    </div>
-    <div class="col-4">
-        <x-slider style="top: 6px;margin: 5px;" min="0" max="100" ng-value="opacity" bind-value-to="opacity" ng-model="opacity" skin="arrow">
-        </x-slider>
-    </div>
-    <div class="col-1">
-    </div>
-    <div class="col-3">
-        <x-numberinput style="width: 60px;" suffix=" %" skin="condensed" ng-value="opacity" bind-value-to="opacity" ng-model="opacity">
-            <x-stepper></x-stepper>
-        </x-numberinput>
-    </div>
+	<div class="spacer"></div>
+	<hr>
 
-    <div class="col-3">
-        <x-label class="push-right pad">Contrast</x-label>
-    </div>
-    <div class="col-1" class="push-right">
-        <x-radio></x-radio>
-    </div>
-    <div class="col-4">
-        <x-slider style="top: 6px;margin: 5px;" min="0" max="100" ng-value="opacity" bind-value-to="opacity" ng-model="opacity" skin="arrow">
-        </x-slider>
-    </div>
-    <div class="col-1">
-    </div>
-    <div class="col-3">
-        <x-numberinput style="width: 60px;" suffix=" %" skin="condensed" ng-value="opacity" bind-value-to="opacity" ng-model="opacity">
-            <x-stepper></x-stepper>
-        </x-numberinput>
-    </div>
+	<div class="col-12">
+		<x-label class="discl_sm">Rounded Corner</x-label>
+	</div>
 
-    <div class="col-3">
-        <x-label class="push-right pad">Saturation</x-label>
-    </div>
-    <div class="col-1" class="push-right">
-        <x-radio></x-radio>
-    </div>
-    <div class="col-4">
-        <x-slider style="top: 6px;margin: 5px;" min="0" max="100" ng-value="opacity" bind-value-to="opacity" ng-model="opacity" skin="arrow">
-        </x-slider>
-    </div>
-    <div class="col-1">
-    </div>
-    <div class="col-3">
-        <x-numberinput style="width: 60px;" suffix=" %" skin="condensed" ng-value="opacity" bind-value-to="opacity" ng-model="opacity">
-            <x-stepper></x-stepper>
-        </x-numberinput>
-    </div>
+	<div class="col-3">
+		<x-label class="push-right pad">Radius</x-label>
+	</div>
+	<div class="col-4">
+		<x-slider style="top: 6px; margin: 5px;" min="0" max="200" ng-value="0" bind-value-to="cornerWidth" ng-model="cornerWidth" skin="arrow">
+		</x-slider>
+	</div>
+	<div class="col-1">
+	</div>
+	<div class="col-4">
+		<x-numberinput style="width: 85px;" suffix=" px" skin="condensed" ng-value="0" ng-model="cornerWidth">
+			<x-stepper></x-stepper>
+		</x-numberinput>
+	</div>
 
-    <div class="col-3">
-        <x-label class="push-right pad">Hue Rotate</x-label>
-    </div>
-    <div class="col-1" class="push-right">
-        <x-radio></x-radio>
-    </div>
-    <div class="col-4">
-        <x-slider style="top: 6px;margin: 5px;" min="0" max="100" ng-value="opacity" bind-value-to="opacity" ng-model="opacity" skin="arrow">
-        </x-slider>
-    </div>
-    <div class="col-1">
-    </div>
-    <div class="col-3">
-        <x-numberinput style="width: 60px;" suffix=" %" skin="condensed" ng-value="opacity" bind-value-to="opacity" ng-model="opacity">
-            <x-stepper></x-stepper>
-        </x-numberinput>
-    </div>
+	<div class="spacer"></div>
+	<hr>
+
+	<div class="col-12">
+		<x-label class="discl_sm">Shadow Settings</x-label>
+	</div>
+	<div class="spacer"></div>
+
+	<div class="col-3">
+		<x-switch class="push-center" ng-click="shadowify()"></x-switch>
+	</div>
+	<div class="col-4">
+		<x-numberinput type="number" class="small" suffix=" px" id="shadX" skin="condensed" value="50" bind-value-to="shadowOffsetX" ng-model="offsetX">
+			<x-stepper></x-stepper>
+		</x-numberinput>
+	</div>
+	<div class="col-1"></div>
+	<div class="col-4">
+		<x-numberinput class="small" ng-value="10" id="shadY" skin="condensed" suffix=" px" bind-value-to="shadowOffsetY" ng-model="offsetY">
+			<x-stepper></x-stepper>
+		</x-numberinput>
+	</div>
+
+	<div class="col-3"></div>
+	<div class="col-4 centered_sm">Offset-X</div>
+	<div class="col-1"></div>
+	<div class="col-4 centered_sm">Offset-Y</div>
+
+	<div class="col-3 menu">
+	</div>
+	<div class="col-4">
+		<input type="color" id="shadC" ng-value="color" class="small" bind-value-to="shadowColor" ng-model="color">
+	</div>
+	<div class="col-1">
+	</div>
+	<div class="col-4">
+		<x-numberinput class="small" value="blur" id="shadB" skin="condensed" suffix=" px" bind-value-to="shadowBlur" ng-model="blur">
+			<x-stepper></x-stepper>
+		</x-numberinput>
+	</div>
+
+	<div class="col-3"></div>
+	<div class="col-4 centered_sm">Shadow Color</div>
+	<div class="col-1"></div>
+	<div class="col-4 centered_sm">Blur</div>
+
+	<div class="spacer"></div>
+
+	<!--////////////////// FILTERS -->
+
+	<hr>
+	<div class="col-12">
+		<x-label class="discl_sm">Filters</x-label>
+	</div>
+	
+	<!--////////////////// BLEND COLOR FILTER -->
+
+	<div class="col-3">
+		<x-label class="push-right pad">Blend Mode</x-label>
+	</div>
+	<div class="col-1" class="push-right">
+		<x-radio></x-radio>
+	</div>
+		<div class="col-8">
+	<x-select style="width: 183px;">
+		<x-menu>
+			<x-menuitem value="add" selected="true">
+				<x-label>Add</x-label>
+			</x-menuitem>
+
+			<x-menuitem value="diff">
+				<x-label>Diff</x-label>
+			</x-menuitem>
+
+			<x-menuitem value="subtract">
+				<x-label>Subtract</x-label>
+			</x-menuitem>
+
+			<x-menuitem value="multiply">
+				<x-label>Multiply</x-label>
+			</x-menuitem>
+
+			<x-menuitem value="screen">
+				<x-label>Screen</x-label>
+			</x-menuitem>
+
+			<x-menuitem value="lighten">
+				<x-label>Lighten</x-label>
+			</x-menuitem>
+
+			<x-menuitem value="darken">
+				<x-label>Darken</x-label>
+			</x-menuitem>
+
+			<x-menuitem value="overlay">
+				<x-label>Overlay</x-label>
+			</x-menuitem>
+
+			<x-menuitem value="exclusion">
+				<x-label>Exclusion</x-label>
+			</x-menuitem>
+
+			<x-menuitem value="tint">
+				<x-label>Tint</x-label>
+			</x-menuitem>
+		</x-menu>
+	</x-select>
+	</div>
+	
+		<div class="spacer"></div>
+ 
+	
+	<div class="col-3">
+	</div>
+	<div class="col-1" class="push-right">
+	</div>
+	<div class="col-4">
+		<input type="color" id="shadC" ng-value="color" class="small" bind-value-to="shadowColor" ng-model="color">
+	</div>
+
+	<div class="col-3">
+		<x-input id="select1" style="width: 60px;" class="small" ng-value="bgcolor" bind-value-to="fill" ng-model="bgcolor">
+			<x-icon name="invert-colors"></x-icon>
+		</x-input>
+	</div>
+
+
+	<div class="col-3"></div>
+	<div class="col-1" class="push-right">
+	</div>
+	<div class="col-4 left_sm">Color</div>
+	<div class="col-4 centered_sm"></div>
+
+	<div class="col-4 centered_sm">
+	</div>
+	<div class="col-8">
+		<x-slider style="width: 185px; margin-top: -2px; margin-bottom: -20px;" min="0" max="100" ng-value="opacity" bind-value-to="opacity" ng-model="opacity" skin="arrow">
+		</x-slider>
+	</div>
+
+	<div class="col-4 push-right"></div>
+	<div class="col-8 left_sm">Alpha</div>
+		
+<hr class="style5">
+	<!--////////////////// BLUR	FILTER -->
+
+
+	<div class="col-3">
+		<x-label class="push-right pad">Blur</x-label>
+	</div>
+	<div class="col-1" class="push-right">
+		<x-radio></x-radio>
+	</div>
+	<div class="col-4">
+		<x-slider style="top: 6px;margin: 5px;" min="0" max="100" ng-value="opacity" bind-value-to="opacity" ng-model="opacity" skin="arrow">
+		</x-slider>
+	</div>
+	<div class="col-1">
+	</div>
+	<div class="col-3">
+		<x-numberinput style="width: 60px;" suffix=" %" skin="condensed" ng-value="opacity" bind-value-to="opacity" ng-model="opacity">
+			<x-stepper></x-stepper>
+		</x-numberinput>
+	</div>
+
+<hr class="style5">
+
+	<!--////////////////// BRIGHTNESS FILTER -->
+
+
+	<div class="col-3">
+		<x-label class="push-right pad">Brightness</x-label>
+	</div>
+	<div class="col-1" class="push-right">
+		<x-radio></x-radio>
+	</div>
+	<div class="col-4">
+		<x-slider style="top: 6px;margin: 5px;" min="0" max="100" ng-value="opacity" bind-value-to="opacity" ng-model="opacity" skin="arrow">
+		</x-slider>
+	</div>
+	<div class="col-1">
+	</div>
+	<div class="col-3">
+		<x-numberinput style="width: 60px;" suffix=" %" skin="condensed" ng-value="opacity" bind-value-to="opacity" ng-model="opacity">
+			<x-stepper></x-stepper>
+		</x-numberinput>
+	</div>
+<hr class="style5">
+
+	<!--////////////////// CONTRAST FILTER -->
+
+	<div class="col-3">
+		<x-label class="push-right pad">Contrast</x-label>
+	</div>
+	<div class="col-1" class="push-right">
+		<x-radio></x-radio>
+	</div>
+	<div class="col-4">
+		<x-slider style="top: 6px;margin: 5px;" min="0" max="100" ng-value="opacity" bind-value-to="opacity" ng-model="opacity" skin="arrow">
+		</x-slider>
+	</div>
+	<div class="col-1">
+	</div>
+	<div class="col-3">
+		<x-numberinput style="width: 60px;" suffix=" %" skin="condensed" ng-value="opacity" bind-value-to="opacity" ng-model="opacity">
+			<x-stepper></x-stepper>
+		</x-numberinput>
+	</div>
+<hr class="style5">
+
+	<!--////////////////// SATURATION FILTER -->
+
+	<div class="col-3">
+		<x-label class="push-right pad">Saturation</x-label>
+	</div>
+	<div class="col-1" class="push-right">
+		<x-radio></x-radio>
+	</div>
+	<div class="col-4">
+		<x-slider style="top: 6px;margin: 5px;" min="0" max="100" ng-value="opacity" bind-value-to="opacity" ng-model="opacity" skin="arrow">
+		</x-slider>
+	</div>
+	<div class="col-1">
+	</div>
+	<div class="col-3">
+		<x-numberinput style="width: 60px;" suffix=" %" skin="condensed" ng-value="opacity" bind-value-to="opacity" ng-model="opacity">
+			<x-stepper></x-stepper>
+		</x-numberinput>
+	</div>
+<hr class="style5">
+
+	<!--////////////////// HUE ROTATE FILTER -->
+
+	<div class="col-3">
+		<x-label class="push-right pad">Hue Rotate</x-label>
+	</div>
+	<div class="col-1" class="push-right">
+		<x-radio></x-radio>
+	</div>
+	<div class="col-4">
+		<x-slider style="top: 6px;margin: 5px;" min="0" max="100" ng-value="opacity" bind-value-to="opacity" ng-model="opacity" skin="arrow">
+		</x-slider>
+	</div>
+	<div class="col-1">
+	</div>
+	<div class="col-3">
+		<x-numberinput style="width: 60px;" suffix=" %" skin="condensed" ng-value="opacity" bind-value-to="opacity" ng-model="opacity">
+			<x-stepper></x-stepper>
+		</x-numberinput>
+	</div>
+<hr class="style5">
+
+	<!--////////////////// SEPIA FILTER -->
+
+	<div class="col-3">
+		<x-label class="push-right pad">Sepia</x-label>
+	</div>
+	<div class="col-1" class="push-right">
+		<x-radio></x-radio>
+	</div>
+	<div class="col-4">
+		<x-slider style="top: 6px;margin: 5px;" min="0" max="100" ng-value="opacity" bind-value-to="opacity" ng-model="opacity" skin="arrow">
+		</x-slider>
+	</div>
+	<div class="col-1">
+	</div>
+	<div class="col-3">
+		<x-numberinput style="width: 60px;" suffix=" %" skin="condensed" ng-value="opacity" bind-value-to="opacity" ng-model="opacity">
+			<x-stepper></x-stepper>
+		</x-numberinput>
+	</div>
+<hr class="style5">
+
+	<!--////////////////// GREYSCALE FILTER -->
+
+	<div class="col-3">
+		<x-label class="push-right pad">Greyscale</x-label>
+	</div>
+	<div class="col-1" class="push-right">
+		<x-radio></x-radio>
+	</div>
+	<div class="col-4">
+		<x-slider style="top: 6px;margin: 5px;" min="0" max="100" ng-value="opacity" bind-value-to="opacity" ng-model="opacity" skin="arrow">
+		</x-slider>
+	</div>
+	<div class="col-1">
+	</div>
+	<div class="col-3">
+		<x-numberinput style="width: 60px;" suffix=" %" skin="condensed" ng-value="opacity" bind-value-to="opacity" ng-model="opacity">
+			<x-stepper></x-stepper>
+		</x-numberinput>
+	</div>
+<hr class="style5">
+
+

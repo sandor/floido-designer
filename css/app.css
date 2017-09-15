@@ -1,3 +1,15 @@
+hr.style5 {
+	background-color: #c9c9c9;
+/*	border-top: 2px dotted #bbb;*/
+	margin-top: 2px;
+	margin-left: 5px;
+	margin-right: 15px;
+}
+
+
+/*++++++++++++++++++++++++++++++*/
+
+
 x-button[skin^="iconic"][toggled] {
     /*  background: linear-gradient(to bottom, #D7D7D7, #C9C9C9);
   */
@@ -97,8 +109,9 @@ li:nth-child(even) {
 /*****************************************************************************************************************/
 
 x-label {
-    font-size: 12px;
+    font-size: 11px;
     color: #5a5a5a;
+	font-weight: 500;
 }
 
 /* Style the tab content */
@@ -308,12 +321,13 @@ x-button[skin="tabnav"] x-label {
 }
 .pane-right {
     width: 300px;
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
     border-left: 1px solid #c2c0c2;
 }
 .inner {
     overflow-y: auto;
+	height: 100%;
 }
 .pane-mini {
     width: 80px;
