@@ -1,14 +1,50 @@
-hr.style5 {
-	background-color: #c9c9c9;
-/*	border-top: 2px dotted #bbb;*/
-	margin-top: 2px;
-	margin-left: 5px;
-	margin-right: 15px;
+/*****************************************************************************************************************/
+
+x-label {
+    font-size: 11px;
+    /*    color: #5a5a5a;
+    */
+    font-weight: 500;
+}
+.white {
+    font-size: 12px;
+    /*    color: #fff;
+    */
+    font-weight: 500;
 }
 
+/*+++++++++ Font scrollcard ++++++++++*/
+
+.fontCard {
+    width: 287px;
+    height: 200px;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    overflow: scroll;
+    padding: 0px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 1px;
+}
+.fontFullwidth {
+    min-width: 287px !Important;
+    margin-left: 5px;
+}
+.aButton {
+    width: 71px !Important;
+}
+
+/*+++++++++++++++++++++++++++++++++*/
+
+hr.style5 {
+    background-color: #c9c9c9;
+    /*	border-top: 2px dotted #bbb;*/
+    margin-top: 2px;
+    margin-left: 5px;
+    margin-right: 15px;
+}
 
 /*++++++++++++++++++++++++++++++*/
-
 
 x-button[skin^="iconic"][toggled] {
     /*  background: linear-gradient(to bottom, #D7D7D7, #C9C9C9);
@@ -16,7 +52,48 @@ x-button[skin^="iconic"][toggled] {
     color: hsl(var(--accent-color-h), var(--accent-color-s), calc(var(--accent-color-l) + 3%));
 }
 
-/*****************************************************************************************************************/
+/*********************** Font List Styles ***************************************/
+
+.font-group {
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.font-group * {
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.font-group-item {
+    padding-left: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 10px;
+    font-size: 13px;
+    color: #414142;
+    border-top: 1px solid #ddd;
+}
+.font-group-item li:nth-child(even) {
+    background-color: rgba(245, 245, 244, 0.5);
+}
+.font-group-item:first-child {
+    border-top: 0;
+}
+.font-group-item:last-child {
+    border-bottom: 1px solid #ddd;
+}
+.font-group-item.active,
+.font-group-item.selected {
+    color: #fff;
+    background-color: #116cd6;
+}
+.font-group-header {
+    padding: 10px;
+}
+
+/*********************** Layer List Styles ***************************************/
 
 .list-group {
     width: 100%;
@@ -104,14 +181,6 @@ li:nth-child(even) {
     font-size: 12px;
     font-weight: 500;
     color: #666666;
-}
-
-/*****************************************************************************************************************/
-
-x-label {
-    font-size: 11px;
-    color: #5a5a5a;
-	font-weight: 500;
 }
 
 /* Style the tab content */
@@ -320,14 +389,15 @@ x-button[skin="tabnav"] x-label {
     border-right: 1px solid #c2c0c2;
 }
 .pane-right {
-    width: 300px;
+    width: 305px;
     overflow-y: hidden;
     overflow-x: hidden;
     border-left: 1px solid #c2c0c2;
 }
 .inner {
-    overflow-y: auto;
-	height: 100%;
+    overflow-y: overlay;
+    height: 100%;
+    padding-bottom: 80px;
 }
 .pane-mini {
     width: 80px;
