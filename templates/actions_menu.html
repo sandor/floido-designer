@@ -1,5 +1,19 @@
 <h1 class="title_left">Typography</h1>
 <hr>
+
+<form>
+    <p><b>Vibrancy Type</b></p>
+    <input type="radio" name="vibrancy" onclick="require('electron').remote.getCurrentWindow().setVibrancy()" checked>None
+    <br>
+    <input type="radio" name="vibrancy" onclick="require('electron').remote.getCurrentWindow().setVibrancy('light')">Light
+    <br>
+    <input type="radio" name="vibrancy" onclick="require('electron').remote.getCurrentWindow().setVibrancy('medium-light')">Medium Light
+    <br>
+    <input type="radio" name="vibrancy" onclick="require('electron').remote.getCurrentWindow().setVibrancy('dark')">Dark
+    <br>
+    <input type="radio" name="vibrancy" onclick="require('electron').remote.getCurrentWindow().setVibrancy('ultra-dark')">Ultra Dark
+    <br>
+</form>
 <div class="tab-pane" id="object">
     <div class="object-controls" object-buttons-enabled="getSelected()">
         <label for="color">Fill / Stroke / Background:</label>
