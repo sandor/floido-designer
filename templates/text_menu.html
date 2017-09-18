@@ -78,9 +78,9 @@
             </ul>
         </x-card>
     </div>
-	
-	
-	
+
+
+
     <div class="spacer"></div>
 
     <div class="col-12">
@@ -132,17 +132,17 @@
 
     <div class="col-6">
         <x-buttons tracking="2" style="margin-left: 5px;">
-                <x-button ng-click="toggleBold()">
-                    <x-icon name="format-bold"></x-icon>
-                </x-button>
+            <x-button ng-click="toggleBold()">
+                <x-icon name="format-bold"></x-icon>
+            </x-button>
 
-                <x-button ng-click="toggleUnderline()">
-                    <x-icon name="format-underlined"></x-icon>
-                </x-button>
+            <x-button ng-click="toggleUnderline()">
+                <x-icon name="format-underlined"></x-icon>
+            </x-button>
 
-                <x-button ng-click="toggleItalic()">
-                    <x-icon name="format-italic"></x-icon>
-                </x-button>
+            <x-button ng-click="toggleItalic()">
+                <x-icon name="format-italic"></x-icon>
+            </x-button>
         </x-buttons>
     </div>
 
@@ -152,28 +152,28 @@
                 <x-menuitem value="" selected="true">
                     <x-label>Font Weight</x-label>
                 </x-menuitem>
-				
-				<hr>
-				
-				<x-menuitem value="normal">
+
+                <hr>
+
+                <x-menuitem value="normal">
                     <x-label>Normal</x-label>
                 </x-menuitem>
-				
-				<x-menuitem value="bold">
+
+                <x-menuitem value="bold">
                     <x-label>Bold</x-label>
                 </x-menuitem>
-				
-				<hr>
-				
-				<x-menuitem value="lighter">
+
+                <hr>
+
+                <x-menuitem value="lighter">
                     <x-label>Lighter</x-label>
                 </x-menuitem>
-				
-				<x-menuitem value="bolder">
+
+                <x-menuitem value="bolder">
                     <x-label>Bolder</x-label>
                 </x-menuitem>
-				
-				<hr>
+
+                <hr>
 
                 <x-menuitem value="100">
                     <x-label>100</x-label>
@@ -198,16 +198,16 @@
                 <x-menuitem value="600">
                     <x-label>600</x-label>
                 </x-menuitem>
-				
-				<x-menuitem value="700">
+
+                <x-menuitem value="700">
                     <x-label>700</x-label>
                 </x-menuitem>
-				
-				<x-menuitem value="800">
+
+                <x-menuitem value="800">
                     <x-label>800</x-label>
                 </x-menuitem>
-				
-				<x-menuitem value="900">
+
+                <x-menuitem value="900">
                     <x-label>900</x-label>
                 </x-menuitem>
             </x-menu>
@@ -227,21 +227,21 @@
     <div class="col-3">
         <x-label class="push-right pad">Font Color</x-label>
     </div>
-<!--
+    <!--
     <div class="col-5">
         <input type="color" id="picker1" class="small" ng-value="bgcolor" bind-value-to="fill" ng-model="bgcolor">
 
     </div>
 -->
-	
-	<x-colorselect style="margin-right: 37px; width: 90px;">
-  <x-popover style="width: 320px;" >
-    <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="fill" ></x-rectcolorpicker>
-  </x-popover>
-</x-colorselect>
-	
 
-	
+    <x-colorselect style="margin-right: 37px; width: 90px;">
+        <x-popover style="width: 320px;">
+            <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="fill"></x-rectcolorpicker>
+        </x-popover>
+    </x-colorselect>
+
+
+
     <div class="col-4">
         <x-input id="select1" class="small" bind-value-to="fill">
             <x-icon name="invert-colors"></x-icon>
@@ -255,14 +255,14 @@
 
     </div>
     <div class="col-5">
-<!--        <input type="color" id="picker1" class="small" ng-value="bgcolor2" bind-value-to="bgColor" ng-model="bgcolor2">-->
+        <!--        <input type="color" id="picker1" class="small" ng-value="bgcolor2" bind-value-to="bgColor" ng-model="bgcolor2">-->
 
-			<x-colorselect style="margin-right: 37px; width: 90px;">
-  <x-popover style="width: 320px;" >
-    <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="bgColor" ></x-rectcolorpicker>
-  </x-popover>
-</x-colorselect>
-		
+        <x-colorselect style="margin-right: 37px; width: 90px;">
+            <x-popover style="width: 320px;">
+                <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="bgColor"></x-rectcolorpicker>
+            </x-popover>
+        </x-colorselect>
+
     </div>
     <div class="col-4">
         <x-input id="select1" class="small" ng-value="bgcolor2" bind-value-to="bgColor" ng-model="bgcolor2">
@@ -299,13 +299,13 @@
         <x-label class="push-right pad">Line Height</x-label>
     </div>
     <div class="col-4">
-        <x-slider style="top: 6px; margin: 5px;" min="0" max="10" step="0.1" ng-value="0" bind-value-to="lineHeight" ng-model="cornerWidth" skin="arrow">
+        <x-slider style="top: 6px; margin: 5px;" min="0" max="10" step="0.01" ng-value="0" bind-value-to="lineHeight" skin="arrow">
         </x-slider>
     </div>
     <div class="col-1">
     </div>
     <div class="col-4">
-        <x-numberinput style="width: 85px;" suffix=" em" skin="condensed" step="0.1" ng-value="0" bind-value-to="lineHeight">
+        <x-numberinput style="width: 85px;" suffix=" em" skin="condensed" step="0.01" bind-value-to="lineHeight">
             <x-stepper></x-stepper>
         </x-numberinput>
     </div>
@@ -316,13 +316,13 @@
         <x-label class="push-right pad">Spacing</x-label>
     </div>
     <div class="col-4">
-        <x-slider style="top: 6px; margin: 5px;" min="-200" max="200" step="1.0" ng-value="0" bind-value-to="charSpacing" ng-model="cornerWidth" skin="arrow">
+        <x-slider style="top: 6px; margin: 5px;" min="-200" max="1000" step="1.0" ng-value="0" bind-value-to="charSpacing" skin="arrow">
         </x-slider>
     </div>
     <div class="col-1">
     </div>
     <div class="col-4">
-        <x-numberinput style="width: 85px;" suffix=" px" skin="condensed" min="-1000" max="100" step="1" ng-value="0" bind-value-to="charSpacing">
+        <x-numberinput style="width: 85px;" suffix=" px" skin="condensed" min="-200" max="1000" step="1" ng-value="0" bind-value-to="charSpacing">
             <x-stepper></x-stepper>
         </x-numberinput>
     </div>
@@ -371,5 +371,5 @@
 
     <div class="spacer"></div>
     <hr>
-	
+
 </div>
