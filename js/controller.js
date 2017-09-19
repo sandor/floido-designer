@@ -413,28 +413,21 @@ function addAccessors($scope, $rootScope) {
     //////////////////
 
 
-    var offsetXVal = 10;
     $scope.setShadowOffsetX = function (value) {
-        value = offsetXVal += 5;
         setActiveShadow('offsetX', value);
         canvas.renderAll();
     };
 
-    var offsetYVal = 10;
     $scope.setShadowOffsetY = function (value) {
-        value = offsetYVal += 5;
         setActiveShadow('offsetY', value);
         canvas.renderAll();
     };
-    //var offBlurVal = 10;
     $scope.setShadowBlur = function (value) {
-        //    value =  offBlurVal += 5;
         setActiveShadow('blur', value);
         canvas.renderAll();
     };
 
     $scope.setShadowColor = function (value) {
-        value = 'black';
         setActiveShadow('color', value);
         canvas.renderAll();
     };
@@ -995,7 +988,7 @@ function addAccessors($scope, $rootScope) {
             fontWeight: 400,
             charSpacing: '0',
             angle: '0',
-			strokeWidth: 0
+            strokeWidth: 0
         });
 
         canvas.add(textSample).setActiveObject(textSample);
