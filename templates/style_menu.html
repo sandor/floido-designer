@@ -4,132 +4,129 @@
 		<hr>
 	</div>
 
-	<div class="col-12">
-		<x-label class="discl_sm">Background</x-label>
-	</div>
-	<div class="spacer"></div>
+	<x-accordion expanded>
+  <header>
+    <x-label>Background</x-label>
+  </header>
+
+  <main>
 
 
-	<div class="col-3">
-		<x-label class="push-right pad">Fill</x-label>
-	</div>
-	<div class="col-5">
-		<input type="color" id="picker1" class="small" ng-value="bgcolor" bind-value-to="fill" ng-model="bgcolor">
+	  
+	  
+	  <x-box>
+				<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Fill Color</x-label>
 
-	</div>
-	<div class="col-4">
-		<x-input id="select1" class="small" ng-value="bgcolor" bind-value-to="fill" ng-model="bgcolor">
-			<x-icon name="invert-colors"></x-icon>
-		</x-input>
+				<x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;">
+					<x-popover style="width: 320px;">
+						<x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="fill"></x-rectcolorpicker>
+					</x-popover>
+				</x-colorselect>
 
-	</div>
+				<x-input id="select1" style="width: 130px;" bind-value-to="fill">
+					<x-icon name="invert-colors"></x-icon>
+				</x-input>
 
+			</x-box>
 
+			<div class="spacer"></div>
 
-	<div class="spacer"></div>
+			<x-box>
+				<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Background</x-label>
 
-	<div class="col-3">
-		<x-label class="push-right pad">BgColor</x-label>
-	</div>
-	<div class="col-5">
-		<input type="color" id="picker1" class="small" ng-value="bgcolor2" bind-value-to="bgColor" ng-model="bgcolor2">
+				<x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;">
+					<x-popover style="width: 320px;">
+						<x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="bgColor"></x-rectcolorpicker>
+					</x-popover>
+				</x-colorselect>
 
-	</div>
-	<div class="col-4">
-		<x-input id="select1" class="small" ng-value="bgcolor2" bind-value-to="bgColor" ng-model="bgcolor2">
-			<x-icon name="invert-colors"></x-icon>
-		</x-input>
+				<x-input id="select1" style="width: 130px;" bind-value-to="bgColor">
+					<x-icon name="invert-colors"></x-icon>
+				</x-input>
 
-	</div>
+			</x-box>
 
-	<div class="spacer"></div>
+	  </main>
+</x-accordion>
 
+<!--//////////////////////////////////	-->
+	
+	
 	<hr>
+	
+	<x-accordion expanded>
+  <header>
+    <x-label>Element Border</x-label>
+  </header>
+
+  <main>
+<x-box>
+
+				<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Border</x-label>
+
+				<x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="0" max="100" bind-value-to="strokeWidth" skin="arrow">
+				</x-slider>
+
+				<x-numberinput style="width: 75px;" value="'0'" suffix=" px" skin="condensed" bind-value-to="strokeWidth">
+					<x-stepper></x-stepper>
+				</x-numberinput>
+
+			</x-box>
 
 
-	<div class="col-3">
-		<x-label class="push-right pad">Opacity</x-label>
-	</div>
-	<div class="col-4">
-		<x-slider style="top: 6px; margin: 5px;" min="0" max="100" ng-value="opacity" bind-value-to="opacity" ng-model="opacity" skin="arrow">
+			<x-box>
+				<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Color</x-label>
 
-		</x-slider>
+				<x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;">
+					<x-popover style="width: 320px;">
+						<x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="stroke"></x-rectcolorpicker>
+					</x-popover>
+				</x-colorselect>
 
-	</div>
-	<div class="col-1">
-	</div>
-	<div class="col-4">
+				<x-input id="select1" style="width: 130px;" bind-value-to="stroke">
+					<x-icon name="invert-colors"></x-icon>
+				</x-input>
 
+			</x-box>
+	  
+	  		<x-box>
+				<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Corner</x-label>
 
-		<x-numberinput style="width: 85px;" suffix=" %" skin="condensed" ng-value="opacity" bind-value-to="opacity" ng-model="opacity">
-			<x-stepper></x-stepper>
-		</x-numberinput>
+				<x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="1" max="200" ng-value="0" bind-value-to="cornerWidth" skin="arrow">
+				</x-slider>
 
-	</div>
+				<x-numberinput style="width: 75px;" suffix=" px" skin="condensed" ng-value="0" bind-value-to="cornerWidth">
+					<x-stepper></x-stepper>
+				</x-numberinput>
+			</x-box>
 
+		
+		</main>
+</x-accordion>
 
-	<hr>
+		<hr>
 
-	<div class="col-12">
-		<x-label class="discl_sm">Stroke</x-label>
-	</div>
-
-	<div class="col-3">
-		<x-label class="push-right pad">Width</x-label>
-	</div>
-	<div class="col-4">
-		<x-slider style="top: 6px;" min="0" max="100" ng-value="strokeWidth" bind-value-to="strokeWidth" ng-model="width" skin="arrow">
-
-		</x-slider>
-
-	</div>
-	<div class="col-1">
-	</div>
-	<div class="col-4">
-
-
-		<x-numberinput style="width: 85px;" suffix=" px" skin="condensed" ng-value="strokeWidth" bind-value-to="strokeWidth" ng-model="width">
-			<x-stepper></x-stepper>
-		</x-numberinput>
-
-	</div>
-
-
-	<div class="col-3">
-		<x-label class="push-right pad">Color</x-label>
-	</div>
-	<div class="col-5">
-		<input type="color" id="picker1" class="small" ng-value="bgcolor1" bind-value-to="stroke" ng-model="bgcolor1">
-
-	</div>
-	<div class="col-4">
-		<x-input id="select1" class="small" ng-value="bgcolor1" bind-value-to="stroke" ng-model="bgcolor1">
-			<x-icon name="invert-colors"></x-icon>
-		</x-input>
-
-	</div>
+	
+<!--	////////////////////////////////////-->
 
 	<div class="spacer"></div>
-	<hr>
 
-	<div class="col-12">
-		<x-label class="discl_sm">Rounded Corner</x-label>
-	</div>
+		  		<x-box>
+				<x-label style="margin-left:10px; margin-right: 5px; width: 65px;">Opacity</x-label>
 
-	<div class="col-3">
-		<x-label class="push-right pad">Radius</x-label>
-	</div>
-	<div class="col-4">
-		<x-slider style="top: 6px; margin: 5px;" min="0" max="200" ng-value="0" bind-value-to="cornerWidth" ng-model="cornerWidth" skin="arrow">
-		</x-slider>
-	</div>
-	<div class="col-1">
-	</div>
-	<div class="col-4">
-		<x-numberinput style="width: 85px;" suffix=" px" skin="condensed" ng-value="0" ng-model="cornerWidth">
-			<x-stepper></x-stepper>
-		</x-numberinput>
-	</div>
+				<x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="1" max="200" ng-value="0" bind-value-to="opacity" skin="arrow">
+				</x-slider>
+
+				<x-numberinput style="width: 75px;" suffix=" px" skin="condensed" ng-value="0" bind-value-to="opacity">
+					<x-stepper></x-stepper>
+				</x-numberinput>
+			</x-box>
+	
+
+	
+
+	<div class="spacer"></div>
+
 
 	<div class="spacer"></div>
 	<hr>

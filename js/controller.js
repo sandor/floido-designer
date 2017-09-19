@@ -408,7 +408,7 @@ function setActiveShadow(name, value) {
 
 ///////////
 
-function addAccessors($scope) {
+function addAccessors($scope, $rootScope) {
 
     //////////////////
 
@@ -788,7 +788,7 @@ function addAccessors($scope) {
             scaleX: 1,
             scaleY: 1,
             angle: '0',
-            strokeWidth: '0',
+            strokeWidth: 0,
             includeDefaultValues: true,
             name: "Rectangle",
             icon: "content-copy"
@@ -864,7 +864,7 @@ function addAccessors($scope) {
             scaleX: 1,
             scaleY: 1,
             angle: '0',
-            strokeWidth: '0',
+            strokeWidth: 0,
             name: "Circle",
             icon: "panorama-fish-eye"
         }));
@@ -885,7 +885,7 @@ function addAccessors($scope) {
             scaleX: 1,
             scaleY: 1,
             angle: '0',
-            strokeWidth: '0',
+            strokeWidth: 0,
             name: "Triangle",
             icon: "details"
         }));
@@ -994,7 +994,8 @@ function addAccessors($scope) {
             icon: "format-size",
             fontWeight: 400,
             charSpacing: '0',
-            angle: '0'
+            angle: '0',
+			strokeWidth: 0
         });
 
         canvas.add(textSample).setActiveObject(textSample);
@@ -1982,7 +1983,7 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
 
   ];
 
-    $scope.currentTab = 'templates/text_menu.html';
+    $scope.currentTab = 'templates/style_menu.html';
 
     $scope.onClickTab = function (tab) {
         $scope.currentTab = tab.url;
