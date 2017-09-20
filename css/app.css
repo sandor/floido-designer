@@ -1,22 +1,3 @@
-/*Panel animation test*/
-
-@keyframes showNav {
-    from {
-        max-width: 0px;
-    }
-    to {
-        max-width: 320px;
-    }
-}
-@keyframes hideNav {
-    from {
-        max-width: 320px;
-    }
-    to {
-        max-width: 0px;
-    }
-}
-
 /**
  * Accordion
  */
@@ -157,8 +138,11 @@ li:nth-child(even) {
 }
 .list-group-item.active,
 .list-group-item.selected {
-    color: #fff;
+    <<<<<<< HEAD color: #fff;
     background-color: #116cd6;
+    =======color: #fff;
+    background-color: rgba(137, 137, 137, 0.76);
+    >>>>>>> b972e7ee7613d2ae39361489363ce8f4071d3af6
 }
 .list-group-header {
     padding: 10px;
@@ -205,11 +189,17 @@ li:nth-child(even) {
     text-align: center;
 }
 .nav-group-title {
-    margin: 0;
+    <<<<<<< HEAD margin: 0;
     padding: 10px 10px 2px;
     font-size: 12px;
     font-weight: 500;
     color: #666666;
+    =======margin: 0;
+    padding: 10px 10px 2px;
+    font-size: 12px;
+    font-weight: 100;
+    color: #666666;
+    >>>>>>> b972e7ee7613d2ae39361489363ce8f4071d3af6
 }
 
 /* Style the tab content */
@@ -412,10 +402,15 @@ x-button[skin="tabnav"] x-label {
     border-left: 0;
 }
 .pane-sm {
-    width: 300px;
+    <<<<<<< HEAD width: 300px;
     max-width: 320px;
     min-width: 250px;
     border-right: 1px solid #c2c0c2;
+    =======width: 200px;
+    max-width: 320px;
+    min-width: 250px;
+    border-right: 1px solid #c2c0c2;
+    >>>>>>> b972e7ee7613d2ae39361489363ce8f4071d3af6
 }
 .pane-right {
     width: 315px;
