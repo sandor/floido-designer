@@ -412,38 +412,41 @@ function setActiveShadow(name, value) {
 
 function addAccessors($scope, $rootScope) {
 
-    
-//	Filter Definition test
-	
- $scope.contrastFilter = function () {
+
+    //	Filter Definition test
+
+    $scope.contrastFilter = function () {
         var obj = canvas.getActiveObject();
         if (!obj) return;
 
         if (obj.filters.Contrast) {
             obj.filters.Contrast = null;
-			obj.applyFilters([ new fabric.Image.filters.Contrast({ contrast: 15 })]);
         } else {
-            obj.applyFilters([ new fabric.Image.filters.Contrast({ contrast: 15 })]);
+            obj.applyFilters([new fabric.Image.filters.Contrast({
+                contrast: 15
+            })]);
         }
         canvas.renderAll();
-   };
-	
-$scope.blurFilter = function (value) {
-		var setWidth = document.getElementById('blurvalue').value;
+    };
+
+    $scope.blurFilter = function (value) {
+        var setWidth = document.getElementById('blurvalue').value;
         var obj = canvas.getActiveObject();
         if (!obj) return;
-            obj.applyFilters([ new fabric.Image.filters.Blur({ blur: value })]);
+        obj.applyFilters([new fabric.Image.filters.Blur({
+            blur: value
+        })]);
         canvas.renderAll();
-};	
-	
+    };
+
 
 
     $scope.setBlur = function (value) {
         getActiveStyle('blur', value);
         canvas.renderAll();
     };
-	
-	//////////////////
+
+    //////////////////
 
 
     $scope.setShadowOffsetX = function (value) {
@@ -455,7 +458,7 @@ $scope.blurFilter = function (value) {
         setActiveShadow('offsetY', value);
         canvas.renderAll();
     };
-	
+
     $scope.setShadowBlur = function (value) {
         setActiveShadow('blur', value);
         canvas.renderAll();
@@ -830,28 +833,28 @@ $scope.blurFilter = function (value) {
         ipcRenderer.send('openFile', () => {})
         ipcRenderer.once('fileData', (event, filepath) => {
             fabric.Image.fromURL(filepath, function (image) {
-//                var hCent = canvas.getHeight / 2;
-//                var wCent = canvas.getWidth / 2;
+                //                var hCent = canvas.getHeight / 2;
+                //                var wCent = canvas.getWidth / 2;
                 canvas.setBackgroundColor({
                     source: filepath,
-					repeat: 'repeat'
+                    repeat: 'repeat'
                 }, canvas.renderAll.bind(canvas));
             })
         })
     };
-	
-	$scope.getBgRepeat = function () {
+
+    $scope.getBgRepeat = function () {
         return canvas.backgroundColor.repeat;
     };
-	
-	$scope.setBgRepeat = function (value) {
-		canvas.backgroundColor.repeat = value;
-		canvas.renderAll();
+
+    $scope.setBgRepeat = function (value) {
+        canvas.backgroundColor.repeat = value;
+        canvas.renderAll();
     };
 
 
     $scope.resetBgImage = function () {
-            canvas.setBackgroundColor('#ffffff', canvas.renderAll.bind(canvas));
+        canvas.setBackgroundColor('#ffffff', canvas.renderAll.bind(canvas));
     };
 
 
@@ -1899,8 +1902,8 @@ kitchensink.controller('LayersController', ['$scope', '$rootScope', '$timeout', 
             canvas.setActiveObject(object);
         }
     };
-	
-	$scope.setAsActiveLayer = function (item, list) {
+
+    $scope.setAsActiveLayer = function (item, list) {
         list.some(function (item) {
             if (item.active) {
                 return item.active = false;
@@ -2272,5 +2275,3 @@ kitchensink.controller('FontsCtrl', function ($scope) {
 
   ];
 });
-
-
