@@ -61,6 +61,11 @@ x-button[skin^="iconic"][toggled] {
     background: none;
     color: hsl(var(--accent-color-h), var(--accent-color-s), calc(var(--accent-color-l) + 3%));
 }
+x-menu {
+    box-shadow: none;
+    background-color: rgba(255, 255, 255, 0.6) !Important;
+    backdrop-filter: blur(20px) saturate(200%);
+}
 
 /*********************** Font List Styles ***************************************/
 

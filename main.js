@@ -40,7 +40,10 @@ function createWindow() {
         width: 1680,
         height: 1050,
         titleBarStyle: 'hidden',
-        vibrancy: 'medium-light'
+        vibrancy: 'medium-light',
+        webPreferences: {
+            experimentalFeatures: true
+        }
     })
 
 
@@ -67,7 +70,7 @@ function createWindow() {
     })
 
     require('./menu/mainmenu')
-	
+
 
 
 }
