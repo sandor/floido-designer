@@ -97,11 +97,13 @@ kitchensink.directive('edObjectsPanelSortable', ['$rootScope', function ($rootSc
                         //send object forwards by the amount of objects it passed
                         for (var i = 0; i < (end - start); i++) {
                             canvas.bringForward(obj);
+							canvas.renderAll();
                         }
                     } else {
                         //send object backwards by the amount of objects it passed
                         for (var i = 0; i < (start - end); i++) {
                             canvas.sendBackwards(obj);
+							canvas.renderAll();
                         }
                     }
 

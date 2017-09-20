@@ -9,6 +9,8 @@
 //		initCenteringGuidelines(canvas);
 
 //dumb test with filters
+
+
 function addFilters($scope) {
 
     // manually initialize 2 filter backend to give ability to switch:
@@ -410,7 +412,38 @@ function setActiveShadow(name, value) {
 
 function addAccessors($scope, $rootScope) {
 
-    //////////////////
+    
+//	Filter Definition test
+	
+ $scope.contrastFilter = function () {
+        var obj = canvas.getActiveObject();
+        if (!obj) return;
+
+        if (obj.filters.Contrast) {
+            obj.filters.Contrast = null;
+			obj.applyFilters([ new fabric.Image.filters.Contrast({ contrast: 15 })]);
+        } else {
+            obj.applyFilters([ new fabric.Image.filters.Contrast({ contrast: 15 })]);
+        }
+        canvas.renderAll();
+   };
+	
+$scope.blurFilter = function (value) {
+		var setWidth = document.getElementById('blurvalue').value;
+        var obj = canvas.getActiveObject();
+        if (!obj) return;
+            obj.applyFilters([ new fabric.Image.filters.Blur({ blur: value })]);
+        canvas.renderAll();
+};	
+	
+
+
+    $scope.setBlur = function (value) {
+        getActiveStyle('blur', value);
+        canvas.renderAll();
+    };
+	
+	//////////////////
 
 
     $scope.setShadowOffsetX = function (value) {
@@ -422,6 +455,7 @@ function addAccessors($scope, $rootScope) {
         setActiveShadow('offsetY', value);
         canvas.renderAll();
     };
+	
     $scope.setShadowBlur = function (value) {
         setActiveShadow('blur', value);
         canvas.renderAll();
@@ -687,11 +721,9 @@ function addAccessors($scope, $rootScope) {
 
     $scope.getCanvasBgColor = function () {
         return canvas.backgroundColor;
-        console.log(value);
     };
     $scope.setCanvasBgColor = function (value) {
         canvas.backgroundColor = value;
-        console.log(value);
         canvas.renderAll();
     };
 
@@ -798,26 +830,28 @@ function addAccessors($scope, $rootScope) {
         ipcRenderer.send('openFile', () => {})
         ipcRenderer.once('fileData', (event, filepath) => {
             fabric.Image.fromURL(filepath, function (image) {
-                var hCent = canvas.getHeight / 2;
-                var wCent = canvas.getWidth / 2;
+//                var hCent = canvas.getHeight / 2;
+//                var wCent = canvas.getWidth / 2;
                 canvas.setBackgroundColor({
                     source: filepath,
-                    repeat: 'no-repeat'
+					repeat: 'repeat'
                 }, canvas.renderAll.bind(canvas));
             })
         })
     };
-
+	
+	$scope.getBgRepeat = function () {
+        return canvas.backgroundColor.repeat;
+    };
+	
+	$scope.setBgRepeat = function (value) {
+		canvas.backgroundColor.repeat = value;
+		canvas.renderAll();
+    };
 
 
     $scope.resetBgImage = function () {
-
-        if (canvas.backgroundColor instanceof fabric.Pattern) {
             canvas.setBackgroundColor('#ffffff', canvas.renderAll.bind(canvas));
-        } else {
-
-        }
-
     };
 
 
@@ -1865,6 +1899,15 @@ kitchensink.controller('LayersController', ['$scope', '$rootScope', '$timeout', 
             canvas.setActiveObject(object);
         }
     };
+	
+	$scope.setAsActiveLayer = function (item, list) {
+        list.some(function (item) {
+            if (item.active) {
+                return item.active = false;
+            }
+        });
+        item.active = true;
+    };
 
     $scope.toggleVisibility = function (object) {
         if (!object) return;
@@ -1976,7 +2019,7 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
 
   ];
 
-    $scope.currentTab = 'templates/style_menu.html';
+    $scope.currentTab = 'templates/page_menu.html';
 
     $scope.onClickTab = function (tab) {
         $scope.currentTab = tab.url;
@@ -1992,7 +2035,7 @@ kitchensink.controller('LeftTabsCtrl', ['$scope', function ($scope) {
     $scope.tabs = [{
             title: 'One',
             url: 'templates/layers.html',
-            micon: 'phonelink-setup',
+            micon: 'layers',
             custom: 'images/icons.svg'
     }
   ];
@@ -2229,3 +2272,5 @@ kitchensink.controller('FontsCtrl', function ($scope) {
 
   ];
 });
+
+

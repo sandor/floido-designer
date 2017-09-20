@@ -196,16 +196,16 @@
             <x-accordion>
                 <header>
                     <x-label>Blur</x-label>
-                    <x-switch style="margin-right: 10px;" ng-click="shadowify()"></x-switch>
+                    <x-switch style="margin-right: 10px;" ng-click="blurFilter()"></x-switch>
                 </header>
 
                 <main>
                     <x-box>
 
-                        <x-slider style="width: 200px; top: 8px; margin-left: 15px; margin-right: 10px;" min="1" max="200" ng-value="0" bind-value-to="blur" skin="arrow">
+                        <x-slider id="blurvalue" style="width: 200px; top: 8px; margin-left: 15px; margin-right: 10px;" min="0" max="200" skin="arrow">
                         </x-slider>
 
-                        <x-numberinput style="width: 70px;" suffix=" px" skin="condensed" ng-value="0" bind-value-to="blur">
+                        <x-numberinput style="width: 70px;" suffix=" px" skin="condensed" bind-value-to="blurFilter">
                             <x-stepper></x-stepper>
                         </x-numberinput>
                     </x-box>
@@ -242,13 +242,13 @@
             <x-accordion>
                 <header>
                     <x-label>Contrast</x-label>
-                    <x-switch style="margin-right: 10px;" ng-click="shadowify()"></x-switch>
+                    <x-switch style="margin-right: 10px;" ng-click="contrastFilter()"></x-switch>
                 </header>
 
                 <main>
                     <x-box>
 
-                        <x-slider style="width: 200px; top: 8px; margin-left: 15px; margin-right: 10px;" min="1" max="200" ng-value="0" bind-value-to="blur" skin="arrow">
+                        <x-slider style="width: 200px; top: 8px; margin-left: 15px; margin-right: 10px;" min="0" max="200" bind-value-to="contrast" skin="arrow">
                         </x-slider>
 
                         <x-numberinput style="width: 70px;" suffix=" px" skin="condensed" ng-value="0" bind-value-to="blur">

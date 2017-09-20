@@ -5,198 +5,218 @@
 	</div>
 
 
-	<div class="col-12">
-		<x-label class="discl_sm">Page Size</x-label>
-	</div>
+	<x-accordion expanded>
+		<header>
+			<x-label>Set page Size</x-label>
+		</header>
 
-	<div class="spacer"></div>
+		<main>
 
-	<div class="col-3">
-		<x-label class="push-right pad"></x-label>
-	</div>
-	<div class="col-9">
-		<x-select style="width: 210px;">
-			<x-menu>
-				<x-menuitem value="no_bg" ng-click='setCanvasSize(size.width, size.height)' ng-repeat='size in presetSizes' selected="true">
-					<x-label>{{ size.name }}</x-label>
-				</x-menuitem>
-			</x-menu>
-		</x-select>
-	</div>
-
-	<div class="spacer"></div>
-
-	<div class="col-3 menu">
-		<x-label class="push-right pad">Size</x-label>
-	</div>
-
-
-	<div class="col-4">
-		<x-numberinput class="small" id="myWidth" skin="condensed" ng-value="canvas.getWidth()" suffix=" px" ng-model="width">
-			<x-stepper></x-stepper>
-		</x-numberinput>
-	</div>
-	<div class="col-1">
-	</div>
-	<div class="col-4">
-		<x-numberinput class="small" id="myHeight" skin="condensed" ng-value="canvas.getHeight()" suffix=" px" ng-model="height">
-			<x-stepper></x-stepper>
-		</x-numberinput>
-	</div>
-
-	<div class="col-3"></div>
-	<div class="col-4 centered_sm">Width</div>
-	<div class="col-1"></div>
-	<div class="col-4 centered_sm">Height</div>
-
-	<div class="col-3"></div>
-	<div class="col-9">
-		<x-button skin="textured" style="width:210px;" ng-click="setMySize()">
 			<x-box>
-				<x-label>Apply</x-label>
+				<x-label style="margin-left:5px; margin-right: 15px; width: 55px;">Presets</x-label>
+
+				<x-select style="margin-right: 10px; margin-bottom: 5px; min-width:220px;">
+					<x-menu>
+						<x-menuitem value="no_bg" ng-click='setCanvasSize(size.width, size.height)' ng-repeat='size in presetSizes' selected="true">
+							<x-label>{{ size.name }}</x-label>
+						</x-menuitem>
+					</x-menu>
+				</x-select>
 			</x-box>
-		</x-button>
-	</div>
+
+			<x-box>
+				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Edit Size</x-label>
+
+				<x-numberinput id="myWidth" style="margin-right: 5px; width: 130px;" skin="condensed" suffix=" px" ng-value="canvas.getWidth()" suffix=" px" ng-model="width">
+					<x-stepper></x-stepper>
+				</x-numberinput>
+
+				<div style="width: 20px; margin-right: 5px;">
+				</div>
+
+				<x-numberinput id="myHeight" style="width: 130px; margin-right: 10px;" skin="condensed" suffix=" px" ng-value="canvas.getHeight()" suffix=" px" ng-model="height">
+					<x-stepper></x-stepper>
+				</x-numberinput>
+
+			</x-box>
+			<x-box>
+				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
+				<x-label class="centered_sm" style="margin-right: 15px; width: 130px;">Page Width</x-label>
+				<x-label class="centered_sm" style="width: 20px; margin-right: 5px;"></x-label>
+				<x-label class="centered_sm" style="width: 130px; margin-right: 10px;">Page Height</x-label>
+			</x-box>
 
 
 
-	<div class="spacer"></div>
+			<x-box>
+				<x-button skin="textured" style="margin-left: 75px; width:220px;" ng-click="setMySize()">
+					<x-box>
+						<x-label>Apply Setting</x-label>
+					</x-box>
+				</x-button>
+			</x-box>
 
+		</main>
+	</x-accordion>
 	<hr>
 
 
+	<x-accordion expanded>
+		<header>
+			<x-label>Background</x-label>
+		</header>
 
-	<div class="col-12">
-		<x-label class="discl_sm">Background Color</x-label>
-	</div>
-	<div class="spacer"></div>
+		<main>
+			<x-box>
+				<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Fill Color</x-label>
 
+				<x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;">
+					<x-popover style="width: 320px;">
+						<x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="canvasBgColor"></x-rectcolorpicker>
+					</x-popover>
+				</x-colorselect>
 
-	<div class="col-3">
-		<x-label class="push-right pad">Color</x-label>
-	</div>
-	<div class="col-5">
-		<input type="color" id="picker1" class="small" ng-value="bgcolor" bind-value-to="canvasBgColor" ng-model="bgcolor">
+				<x-input id="select1" style="width: 130px;" bind-value-to="canvasBgColor">
+					<x-icon name="invert-colors"></x-icon>
+				</x-input>
 
-	</div>
-	<div class="col-4">
-		<x-input id="select1" class="small" ng-value="bgcolor" bind-value-to="canvasBgColor" ng-model="bgcolor">
-			<x-icon name="invert-colors"></x-icon>
-		</x-input>
+			</x-box>
 
-	</div>
+		</main>
+	</x-accordion>
 
-	<div class="spacer"></div>
 	<hr>
 
-	<div class="col-12">
-		<x-label class="discl_sm">Background Gradient</x-label>
-	</div>
-	<div class="spacer"></div>
-	<div class="col-3 menu">
-		<x-label class="push-right pad">Gradient</x-label>
-	</div>
-	<div class="col-5">
-		<input type="color" id="gradLeft" class="small" bind-value-to="addGradient()" ng-model="leftColor">
-	</div>
+	<x-accordion expanded>
+		<header>
+			<x-label>Background Gradient</x-label>
+		</header>
 
-	<div class="col-4">
-		<input type="color" id="gradRight" class="small" bind-value-to="addGradient()" ng-model="rightColor">
-	</div>
-
-	<div class="col-3"></div>
-	<div class="col-4 centered_sm">Left</div>
-	<div class="col-1"></div>
-	<div class="col-4 centered_sm">Right</div>
-
-	<div class="col-3">
-		<x-label class="push-right pad"></x-label>
-	</div>
-	<div class="col-4">
-		<x-numberinput class="small" skin="condensed" value="90" suffix="°">
-			<x-stepper></x-stepper>
-		</x-numberinput>
-	</div>
-	<div class="col-1"></div>
-	<div class="col-4">
-		<x-buttons tracking="2">
-			<x-button skin="textured-condensed" class="halfsmall">
-				<x-icon name="swap-horiz"></x-icon>
-			</x-button>
-
-			<x-button skin="textured-condensed" class="halfsmall">
-				<x-icon name="swap-vert"></x-icon>
-			</x-button>
-
-		</x-buttons>
-	</div>
-
-	<div class="col-3"></div>
-	<div class="col-4 centered_sm">Direction</div>
-	<div class="col-1"></div>
-	<div class="col-4 centered_sm">Flip</div>
-
-	<div class="col-3"></div>
-	<div class="col-9">
-		<x-button skin="textured" style="width:210px;" ng-click="addGradient();">
+		<main>
 			<x-box>
-				<x-label>Set Background</x-label>
-			</x-box>
-		</x-button>
-	</div>
+				<x-label style="margin-left:5px; margin-right: 16px; width: 75px;">Colors</x-label>
+				<x-colorselect style="margin-right: 5px; width: 130px;">
+					<x-popover style="width: 320px;">
+						<x-rectcolorpicker id="gradLeft" style="width: 320px;" alphaslider ind-value-to="addGradient()" ng-model="leftColor"></x-rectcolorpicker>
+					</x-popover>
+				</x-colorselect>
 
-	<div class="spacer"></div>
+				<div style="width: 20px; margin-right: 5px;">
+				</div>
+
+				<x-colorselect style="width: 130px; margin-right: 10px;">
+					<x-popover style="width: 320px;">
+						<x-rectcolorpicker id="gradRight" style="width: 320px;" alphaslider ind-value-to="addGradient()" ng-model="rightColor"></x-rectcolorpicker>
+					</x-popover>
+				</x-colorselect>
+
+			</x-box>
+			<x-box>
+				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
+				<x-label class="centered_sm" style="margin-right: 15px; width: 130px;">Left Color</x-label>
+				<x-label class="centered_sm" style="width: 20px; margin-right: 5px;"></x-label>
+				<x-label class="centered_sm" style="width: 130px; margin-right: 10px;">Right Color</x-label>
+			</x-box>
+
+
+			<x-box>
+				<x-label style="margin-left:5px; margin-right: 16px; width: 80px;">Direction</x-label>
+
+				<x-numberinput style="margin-right: 15px; width: 137px;" skin="condensed" suffix=" °" bind-value-to="propAngle">
+					<x-stepper></x-stepper>
+				</x-numberinput>
+
+				<div style="width: 10px; margin-right: 5px;">
+				</div>
+
+				<x-buttons tracking="2" style="width: 140px; margin-right: 10px;">
+					<x-button style="width: 48px;" skin="textured-condensed" ng-click="flipX()">
+						<x-icon name="swap-horiz"></x-icon>
+					</x-button>
+
+					<x-button style="width: 48px;" skin="textured-condensed" ng-click="flipY()">
+						<x-icon name="swap-vert"></x-icon>
+					</x-button>
+
+				</x-buttons>
+
+			</x-box>
+			<x-box>
+				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
+				<x-label class="centered_sm" style="margin-right: 15px; width: 137px;">Gradient Angle</x-label>
+				<x-label class="centered_sm" style="width: 10px; margin-right: 5px;"></x-label>
+				<x-label class="centered_sm" style="width: 140px; margin-right: 10px;">Direction</x-label>
+			</x-box>
+
+			<x-box>
+				<x-button skin="textured" style="margin-left: 75px; width:220px;" ng-click="addGradient();">
+					<x-box>
+						<x-label>Apply Background</x-label>
+					</x-box>
+				</x-button>
+			</x-box>
+
+		</main>
+	</x-accordion>
 	<hr>
 
-	<div class="col-12">
-		<x-label class="discl_sm">Background Image</x-label>
-	</div>
 
-	<div class="col-3 menu">
-		<x-label class="push-right pad">Image</x-label>
-	</div>
-	<div class="col-4">
-		<x-button class="imginput" ng-click="bgImage()">
-			<x-icon name="insert-drive-file"></x-icon>
-		</x-button>
-	</div>
+	<x-accordion expanded>
+		<header>
+			<x-label>Background Image</x-label>
+		</header>
 
-	<div class="col-5" id="bgValue" ng-controller="bgContrl">
-		<x-radios >
+		<main>
 			<x-box>
-				<x-radio name="bgValue" id="first-radio" value="no-repeat" toggled></x-radio>
-				<x-label class="left_sm" for="first-radio" id="label-1">No Repeat</x-label>
+				<x-label style="margin-left: 5px; margin-right: 15px; width: 60px;">Image</x-label>
+
+				<x-button style="width: 55px; height: 55px;" ng-click="bgImage()">
+					<x-icon name="insert-drive-file"></x-icon>
+				</x-button>
+
+				<div style="width: 20px; margin-right: 5px;">
+				</div>
+
+				<x-box vertical style="width: 140px; margin-right: 10px;">
+					<x-select style="width: 140px; margin-right: 10px; margin-bottom: 8px;" bind-value-to="bgRepeat">
+						<x-menu>
+							<x-menuitem value="no-repeat">
+								<x-label>No Repeat</x-label>
+							</x-menuitem>
+
+							<x-menuitem value="repeat">
+								<x-label>Repeat X/Y</x-label>
+							</x-menuitem>
+
+							<x-menuitem value="repeat-x">
+								<x-label>Repeat X</x-label>
+							</x-menuitem>
+
+							<x-menuitem value="repeat-y">
+								<x-label>Repeat Y</x-label>
+							</x-menuitem>
+						</x-menu>
+					</x-select>
+
+					<x-button skin="textured" style="width: 140px; margin-right: 10px;" ng-click="resetBgImage()">
+						<x-box>
+							<x-label>Reset Background</x-label>
+						</x-box>
+					</x-button>
+				</x-box>
 			</x-box>
+
 			<x-box>
-				<x-radio name="bgValue" id="second-radio" value="repeat"></x-radio>
-				<x-label class="left_sm" for="second-radio" id="label-2">Repeat X/Y</x-label>
+				<x-label style="margin-left:10px; margin-right: 5px; width: 65px;">Image Size</x-label>
+
+				<x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="0.1" max="10" step="0.1" ng-value="0" bind-value-to="bgSize" skin="arrow">
+				</x-slider>
+
+				<x-numberinput style="width: 70px;" suffix=" px" min="0.1" max="10" step="0.1" skin="condensed" ng-value="0" bind-value-to="bgSize">
+					<x-stepper></x-stepper>
+				</x-numberinput>
 			</x-box>
-			<x-box>
-				<x-radio name="bgValue" id="third-radio" value="repeat-x"></x-radio>
-				<x-label class="left_sm" for="third-radio" id="label-3">Repeat X</x-label>
-			</x-box>
-			<x-box>
-				<x-radio name="bgValue" id="fourth-radio" value="repeat-y"></x-radio>
-				<x-label class="left_sm" for="fourth-radio" id="label-4">Repeat Y</x-label>
-			</x-box>
-			
 
-		</x-radios>
-		
-	</div>
-
-	<div class="spacer"></div>
-
-	<div class="col-3"></div>
-	<div class="col-9">
-		<x-button skin="textured" style="width:210px;" ng-click="resetBgImage()">
-			<x-box>
-				<x-label>Reset Background</x-label>
-			</x-box>
-		</x-button>
-	</div>
-
-
-
-	<div class="spacer"></div>
+		</main>
+	</x-accordion>
 	<hr>

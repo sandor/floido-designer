@@ -1,14 +1,10 @@
-/*Panel animation test*/
+/*Gradient test*/
 
-@keyframes showNav {
-  from {max-width: 0px;}
-  to {max-width: 320px;}
-}
-
-@keyframes hideNav {
-  from {max-width: 320px;}
-  to {max-width: 0px;}
-}
+		.grad_ex {
+			width: 200px;
+			height: 20px;
+			margin-bottom: 32px;
+		}
 
 
 /**
@@ -152,7 +148,7 @@ li:nth-child(even) {
 .list-group-item.active,
 .list-group-item.selected {
 	color: #fff;
-	background-color: #116cd6;
+	background-color: rgba(137, 137, 137, 0.76);
 }
 .list-group-header {
 	padding: 10px;
@@ -202,7 +198,7 @@ li:nth-child(even) {
 	margin: 0;
 	padding: 10px 10px 2px;
 	font-size: 12px;
-	font-weight: 500;
+	font-weight: 100;
 	color: #666666;
 }
 
@@ -406,7 +402,7 @@ x-button[skin="tabnav"] x-label {
 	border-left: 0;
 }
 .pane-sm {
-	width: 300px;
+	width: 200px;
 	max-width: 320px;
 	min-width: 250px;
 	border-right: 1px solid #c2c0c2;

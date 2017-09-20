@@ -18,8 +18,6 @@
     <link rel='stylesheet prefetch' href='css/font-awesome.min.css'>
 
     <link rel="stylesheet" href="css/style.css">
-    <!--	<script src="css/ruler.css"></script>-->
-
 
 
     <!-- Insert this line above script imports  -->
@@ -39,6 +37,7 @@
     <script src='js/jquery.nestable.js'></script>
     <script src='js/jquery-ui.min.js'></script>
     <script src='js/fabric.min.js'></script>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/document-register-element/0.2.1/document-register-element.js"></script>
 
@@ -118,14 +117,14 @@
                         <x-button skin="iconic" onclick="toggleLayers()" toggled>
                             <x-box vertical>
                                 <x-icon name="layers"></x-icon>
-                                <x-label>Layers</x-label>
+                                <x-label style="color: #5a5a5a !Important">Layers</x-label>
                             </x-box>
                         </x-button>
 
                         <x-button skin="iconic">
                             <x-box vertical>
                                 <x-icon name="pages"></x-icon>
-                                <x-label>Pages</x-label>
+                                <x-label style="color: #5a5a5a !Important">Pages</x-label>
                             </x-box>
                         </x-button>
                     </x-buttons>
@@ -134,21 +133,21 @@
                         <x-button skin="iconic" ng-click="addTextbox()">
                             <x-box vertical>
                                 <x-icon name="title"></x-icon>
-                                <x-label>Add Text</x-label>
+                                <x-label style="color: #5a5a5a !Important">Add Text</x-label>
                             </x-box>
                         </x-button>
 
                         <x-button skin="iconic" ng-click="loadImage()">
                             <x-box vertical>
                                 <x-icon name="photo"></x-icon>
-                                <x-label>Add Image</x-label>
+                                <x-label style="color: #5a5a5a !Important">Add Image</x-label>
                             </x-box>
                         </x-button>
 
                         <x-button skin="iconic">
                             <x-box vertical>
                                 <x-icon name="add-box"></x-icon>
-                                <x-label>Insert Element</x-label>
+                                <x-label style="color: #5a5a5a !Important">Insert Element</x-label>
                             </x-box>
                             <x-menu>
                                 <x-menuitem ng-click="addTextbox()">
@@ -202,14 +201,14 @@
                         <x-button skin="iconic" toggled>
                             <x-box vertical>
                                 <x-icon name="edit"></x-icon>
-                                <x-label>Page Editor</x-label>
+                                <x-label style="color: #5a5a5a !Important">Page Editor</x-label>
                             </x-box>
                         </x-button>
 
                         <x-button skin="iconic" disabled>
                             <x-box vertical>
                                 <x-icon name="actions" iconset="images/icons.svg"></x-icon>
-                                <x-label>Actions Editor</x-label>
+                                <x-label style="color: #5a5a5a !Important">Actions Editor</x-label>
                             </x-box>
                         </x-button>
 
@@ -218,7 +217,7 @@
                         <x-button skin="iconic" disabled>
                             <x-box vertical>
                                 <x-icon name="view-module"></x-icon>
-                                <x-label>Page Flow</x-label>
+                                <x-label style="color: #5a5a5a !Important">Page Flow</x-label>
                             </x-box>
                         </x-button>
 
@@ -228,14 +227,14 @@
                         <x-button skin="iconic" disabled>
                             <x-box vertical>
                                 <x-icon name="visibility"></x-icon>
-                                <x-label>Project Preview</x-label>
+                                <x-label style="color: #5a5a5a !Important">Project Preview</x-label>
                             </x-box>
                         </x-button>
 
                         <x-button skin="iconic" disabled>
                             <x-box vertical>
                                 <x-icon name="code"></x-icon>
-                                <x-label>Code View</x-label>
+                                <x-label style="color: #5a5a5a !Important">Code View</x-label>
                             </x-box>
                         </x-button>
 
@@ -245,21 +244,21 @@
                         <x-button skin="iconic" onclick="toggleInspector()" toggled>
                             <x-box vertical>
                                 <x-icon name="settings"></x-icon>
-                                <x-label>Inspector</x-label>
+                                <x-label style="color: #5a5a5a !Important">Inspector</x-label>
                             </x-box>
                         </x-button>
 
                         <x-button skin="iconic" disabled>
                             <x-box vertical>
                                 <x-icon name="image"></x-icon>
-                                <x-label>Asset Library</x-label>
+                                <x-label style="color: #5a5a5a !Important">Asset Library</x-label>
                             </x-box>
                         </x-button>
 
                         <x-button skin="iconic" disabled>
                             <x-box vertical>
                                 <x-icon name="get-app"></x-icon>
-                                <x-label>Export</x-label>
+                                <x-label style="color: #5a5a5a !Important">Export</x-label>
                             </x-box>
                         </x-button>
 
@@ -305,7 +304,7 @@
 
                     <x-box>
                         <x-buttons tracking="1">
-                            <x-button ng-repeat="tab in tabs" skin="tabnav" ng-class="{active:isActiveTab(tab.url)}" ng-click="onClickTab(tab)">
+                            <x-button ng-repeat="tab in tabs" skin="tabnav" ng-class="{active: isActiveTab(tab.url)}" ng-click="onClickTab(tab)">
                                 <!--								<x-icon name="{{tab.ticon}}" iconset="{{tab.custom}}"></x-icon>-->
                                 <x-icon name="{{tab.micon}}"></x-icon>
 
@@ -330,7 +329,8 @@
             backgroundColor: "#FFFFFF",
             selectionColor: "rgba(0, 108, 223, 0.05)",
             selectionBorderColor: "rgba(0, 108, 223, 0.3)",
-            selectionDashArray: [2, 2]
+            selectionDashArray: [2, 2],
+			preserveObjectStacking: true
         });
         initAligningGuidelines(canvas);
         initCenteringGuidelines(canvas);
@@ -439,9 +439,9 @@
         //		
 
 
-        /*
-        		undo and redo functions – this should be integrated in the controllers later on
-        */
+/*
+		undo and redo functions – this should be integrated in the controllers later on
+*/
         var _config = {
             canvasState: [],
             currentStateIndex: -1,

@@ -6,7 +6,7 @@
 
 	<ul class="list-group" ui-sortable ng-model="objects">
 
-		<li class="list-group-item" ng-repeat="object in objects" ng-click="setAsActive(object)" ng-if="!object.ignore">
+		<li ng-class="{active: object.active}" class="list-group-item" ng-repeat="object in objects" ng-click="setAsActive(object); setAsActiveLayer(object, objects)" ng-if="!object.ignore">
 
 			<x-icon name={{object.icon}} class="media-object pull-left"></x-icon>
 
@@ -19,7 +19,7 @@
 
 
 			<div class="media-body">
-				<strong>{{ object.name || object.type }}</strong>
+				<p>{{ object.name || object.type }}</p>
 			</div>
 		</li>
 
