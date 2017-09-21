@@ -1,3 +1,14 @@
+x-button[skin^="iconic"] {
+    padding: 2px 6px 4px 6px;
+    color: #737373;
+    background: none;
+    border: none;
+    border-radius: 4px 4px 0 0;
+    --arrow-margin: 0 0 0 -20px;
+    --arrow-width: 10px;
+    --arrow-height: 10px;
+}
+
 /**
  * Accordion
  */
@@ -61,11 +72,15 @@ x-button[skin^="iconic"][toggled] {
     background: none;
     color: hsl(var(--accent-color-h), var(--accent-color-s), calc(var(--accent-color-l) + 3%));
 }
+
+/*Experiment with backdrop filter*/
+
+/*
 x-menu {
     box-shadow: none;
-    background-color: rgba(255, 255, 255, 0.6) !Important;
-    backdrop-filter: blur(20px) saturate(200%);
-}
+    background-color: rgba(255, 255, 255, 0.0) !Important;
+    backdrop-filter: blur(20px) saturate(200%) drop-shadow(10px 10px 3px black);
+}*/
 
 /*********************** Font List Styles ***************************************/
 
