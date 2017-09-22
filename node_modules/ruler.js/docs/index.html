@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>ruler.js Demo</title>
+    <meta charset="utf-8">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <style>
+        #wrapper{
+            margin-top: 20px;
+            height: 800px;
+            width: 1200px;
+            border: 1px solid green;
+            position: relative;
+
+        }
+        #wrapper2{
+            top: 950px;
+            height: 800px;
+            width: 1200px;
+            border: 1px solid green;
+            position: absolute;
+
+        }
+    </style>
+    <link rel="stylesheet" href="./dist/ruler.min.css" />
+
+</head>
+
+<body>
+X:<input onchange="setPosX1(this.value)"/>
+Y:<input onchange="setPosY1(this.value)"/>
+Scale:<input onchange="setScale1(this.value)"/>
+<button onclick="hideRuler1()">Toggle View</button>
+<button onclick="clearGuides1()">Clear Guides</button>
+<button onclick="storeGuides1()">Store Guides</button>
+<button onclick="setGuides1()">Set Guides</button>
+<button onclick="hideGuides1()">Toggle Guides View</button>
+<button onclick="destory1()">Destroy</button>
+<div id="wrapper"></div>
+
+<br/>
+<br/>
+X:<input onchange="setPosX2(this.value)"/>
+Y:<input onchange="setPosY2(this.value)"/>
+Scale:<input onchange="setScale2(this.value)"/>
+<button onclick="hideRuler2()">Toggle View</button>
+<button onclick="clearGuides2()">Clear Guides</button>
+<button onclick="storeGuides2()">Store Guides</button>
+<button onclick="setGuides2()">Set Guides</button>
+<button onclick="hideGuides2()">Toggle Guides View</button>
+<button onclick="destory2()">Destroy</button>
+<div id="wrapper2"></div>
+<script type="text/javascript" src="./dist/ruler.min.js"></script>
+<script type="text/javascript" src="demo.js"></script>
+</body>
+
+</html>
