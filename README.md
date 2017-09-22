@@ -8,13 +8,17 @@
 
 # Setup
 
+Prerequisite: you should have node anf git installed on your system.
+
 1. Install Electron Version 1.7.4 (1.7.4) – we need some of the beta functions for the XEL toolit
 
 2. Clone or download the floido repository
 
 3. Open terminal and cd in your local floido repository
 
-4. run "electron ."
+4. run node install in your terminal to get the node dependecies
+
+5. run "electron ."
 
 You can also open the index.html with the newest chrome version using a local server.
 
