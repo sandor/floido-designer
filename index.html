@@ -18,6 +18,7 @@
             window.module = module;
             module = undefined;
         }
+
     </script>
 
 
@@ -80,9 +81,10 @@
     <!-- Insert this line after script imports -->
     <script>
         if (window.module) module = window.module;
+
     </script>
 
-    <!-- dummy function – toggle left panel -->
+    <!-- dummy function – toggle left and right panel -->
 
     <script>
         function toggleLayers() {
@@ -102,6 +104,7 @@
                 x.style.display = 'none';
             }
         }
+
     </script>
 
 </head>
@@ -161,7 +164,16 @@
             </div>
         </div>
         <footer class="toolbar toolbar-footer" ng-controller="CanvasControls">
-            <h1 class="title">{{ size.name }}</h1>
+            <x-box style="width: 350px;">
+                <x-label style="width: 120px; margin-left: 15px; margin-right: 15px;">Zoom: 100%</x-label>
+                <x-slider style="margin-right: 15px;" value="0" min="-400" max="400"></x-slider>
+                <x-button style="margin-right: 10px;" skin="flat-condensed">
+                    <x-icon name="aspect-ratio"></x-icon>
+                </x-button>
+                <x-button skin="flat-condensed">
+                    <x-icon name="settings-overscan"></x-icon>
+                </x-button>
+            </x-box>
         </footer>
     </div>
 
