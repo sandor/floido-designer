@@ -1,4 +1,4 @@
-var kitchensink = angular.module('kitchensink', ['ui.sortable', 'eee-c.angularBindPolymer']);
+var kitchensink = angular.module('kitchensink', ['ui.sortable', 'electangular']);
 
 /*kitchensink.config(function($interpolateProvider) {
   $interpolateProvider

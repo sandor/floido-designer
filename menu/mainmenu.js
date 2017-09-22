@@ -11,10 +11,18 @@ const template = [
     label: 'Edit',
     submenu: [
       {
-        role: 'undo'
+        role: 'undo',
+		  click: function() {
+      var focusedWindow = BrowserWindow.getFocusedWindow();
+      focusedWindow.webContents.send('undo');
+    }
       },
       {
-        role: 'redo'
+        role: 'redo',
+		  click: function() {
+      var focusedWindow = BrowserWindow.getFocusedWindow();
+      focusedWindow.webContents.send('redo');
+    }
       },
       {
         type: 'separator'
@@ -23,10 +31,18 @@ const template = [
         role: 'cut'
       },
       {
-        role: 'copy'
+        role: 'copy',
+		  click: function() {
+      var focusedWindow = BrowserWindow.getFocusedWindow();
+      focusedWindow.webContents.send('copy');
+    }
       },
       {
-        role: 'paste'
+        role: 'paste',
+		  click: function() {
+      var focusedWindow = BrowserWindow.getFocusedWindow();
+      focusedWindow.webContents.send('paste');
+    }
       },
       {
         role: 'pasteandmatchstyle'

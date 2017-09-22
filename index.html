@@ -4,17 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/macos.theme.css">
-    <!--	<link rel="import" href="node_modules/xel/xel.min.html">-->
-    <!--
-<link rel="stylesheet" href="css/photon.css">-->
+
     <link rel="stylesheet" href="css/app.css">
-    <!--	<link rel="stylesheet" href="css/text_menu.css">-->
-    <link rel="stylesheet" href="css/gridlex.min.css">
-    <link rel="stylesheet" href="css/pretty.min.css">
 
-    <!--	this are the css an js files from the angular project-->
-
-    <!--	<link rel='stylesheet prefetch' href='css/bootstrap.min.css'>-->
     <link rel='stylesheet prefetch' href='css/font-awesome.min.css'>
 
     <link rel="stylesheet" href="css/style.css">
@@ -38,14 +30,10 @@
     <script src='js/jquery-ui.min.js'></script>
     <script src='js/fabric.min.js'></script>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/document-register-element/0.2.1/document-register-element.js"></script>
-
     <script src='js/xel.min.js'></script>
 
     <script src='js/angular.min.js'></script>
-    <script src="https://rawgit.com/eee-c/angular-bind-polymer/master/angular_bind_polymer.js"></script>
-
+	<script src='js/electangular.js'></script>
 
     <script src='node_modules/angular-ui-sortable/dist/sortable.min.js'></script>
     <script src='js/aligning_guidelines.js'></script>
@@ -393,13 +381,16 @@
             console.log(message); // Prints "whoooooooh!"
         });
 
-        /*		require('electron').ipcRenderer.on('file-save', function(event, message) {
-        			console.log('save file...');
-        			removeSelected();// Prints "whoooooooh!"
-        		});*/
-
         require('electron').ipcRenderer.on('delete', function() {
             remove(); // Prints "whoooooooh!"
+        });
+		
+		require('electron').ipcRenderer.on('copy', function() {
+            copy(); // Prints "whoooooooh!"
+        });
+		
+		require('electron').ipcRenderer.on('paste', function() {
+            paste(); // Prints "whoooooooh!"
         });
 
     </script>
@@ -554,10 +545,10 @@
 
         menu.append(new MenuItem({
             role: 'delete',
-            click() {
-                concole.log("should remove now")
-                remove();
-            }
+            click: function() {
+      var focusedWindow = BrowserWindow.getFocusedWindow();
+      focusedWindow.webContents.send('delete');
+    }
         }))
 
         menu.append(new MenuItem({

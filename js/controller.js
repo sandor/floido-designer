@@ -415,29 +415,35 @@ function addAccessors($scope, $rootScope) {
 
     //	Filter Definition test
 
-    $scope.contrastFilter = function () {
-        var obj = canvas.getActiveObject();
-        if (!obj) return;
+$scope.contrastFilter = function() {
+    var obj = canvas.getActiveObject();
+    if (!obj) return;
+    if (obj.filters[0]) {
+        delete obj.filters[0];
+    } else {
+        obj.filters[0] = new fabric.Image.filters.Contrast({
+            contrast: 15
+        });
+    }
+    obj.applyFilters();
+    canvas.renderAll();
+};
+	
+$scope.blurFilter = function() {
+    var obj = canvas.getActiveObject();
+    if (!obj) return;
+    if (obj.filters[0]) {
+        delete obj.filters[0];
+    } else {
+        obj.filters[0] = new fabric.Image.filters.Blur({
+            blur: 2
+        });
+    }
+    obj.applyFilters();
+    canvas.renderAll();
+};
 
-        if (obj.filters.Contrast) {
-            obj.filters.Contrast = null;
-        } else {
-            obj.applyFilters([new fabric.Image.filters.Contrast({
-                contrast: 15
-            })]);
-        }
-        canvas.renderAll();
-    };
 
-    $scope.blurFilter = function (value) {
-        var setWidth = document.getElementById('blurvalue').value;
-        var obj = canvas.getActiveObject();
-        if (!obj) return;
-        obj.applyFilters([new fabric.Image.filters.Blur({
-            blur: value
-        })]);
-        canvas.renderAll();
-    };
 
 
 
