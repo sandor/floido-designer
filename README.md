@@ -14,9 +14,11 @@ Prerequisite: you should have node anf git installed on your system.
 
 2. Clone or download the floido repository
 
-3. Open terminal and cd in your local floido repository
+3. run npm install for the node modules
 
-4. run "electron ."
+4. Open terminal and cd in your local floido repository
+
+5. run "electron ."
 
 You can also open the index.html with the newest chrome version using a local server.
 
