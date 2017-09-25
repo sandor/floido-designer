@@ -23,10 +23,12 @@ kitchensink.controller('LayersController', ['$scope', '$rootScope', '$timeout', 
                 if (!obj) return;
     
                 if (end > start) {
+                    //send object forwards by the amount of objects it passed
                     for (var i = 0; i < (end - start); i++) {
                         canvas.bringForward(obj);
                     }
                 } else {
+                    //send object backwards by the amount of objects it passed
                     for (var i = 0; i < (start - end); i++) {
                         canvas.sendBackwards(obj);
                     }

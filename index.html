@@ -61,7 +61,6 @@
     <script src="js/controllers/kitchensinkController/RightTabsController.js"></script>
     <script src="js/controllers/kitchensinkController/LeftTabsController.js"></script>
     <script src="js/controllers/kitchensinkController/FontsController.js"></script>
-	<script src="js/controllers/kitchensinkController/PagesController.js"></script>
     <script src="js/additionJs/keymaster.js"></script>
 
     <script src="lib/font_definitions.js"></script>
@@ -129,9 +128,11 @@
                         </x-buttons>
                     </x-box>
                     <hr>
-                    <div ng-include="currentTab"></div>
+                    <div ng-include="currentTab" ng-controller="LayersController"></div>
+
+
+
                 </div>
-				
                 <div class="pane content-empty image-builder-container">
 
                     <div id="wrapper" class='image-builder' parent-click="fabric.deactivateAll()">

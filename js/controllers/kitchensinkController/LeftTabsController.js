@@ -4,16 +4,10 @@ kitchensink.controller('LeftTabsCtrl', ['$scope', function ($scope) {
             url: 'templates/layers.html',
             micon: 'layers',
             custom: 'images/icons.svg'
-    },
-				   {
-    title: 'One',
-            url: 'templates/pages.html',
-            micon: 'pages',
-            custom: 'images/icons.svg'
     }
   ];
 
-    $scope.currentTab = 'templates/pages.html';
+    $scope.currentTab = 'templates/layers.html';
 
     $scope.onClickTab = function (tab) {
         $scope.currentTab = tab.url;
