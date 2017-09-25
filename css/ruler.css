@@ -1,138 +1,160 @@
+.rul_cornerTL,
+.rul_cornerTR {
+	border-bottom: 1px solid rgba(206, 219, 236, .5)
+}
+.rul_cornerBL,
+.rul_cornerTL {
+	border-right: 1px solid rgba(206, 219, 236, .5)
+}
+
+.rul_cornerBL,
+.rul_cornerBR {
+	bottom: 1px;
+	border-top: 1px solid rgba(206, 219, 236, .5)
+}
+.rul_cornerBR,
+.rul_cornerTR {
+	right: 1px;
+	border-left: 1px solid rgba(206, 219, 236, .5)
+}
+
+/*	changed CSS to "top: 0;" */
 
 
-.rul_wrapper{
+.rul_wrapper {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	pointer-events: none
+}
+.rul_corner,
+.rul_line,
+.rul_ruler {
+	pointer-events: all;
+	position: absolute
+}
+.rul_wrapper * {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none
+}
+.rul_ruler {
+	display: block;
+	border: 1px solid rgba(206, 219, 236, .5);
+	filter: blur(0);
+	-webkit-filter: blur(0);
+	z-index: 8
+}
+
+/*	changed some CSS for a nice X in the corner */
+
+.rul_corner {
+/*	background-color: #fff;*/
+	background: #7E858E;
+    width: 26px;
+    height: 25px;
     position: relative;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    pointer-events: none;
+	z-index: 11;
+	cursor: pointer
 }
 
-.rul_wrapper *{
-    -webkit-user-select: none;  /* Chrome all / Safari all */
-    -moz-user-select: none;     /* Firefox all */
-    -ms-user-select: none;      /* IE 10+ */
-    /* No support for these yet, use at own risk */
-    -o-user-select: none;
-    user-select: none;
+.rul_corner:hover {
+	background-color: #d3d3d3
 }
 
-.rul_ruler{
-    display: block;
+.rul_corner:after {
+    content: '';
+    height: 12px;
+    border-left: 2px solid #fff;
     position: absolute;
-    border: 1px solid rgba(206, 219, 236, .5);
-    pointer-events: all;
-    filter: blur(0);
-    -webkit-filter: blur(0);
-    z-index: 1000;
-
+    transform: rotate(45deg);
+    left: 12px;
+	top: 6px;
 }
 
-.rul_corner{
-    pointer-events: all;
+.rul_corner:before {
+    content: '';
+    height: 12px;
+    border-left: 2px solid #fff;
     position: absolute;
-    background-color: white;
-    z-index: 1010;
-    cursor: pointer;
+    transform: rotate(-45deg);
+    left: 12px;
+	top: 6px;
 }
 
-.rul_corner:hover{
-    background-color: lightgray;
+.rul_cornerTL {
+	top: 0;
+	left: 0
+}
+.rul_cornerTR {
+	top: 1px
+}
+.rul_cornerBL {
+	left: 1px
+}
+.rul_ruler_Vertical {
+	cursor: ew-resize;
+	border-left: none
+}
+.rul_ruler_Horizontal {
+	cursor: ns-resize;
+	border-top: none
+}
+.rul_line {
+	color: transparent;
+	background-color: transparent;
+	border-bottom: 1px solid #3BB7C7;
+	border-left: 1px solid #3BB7C7;
+	z-index: 1000
+}
+.rul_line_dragged {
+	border: 1px dotted #6B7587
+}
+.rul_line:hover {
+	border-bottom: 1px solid #236E77;
+	border-left: 1px solid #236E77
+}
+.rul_lineVer {
+	top: 0;
+	bottom: 0
+}
+.rul_lineVer:hover {
+	cursor: ew-resize
+}
+.rul_lineHor {
+	right: 0;
+	left: 0
+}
+.rul_lineHor:hover {
+	cursor: ns-resize
+}
+.rul_tooltip:after {
+	background: #fff;
+	color: #000;
+	border: 1px solid gray;
+	font-size: 10px;
+	content: attr(data-tip);
+	top: 50%;
+	left: 50%;
+	margin-top: 1px;
+	margin-left: 1px;
+	padding: 2px 5px;
+	position: absolute;
+	z-index: 10001;
+	min-width: 45px
 }
 
-.rul_cornerTL{
-    top:0;
-    left:0;
-    border-bottom: 1px solid rgba(206, 219, 236, .5);
-    border-right:  1px solid rgba(206, 219, 236, .5);
-}
-.rul_cornerTR{
-    top:1px;
-    right:1px;
-    border-bottom: 1px solid rgba(206, 219, 236, .5);
-    border-left:  1px solid rgba(206, 219, 236, .5);
-}
-.rul_cornerBL{
-    bottom:1px;
-    left:1px;
-    border-top: 1px solid rgba(206, 219, 236, .5);
-    border-right:  1px solid rgba(206, 219, 236, .5);
-}
-.rul_cornerBR{
-    bottom:1px;
-    right:1px;
-    border-top: 1px solid rgba(206, 219, 236, .5);
-    border-left:  1px solid rgba(206, 219, 236, .5);
-}
-.rul_ruler_Vertical{
-    cursor: ew-resize;
-    border-left: none;
-}
+/*	changed CSS to "top: 0;" */
 
-.rul_ruler_Horizontal{
-    cursor: ns-resize;
-    border-top: none;
+.rul_tracker {
+	height: 1px;
+	width: 1px;
+	background: #000;
+	position: absolute;
+	top: 0;
+	pointer-events: none
 }
-
-.rul_line{
-    position: absolute;
-    color: transparent;
-    background-color: transparent;
-    border-bottom: 1px solid #3BB7C7;
-    border-left: 1px solid #3BB7C7;
-    pointer-events: all;
-    z-index: 1000;
-}
-.rul_line_dragged{
-    border: 1px dotted #6B7587;
-}
-
-.rul_line:hover{
-    border-bottom: 1px solid #236E77;
-    border-left: 1px solid #236E77;
-}
-
-.rul_lineVer{
-    top: 0;
-    bottom: 0;
-}
-
-.rul_lineVer:hover{
-    cursor: ew-resize;
-}
-
-.rul_lineHor{
-    right: 0;
-    left: 0;
-}
-
-.rul_lineHor:hover{
-    cursor: ns-resize;
-}
-
-.rul_tooltip:after{
-    background: #fff;
-    color: black;
-    border: 1px solid gray;
-    font-size: 10px;
-    content: attr(data-tip);
-    top: 50%;
-    left: 50%;
-    margin-top: 1px;
-    margin-left: 1px;
-    padding: 2px 5px;
-    position: absolute;
-    z-index: 10001;
-    min-width: 45px;
-}
-
-.rul_tracker{
-    height: 1px;
-    width: 1px;
-    background: black;
-    position: absolute;
-    pointer-events: none;
-}
-
-
-
