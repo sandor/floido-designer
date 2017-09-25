@@ -13,13 +13,13 @@
 		<li ng-class="{active: object.active}" class="list-group-item" ng-repeat="object in objects" ng-click="setAsActive(object); setAsActiveLayer(object, objects)" ng-if="!object.ignore">
 			
 			
-			<x-box>
+			<x-box  class="thumbnail justify">
 				
-			<img class="thumb" ng-src="{{object.thumbnail}}" title="{{ object.name }}" />
+			<img style="margin: auto;" ng-src="{{object.thumbnail}}" title="{{ object.name }}" />
 				</x-box>
 			<x-box>
-							<div class="media-body pull-left">
-				<p>{{ object.name}}</p>
+							<div class="media-body" style="margin: auto;">
+				<p contenteditable="true">{{ object.name}}</p>
 			</div>
 
 

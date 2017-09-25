@@ -6,7 +6,7 @@ kitchensink.controller('LeftTabsCtrl', ['$scope', function ($scope) {
             custom: 'images/icons.svg'
     },
 				   {
-    title: 'One',
+    title: 'Two',
             url: 'templates/pages.html',
             micon: 'pages',
             custom: 'images/icons.svg'

@@ -1,3 +1,18 @@
+/*/////////////////////// Page Thumbnails //////////////////*/
+
+.thumbnail {
+	top: 5px;
+left: 25px;
+  background: white;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.9);
+  display: inline-flex;
+  position: relative;
+	align-content: center;
+}
+
+/*/////////////////*/
+
 x-button[skin^="iconic"] {
     padding: 2px 6px 4px 6px;
     color: #737373;

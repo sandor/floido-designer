@@ -1,19 +1,21 @@
 <div class="toolbar-actions">
     <x-box class="middle">
-        <x-buttons tracking="2">
-            <x-button skin="iconic" onclick="toggleLayers()" toggled>
+        <x-buttons tracking="1" ng-controller="LeftTabsCtrl">
+            <x-button ng-repeat="tab in tabs" skin="iconic" ng-class="{active:isActiveTab(tab.url)}" ng-click="onClickTab(tab)">
                 <x-box vertical>
-                    <x-icon name="layers"></x-icon>
+                    <x-icon name="{{tab.micon}}"></x-icon>
                     <x-label style="color: #5a5a5a !Important">Layers</x-label>
                 </x-box>
             </x-button>
 
+<!--
             <x-button skin="iconic">
                 <x-box vertical>
                     <x-icon name="pages"></x-icon>
                     <x-label style="color: #5a5a5a !Important">Pages</x-label>
                 </x-box>
             </x-button>
+-->
         </x-buttons>
 
         <x-buttons tracking="1">
