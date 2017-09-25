@@ -1014,7 +1014,6 @@ function addAccessors($scope, $rootScope) {
             'odio euismod accumsan. Aenean posuere, magna eget pellentesque mattis, velit elit vulputate mi, id egestas purus tellus quis urna. ' +
             'Duis venenatis cursus sem ornare tincidunt. Vivamus rhoncus sem sed viverra consequat.';
 
-
         var textSample = new fabric.Textbox(text.slice(0, getRandomInt(0, text.length)), {
             includeDefaultValues: true,
             fontSize: 20,
@@ -1116,6 +1115,7 @@ function addAccessors($scope, $rootScope) {
 
 
                 canvas.add(image).setActiveObject(image);
+                canvas.setZoom(0.15);
             })
         })
 

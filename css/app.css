@@ -555,3 +555,23 @@ x-button[skin="tabnav"] x-label {
     float: left;
     height: 35px;
 }
+
+/* CSS Added BY David Abgaryan Start */
+
+.zoom-bar-percent-on-footer{
+    width: 60px;
+    margin-left: 10px; 
+    margin-right: 10px;
+}
+.right{
+    width: 400px !important
+}
+.zoom-bar-on-footer{
+    width: 250px;
+}
+
+.fit-to-win,.original-size{
+    margin-right: 10px;
+}
+
+/* CSS Added BY David Abgaryan End */
