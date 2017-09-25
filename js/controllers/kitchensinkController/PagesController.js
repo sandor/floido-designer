@@ -60,11 +60,6 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
             },
         }
     
-        $scope.setAsActive = function (object) {
-            if (object) {
-                canvas.setActiveObject(object);
-            }
-        };
     
         $scope.setAsActiveLayer = function (item, list) {
             list.some(function (item) {
