@@ -1,32 +1,29 @@
-<div class="grid-middle-noGutter" id="objects"  ng-controller="PagesController">
+<div id="objects"  ng-controller="PagesController">
 	
-                <x-box>
+                <x-box class="middle">
                     <x-label class="title_left">Pages</x-label>
-                    <x-button style="right: 15px;" skin="flat">
+                    <x-button style="top: 5px; right: 5px;" skin="flat">
   <x-icon name="add"></x-icon>
 </x-button>
                 </x-box>
 			<hr>
 
-	<ul class="list-group" ui-sortable ng-model="objects">
+	<ul class="list-group middle" ui-sortable ng-model="objects">
 
 		<li ng-class="{active: object.active}" class="list-group-item" ng-repeat="object in objects" ng-click="setAsActive(object); setAsActiveLayer(object, objects)" ng-if="!object.ignore">
 			
 			
-
+			<x-box>
+				
 			<img class="thumb" ng-src="{{object.thumbnail}}" title="{{ object.name }}" />
-
-			<x-button class="media-object pull-right" skin="flat-condensed" toggled togglable ng-click="toggleVisibility(object); $event.stopPropagation();">
-				<x-icon name="remove-red-eye"></x-icon>
-			</x-button>
-			<x-button class="media-object pull-right" skin="flat-condensed" togglable ng-click="toggleLock(object); $event.stopPropagation();">
-				<x-icon name="link"></x-icon>
-			</x-button>
-
-
-			<div class="media-body">
+				</x-box>
+			<x-box>
+							<div class="media-body pull-left">
 				<p>{{ object.name}}</p>
 			</div>
+
+
+</x-box>
 		</li>
 	</ul>
 </div>
