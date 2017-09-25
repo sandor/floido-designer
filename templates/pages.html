@@ -1,14 +1,20 @@
-<div class="grid-middle-noGutter" id="objects" ng-controller="LayersController">
-	<div class="col-12">
-		<h1 class="title_left">Layers</h1>
-		<hr>
-	</div>
+<div class="grid-middle-noGutter" id="objects"  ng-controller="PagesController">
+	
+                <x-box>
+                    <x-label class="title_left">Pages</x-label>
+                    <x-button style="right: 15px;" skin="flat">
+  <x-icon name="add"></x-icon>
+</x-button>
+                </x-box>
+			<hr>
 
 	<ul class="list-group" ui-sortable ng-model="objects">
 
 		<li ng-class="{active: object.active}" class="list-group-item" ng-repeat="object in objects" ng-click="setAsActive(object); setAsActiveLayer(object, objects)" ng-if="!object.ignore">
+			
+			
 
-			<x-icon name={{object.icon}} class="media-object pull-left"></x-icon>
+			<img class="thumb" ng-src="{{object.thumbnail}}" title="{{ object.name }}" />
 
 			<x-button class="media-object pull-right" skin="flat-condensed" toggled togglable ng-click="toggleVisibility(object); $event.stopPropagation();">
 				<x-icon name="remove-red-eye"></x-icon>
@@ -19,12 +25,8 @@
 
 
 			<div class="media-body">
-				<p>{{ object.name || object.type }}</p>
+				<p>{{ object.name}}</p>
 			</div>
-		</li>
-
-		<li ng-if="!canvas._objects.length" class="list-group-item">
-			<p>No layers yet.</p>
 		</li>
 	</ul>
 </div>

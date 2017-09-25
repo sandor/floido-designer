@@ -1,9 +1,29 @@
 // Layer panel test implementation
 // ================================================================
 
-kitchensink.controller('LayersController', ['$scope', '$rootScope', '$timeout', function ($scope, $rootScope, $timeout) {
+kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', function ($scope, $rootScope, $timeout) {
     
-        $scope.objects = canvas._objects || [];
+       $scope.objects = [{
+                name: 'Page 1',
+                thumbnail: 'project/assets/thumbnails/page1.png',
+                path: 'project/pages/'
+        },
+            {
+                name: 'Page 2',
+                thumbnail: 'project/assets/thumbnails/page2.png',
+                path: 'project/pages/'
+        },
+            {
+                name: 'Page 3',
+                thumbnail: 'project/assets/thumbnails/page3.png',
+                path: 'project/pages/'
+        },
+            {
+                name: 'Page 4',
+                thumbnail: 'project/assets/thumbnails/page4.png',
+                path: 'project/pages/'
+        }
+      ];
     
         $scope.sortableOptions = {
             items: '.object:visible',
