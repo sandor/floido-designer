@@ -1098,7 +1098,7 @@ function addAccessors($scope, $rootScope) {
 
 
     $scope.loadImage = function () {
-
+;
         const {
             ipcRenderer
         } = require('electron')
@@ -1107,15 +1107,20 @@ function addAccessors($scope, $rootScope) {
             fabric.Image.fromURL(filepath, function (image) {
 
                 image.set({
-                    scaleX: 0.5,
-                    scaleY: 0.5,
+                    scaleX: 1,
+                    scaleY: 1,
                     name: "Image",
                     icon: "photo"
                 })
 
 
                 canvas.add(image).setActiveObject(image);
-                canvas.setZoom(0.15);
+                ;
+                if(canvas&&canvas._objects.length===1){
+                    canvas.setHeight(image.height);
+                    canvas.setWidth(image.width);
+                }
+                canvas.setZoom(1);
             })
         })
 
