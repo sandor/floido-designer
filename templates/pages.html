@@ -1,0 +1,29 @@
+<div id="objects"  ng-controller="PagesController">
+	
+                <x-box class="middle">
+                    <x-label class="title_left">Pages</x-label>
+                    <x-button style="top: 5px; right: 5px;" skin="flat">
+  <x-icon name="add"></x-icon>
+</x-button>
+                </x-box>
+			<hr>
+
+	<ul class="list-group middle" ui-sortable ng-model="objects">
+
+		<li ng-class="{active: object.active}" class="list-group-item" ng-repeat="object in objects" ng-click="setAsActive(object); setAsActiveLayer(object, objects)" ng-if="!object.ignore">
+			
+			
+			<x-box  class="thumbnail justify">
+				
+			<img style="margin: auto;" ng-src="{{object.thumbnail}}" title="{{ object.name }}" />
+				</x-box>
+			<x-box>
+							<div class="media-body" style="margin: auto;">
+				<p contenteditable="true">{{ object.name}}</p>
+			</div>
+
+
+</x-box>
+		</li>
+	</ul>
+</div>

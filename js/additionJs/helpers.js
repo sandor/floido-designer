@@ -8,201 +8,7 @@
 //		initAligningGuidelines(canvas);
 //		initCenteringGuidelines(canvas);
 
-//dumb test with filters
 
-
-
-function addFilters($scope) {
-
-    // manually initialize 2 filter backend to give ability to switch:
-    var webglBackend = new fabric.WebglFilterBackend();
-    var canvas2dBackend = new fabric.Canvas2dFilterBackend()
-
-    fabric.filterBackend = webglBackend;
-    var $ = function (id) {
-        return document.getElementById(id)
-    };
-
-    function applyFilter(index, filter) {
-        var obj = canvas.getActiveObject();
-        obj.filters[index] = filter;
-        var timeStart = +new Date();
-        obj.applyFilters();
-        var timeEnd = +new Date();
-        var dimString = canvas.getActiveObject().width + ' x ' +
-            canvas.getActiveObject().height;
-        $('bench').innerHTML = dimString + 'px ' +
-            parseFloat(timeEnd - timeStart) + 'ms';
-        canvas.renderAll();
-    }
-
-    function getFilter(index) {
-        var obj = canvas.getActiveObject();
-        return obj.filters[index];
-    }
-
-    function applyFilterValue(index, prop, value) {
-        var obj = canvas.getActiveObject();
-        if (obj.filters[index]) {
-            obj.filters[index][prop] = value;
-            var timeStart = +new Date();
-            obj.applyFilters();
-            var timeEnd = +new Date();
-            var dimString = canvas.getActiveObject().width + ' x ' +
-                canvas.getActiveObject().height;
-            $('bench').innerHTML = dimString + 'px ' +
-                parseFloat(timeEnd - timeStart) + 'ms';
-            canvas.renderAll();
-        }
-    }
-
-    fabric.Object.prototype.padding = 5;
-    fabric.Object.prototype.transparentCorners = false;
-
-    f = fabric.Image.filters;
-
-    canvas.on({
-        'object:selected': function () {
-
-
-            var filters = ['grayscale', 'invert', 'remove-color', 'sepia', 'brownie',
-                'brightness', 'contrast', 'saturation', 'noise', 'vintage',
-                'pixelate', 'blur', 'sharpen', 'emboss', 'technicolor',
-                'polaroid', 'blend-color', 'gamma', 'kodachrome',
-                'blackwhite', 'blend-image', 'hue'
-            ];
-
-            for (var i = 0; i < filters.length; i++) {
-                filters[i] && (
-                    $(filters[i]).checked = !!canvas.getActiveObject().filters[i]);
-            }
-        },
-
-    });
-
-    fabric.Image.fromURL('images/woman.png', function (img) {
-        var oImg = img.set({
-            left: 0,
-            top: 0
-        }).scale(1);
-        canvas.add(oImg);
-    });
-    var indexF;
-    $scope.webgl = function () {
-        if (this.checked) {
-            fabric.filterBackend = webglBackend;
-        } else {
-            fabric.filterBackend = canvas2dBackend;
-        }
-    };
-    $scope.brownie = function () {
-        applyFilter(4, this.checked && new f.Brownie());
-    };
-    $scope.vintage = function () {
-        applyFilter(9, this.checked && new f.Vintage());
-    };
-    $('technicolor').onclick = function () {
-        applyFilter(14, this.checked && new f.Technicolor());
-    };
-    $('polaroid').onclick = function () {
-        applyFilter(15, this.checked && new f.Polaroid());
-    };
-    $('kodachrome').onclick = function () {
-        applyFilter(18, this.checked && new f.Kodachrome());
-    };
-    $('blackwhite').onclick = function () {
-        applyFilter(19, this.checked && new f.BlackWhite());
-    };
-    $('grayscale').onclick = function () {
-        applyFilter(0, this.checked && new f.Grayscale());
-    };
-    $('average').onclick = function () {
-        applyFilterValue(0, 'mode', 'average');
-    };
-    $('luminosity').onclick = function () {
-        applyFilterValue(0, 'mode', 'luminosity');
-    };
-    $('lightness').onclick = function () {
-        applyFilterValue(0, 'mode', 'lightness');
-    };
-    $('invert').onclick = function () {
-        applyFilter(1, this.checked && new f.Invert());
-    };
-    $('sepia').onclick = function () {
-        applyFilter(3, this.checked && new f.Sepia());
-    };
-    $('brightness').onclick = function () {
-        applyFilter(5, this.checked && new f.Brightness({
-            brightness: parseFloat($('brightness-value').value)
-        }));
-    };
-    $('brightness-value').oninput = function () {
-        applyFilterValue(5, 'brightness', parseFloat(this.value));
-    };
-    $('contrast').onclick = function () {
-        applyFilter(6, this.checked && new f.Contrast({
-            contrast: parseFloat($('contrast-value').value)
-        }));
-    };
-    $('contrast-value').oninput = function () {
-        applyFilterValue(6, 'contrast', parseFloat(this.value));
-    };
-    $('saturation').onclick = function () {
-        applyFilter(7, this.checked && new f.Saturation({
-            saturation: parseFloat($('saturation-value').value)
-        }));
-    };
-    $('saturation-value').oninput = function () {
-        applyFilterValue(7, 'saturation', parseFloat(this.value));
-    };
-    $('noise').onclick = function () {
-        applyFilter(8, this.checked && new f.Noise({
-            noise: parseInt($('noise-value').value, 10)
-        }));
-    };
-    $('noise-value').oninput = function () {
-        applyFilterValue(8, 'noise', parseInt(this.value, 10));
-    };
-    $('blur').onclick = function () {
-        applyFilter(11, this.checked && new f.Blur({
-            value: parseFloat($('blur-value').value)
-        }));
-    };
-    $('blur-value').oninput = function () {
-        applyFilterValue(11, 'blur', parseFloat(this.value, 10));
-    };
-
-    $('blend').onclick = function () {
-        applyFilter(16, this.checked && new f.BlendColor({
-            color: document.getElementById('blend-color').value,
-            mode: document.getElementById('blend-mode').value,
-            alpha: document.getElementById('blend-alpha').value
-        }));
-    };
-
-    $('blend-mode').onchange = function () {
-        applyFilterValue(16, 'mode', this.value);
-    };
-
-    $('blend-color').onchange = function () {
-        applyFilterValue(16, 'color', this.value);
-    };
-
-    $('blend-alpha').oninput = function () {
-        applyFilterValue(16, 'alpha', this.value);
-    };
-
-    $('hue').onclick = function () {
-        applyFilter(21, this.checked && new f.HueRotation({
-            rotation: document.getElementById('hue-value').value,
-        }));
-    };
-
-    $('hue-value').oninput = function () {
-        applyFilterValue(21, 'rotation', this.value);
-    };
-
-}
 
 //move objects on the canvas with keyboard
 
@@ -797,12 +603,12 @@ function addAccessors($scope, $rootScope) {
                 y2: canvas.height,
             },
             colorStops: [{
-                color: leftColor,
-                offset: 0,
+                    color: leftColor,
+                    offset: 0,
             },
-            {
-                color: rightColor,
-                offset: 1,
+                {
+                    color: rightColor,
+                    offset: 1,
             }
             ]
         });
@@ -837,7 +643,7 @@ function addAccessors($scope, $rootScope) {
         const {
             ipcRenderer
         } = require('electron')
-        ipcRenderer.send('openFile', () => { })
+        ipcRenderer.send('openFile', () => {})
         ipcRenderer.once('fileData', (event, filepath) => {
             fabric.Image.fromURL(filepath, function (image) {
                 //                var hCent = canvas.getHeight / 2;
@@ -965,26 +771,26 @@ function addAccessors($scope, $rootScope) {
         var coord = getRandomLeftTop();
 
         this.canvas.add(new fabric.Polygon([{
-            x: 185,
-            y: 0
+                x: 185,
+                y: 0
         },
-        {
-            x: 250,
-            y: 100
+            {
+                x: 250,
+                y: 100
         },
-        {
-            x: 385,
-            y: 170
+            {
+                x: 385,
+                y: 170
         },
-        {
-            x: 0,
-            y: 245
+            {
+                x: 0,
+                y: 245
         }
         ], {
-                left: coord.left,
-                top: coord.top,
-                fill: '#' + getRandomColor()
-            }));
+            left: coord.left,
+            top: coord.top,
+            fill: '#' + getRandomColor()
+        }));
     };
 
     $scope.addText = function () {
@@ -1069,10 +875,10 @@ function addAccessors($scope, $rootScope) {
             var loadedObject = fabric.util.groupSVGElements(objects, options);
 
             loadedObject.set({
-                left: coord.left,
-                top: coord.top,
-                angle: getRandomInt(-10, 10)
-            })
+                    left: coord.left,
+                    top: coord.top,
+                    angle: getRandomInt(-10, 10)
+                })
                 .setCoords();
 
             canvas.add(loadedObject);
@@ -1102,7 +908,7 @@ function addAccessors($scope, $rootScope) {
         const {
             ipcRenderer
         } = require('electron')
-        ipcRenderer.send('openFile', () => { })
+        ipcRenderer.send('openFile', () => {})
         ipcRenderer.once('fileData', (event, filepath) => {
             fabric.Image.fromURL(filepath, function (image) {
 
@@ -1251,10 +1057,10 @@ function addAccessors($scope, $rootScope) {
         fabric.Image.fromURL(file.path, function (image) {
 
             image.set({
-                left: coord.left,
-                top: coord.top,
-                angle: getRandomInt(-10, 10)
-            })
+                    left: coord.left,
+                    top: coord.top,
+                    angle: getRandomInt(-10, 10)
+                })
                 .scale(getRandomNum(minScale, maxScale))
                 .setCoords();
 
@@ -1334,8 +1140,8 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getScaleLockX = function () {
-        return getActiveProp('lockScalingX');
-    },
+            return getActiveProp('lockScalingX');
+        },
         $scope.setScaleLockX = function (value) {
             setActiveProp('lockScalingX', value);
         };
@@ -1792,5 +1598,3 @@ function watchCanvas($scope) {
         .on('path:created', updateScope)
         .on('selection:cleared', updateScope);
 }
-
-

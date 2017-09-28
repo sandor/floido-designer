@@ -61,6 +61,9 @@
     <script src="js/controllers/kitchensinkController/RightTabsController.js"></script>
     <script src="js/controllers/kitchensinkController/LeftTabsController.js"></script>
     <script src="js/controllers/kitchensinkController/FontsController.js"></script>
+
+    <script src="js/controllers/kitchensinkController/PagesController.js"></script>
+
     <script src="js/additionJs/keymaster.js"></script>
 
     <script src="lib/font_definitions.js"></script>
@@ -133,6 +136,7 @@
 
 
                 </div>
+
                 <div class="pane content-empty image-builder-container">
 
                     <div id="wrapper" class='image-builder' parent-click="fabric.deactivateAll()">
@@ -164,11 +168,11 @@
             <x-box class="right" style="width: 320px;">
                 <x-label class="zoom-bar-percent-on-footer">Zoom: {{zoom}}%</x-label>
                 <!-- <x-slider  style="margin-right: 15px; width: 240px;" value="0" min="-400" max="400"></x-slider> -->
-                <input class="zoom-bar-on-footer"  ng-model="zoom" ng-change="setZoom(this)" type="range" min="5" max="450" value="100"  step="1" />
-                <button class="original-size" ng-click="originalSize(this)"  skin="flat-condensed">
+                <input class="zoom-bar-on-footer" ng-model="zoom" ng-change="setZoom(this)" type="range" min="5" max="450" value="100" step="1" />
+                <button class="original-size" ng-click="originalSize(this)" skin="flat-condensed">
                     <x-icon name="aspect-ratio"></x-icon>
                 </button>
-                <button class="fit-to-win" ng-click="fitToWin()"  skin="flat-condensed">
+                <button class="fit-to-win" ng-click="fitToWin()" skin="flat-condensed">
                     <x-icon name="settings-overscan"></x-icon>
                 </button>
             </x-box>
