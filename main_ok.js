@@ -27,26 +27,47 @@ const {
 const reload = require('electron-reload')(__dirname)
 
 
+//app.on('ready', () => {
+//    let main = null
+//    let loading = new BrowserWindow({
+//        show: false,
+//        frame: false
+//    })
+//
+//    loading.once('show', () => {
+//        main = new BrowserWindow({
+//            show: false
+//        })
+//        main.webContents.once('dom-ready', () => {
+//                console.log('main loaded')
+//                main.show()
+//                loading.hide()
+//                loading.close()
+//            })
+//            // long loading html
+//        main.loadURL('http://spacecrafts3d.org')
+//    })
+//    loading.loadURL('loding.html')
+//    loading.show()
+//})
 
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-
-
 let mainWindow
-    //let secondWindow
+
+
 
 function createWindow() {
-
-
-
     // Create the browser window.
     mainWindow = new BrowserWindow({
         width: 1680,
         height: 1050,
         titleBarStyle: 'hidden',
         vibrancy: 'medium-light',
-        show: true
+        webPreferences: {
+            experimentalFeatures: true
+        }
     })
 
 
@@ -57,31 +78,9 @@ function createWindow() {
         slashes: true
     }))
 
-    mainWindow.once('ready-to-show', () => {
-        mainWindow.show()
-    })
-
     mainWindow.webContents.on('did-finish-load', function () {
         mainWindow.webContents.send('ping', 'whoooooooh!');
     })
-
-    //    secondWindow = new BrowserWindow({
-    //        frame: false,
-    //        width: 800,
-    //        height: 600,
-    //        minWidth: 800,
-    //        minHeight: 600,
-    //        backgroundColor: '#312450',
-    //        show: true,
-    //        parent: mainWindow
-    //    })
-    //
-    //    secondWindow.loadURL(url.format({
-    //        pathname: path.join(__dirname, 'aboutWindow/index.html'),
-    //        protocol: 'file:',
-    //        slashes: true
-    //    }))
-
 
     // Open the DevTools.
     // mainWindow.webContents.openDevTools()
