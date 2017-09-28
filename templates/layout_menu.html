@@ -60,14 +60,14 @@
 			<x-box>
 				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Position</x-label>
 
-				<x-numberinput style="margin-right: 5px; width: 130px;" skin="condensed" suffix=" px" bind-value-to="propLeft">
+				<x-numberinput id="position-x" style="margin-right: 5px; width: 130px;" skin="condensed" suffix=" px" bind-value-to="propLeft">
 					<x-stepper></x-stepper>
 				</x-numberinput>
 
 				<div style="width: 20px; margin-right: 5px;">
 				</div>
 
-				<x-numberinput style="width: 130px; margin-right: 10px;" skin="condensed" suffix=" px" bind-value-to="propTop">
+				<x-numberinput id="position-y"  style="width: 130px; margin-right: 10px;" skin="condensed" suffix=" px" bind-value-to="propTop">
 					<x-stepper></x-stepper>
 				</x-numberinput>
 
@@ -83,7 +83,7 @@
 			<x-box>
 				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Size</x-label>
 
-				<x-numberinput style="margin-right: 5px; width: 130px;" skin="condensed" suffix=" px" bind-value-to="propWidth">
+				<x-numberinput style="margin-right: 5px; width: 130px;" id="size-propWidth" skin="condensed" suffix=" px" bind-value-to="propWidth">
 					<x-stepper></x-stepper>
 				</x-numberinput>
 
@@ -91,7 +91,7 @@
 					<x-icon name="link"></x-icon>
 				</x-button>
 
-				<x-numberinput style="width: 130px; margin-right: 10px;" skin="condensed" suffix=" px" bind-value-to="propHeight">
+				<x-numberinput style="width: 130px; margin-right: 10px;" id="size-propHeight" skin="condensed" suffix=" px" bind-value-to="propHeight">
 					<x-stepper></x-stepper>
 				</x-numberinput>
 
@@ -107,7 +107,7 @@
 			<x-box>
 				<x-label style="margin-left:5px; margin-right: 16px; width: 75px;">Transform</x-label>
 
-				<x-numberinput style="margin-right: 15px; width: 137px;" skin="condensed" suffix=" °" bind-value-to="propAngle">
+				<x-numberinput id="transform-angle" style="margin-right: 15px; width: 137px;" skin="condensed" suffix=" °" bind-value-to="propAngle">
 					<x-stepper></x-stepper>
 				</x-numberinput>
 
@@ -155,7 +155,7 @@
 			<x-box>
 				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Scale</x-label>
 
-				<x-numberinput style="margin-right: 5px; width: 130px;" skin="condensed" suffix=" px" bind-value-to="propScaleX">
+				<x-numberinput id="scale-scaleX" style="margin-right: 5px; width: 130px;" skin="condensed" suffix=" px" bind-value-to="propScaleX">
 					<x-stepper></x-stepper>
 				</x-numberinput>
 
@@ -163,7 +163,7 @@
 					<x-icon name="link"></x-icon>
 				</x-button>
 
-				<x-numberinput style="width: 130px; margin-right: 10px;" skin="condensed" suffix=" px" bind-value-to="propScaleY">
+				<x-numberinput id="scale-scaleY" style="width: 130px; margin-right: 10px;" skin="condensed" suffix=" px" bind-value-to="propScaleY">
 					<x-stepper></x-stepper>
 				</x-numberinput>
 
