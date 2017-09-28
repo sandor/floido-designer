@@ -1,1 +1,7 @@
 node_modules
+.idea/workspace.xml
+.idea/watcherTasks.xml
+.idea/vcs.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/floido-designer.iml
