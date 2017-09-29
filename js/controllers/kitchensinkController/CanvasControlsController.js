@@ -12,7 +12,30 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
     addAccessors($scope);
     watchCanvas($scope);
 
+//get canvas Angle and set it
 
+    canvas.on('object:rotating', function (options) {
+        console.log(options.target);
+        if (document.getElementById("canvas-angle")) {
+            document.getElementById("canvas-angle").value = Math.round(options.target.angle);
+        }
+
+
+        //document.getElementById("position-y").value = Math.round(options.target.angle);
+    });
+    canvas.on('object:modified', function (options) {
+        if (document.getElementById("position-x")) {
+            document.getElementById("transform-angle").value = Math.round(options.target.angle);
+            document.getElementById("position-x").value = Math.round(options.target.left);
+            document.getElementById("position-y").value = Math.round(options.target.top);
+            document.getElementById("size-propWidth").value = Math.round(options.target.width);
+            document.getElementById("size-propHeight").value = Math.round(options.target.height);
+            document.getElementById("scale-scaleX").value = Math.round(options.target.scaleX);
+            document.getElementById("scale-scaleY").value = Math.round(options.target.scaleY);
+        }
+    })
+
+    // $scope.canvasAngle = canvasAngle;
     // Editing manipulating the Canvas Size
     // ================================================================
 
@@ -59,10 +82,11 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
     };
 
 
+
     $scope.setZoom = function (param) {
-        ;
+
         [].__proto__.forEach.call(canvas._objects, (canvasItem) => {
-            ;
+
             console.log(canvasItem.name);
             if (canvas.getActiveObject().name != 'Image' && canvasItem.name == 'Image') {
                 canvas.setActiveObject(canvasItem);
@@ -96,6 +120,7 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
 
 
     }
+
 
     $scope.originalSize = function (param) {
         ;
@@ -131,9 +156,9 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
     }
 
     $scope.fitToWin = function (param) {
-        ;
+
         [].__proto__.forEach.call(canvas._objects, (canvasItem) => {
-            ;
+
             console.log(canvasItem.name);
             if (canvas.getActiveObject().name != 'Image' && canvasItem.name == 'Image') {
                 canvas.setActiveObject(canvasItem);
@@ -160,7 +185,7 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
             canvas.getActiveObject().top = 0;
             canvas.setWidth($scope.insideRulerWidth);
             canvas.setHeight($scope.insideRulerheight);
-            ;
+
             canvas.getActiveObject().scaleY = 1;
             canvas.getActiveObject().scaleX = 1;
 

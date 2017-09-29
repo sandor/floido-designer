@@ -9,7 +9,6 @@
 //		initCenteringGuidelines(canvas);
 
 
-
 //move objects on the canvas with keyboard
 
 document.onkeydown = function (e) {
@@ -51,7 +50,6 @@ document.onkeydown = function (e) {
 
 
 /*copy, paste and delete object – shortcuts are defined with keymaster.js https://github.com/madrobby/keymaster (see the index.html)*/
-
 
 
 function group() {
@@ -211,10 +209,6 @@ function setActiveShadow(name, value) {
 }
 
 
-
-
-
-
 ///////////
 
 function addAccessors($scope, $rootScope) {
@@ -249,9 +243,6 @@ function addAccessors($scope, $rootScope) {
         obj.applyFilters();
         canvas.renderAll();
     };
-
-
-
 
 
     $scope.setBlur = function (value) {
@@ -417,105 +408,110 @@ function addAccessors($scope, $rootScope) {
         return getActiveStyle('strokeWidth');
     };
     $scope.setStrokeWidth = function (value) {
-        setActiveStyle('strokeWidth', parseInt(value, 10));
+        setActiveStyle('strokeWidth', parseInt(value, 0));
     };
 
     $scope.getPropLeft = function () {
-        return getActiveProp('left');
+        return parseInt(getActiveProp('left'), 0);
         console.log(value);
     };
     $scope.setPropLeft = function (value) {
-        setActiveProp('left', parseInt(value, 10));
+        setActiveProp('left', parseInt(value, 0));
         canvas.renderAll();
     };
 
     $scope.getPropTop = function () {
-        return getActiveProp('top');
+        return parseInt(getActiveProp('top'), 0);
         console.log(value);
     };
 
     $scope.setPropTop = function (value) {
-        setActiveProp('top', parseInt(value, 10));
+        setActiveProp('top', parseInt(value, 0));
         canvas.renderAll();
     };
 
     $scope.getPropWidth = function () {
-        return getActiveProp('width');
+        return parseInt(getActiveProp('width'), 0);
         console.log(value);
     };
 
     $scope.setPropWidth = function (value) {
-        setActiveProp('width', parseInt(value, 10));
+        setActiveProp('width', parseInt(value, 0));
         canvas.renderAll();
     };
 
     $scope.getPropHeight = function () {
-        return getActiveProp('height');
+        return parseInt(getActiveProp('height'), 0);
         console.log(value);
     };
 
     $scope.setPropHeight = function (value) {
-        setActiveProp('height', parseInt(value, 10));
+        setActiveProp('height', parseInt(value, 0));
         canvas.renderAll();
     };
 
     $scope.getPropAngle = function () {
-        return getActiveProp('angle');
+
+        return parseInt(getActiveProp('angle'), 0);
         console.log(value);
     };
 
     $scope.setPropAngle = function (value) {
-        setActiveProp('angle', parseInt(value, 10));
+
+        value = Math.round(value)
+        setActiveProp('angle', parseInt(value, 0));
         canvas.renderAll();
     };
 
+
     $scope.getPropScaleX = function () {
-        return getActiveProp('scaleX');
+        return parseInt(getActiveProp('scaleX'), 0);
     };
 
     $scope.setPropScaleX = function (value) {
-        setActiveProp('scaleX', parseInt(value, 10));
+        setActiveProp('scaleX', parseInt(value, 0));
         canvas.renderAll();
     };
 
     $scope.getPropScaleY = function () {
-        return getActiveProp('scaleY');
+        return parseInt(getActiveProp('scaleY'), 0);
     };
 
     $scope.setPropScaleY = function (value) {
-        setActiveProp('scaleY', parseInt(value, 10));
+        setActiveProp('scaleY', parseInt(value, 0));
         canvas.renderAll();
     };
 
 
+
     $scope.getRadius = function () {
-        return getActiveProp('rx');
+        return parseInt(getActiveProp('rx'), 0);
     };
 
     $scope.getCornerWidth = function () {
-        return getActiveProp('rx');
-        return getActiveProp('ry');
+        return parseInt(getActiveProp('rx'), 0);
+        return parseInt(getActiveProp('ry'), 0);
     };
     $scope.setCornerWidth = function (value) {
-        setActiveProp('rx', parseInt(value, 10));
-        setActiveProp('ry', parseInt(value, 10));
+        setActiveProp('rx', parseInt(value, 0));
+        setActiveProp('ry', parseInt(value, 0));
     };
 
     $scope.getFontSize = function () {
-        return getActiveStyle('fontSize');
+        return parseInt(getActiveStyle('fontSize'), 0);
     };
     $scope.setFontSize = function (value) {
-        setActiveStyle('fontSize', parseInt(value, 10));
+        setActiveStyle('fontSize', parseInt(value, 0));
     };
 
     $scope.getLineHeight = function () {
-        return getActiveStyle('lineHeight');
+        return parseInt(getActiveStyle('lineHeight'), 0);
     };
     $scope.setLineHeight = function (value) {
-        setActiveStyle('lineHeight', parseFloat(value, 10));
+        setActiveStyle('lineHeight', parseFloat(value, 0));
     };
     $scope.getCharSpacing = function () {
-        return getActiveStyle('charSpacing');
+        return parseInt(getActiveStyle('charSpacing'), 0);
     };
     $scope.setCharSpacing = function (value) {
         setActiveStyle('charSpacing', value);
@@ -603,13 +599,13 @@ function addAccessors($scope, $rootScope) {
                 y2: canvas.height,
             },
             colorStops: [{
-                    color: leftColor,
-                    offset: 0,
+                color: leftColor,
+                offset: 0,
             },
                 {
                     color: rightColor,
                     offset: 1,
-            }
+                }
             ]
         });
         canvas.backgroundColor = grad.toLive(canvas.contextContainer);
@@ -643,7 +639,8 @@ function addAccessors($scope, $rootScope) {
         const {
             ipcRenderer
         } = require('electron')
-        ipcRenderer.send('openFile', () => {})
+        ipcRenderer.send('openFile', () => {
+        })
         ipcRenderer.once('fileData', (event, filepath) => {
             fabric.Image.fromURL(filepath, function (image) {
                 //                var hCent = canvas.getHeight / 2;
@@ -765,27 +762,25 @@ function addAccessors($scope, $rootScope) {
     };
 
 
-
-
     $scope.addPolygon = function () {
         var coord = getRandomLeftTop();
 
         this.canvas.add(new fabric.Polygon([{
-                x: 185,
-                y: 0
+            x: 185,
+            y: 0
         },
             {
                 x: 250,
                 y: 100
-        },
+            },
             {
                 x: 385,
                 y: 170
-        },
+            },
             {
                 x: 0,
                 y: 245
-        }
+            }
         ], {
             left: coord.left,
             top: coord.top,
@@ -875,10 +870,10 @@ function addAccessors($scope, $rootScope) {
             var loadedObject = fabric.util.groupSVGElements(objects, options);
 
             loadedObject.set({
-                    left: coord.left,
-                    top: coord.top,
-                    angle: getRandomInt(-10, 10)
-                })
+                left: coord.left,
+                top: coord.top,
+                angle: getRandomInt(-10, 10)
+            })
                 .setCoords();
 
             canvas.add(loadedObject);
@@ -897,18 +892,18 @@ function addAccessors($scope, $rootScope) {
     };
 
 
-
     /*
     Load Image from file system
     */
 
 
     $scope.loadImage = function () {
-;
+
         const {
             ipcRenderer
         } = require('electron')
-        ipcRenderer.send('openFile', () => {})
+        ipcRenderer.send('openFile', () => {
+        })
         ipcRenderer.once('fileData', (event, filepath) => {
             fabric.Image.fromURL(filepath, function (image) {
 
@@ -921,17 +916,20 @@ function addAccessors($scope, $rootScope) {
 
 
                 canvas.add(image).setActiveObject(image);
-                ;
-                if(canvas&&canvas._objects.length===1){
+
+                if (canvas && canvas._objects.length === 1) {
                     canvas.setHeight(image.height);
                     canvas.setWidth(image.width);
                 }
+
+                canvas._activeObject._element.addEventListener('rotating', () => {
+
+                })
                 canvas.setZoom(1);
             })
         })
 
     };
-
 
 
     $scope.dropImage = function () {
@@ -991,7 +989,6 @@ function addAccessors($scope, $rootScope) {
             }
         }
     };
-
 
 
     /*
@@ -1057,10 +1054,10 @@ function addAccessors($scope, $rootScope) {
         fabric.Image.fromURL(file.path, function (image) {
 
             image.set({
-                    left: coord.left,
-                    top: coord.top,
-                    angle: getRandomInt(-10, 10)
-                })
+                left: coord.left,
+                top: coord.top,
+                angle: getRandomInt(-10, 10)
+            })
                 .scale(getRandomNum(minScale, maxScale))
                 .setCoords();
 
@@ -1071,7 +1068,6 @@ function addAccessors($scope, $rootScope) {
     $scope.addImage1 = function () {
         addImage('fab.png', 0.1, 0.25);
     };
-
 
 
     $scope.addImage2 = function () {
@@ -1140,8 +1136,8 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getScaleLockX = function () {
-            return getActiveProp('lockScalingX');
-        },
+        return getActiveProp('lockScalingX');
+    },
         $scope.setScaleLockX = function (value) {
             setActiveProp('lockScalingX', value);
         };
@@ -1161,7 +1157,6 @@ function addAccessors($scope, $rootScope) {
     };
 
 
-
     $scope.getOriginX = function () {
         return getActiveProp('originX');
     };
@@ -1176,7 +1171,6 @@ function addAccessors($scope, $rootScope) {
     $scope.setOriginY = function (value) {
         setActiveProp('originY', value);
     };
-
 
 
     $scope.getObjectCaching = function () {
@@ -1311,7 +1305,6 @@ function addAccessors($scope, $rootScope) {
     };
 
 
-
     $scope.getConsoleJSON = function () {
         return consoleJSONValue;
     };
@@ -1390,7 +1383,6 @@ function addAccessors($scope, $rootScope) {
     }
 
     //	initCustomization();
-
 
 
     $scope.getPreserveObjectStacking = function () {
@@ -1487,6 +1479,7 @@ function addAccessors($scope, $rootScope) {
         initDiamondPatternBrush();
         initImagePatternBrush();
     }
+
     initBrushes();
 
     function initImagePatternBrush() {
@@ -1598,3 +1591,5 @@ function watchCanvas($scope) {
         .on('path:created', updateScope)
         .on('selection:cleared', updateScope);
 }
+
+
