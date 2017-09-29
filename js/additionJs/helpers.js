@@ -189,7 +189,6 @@ function setActiveProp(name, value) {
 function getActiveShadow(name) {
     var object = canvas.getActiveObject();
     if (!object) return '';
-
     return object.shadow[name] || '';
 }
 

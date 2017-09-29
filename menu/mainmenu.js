@@ -149,11 +149,14 @@ if (process.platform === 'darwin') {
                     click() {
                         let win = new BrowserWindow({
                             title: 'About Floido Designer',
-                            width: 800,
-                            height: 600,
-                            backgroundColor: '#312450',
+                            width: 600,
+                            height: 400,
+                            backgroundColor: '#6b0098',
                             alwaysOnTop: true,
-                            modal: true
+							minimizable: false,
+							fullscreen: false,
+							titleBarStyle: 'hidden',
+							icon: '../icons/mac/icon.icns'
                         })
                         win.loadURL(url.format({
                             pathname: path.join(__dirname, '../aboutWindow/index.html'),
