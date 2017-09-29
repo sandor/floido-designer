@@ -1,237 +1,246 @@
 <div class="grid-middle-noGutter">
-	<div class="col-12">
-		<h1 class="title_left">Element Layout</h1>
-		<hr>
-	</div>
-	<x-box>
-		<x-label style="margin-left:5px; margin-right: 15px; width: 65px;">Align</x-label>
+    <div class="col-12">
+        <h1 class="title_left">Element Layout</h1>
+        <hr>
+    </div>
+    <x-box>
+        <x-label style="margin-left:5px; margin-right: 15px; width: 65px;">Align</x-label>
 
-		<x-buttons tracking="-1" style="padding-top: 5px;">
-			<x-button skin="tabnav_sm">
-				<x-icon name="dcenter" iconset="images/icons.svg"></x-icon>
-			</x-button>
+        <x-buttons tracking="-1" style="padding-top: 5px;">
+            <x-button skin="tabnav_sm">
+                <x-icon name="dcenter" iconset="images/icons.svg"></x-icon>
+            </x-button>
 
-			<x-button skin="tabnav_sm">
-				<x-icon name="dmiddle" iconset="images/icons.svg"></x-icon>
-			</x-button>
-			
-			<div style="width: 1px; margin-top: -5px; background-color: #656565; margin-left: 7px; margin-right: 7px;">&nbsp</div>
+            <x-button skin="tabnav_sm">
+                <x-icon name="dmiddle" iconset="images/icons.svg"></x-icon>
+            </x-button>
 
-			<x-button id="objAlignLeft" skin="tabnav_sm" ng-click="alignLeft()">
-				<x-icon name="aleft" iconset="images/icons.svg"></x-icon>
-			</x-button>
+            <div style="width: 1px; margin-top: -5px; background-color: #656565; margin-left: 7px; margin-right: 7px;">
+                &nbsp
+            </div>
 
-			<x-button id="objAlignMiddle" skin="tabnav_sm" ng-click="alignMiddle()">
-				<x-icon name="amiddle" iconset="images/icons.svg"></x-icon>
-			</x-button>
+            <x-button id="objAlignLeft" skin="tabnav_sm" ng-click="alignLeft()">
+                <x-icon name="aleft" iconset="images/icons.svg"></x-icon>
+            </x-button>
 
-			<x-button id="objAlignRight" skin="tabnav_sm" ng-click="alignRight()">
-				<x-icon name="aright" iconset="images/icons.svg"></x-icon>
-			</x-button>
+            <x-button id="objAlignMiddle" skin="tabnav_sm" ng-click="alignMiddle()">
+                <x-icon name="amiddle" iconset="images/icons.svg"></x-icon>
+            </x-button>
 
-			<x-button skin="tabnav_sm">
-				<x-icon name="atop" iconset="images/icons.svg"></x-icon>
-			</x-button>
+            <x-button id="objAlignRight" skin="tabnav_sm" ng-click="alignRight()">
+                <x-icon name="aright" iconset="images/icons.svg"></x-icon>
+            </x-button>
 
-			<x-button skin="tabnav_sm">
-				<x-icon name="amiddle" iconset="images/icons.svg"></x-icon>
-			</x-button>
+            <x-button skin="tabnav_sm">
+                <x-icon name="atop" iconset="images/icons.svg"></x-icon>
+            </x-button>
 
-			<x-button skin="tabnav_sm">
-				<x-icon name="abottom" iconset="images/icons.svg"></x-icon>
-			</x-button>
-		</x-buttons>
-	</x-box>
+            <x-button skin="tabnav_sm">
+                <x-icon name="amiddle" iconset="images/icons.svg"></x-icon>
+            </x-button>
 
-	<hr>
+            <x-button skin="tabnav_sm">
+                <x-icon name="abottom" iconset="images/icons.svg"></x-icon>
+            </x-button>
+        </x-buttons>
+    </x-box>
 
-	<div class="spacer"></div>
+    <hr>
 
-
-	<!--////////////////////////-->
-
-
-	<x-accordion expanded>
-		<header>
-			<x-label>Object Placement</x-label>
-		</header>
-
-		<main>
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Position</x-label>
-
-				<x-numberinput id="position-x" style="margin-right: 5px; width: 130px;" skin="condensed" suffix=" px" bind-value-to="propLeft">
-					<x-stepper></x-stepper>
-				</x-numberinput>
-
-				<div style="width: 20px; margin-right: 5px;">
-				</div>
-
-				<x-numberinput id="position-y"  style="width: 130px; margin-right: 10px;" skin="condensed" suffix=" px" bind-value-to="propTop">
-					<x-stepper></x-stepper>
-				</x-numberinput>
-
-			</x-box>
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
-				<x-label class="centered_sm" style="margin-right: 15px; width: 130px;">X</x-label>
-				<x-label class="centered_sm" style="width: 20px; margin-right: 5px;"></x-label>
-				<x-label class="centered_sm" style="width: 130px; margin-right: 10px;">Y</x-label>
-			</x-box>
+    <div class="spacer"></div>
 
 
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Size</x-label>
-
-				<x-numberinput style="margin-right: 5px; width: 130px;" id="size-propWidth" skin="condensed" suffix=" px" bind-value-to="propWidth">
-					<x-stepper></x-stepper>
-				</x-numberinput>
-
-				<x-button skin="flat-condensed" togglable style="width: 20px; margin-right: 5px;">
-					<x-icon name="link"></x-icon>
-				</x-button>
-
-				<x-numberinput style="width: 130px; margin-right: 10px;" id="size-propHeight" skin="condensed" suffix=" px" bind-value-to="propHeight">
-					<x-stepper></x-stepper>
-				</x-numberinput>
-
-			</x-box>
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
-				<x-label class="centered_sm" style="margin-right: 15px; width: 130px;">Width</x-label>
-				<x-label class="centered_sm" style="width: 20px; margin-right: 5px;"></x-label>
-				<x-label class="centered_sm" style="width: 130px; margin-right: 10px;">Height</x-label>
-			</x-box>
+    <!--////////////////////////-->
 
 
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 16px; width: 75px;">Transform</x-label>
+    <x-accordion expanded>
+        <header>
+            <x-label>Object Placement</x-label>
+        </header>
 
-				<x-numberinput id="transform-angle" style="margin-right: 15px; width: 137px;" skin="condensed" suffix=" °" bind-value-to="propAngle">
-					<x-stepper></x-stepper>
-				</x-numberinput>
+        <main>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Position</x-label>
 
-				<div style="width: 10px; margin-right: 5px;">
-				</div>
+                <x-numberinput ng-disabled="getInputState()"  id="position-x" style="margin-right: 5px; width: 130px;" skin="condensed" suffix=" px"
+                               bind-value-to="propLeft">
+                    <x-stepper></x-stepper>
+                </x-numberinput>
 
-				<x-buttons tracking="2" style="width: 140px; margin-right: 10px;">
-					<x-button style="width: 48px;" skin="textured-condensed" ng-click="flipX()">
-						<x-icon name="swap-horiz"></x-icon>
-					</x-button>
+                <div style="width: 20px; margin-right: 5px;">
+                </div>
 
-					<x-button style="width: 48px;" skin="textured-condensed" ng-click="flipY()">
-						<x-icon name="swap-vert"></x-icon>
-					</x-button>
+                <x-numberinput ng-disabled="getInputState()" id="position-y" style="width: 130px; margin-right: 10px;" skin="condensed" suffix=" px"
+                               bind-value-to="propTop">
+                    <x-stepper></x-stepper>
+                </x-numberinput>
 
-				</x-buttons>
-
-			</x-box>
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
-				<x-label class="centered_sm" style="margin-right: 15px; width: 137px;">Rotate</x-label>
-				<x-label class="centered_sm" style="width: 10px; margin-right: 5px;"></x-label>
-				<x-label class="centered_sm" style="width: 140px; margin-right: 10px;">Flip</x-label>
-			</x-box>
-
-			<x-box>
-				<x-button skin="textured" style="margin-left: 75px; width:220px;">
-					<x-box>
-						<x-label>Reset Object</x-label>
-					</x-box>
-				</x-button>
-			</x-box>
-
-		</main>
-	</x-accordion>
-	<hr>
+            </x-box>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
+                <x-label class="centered_sm" style="margin-right: 15px; width: 130px;">X</x-label>
+                <x-label class="centered_sm" style="width: 20px; margin-right: 5px;"></x-label>
+                <x-label class="centered_sm" style="width: 130px; margin-right: 10px;">Y</x-label>
+            </x-box>
 
 
-	<x-accordion expanded>
-		<header>
-			<x-label>Object Scale</x-label>
-		</header>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Size</x-label>
 
-		<main>
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Scale</x-label>
+                <x-numberinput ng-disabled="getInputState()" style="margin-right: 5px; width: 130px;" id="size-propWidth" skin="condensed"
+                               suffix=" px" bind-value-to="propWidth">
+                    <x-stepper></x-stepper>
+                </x-numberinput>
 
-				<x-numberinput id="scale-scaleX" style="margin-right: 5px; width: 130px;" skin="condensed" suffix=" px" bind-value-to="propScaleX">
-					<x-stepper></x-stepper>
-				</x-numberinput>
+                <x-button skin="flat-condensed" togglable style="width: 20px; margin-right: 5px;">
+                    <x-icon name="link"></x-icon>
+                </x-button>
 
-				<x-button skin="flat-condensed" togglable style="width: 20px; margin-right: 5px;">
-					<x-icon name="link"></x-icon>
-				</x-button>
+                <x-numberinput ng-disabled="getInputState()" style="width: 130px; margin-right: 10px;" id="size-propHeight" skin="condensed"
+                               suffix=" px" bind-value-to="propHeight">
+                    <x-stepper></x-stepper>
+                </x-numberinput>
 
-				<x-numberinput id="scale-scaleY" style="width: 130px; margin-right: 10px;" skin="condensed" suffix=" px" bind-value-to="propScaleY">
-					<x-stepper></x-stepper>
-				</x-numberinput>
+            </x-box>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
+                <x-label class="centered_sm" style="margin-right: 15px; width: 130px;">Width</x-label>
+                <x-label class="centered_sm" style="width: 20px; margin-right: 5px;"></x-label>
+                <x-label class="centered_sm" style="width: 130px; margin-right: 10px;">Height</x-label>
+            </x-box>
 
-			</x-box>
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
-				<x-label class="centered_sm" style="margin-right: 15px; width: 130px;">Scale X</x-label>
-				<x-label class="centered_sm" style="width: 20px; margin-right: 5px;"></x-label>
-				<x-label class="centered_sm" style="width: 130px; margin-right: 10px;">Scale Y</x-label>
-			</x-box>
-		</main>
-	</x-accordion>
-	<hr>
 
-	<x-accordion expanded>
-		<header>
-			<x-label>Object Origin</x-label>
-		</header>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 16px; width: 75px;">Transform</x-label>
 
-		<main>
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 20px; width: 75px;">Origin</x-label>
+                <x-numberinput ng-disabled="getInputState()" id="transform-angle" style="margin-right: 15px; width: 137px;" skin="condensed"
+                               suffix=" °" bind-value-to="propAngle">
+                    <x-stepper></x-stepper>
+                </x-numberinput>
 
-				<x-select style="margin-right: 10px; width: 140px;" bind-value-to="originX">
-					<x-menu>
-						<x-menuitem value="left" selected="true">
-							<x-label>Left</x-label>
-						</x-menuitem>
+                <div style="width: 10px; margin-right: 5px;">
+                </div>
 
-						<x-menuitem value="center">
-							<x-label>Center</x-label>
-						</x-menuitem>
+                <x-buttons tracking="2" style="width: 140px; margin-right: 10px;">
+                    <x-button style="width: 48px;" skin="textured-condensed" ng-click="flipX()">
+                        <x-icon name="swap-horiz"></x-icon>
+                    </x-button>
 
-						<x-menuitem value="right">
-							<x-label>Right</x-label>
-						</x-menuitem>
+                    <x-button style="width: 48px;" skin="textured-condensed" ng-click="flipY()">
+                        <x-icon name="swap-vert"></x-icon>
+                    </x-button>
 
-					</x-menu>
-				</x-select>
+                </x-buttons>
 
-				<div style="width: 15px; margin-right: 5px;">
-				</div>
+            </x-box>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
+                <x-label class="centered_sm" style="margin-right: 15px; width: 137px;">Rotate</x-label>
+                <x-label class="centered_sm" style="width: 10px; margin-right: 5px;"></x-label>
+                <x-label class="centered_sm" style="width: 140px; margin-right: 10px;">Flip</x-label>
+            </x-box>
 
-				<x-select style="width: 140px; margin-right: 10px;" bind-value-to="originY">
-					<x-menu>
-						<x-menuitem value="top" selected="true">
-							<x-label>Top</x-label>
-						</x-menuitem>
+            <x-box>
+                <x-button skin="textured" style="margin-left: 75px; width:220px;">
+                    <x-box>
+                        <x-label>Reset Object</x-label>
+                    </x-box>
+                </x-button>
+            </x-box>
 
-						<x-menuitem value="center">
-							<x-label>Middle</x-label>
-						</x-menuitem>
+        </main>
+    </x-accordion>
+    <hr>
 
-						<x-menuitem value="bottom">
-							<x-label>Bottom</x-label>
-						</x-menuitem>
-					</x-menu>
-				</x-select>
 
-			</x-box>
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
-				<x-label class="centered_sm" style="margin-right: 15px; width: 130px;">Origin X</x-label>
-				<x-label class="centered_sm" style="width: 20px; margin-right: 5px;"></x-label>
-				<x-label class="centered_sm" style="width: 130px; margin-right: 10px;">Origin Y</x-label>
-			</x-box>
-		</main>
-	</x-accordion>
-	<hr>
+    <x-accordion expanded>
+        <header>
+            <x-label>Object Scale</x-label>
+        </header>
+
+        <main>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Scale</x-label>
+
+                <x-numberinput ng-disabled="getInputState()" id="scale-scaleX" style="margin-right: 5px; width: 130px;" skin="condensed" suffix=" px"
+                               bind-value-to="propScaleX">
+                    <x-stepper></x-stepper>
+                </x-numberinput>
+
+                <x-button skin="flat-condensed" togglable style="width: 20px; margin-right: 5px;">
+                    <x-icon name="link"></x-icon>
+                </x-button>
+
+                <x-numberinput ng-disabled="getInputState()" id="scale-scaleY" style="width: 130px; margin-right: 10px;" skin="condensed" suffix=" px"
+                               bind-value-to="propScaleY">
+                    <x-stepper></x-stepper>
+                </x-numberinput>
+
+            </x-box>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
+                <x-label class="centered_sm" style="margin-right: 15px; width: 130px;">Scale X</x-label>
+                <x-label class="centered_sm" style="width: 20px; margin-right: 5px;"></x-label>
+                <x-label class="centered_sm" style="width: 130px; margin-right: 10px;">Scale Y</x-label>
+            </x-box>
+        </main>
+    </x-accordion>
+    <hr>
+
+    <x-accordion expanded>
+        <header>
+            <x-label>Object Origin</x-label>
+        </header>
+
+        <main>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 20px; width: 75px;">Origin</x-label>
+
+                <x-select style="margin-right: 10px; width: 140px;" bind-value-to="originX">
+                    <x-menu>
+                        <x-menuitem value="left" selected="true">
+                            <x-label>Left</x-label>
+                        </x-menuitem>
+
+                        <x-menuitem value="center">
+                            <x-label>Center</x-label>
+                        </x-menuitem>
+
+                        <x-menuitem value="right">
+                            <x-label>Right</x-label>
+                        </x-menuitem>
+
+                    </x-menu>
+                </x-select>
+
+                <div style="width: 15px; margin-right: 5px;">
+                </div>
+
+                <x-select style="width: 140px; margin-right: 10px;" bind-value-to="originY">
+                    <x-menu>
+                        <x-menuitem value="top" selected="true">
+                            <x-label>Top</x-label>
+                        </x-menuitem>
+
+                        <x-menuitem value="center">
+                            <x-label>Middle</x-label>
+                        </x-menuitem>
+
+                        <x-menuitem value="bottom">
+                            <x-label>Bottom</x-label>
+                        </x-menuitem>
+                    </x-menu>
+                </x-select>
+
+            </x-box>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
+                <x-label class="centered_sm" style="margin-right: 15px; width: 130px;">Origin X</x-label>
+                <x-label class="centered_sm" style="width: 20px; margin-right: 5px;"></x-label>
+                <x-label class="centered_sm" style="width: 130px; margin-right: 10px;">Origin Y</x-label>
+            </x-box>
+        </main>
+    </x-accordion>
+    <hr>
 
 </div>

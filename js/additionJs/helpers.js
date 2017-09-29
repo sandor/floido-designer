@@ -412,7 +412,7 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getPropLeft = function () {
-        return parseInt(getActiveProp('left'), 0);
+        return parseInt(getActiveProp('left'), 0) ? parseInt(getActiveProp('left'), 0) : '';
         console.log(value);
     };
     $scope.setPropLeft = function (value) {
@@ -421,7 +421,7 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getPropTop = function () {
-        return parseInt(getActiveProp('top'), 0);
+        return parseInt(getActiveProp('top'), 0) ? parseInt(getActiveProp('top'), 0) : '';
         console.log(value);
     };
 
@@ -431,7 +431,7 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getPropWidth = function () {
-        return parseInt(getActiveProp('width'), 0);
+        return parseInt(getActiveProp('width'), 0) ? parseInt(getActiveProp('width'), 0) : '';
         console.log(value);
     };
 
@@ -441,7 +441,7 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getPropHeight = function () {
-        return parseInt(getActiveProp('height'), 0);
+        return parseInt(getActiveProp('height'), 0) ? parseInt(getActiveProp('height'), 0) : '';
         console.log(value);
     };
 
@@ -451,10 +451,14 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getPropAngle = function () {
-
-        return parseInt(getActiveProp('angle'), 0);
+        debugger;
+        return parseInt(getActiveProp('angle'), 0) ? parseInt(getActiveProp('angle'), 0) : '';
         console.log(value);
     };
+
+    $scope.customfunc1 = function () {
+        return !canvas._activeObject;
+    }
 
     $scope.setPropAngle = function (value) {
 
@@ -465,7 +469,7 @@ function addAccessors($scope, $rootScope) {
 
 
     $scope.getPropScaleX = function () {
-        return parseInt(getActiveProp('scaleX'), 0);
+        return parseInt(getActiveProp('scaleX'), 0) ? parseInt(getActiveProp('scaleX'), 0) : '';
     };
 
     $scope.setPropScaleX = function (value) {
@@ -474,7 +478,7 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getPropScaleY = function () {
-        return parseInt(getActiveProp('scaleY'), 0);
+        return parseInt(getActiveProp('scaleY'), 0) ? parseInt(getActiveProp('scaleY'), 0) : '';
     };
 
     $scope.setPropScaleY = function (value) {
@@ -483,14 +487,14 @@ function addAccessors($scope, $rootScope) {
     };
 
 
-
     $scope.getRadius = function () {
-        return parseInt(getActiveProp('rx'), 0);
+
+        return parseInt(getActiveProp('rx'), 0) ? parseInt(getActiveProp('rx'), 0) : '';
     };
 
     $scope.getCornerWidth = function () {
-        return parseInt(getActiveProp('rx'), 0);
-        return parseInt(getActiveProp('ry'), 0);
+        return parseInt(getActiveProp('rx'), 0) ? parseInt(getActiveProp('rx'), 0) : '';
+        return parseInt(getActiveProp('ry'), 0) ? parseInt(getActiveProp('ry'), 0) : '';
     };
     $scope.setCornerWidth = function (value) {
         setActiveProp('rx', parseInt(value, 0));
@@ -498,20 +502,20 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getFontSize = function () {
-        return parseInt(getActiveStyle('fontSize'), 0);
+        return parseInt(getActiveStyle('fontSize'), 0) ? parseInt(getActiveStyle('fontSize'), 0) : '';
     };
     $scope.setFontSize = function (value) {
         setActiveStyle('fontSize', parseInt(value, 0));
     };
 
     $scope.getLineHeight = function () {
-        return parseInt(getActiveStyle('lineHeight'), 0);
+        return parseInt(getActiveStyle('lineHeight'), 0) ? parseInt(getActiveStyle('lineHeight'), 0) : '';
     };
     $scope.setLineHeight = function (value) {
         setActiveStyle('lineHeight', parseFloat(value, 0));
     };
     $scope.getCharSpacing = function () {
-        return parseInt(getActiveStyle('charSpacing'), 0);
+        return parseInt(getActiveStyle('charSpacing'), 0) ? parseInt(getActiveStyle('charSpacing'), 0) : '';
     };
     $scope.setCharSpacing = function (value) {
         setActiveStyle('charSpacing', value);

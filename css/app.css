@@ -140,6 +140,7 @@ x-menu {
     padding: 10px;
 }
 
+
 /*********************** Layer List Styles ***************************************/
 
 .list-group {
@@ -527,7 +528,8 @@ x-button[skin="tabnav"] x-label {
     margin-top: 7px;
     margin-bottom: 5px;
     padding-right: 30px;
-    padding-left: 30px;
+    padding-left: 5px;
+    /*padding-left: 30px;*/
     padding-bottom: 3px;
     -webkit-app-region: drag;
 }
@@ -587,6 +589,18 @@ x-button[skin="tabnav"] x-label {
 
 .fit-to-win,.original-size{
     margin-right: 10px;
+}
+
+.active1{
+    color: rgb(18, 131, 252) !important;
+}
+.left-part{
+    position: absolute;
+    left: -33px;
+    z-index: 11;
+    top: 26px;
+    padding-left: 0px;
+    width: 243px;
 }
 
 /* CSS Added BY David Abgaryan End */

@@ -122,17 +122,17 @@
             <div class="pane-group">
                 <div id="layers" class="pane-sm sidebar" ng-controller="LeftTabsCtrl">
 
-                    <x-box>
-                        <x-buttons tracking="1">
-                            <x-button ng-repeat="tab in tabs" skin="tabnav" ng-class="{active:isActiveTab(tab.url)}" ng-click="onClickTab(tab)">
-                                <x-icon name="{{tab.micon}}"></x-icon>
+                    <!--<x-box>-->
+                        <!--<x-buttons tracking="1">-->
+                            <!--<x-button ng-repeat="tab in tabs" skin="tabnav" id="{{tab.micon+'Tab'}}"-->
+                                      <!--ng-class="{'active1':isActiveTab(tab.url)}" ng-click="onClickTab(tab)">-->
+                                <!--<x-icon name="{{tab.micon}}"></x-icon>-->
 
-                            </x-button>
-                        </x-buttons>
-                    </x-box>
-                    <hr>
-                    <div ng-include="currentTab" ng-controller="LayersController"></div>
-
+                            <!--</x-button>-->
+                        <!--</x-buttons>-->
+                    <!--</x-box>-->
+                    <!--<hr>-->
+                    <!--<div ng-include="currentTab" ng-controller="LayersController"></div>-->
 
 
                 </div>
@@ -150,7 +150,7 @@
 
                     <x-box>
                         <x-buttons tracking="1">
-                            <x-button ng-repeat="tab in tabs" skin="tabnav" ng-class="{active: isActiveTab(tab.url)}" ng-click="onClickTab(tab)">
+                            <x-button ng-repeat="tab in tabs" skin="tabnav" ng-class="{'active1': isActiveTab(tab.url)}" ng-click="onClickTab(tab)">
                                 <!--								<x-icon name="{{tab.ticon}}" iconset="{{tab.custom}}"></x-icon>-->
                                 <x-icon name="{{tab.micon}}"></x-icon>
 
