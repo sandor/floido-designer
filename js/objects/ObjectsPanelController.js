@@ -23,11 +23,13 @@ angular.module('ImageEditor')
                 //send object forwards by the amount of objects it passed
                 for (var i = 0; i < (end - start); i++) {
                     canvas.fabric.bringForward(obj);
+					canvas.renderAll();
                 }
             } else {
                 //send object backwards by the amount of objects it passed
                 for (var i = 0; i < (start - end); i++) {
                     canvas.fabric.sendBackwards(obj);
+					canvas.renderAll();
                 }
             }
                
@@ -41,6 +43,7 @@ angular.module('ImageEditor')
     $scope.setAsActive = function(object) {
         if (object) {
             canvas.fabric.setActiveObject(object);
+			canvas.renderAll();
         }
     };
 

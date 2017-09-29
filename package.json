@@ -1,5 +1,5 @@
 {
-    "name": "Floido Designer",
+    "name": "xel-electron-demo",
     "version": "0.0.1",
     "main": "main.js",
     "dependencies": {

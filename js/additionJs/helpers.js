@@ -190,7 +190,7 @@ function getActiveShadow(name) {
     var object = canvas.getActiveObject();
     if (!object) return '';
 
-    return object[name] || '';
+    return object.shadow[name] || '';
 }
 
 function setActiveShadow(name, value) {
@@ -206,6 +206,7 @@ function setActiveShadow(name, value) {
     }
 
     object.setCoords();
+	canvas.renderAll();
 }
 
 
@@ -257,20 +258,38 @@ function addAccessors($scope, $rootScope) {
         setActiveShadow('offsetX', value);
         canvas.renderAll();
     };
+	
+	 $scope.getShadowOffsetX = function (value) {
+        getActiveShadow('offsetX', value);
+    };
+
 
     $scope.setShadowOffsetY = function (value) {
         setActiveShadow('offsetY', value);
         canvas.renderAll();
     };
+	
+	$scope.setShadowOffsetY = function (value) {
+        getActiveShadow('offsetY', value);
+    };
+
 
     $scope.setShadowBlur = function (value) {
         setActiveShadow('blur', value);
         canvas.renderAll();
     };
+	
+	$scope.getShadowBlur = function (value) {
+        getActiveShadow('blur', value);
+    };
 
     $scope.setShadowColor = function (value) {
         setActiveShadow('color', value);
         canvas.renderAll();
+    };
+	
+	$scope.getShadowColor = function (value) {
+        getActiveShadow('color', value);
     };
 
     $scope.shadowify = function () {
@@ -831,8 +850,7 @@ function addAccessors($scope, $rootScope) {
             icon: "format-size",
             fontWeight: 400,
             charSpacing: '0',
-            angle: '0',
-            strokeWidth: 0
+            angle: '0'
         });
 
         canvas.add(textSample).setActiveObject(textSample);
