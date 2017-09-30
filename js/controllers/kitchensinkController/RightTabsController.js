@@ -44,7 +44,6 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
     }
 
     $scope.getInputState = function () {
-        debugger;
 
         return canvas._activeObject ? false : true;
     }

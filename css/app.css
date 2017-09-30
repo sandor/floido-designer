@@ -1,14 +1,14 @@
 /*/////////////////////// Page Thumbnails //////////////////*/
 
 .thumbnail {
-	top: 5px;
-left: 25px;
-  background: white;
-  border-radius: 2px;
-  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.9);
-  display: inline-flex;
-  position: relative;
-	align-content: center;
+    top: 5px;
+    left: 25px;
+    background: white;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.9);
+    display: inline-flex;
+    position: relative;
+    align-content: center;
 }
 
 /*/////////////////*/
@@ -41,6 +41,7 @@ x-label {
     */
     font-weight: 500;
 }
+
 .white {
     font-size: 12px;
     /*    color: #fff;
@@ -61,10 +62,12 @@ x-label {
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 1px;
 }
+
 .fontFullwidth {
     min-width: 287px !Important;
     margin-left: 5px;
 }
+
 .aButton {
     width: 73px !Important;
 }
@@ -90,14 +93,12 @@ x-button[skin^="iconic"][toggled] {
 
 /*Experiment with backdrop filter*/
 
-
 /*
 x-menu {
     box-shadow: none;
     background-color: rgba(255, 255, 255, 0.0) !Important;
     backdrop-filter: blur(20px) saturate(200%) drop-shadow(10px 10px 3px black);
 }*/
-
 
 /*********************** Font List Styles ***************************************/
 
@@ -107,12 +108,14 @@ x-menu {
     margin: 0;
     padding: 0;
 }
+
 .font-group * {
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .font-group-item {
     padding-left: 5px;
     padding-top: 2px;
@@ -122,24 +125,28 @@ x-menu {
     color: #414142;
     border-top: 1px solid #ddd;
 }
+
 .font-group-item li:nth-child(even) {
     background-color: rgba(245, 245, 244, 0.5);
 }
+
 .font-group-item:first-child {
     border-top: 0;
 }
+
 .font-group-item:last-child {
     border-bottom: 1px solid #ddd;
 }
+
 .font-group-item.active,
 .font-group-item.selected {
     color: #fff;
     background-color: #116cd6;
 }
+
 .font-group-header {
     padding: 10px;
 }
-
 
 /*********************** Layer List Styles ***************************************/
 
@@ -149,12 +156,14 @@ x-menu {
     margin: 0;
     padding: 0;
 }
+
 .list-group * {
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .list-group-item {
     padding: 5px;
     font-size: 12px;
@@ -162,47 +171,60 @@ x-menu {
     border-top: 1px solid rgba(245, 245, 244, 0.43);
     cursor: move;
 }
+
 li:nth-child(even) {
     background-color: rgba(245, 245, 244, 0.3);
 }
+
 .list-group-item li:nth-child(even) {
     background-color: rgba(245, 245, 244, 0.3);
 }
+
 .list-group-item:first-child {
     border-top: 0;
 }
+
 .list-group-item:last-child {
     border-bottom: 1px solid rgba(245, 245, 244, 0.3);
 }
+
 .list-group-item.active,
 .list-group-item.selected {
-    <<<<<<< HEAD color: #fff;
+    < < < < < < < HEAD
+    color: #fff;
     background-color: #116cd6;
-    =======color: #fff;
+= = = = = = = color: #fff;
     background-color: rgba(137, 137, 137, 0.76);
-    >>>>>>> b972e7ee7613d2ae39361489363ce8f4071d3af6
+> > > > > > > b972e7ee7613d2ae39361489363ce8f4071d3af6
 }
+
 .list-group-header {
     padding: 10px;
 }
+
 .media-object {
     margin-top: 2px;
 }
+
 .media-object.pull-left {
     margin-right: 10px;
     margin-top: 4px;
     color: #8b8b8b;
 }
+
 .media-object.pull-right {
     margin-left: 10px;
 }
+
 .media-body {
     overflow: hidden;
     margin-top: 3px;
 }
+
 .nav-group {
     font-size: 14px;
 }
+
 .nav-group-item {
     padding: 2px 10px 2px 25px;
     display: block;
@@ -212,10 +234,12 @@ li:nth-child(even) {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .nav-group-item:active,
 .nav-group-item.active {
     background-color: #dcdfe1;
 }
+
 .nav-group-item .icon {
     width: 19px;
     height: 18px;
@@ -226,28 +250,29 @@ li:nth-child(even) {
     font-size: 18px;
     text-align: center;
 }
+
 .nav-group-title {
-    <<<<<<< HEAD margin: 0;
+    < < < < < < < HEAD
+    margin: 0;
     padding: 10px 10px 2px;
     font-size: 12px;
     font-weight: 500;
     color: #666666;
-    =======margin: 0;
+= = = = = = = margin: 0;
     padding: 10px 10px 2px;
     font-size: 12px;
     font-weight: 100;
     color: #666666;
-    >>>>>>> b972e7ee7613d2ae39361489363ce8f4071d3af6
+> > > > > > > b972e7ee7613d2ae39361489363ce8f4071d3af6
 }
 
 /* Style the tab content */
-
 
 /*****************************************************************************************************************/
 
 .tabcontent {
     display: none;
-    color: ##333;
+    color: # #333;
     -webkit-animation: fadeEffect 2.25s;
     animation: fadeEffect 2.25s;
 }
@@ -262,6 +287,7 @@ li:nth-child(even) {
         opacity: 1;
     }
 }
+
 @keyframes fadeEffect {
     from {
         opacity: 0;
@@ -272,7 +298,6 @@ li:nth-child(even) {
 }
 
 /*****************************************************************************************************************/
-
 
 /* @skin "tabnav_sm" */
 
@@ -286,23 +311,28 @@ x-button[skin="tabnav_sm"] {
     width: calc(100% + 10px);
     cursor: default;
 }
+
 x-button[skin="tabnav_sm"][toggled] {
     background: rgba(0, 0, 0, 0.4);
     color: rgb(219, 219, 219);
 }
+
 x-button[skin="tabnav_sm"][pressed] {
     background: rgba(0, 0, 0, 0.14);
     color: #4a4a4a;
 }
+
 x-button[skin="tabnav_sm"][toggled][pressed] {
     background: rgba(0, 0, 0, 0.2);
 }
+
 x-button[skin="tabnav_sm"] x-icon {
     width: 20px;
     height: 20px;
     opacity: 0.9;
     /*    margin-right: 12px;*/
 }
+
 x-button[skin="tabnav_sm"] x-label {
     overflow: hidden;
     white-space: nowrap;
@@ -322,25 +352,30 @@ x-button[skin="tabnav"] {
     /*    width: calc(100% + 10px);*/
     cursor: default;
 }
+
 x-button[skin="tabnav"][toggled] {
     /*    background: rgba(0, 0, 0, 0.4);*/
     color: rgb(18, 131, 252);
     border-bottom: 5px solid hsl(var(--accent-color-h), var(--accent-color-s), calc(var(--accent-color-l) + 3%));
     bottom: -3px;
 }
+
 x-button[skin="tabnav"][pressed] {
     /*    background: rgb(18, 131, 252);*/
     color: #4a4a4a;
 }
+
 x-button[skin="tabnav"][toggled][pressed] {
     background: hsl(var(--accent-color-h), var(--accent-color-s), calc(var(--accent-color-l) + 3%));
 }
+
 x-button[skin="tabnav"] x-icon {
     width: 28px;
     height: 28px;
     opacity: 0.9;
     /*    margin-right: 12px;*/
 }
+
 x-button[skin="tabnav"] x-label {
     overflow: hidden;
     white-space: nowrap;
@@ -354,74 +389,92 @@ x-button[skin="tabnav"] x-label {
     width: 75px !Important;
     height: 75px !Important;
 }
+
 .spacer {
     min-height: 5px;
     width: 100%;
 }
+
 .pad {
     padding-left: 5px;
     padding-right: 5px;
 }
+
 .push-right {
     float: right !Important;
 }
+
 .push-left {
     float: left !Important;
 }
+
 .push-center {
     margin: auto !Important;
 }
+
 .small {
     width: 85px !Important;
 }
+
 .halfsmall {
     width: 42px !Important;
 }
+
 .thin {
     width: 20px !Important;
     padding: 0px;
-    !Important;
+!Important;
 }
+
 .content-empty {
     background: url("../images/bg.png") repeat scroll top left;
 }
+
 .left_sm {
     text-align: left;
     font-size: 11px !Important;
     font-co
 }
+
 .discl_sm {
     text-align: left;
     font-size: 10px !Important;
     color: #969696;
     margin: 6px;
 }
+
 .centered_sm {
     margin-bottom: 4px;
     text-align: center;
     font-size: 10px !Important;
 }
+
 .right {
     margin-left: auto;
     margin-right: 5px;
 }
+
 .left {
     align-items: baseline;
     justify-content: flex-start;
 }
+
 .middle {
     align-items: baseline;
     justify-content: space-between;
 }
+
 .sidebar {
     background-color: rgba(209, 207, 209, 0.2);
 }
+
 .window-content {
     position: relative;
     overflow-y: auto;
     display: flex;
     flex: 1;
 }
+
 .pane-group {
     position: absolute;
     top: 0;
@@ -430,48 +483,58 @@ x-button[skin="tabnav"] x-label {
     left: 0;
     display: flex;
 }
+
 .pane {
     position: relative;
     overflow-y: auto;
     flex: 1;
     border-left: 1px solid #ddd;
 }
+
 .pane:first-child {
     border-left: 0;
 }
+
 .pane-sm {
-    <<<<<<< HEAD width: 300px;
+    < < < < < < < HEAD
+    width: 300px;
     max-width: 320px;
     min-width: 250px;
     border-right: 1px solid #c2c0c2;
-    =======width: 200px;
+= = = = = = = width: 200 px;
     max-width: 320px;
     min-width: 250px;
     border-right: 1px solid #c2c0c2;
-    >>>>>>> b972e7ee7613d2ae39361489363ce8f4071d3af6
+> > > > > > > b972e7ee7613d2ae39361489363ce8f4071d3af6
 }
+
 .pane-right {
     width: 315px;
     overflow-y: hidden;
     overflow-x: hidden;
     border-left: 1px solid #c2c0c2;
 }
+
 .inner {
     overflow-y: overlay;
     height: 100%;
     padding-bottom: 80px;
 }
+
 .pane-mini {
     width: 80px;
     flex: none;
 }
+
 .pane-one-fourth {
     width: 25%;
     flex: none;
 }
+
 .pane-one-third {
     width: 33.3%;
 }
+
 .toolbar {
     min-height: 22px;
     box-shadow: inset 0 0px 0 #f5f4f5;
@@ -480,27 +543,33 @@ x-button[skin="tabnav"] x-label {
     background-image: -webkit-linear-gradient(top, #e8e6e8 0%, #d1cfd1 100%);
     background-image: linear-gradient(to bottom, #e8e6e8 0%, #d1cfd1 100%);*/
 }
+
 .toolbar:before,
 .toolbar:after {
     display: table;
     content: " ";
     -webkit-app-region: drag;
 }
+
 .toolbar:after {
     clear: both;
     -webkit-app-region: drag;
 }
+
 .toolbar-header {
     border-bottom: 1px solid #c2c0c2;
     -webkit-app-region: drag;
 }
+
 .toolbar-header .title {
     margin-top: 1px;
     -webkit-app-region: drag;
 }
+
 .toolbar-footer {
     border-top: 1px solid #c2c0c2;
 }
+
 .title {
     margin: 0;
     font-size: 13px;
@@ -510,6 +579,7 @@ x-button[skin="tabnav"] x-label {
     cursor: default;
     -webkit-app-region: drag;
 }
+
 .title_left {
     margin: 5px;
     font-size: 16px;
@@ -519,11 +589,13 @@ x-button[skin="tabnav"] x-label {
     cursor: default;
     -webkit-app-region: drag;
 }
+
 .toolbar-borderless {
     border-top: 0;
     border-bottom: 0;
     -webkit-app-region: drag;
 }
+
 .toolbar-actions {
     margin-top: 7px;
     margin-bottom: 5px;
@@ -533,19 +605,23 @@ x-button[skin="tabnav"] x-label {
     padding-bottom: 3px;
     -webkit-app-region: drag;
 }
+
 .toolbar-actions:before,
 .toolbar-actions:after {
     display: table;
     content: " ";
 }
+
 .toolbar-actions:after {
     clear: both;
 }
+
 .toolbar-actions > #x-button,
 .toolbar-actions > #x-buttons {
     margin-left: 4px;
     margin-right: 4px;
 }
+
 .window {
     position: absolute;
     top: 0;
@@ -556,6 +632,7 @@ x-button[skin="tabnav"] x-label {
     flex-direction: column;
     background-color: transparent;
 }
+
 .window-content {
     position: relative;
     overflow-y: auto;
@@ -575,32 +652,46 @@ x-button[skin="tabnav"] x-label {
 
 /* CSS Added BY David Abgaryan Start */
 
-.zoom-bar-percent-on-footer{
+.zoom-bar-percent-on-footer {
     width: 60px;
-    margin-left: 10px; 
+    margin-left: 10px;
     margin-right: 10px;
 }
-.right{
+
+.right {
     width: 400px !important
 }
-.zoom-bar-on-footer{
+
+.zoom-bar-on-footer {
     width: 250px;
 }
 
-.fit-to-win,.original-size{
+.fit-to-win, .original-size {
     margin-right: 10px;
 }
 
-.active1{
+.active1 {
     color: rgb(18, 131, 252) !important;
 }
-.left-part{
+
+.left-part {
     position: absolute;
     left: -33px;
     z-index: 11;
-    top: 26px;
+    top: -29px;
     padding-left: 0px;
     width: 243px;
+}
+
+#layers x-icon {
+    margin-bottom: 10px;
+    height: 32px;
+    width: 32px;
+}
+
+.list-group-item x-icon {
+    height: 22px !important;
+    width: 22px !important;
 }
 
 /* CSS Added BY David Abgaryan End */

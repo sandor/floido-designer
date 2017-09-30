@@ -18,7 +18,6 @@ kitchensink.controller('LeftTabsCtrl', ['$scope', '$timeout', function ($scope, 
     $scope.currentTab = 'templates/layers.html';
 
     $scope.onClickTab = function (tab) {
-        debugger;
         $scope.currentTab = tab.url;
 
     }

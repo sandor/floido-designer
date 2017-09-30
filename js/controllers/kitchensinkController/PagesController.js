@@ -96,6 +96,7 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
         };
     
         $scope.deleteObject = function (object) {
+
             if (object) {
                 canvas.remove(object);
                 canvas.renderAll();
