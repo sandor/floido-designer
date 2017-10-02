@@ -118,18 +118,25 @@ function paste() {
 }
 
 function remove() {
-    var activeObject = canvas.getActiveObject(),
-        activeGroup = canvas.getActiveObject().type !== 'group';
 
-    if (activeGroup) {
-        var objectsInGroup = canvas.getActiveObjects();
-        objectsInGroup.forEach(function (object) {
-            canvas.remove(object);
-        });
-    } else if (activeObject) {
-        canvas.remove(activeObject);
+    if (document.activeElement && document.activeElement.hasAttribute('value')) {
+        document.activeElement.value = 0;
     }
-    canvas.discardActiveObject();
+    else {
+        var activeObject = canvas.getActiveObject(),
+            activeGroup = canvas.getActiveObject().type !== 'group';
+
+        if (activeGroup) {
+            var objectsInGroup = canvas.getActiveObjects();
+            objectsInGroup.forEach(function (object) {
+                canvas.remove(object);
+            });
+        } else if (activeObject) {
+            canvas.remove(activeObject);
+        }
+        canvas.discardActiveObject();
+    }
+
 }
 
 
@@ -205,7 +212,7 @@ function setActiveShadow(name, value) {
     }
 
     object.setCoords();
-	canvas.renderAll();
+    canvas.renderAll();
 }
 
 
@@ -257,8 +264,8 @@ function addAccessors($scope, $rootScope) {
         setActiveShadow('offsetX', value);
         canvas.renderAll();
     };
-	
-	 $scope.getShadowOffsetX = function (value) {
+
+    $scope.getShadowOffsetX = function (value) {
         getActiveShadow('offsetX', value);
     };
 
@@ -267,8 +274,8 @@ function addAccessors($scope, $rootScope) {
         setActiveShadow('offsetY', value);
         canvas.renderAll();
     };
-	
-	$scope.setShadowOffsetY = function (value) {
+
+    $scope.setShadowOffsetY = function (value) {
         getActiveShadow('offsetY', value);
     };
 
@@ -277,8 +284,8 @@ function addAccessors($scope, $rootScope) {
         setActiveShadow('blur', value);
         canvas.renderAll();
     };
-	
-	$scope.getShadowBlur = function (value) {
+
+    $scope.getShadowBlur = function (value) {
         getActiveShadow('blur', value);
     };
 
@@ -286,8 +293,8 @@ function addAccessors($scope, $rootScope) {
         setActiveShadow('color', value);
         canvas.renderAll();
     };
-	
-	$scope.getShadowColor = function (value) {
+
+    $scope.getShadowColor = function (value) {
         getActiveShadow('color', value);
     };
 
@@ -430,7 +437,7 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getPropLeft = function () {
-        return parseInt(getActiveProp('left'), 0);
+        return parseInt(getActiveProp('left'), 0) ? parseInt(getActiveProp('left'), 0) : '';
         console.log(value);
     };
     $scope.setPropLeft = function (value) {
@@ -439,7 +446,7 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getPropTop = function () {
-        return parseInt(getActiveProp('top'), 0);
+        return parseInt(getActiveProp('top'), 0) ? parseInt(getActiveProp('top'), 0) : '';
         console.log(value);
     };
 
@@ -449,7 +456,7 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getPropWidth = function () {
-        return parseInt(getActiveProp('width'), 0);
+        return parseInt(getActiveProp('width'), 0) ? parseInt(getActiveProp('width'), 0) : '';
         console.log(value);
     };
 
@@ -459,7 +466,7 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getPropHeight = function () {
-        return parseInt(getActiveProp('height'), 0);
+        return parseInt(getActiveProp('height'), 10) ? parseInt(getActiveProp('height'), 10) : '';
         console.log(value);
     };
 
@@ -468,68 +475,88 @@ function addAccessors($scope, $rootScope) {
         canvas.renderAll();
     };
 
-    $scope.getPropAngle = function () {
+    $scope.getPropAngle = function () {/// if object a=inactive return ""must implement
+        if (parseFloat(getActiveProp('angle')) == 0) {
+            return parseFloat(getActiveProp('angle'));
+        }
+        if (getActiveProp('angle')) {
+            return parseFloat(getActiveProp('angle')) ? parseFloat(getActiveProp('angle')).toFixed(2) : '';
+        }
+        return "";
 
-        return parseInt(getActiveProp('angle'), 0);
-        console.log(value);
     };
 
-    $scope.setPropAngle = function (value) {
+    $scope.customfunc1 = function () {
+        return !canvas._activeObject;
+    }
 
-        value = Math.round(value)
-        setActiveProp('angle', parseInt(value, 0));
+    $scope.setPropAngle = function (value) {
+        // value = Math.round(value)
+        setActiveProp('angle', parseFloat(value.toFixed(2)));
         canvas.renderAll();
     };
 
 
     $scope.getPropScaleX = function () {
-        return parseInt(getActiveProp('scaleX'), 0);
+        return parseFloat(getActiveProp('scaleX')) ? parseFloat(getActiveProp('scaleX').toFixed(2)) : '';
     };
 
     $scope.setPropScaleX = function (value) {
-        setActiveProp('scaleX', parseInt(value, 0));
-        canvas.renderAll();
+        if (value) {
+            setActiveProp('scaleX', parseFloat(value.toFixed(2)));
+            canvas.renderAll();
+        } else {
+            setActiveProp('scaleX', 0);
+            canvas.renderAll();
+        }
+
     };
 
     $scope.getPropScaleY = function () {
-        return parseInt(getActiveProp('scaleY'), 0);
+        return parseFloat(getActiveProp('scaleY')) ? parseFloat(getActiveProp('scaleY').toFixed(2)) : '';
     };
 
     $scope.setPropScaleY = function (value) {
-        setActiveProp('scaleY', parseInt(value, 0));
-        canvas.renderAll();
-    };
 
+        if (value) {
+            setActiveProp('scaleY', parseFloat(value.toFixed(2)));
+            canvas.renderAll();
+        } else {
+            setActiveProp('scaleY', 0);
+            canvas.renderAll();
+        }
+    };
 
 
     $scope.getRadius = function () {
-        return parseInt(getActiveProp('rx'), 0);
+
+        return parseInt(getActiveProp('rx'), 10) ? parseInt(getActiveProp('rx'), 10) : '';
     };
 
     $scope.getCornerWidth = function () {
-        return parseInt(getActiveProp('rx'), 0);
-        return parseInt(getActiveProp('ry'), 0);
+        return parseInt(getActiveProp('rx'), 10) ? parseInt(getActiveProp('rx'), 10) : '';
+        return parseInt(getActiveProp('ry'), 10) ? parseInt(getActiveProp('ry'), 10) : '';
     };
     $scope.setCornerWidth = function (value) {
-        setActiveProp('rx', parseInt(value, 0));
-        setActiveProp('ry', parseInt(value, 0));
+        setActiveProp('rx', parseInt(value, 10));
+        setActiveProp('ry', parseInt(value, 10));
     };
 
     $scope.getFontSize = function () {
-        return parseInt(getActiveStyle('fontSize'), 0);
+        return parseInt(getActiveStyle('fontSize'), 10) ? parseInt(getActiveStyle('fontSize'), 10) : '';
     };
     $scope.setFontSize = function (value) {
-        setActiveStyle('fontSize', parseInt(value, 0));
+        setActiveStyle('fontSize', parseInt(value, 10));
     };
 
     $scope.getLineHeight = function () {
-        return parseInt(getActiveStyle('lineHeight'), 0);
+        return parseInt(getActiveStyle('lineHeight'), 10) ? parseInt(getActiveStyle('lineHeight'), 10) : '';
     };
     $scope.setLineHeight = function (value) {
-        setActiveStyle('lineHeight', parseFloat(value, 0));
+        setActiveStyle('lineHeight', parseFloat(value, 10));
     };
     $scope.getCharSpacing = function () {
-        return parseInt(getActiveStyle('charSpacing'), 0);
+        return parseInt(getActiveStyle('charSpacing'), 10) ? parseInt(getActiveStyle('charSpacing'), 10) : '';
     };
     $scope.setCharSpacing = function (value) {
         setActiveStyle('charSpacing', value);

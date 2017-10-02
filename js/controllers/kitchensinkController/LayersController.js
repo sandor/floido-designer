@@ -2,9 +2,9 @@
 // ================================================================
 
 kitchensink.controller('LayersController', ['$scope', '$rootScope', '$timeout', function ($scope, $rootScope, $timeout) {
-    
+
         $scope.objects = canvas._objects || [];
-    
+
         $scope.sortableOptions = {
             items: '.object:visible',
             scroll: false,
@@ -16,12 +16,12 @@ kitchensink.controller('LayersController', ['$scope', '$rootScope', '$timeout', 
             update: function (e, ui) {
                 var start = ui.item.data('start'),
                     end = ui.item.index();
-    
-    
+
+
                 obj = canvas.getObjects()[start];
-    
+
                 if (!obj) return;
-    
+
                 if (end > start) {
                     //send object forwards by the amount of objects it passed
                     for (var i = 0; i < (end - start); i++) {
@@ -33,7 +33,7 @@ kitchensink.controller('LayersController', ['$scope', '$rootScope', '$timeout', 
                         canvas.sendBackwards(obj);
                     }
                 }
-    
+
                 $timeout(function () {
                     canvas.renderAll();
                     start = false;
@@ -41,13 +41,13 @@ kitchensink.controller('LayersController', ['$scope', '$rootScope', '$timeout', 
                 });
             },
         }
-    
+
         $scope.setAsActive = function (object) {
             if (object) {
                 canvas.setActiveObject(object);
             }
         };
-    
+
         $scope.setAsActiveLayer = function (item, list) {
             list.some(function (item) {
                 if (item.active) {
@@ -56,10 +56,10 @@ kitchensink.controller('LayersController', ['$scope', '$rootScope', '$timeout', 
             });
             item.active = true;
         };
-    
+
         $scope.toggleVisibility = function (object) {
             if (!object) return;
-    
+
             if (object.visible) {
                 object.set({
                     visible: false,
@@ -78,20 +78,20 @@ kitchensink.controller('LayersController', ['$scope', '$rootScope', '$timeout', 
                 });
                 canvas.setActiveObject(object);
             }
-    
+
             canvas.renderAll();
         };
-    
+
         $scope.deleteObject = function (object) {
             if (object) {
                 canvas.remove(object);
                 canvas.renderAll();
             }
         };
-    
+
         $scope.toggleLock = function (object) {
             if (!object) return;
-    
+
             if (object.locked) {
                 object.set({
                     locked: false,
@@ -106,7 +106,7 @@ kitchensink.controller('LayersController', ['$scope', '$rootScope', '$timeout', 
                     hasControls: true,
                     hasBorders: true
                 });
-    
+
                 canvas.setActiveObject(object);
             } else {
                 object.set({
@@ -123,7 +123,7 @@ kitchensink.controller('LayersController', ['$scope', '$rootScope', '$timeout', 
                     hasBorders: false
                 });
             }
-    
+
             canvas.renderAll();
         }
     }])

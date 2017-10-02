@@ -1,22 +1,23 @@
 <div class="toolbar-actions">
     <x-box class="middle">
-        <x-buttons tracking="1" ng-controller="LeftTabsCtrl">
-            <x-button ng-repeat="tab in tabs" skin="iconic" ng-class="{active:isActiveTab(tab.url)}" ng-click="onClickTab(tab)">
-                <x-box vertical>
-                    <x-icon name="{{tab.micon}}"></x-icon>
-                    <x-label style="color: #5a5a5a !Important">{{tab.title}}</x-label>
-                </x-box>
-            </x-button>
 
-            <!--
-            <x-button skin="iconic">
-                <x-box vertical>
-                    <x-icon name="pages"></x-icon>
-                    <x-label style="color: #5a5a5a !Important">Pages</x-label>
+        <x-box style="width: 200px; position: relative">
+            <div class="left-part" style="position: absolute; left: 0; z-index:11;" id="layers" class="pane-sm sidebar" ng-controller="LeftTabsCtrl">
+
+                <x-box>
+                    <x-buttons tracking="1">
+                        <x-button ng-repeat="tab in tabs" skin="tabnav" id="{{tab.micon+'Tab'}}"
+                                  ng-class="{'active1':isActiveTab(tab.url)}" ng-click="onClickTab(tab)">
+                            <x-icon name="{{tab.micon}}"></x-icon>
+
+                        </x-button>
+                    </x-buttons>
                 </x-box>
-            </x-button>
--->
-        </x-buttons>
+                <hr>
+                <div ng-include="currentTab" ng-controller="LayersController"></div>
+
+            </div>
+        </x-box>
 
         <x-buttons tracking="1">
             <x-button skin="iconic" ng-click="addTextbox()">
