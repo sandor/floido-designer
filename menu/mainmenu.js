@@ -53,7 +53,8 @@ const template = [
 
 
             {
-                role: 'delete',                label: 'Delete',
+                role: 'delete',
+                label: 'Delete',
                 click: function () {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('delete');
@@ -153,10 +154,11 @@ if (process.platform === 'darwin') {
                             height: 400,
                             backgroundColor: '#6b0098',
                             alwaysOnTop: true,
-							minimizable: false,
-							fullscreen: false,
-							titleBarStyle: 'hidden',
-							icon: '../icons/mac/icon.icns'
+                            minimizable: false,
+                            fullscreen: false,
+                            resizable: false,
+                            titleBarStyle: 'hidden',
+                            icon: '../icons/mac/icon.icns'
                         })
                         win.loadURL(url.format({
                             pathname: path.join(__dirname, '../aboutWindow/index.html'),
