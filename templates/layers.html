@@ -1,10 +1,12 @@
-<div class="grid-middle-noGutter" id="objects">
-	<div class="col-12">
+<div style="margin-left: -5px; padding: 0px !Important;" id="objects">
+	
+	<x-box class="middle">
 		<h1 class="title_left">Layers</h1>
-		<hr>
-	</div>
 
-	<ul class="list-group" ui-sortable ng-model="objects">
+	</x-box>
+	<hr>
+
+	<ul class="list-group" ui-sortable ng-model="objects" >
 
 		<li ng-class="{active: object.active}" class="list-group-item" ng-repeat="object in objects" ng-click="setAsActive(object); setAsActiveLayer(object, objects)" ng-if="!object.ignore">
 

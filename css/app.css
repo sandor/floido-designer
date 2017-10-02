@@ -165,7 +165,12 @@ x-menu {
 }
 
 .list-group-item {
-    padding: 5px;
+    padding-left: 5px;
+	padding-right: 8px;
+	padding-top: 5px;
+	padding-bottom: 0px;
+	width: 238px;
+	height: 32px;
     font-size: 12px;
     color: #414142;
     border-top: 1px solid rgba(245, 245, 244, 0.43);
@@ -190,16 +195,13 @@ li:nth-child(even) {
 
 .list-group-item.active,
 .list-group-item.selected {
-    < < < < < < < HEAD
     color: #fff;
-    background-color: #116cd6;
-= = = = = = = color: #fff;
-    background-color: rgba(137, 137, 137, 0.76);
-> > > > > > > b972e7ee7613d2ae39361489363ce8f4071d3af6
+    background-color: rgba(74, 74, 74, 0.44);
+
 }
 
 .list-group-header {
-    padding: 10px;
+    padding-top: 10px;
 }
 
 .media-object {
@@ -356,8 +358,10 @@ x-button[skin="tabnav"] {
 x-button[skin="tabnav"][toggled] {
     /*    background: rgba(0, 0, 0, 0.4);*/
     color: rgb(18, 131, 252);
+/*
     border-bottom: 5px solid hsl(var(--accent-color-h), var(--accent-color-s), calc(var(--accent-color-l) + 3%));
     bottom: -3px;
+*/
 }
 
 x-button[skin="tabnav"][pressed] {
@@ -433,7 +437,6 @@ x-button[skin="tabnav"] x-label {
 .left_sm {
     text-align: left;
     font-size: 11px !Important;
-    font-co
 }
 
 .discl_sm {
@@ -488,38 +491,39 @@ x-button[skin="tabnav"] x-label {
     position: relative;
     overflow-y: auto;
     flex: 1;
-    border-left: 1px solid #ddd;
+/*    border-left: 1px solid #ddd;*/
 }
 
 .pane:first-child {
     border-left: 0;
 }
 
+/*
 .pane-sm {
-<<<<<<< HEAD
-    max-width: 250px;
-=======
-    < < < < < < < HEAD
-    width: 300px;
-    max-width: 320px;
-    min-width: 250px;
->>>>>>> 9d63a0ec4df925c1b5d2d6b672d6626a846082ee
-    border-right: 1px solid #c2c0c2;
-= = = = = = = width: 200 px;
+    <<<<<<< HEAD width: 300px;
     max-width: 320px;
     min-width: 250px;
     border-right: 1px solid #c2c0c2;
-<<<<<<< HEAD
-=======
-> > > > > > > b972e7ee7613d2ae39361489363ce8f4071d3af6
->>>>>>> 9d63a0ec4df925c1b5d2d6b672d6626a846082ee
+    =======width: 200px;
+    max-width: 320px;
+    min-width: 250px;
+    border-right: 1px solid #c2c0c2;
+    >>>>>>> b972e7ee7613d2ae39361489363ce8f4071d3af6
+}
+*/
+
+.pane-sm {
+    width: 250px;
+    max-width: 320px;
+    min-width: 230px;
+/*    border-right: 1px solid #c2c0c2;*/
 }
 
 .pane-right {
     width: 315px;
     overflow-y: hidden;
     overflow-x: hidden;
-    border-left: 1px solid #c2c0c2;
+/*    border-left: 1px solid #c2c0c2;*/
 }
 
 .inner {
@@ -687,18 +691,21 @@ x-button[skin="tabnav"] x-label {
     z-index: 11;
     top: -29px;
     padding-left: 0px;
-    width: 243px;
+    width: 240px;
+	margin-top: -10px;
 }
 
-#layers x-icon {
+#layers .dummy_icons x-icon {
     margin-bottom: 10px;
-    height: 32px;
-    width: 32px;
+	width: 32px;
+	height: 32px;
 }
 
+/*
 .list-group-item x-icon {
     height: 22px !important;
     width: 22px !important;
 }
+*/
 
 /* CSS Added BY David Abgaryan End */

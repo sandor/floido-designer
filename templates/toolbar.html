@@ -7,13 +7,14 @@
                 <x-box>
                     <x-buttons tracking="1">
                         <x-button ng-repeat="tab in tabs" skin="tabnav" id="{{tab.micon+'Tab'}}"
-                                  ng-class="{'active1':isActiveTab(tab.url)}" ng-click="onClickTab(tab)">
-                            <x-icon name="{{tab.micon}}"></x-icon>
-
+                                  ng-class="{'active1':isActiveTab(tab.url)}" ng-click="onClickTab(tab)" class="dummy_icons">
+							<x-box vertical>
+                            <x-icon name="{{tab.micon}}" ></x-icon>
+							<x-label style="color: #5a5a5a !Important">{{tab.title}}</x-label>
+							</x-box>
                         </x-button>
                     </x-buttons>
                 </x-box>
-                <hr>
                 <div ng-include="currentTab" ng-controller="LayersController"></div>
 
             </div>
