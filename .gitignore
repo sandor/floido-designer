@@ -5,3 +5,11 @@ node_modules
 .idea/modules.xml
 .idea/misc.xml
 .idea/floido-designer.iml
+js/webcomponents-lite_not_used.js
+js/v1.7.fabric.min_not_used.js
+js/undoredo_not_used.js
+js/csi.min_not_used.js
+project/assets/.DS_Store
+js/index_not_used.js
+js/v2.3.fabric.min_not_used.js
+project/.DS_Store
