@@ -1,4 +1,3 @@
-<div class="grid-middle-noGutter" ng-cloack>
     <div class="col-12">
         <h1 class="title_left">Element Styling</h1>
         <hr>
@@ -114,10 +113,10 @@
     <x-box>
         <x-label style="margin-left:10px; margin-right: 5px; width: 65px;">Opacity</x-label>
 
-        <x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="1" max="200" ng-value="0" bind-value-to="opacity" skin="arrow">
+        <x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="0" max="100" step="1" bind-value-to="opacity" skin="arrow">
         </x-slider>
 
-        <x-numberinput style="width: 75px;" suffix=" px" skin="condensed" ng-value="0" bind-value-to="opacity">
+        <x-numberinput style="width: 75px;" suffix=" %" skin="condensed" bind-value-to="opacity">
             <x-stepper></x-stepper>
         </x-numberinput>
     </x-box>
@@ -435,4 +434,3 @@
         </main>
     </x-accordion>
     <hr>
-</div>

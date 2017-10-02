@@ -1,218 +1,269 @@
-const {Menu} = require('electron')
+const {
+    Menu
+} = require('electron')
 const electron = require('electron')
 const app = electron.app
 
 const BrowserWindow = electron.BrowserWindow
 
 const path = require('path')
+const url = require('url')
 
 const template = [
-  {
-    label: 'Edit',
-    submenu: [
-      {
-        role: 'undo',
-		  click: function() {
-      var focusedWindow = BrowserWindow.getFocusedWindow();
-      focusedWindow.webContents.send('undo');
-    }
+    {
+        label: 'Edit',
+        submenu: [
+            {
+                role: 'undo',
+                click: function () {
+                    var focusedWindow = BrowserWindow.getFocusedWindow();
+                    focusedWindow.webContents.send('undo');
+                }
       },
-      {
-        role: 'redo',
-		  click: function() {
-      var focusedWindow = BrowserWindow.getFocusedWindow();
-      focusedWindow.webContents.send('redo');
-    }
+            {
+                role: 'redo',
+                click: function () {
+                    var focusedWindow = BrowserWindow.getFocusedWindow();
+                    focusedWindow.webContents.send('redo');
+                }
       },
-      {
-        type: 'separator'
+            {
+                type: 'separator'
       },
-      {
-        role: 'cut'
+            {
+                role: 'cut'
       },
-      {
-        role: 'copy',
-		  click: function() {
-      var focusedWindow = BrowserWindow.getFocusedWindow();
-      focusedWindow.webContents.send('copy');
-    }
+            {
+                role: 'copy',
+                click: function () {
+                    var focusedWindow = BrowserWindow.getFocusedWindow();
+                    focusedWindow.webContents.send('copy');
+                }
       },
-      {
-        role: 'paste',
-		  click: function() {
-      var focusedWindow = BrowserWindow.getFocusedWindow();
-      focusedWindow.webContents.send('paste');
-    }
+            {
+                role: 'paste',
+                click: function () {
+                    var focusedWindow = BrowserWindow.getFocusedWindow();
+                    focusedWindow.webContents.send('paste');
+                }
       },
-      {
-        role: 'pasteandmatchstyle'
+            {
+                role: 'pasteandmatchstyle'
       },
 
-		
-	      {
-        //role: 'delete',
-		label: 'Delete',
-		click: function() {
-      var focusedWindow = BrowserWindow.getFocusedWindow();
-      focusedWindow.webContents.send('delete');
-    }
+
+            {
+                role: 'delete',
+                label: 'Delete',
+                click: function () {
+                    var focusedWindow = BrowserWindow.getFocusedWindow();
+                    focusedWindow.webContents.send('delete');
+                }
       },
-      {
-        role: 'selectall'
+            {
+                role: 'selectall'
       }
     ]
   },
-  {
-    label: 'View',
-    submenu: [
-      {
-        label: 'Reload',
-        accelerator: 'CmdOrCtrl+R',
-        click (item, focusedWindow) {
-          if (focusedWindow) focusedWindow.reload()
-        }
+    {
+        label: 'View',
+        submenu: [
+            {
+                label: 'Reload',
+                accelerator: 'CmdOrCtrl+R',
+                click(item, focusedWindow) {
+                    if (focusedWindow) focusedWindow.reload()
+                }
       },
-      {
-        label: 'Toggle Developer Tools',
-        accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-        		click (item, focusedWindow) {
-          if (focusedWindow) focusedWindow.webContents.toggleDevTools()
-        }
+            {
+                label: 'Toggle Developer Tools',
+                accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
+                click(item, focusedWindow) {
+                    if (focusedWindow) focusedWindow.webContents.toggleDevTools()
+                }
       },
-      {
-        type: 'separator'
+            {
+                type: 'separator'
       },
-      {
-        role: 'resetzoom'
+            {
+                role: 'resetzoom'
       },
-      {
-        role: 'zoomin'
+            {
+                role: 'zoomin'
       },
-      {
-        role: 'zoomout'
+            {
+                role: 'zoomout'
       },
-      {
-        type: 'separator'
+            {
+                type: 'separator'
       },
-      {
-        role: 'togglefullscreen'
+            {
+                role: 'togglefullscreen'
       }
     ]
   },
-  {
-    role: 'window',
-    submenu: [
-      {
-        role: 'minimize'
+    {
+        role: 'window',
+        submenu: [
+            {
+                role: 'minimize'
       },
-      {
-        role: 'close'
+            {
+                role: 'close'
       }
     ]
   },
-  {
-    role: 'help',
-    submenu: [
-      {
-        label: 'My Learn More',
-        click () { require('electron').shell.openExternal('http://electron.atom.io') }
+    {
+        role: 'help',
+        submenu: [
+            {
+                label: 'My Learn More',
+                click() {
+                    let win = new BrowserWindow({
+                        frame: false,
+                        width: 800,
+                        height: 600,
+                        minWidth: 800,
+                        minHeight: 600,
+                        backgroundColor: '#312450',
+                        parent: mainWindow
+                    })
+                    win.loadURL(url.format({
+                        pathname: path.join(__dirname, 'WelcomeWindow/index.html'),
+                        protocol: 'file:',
+                        slashes: true
+                    }))
+                }
       }
     ]
   }
 ]
 
 if (process.platform === 'darwin') {
-  const name = app.getName()
-  template.unshift({
-    label: name,
-    submenu: [
-      {
-        role: 'about'
+    const name = app.getName()
+    template.unshift({
+            label: name,
+            submenu: [
+                {
+                    //                    role: 'about',
+                    label: 'About Floido Designer',
+                    click() {
+                        let win = new BrowserWindow({
+                            title: 'About Floido Designer',
+                            width: 600,
+                            height: 400,
+                            backgroundColor: '#6b0098',
+                            alwaysOnTop: true,
+                            minimizable: false,
+                            fullscreen: false,
+                            resizable: false,
+                            titleBarStyle: 'hidden',
+                            icon: '../icons/mac/icon.icns'
+                        })
+                        win.loadURL(url.format({
+                            pathname: path.join(__dirname, '../aboutWindow/index.html'),
+                            protocol: 'file:',
+                            slashes: true
+                        }))
+                    }
+
       },
-      {
-        type: 'separator'
+                {
+                    type: 'separator'
       },
-      {
-        role: 'services',
-        submenu: []
+                {
+                    role: 'services',
+                    submenu: []
       },
-      {
-        type: 'separator'
+                {
+                    type: 'separator'
       },
-      {
-        role: 'hide'
+                {
+                    role: 'hide'
       },
-      {
-        role: 'hideothers'
+                {
+                    role: 'hideothers'
       },
-      {
-        role: 'unhide'
+                {
+                    role: 'unhide'
       },
-      {
-        type: 'separator'
+                {
+                    type: 'separator'
       },
-      {
-        role: 'quit'
+                {
+                    role: 'quit'
       }
     ]
-  })
-  // Edit menu.
-  template[1].submenu.push(
-    {
-      type: 'separator'
-    },
-    {
-      label: 'Speech',
-      submenu: [
-        {
-          role: 'startspeaking'
+        })
+        // Edit menu.
+    template[1].submenu.push({
+            type: 'separator'
+        }, {
+            label: 'Speech',
+            submenu: [
+                {
+                    role: 'startspeaking'
         },
-        {
-          role: 'stopspeaking'
+                {
+                    role: 'stopspeaking'
         }
       ]
-    }
-  )
-  // Window menu.
-  template[3].submenu = [
-    {
-      label: 'Close',
-      accelerator: 'CmdOrCtrl+W',
-      role: 'close'
+        })
+        // Window menu.
+    template[3].submenu = [
+        {
+            label: 'Close',
+            accelerator: 'CmdOrCtrl+W',
+            role: 'close'
     },
-    {
-      label: 'Minimize',
-      accelerator: 'CmdOrCtrl+M',
-      role: 'minimize'
+        {
+            label: 'Minimize',
+            accelerator: 'CmdOrCtrl+M',
+            role: 'minimize'
     },
-    {
-      label: 'Zoom',
-      role: 'zoom'
+        {
+            label: 'Zoom',
+            role: 'zoom'
     },
-	      {
-      type: 'separator'
+        {
+            type: 'separator'
     },
-	{
-        label: 'Open origninal index.html',
-        click () {
-  const modalPath = path.join('floido.jpg')
-  let win = new BrowserWindow({ width: 400, height: 320 })
-  win.on('close', function () { win = null })
-  win.loadURL(modalPath)
-  win.show()}
+        {
+            label: 'Open origninal index.html',
+            click() {
+                const modalPath = path.join('floido.jpg')
+                let win = new BrowserWindow({
+                    width: 400,
+                    height: 320
+                })
+                win.on('close', function () {
+                    win = null
+                })
+                win.loadURL(modalPath)
+                win.show()
+            }
     },
-	  {
-        label: 'Open angular ang_index.html',
-        click () { 
-			let win = new BrowserWindow({ width: 400, height: 320 })
-			BrowserWindow.loadURL('file://${ __dirname}/index.html')}
+        {
+            label: 'Welcome',
+            click() {
+                let win = new BrowserWindow({
+                    width: 800,
+                    height: 600,
+                    backgroundColor: '#312450'
+                })
+                win.loadURL(url.format({
+                    pathname: path.join(__dirname, '../WelcomeWindow/index.html'),
+                    protocol: 'file:',
+                    slashes: true
+                }))
+            }
     },
-    {
-      type: 'separator'
+        {
+            type: 'separator'
     },
-    {
-      label: 'Bring All to Front',
-      role: 'front'
+        {
+            label: 'Bring All to Front',
+            role: 'front'
     }
   ]
 }
