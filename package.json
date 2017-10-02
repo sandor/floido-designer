@@ -1,7 +1,22 @@
 {
     "name": "xel-electron-demo",
+	"productName": "Floido Designer",
     "version": "0.0.1",
+	"description": "Democratizing Tablet Publishing...",
     "main": "main.js",
+	"repository": "https://github.com/sandor/floido-designer",
+  "keywords": [
+    "Electron",
+    "AngularJS",
+    "FarbricJS",
+    "floido",
+    "designer",
+	  "FramerJS",
+	  "Tablet",
+	  "Publishing"
+  ],
+	"author": "Sandor Rozsa  | sharksinn gmbh",
+  "license": "MIT",
     "dependencies": {
         "angular-custom-elements": "^2.1.0",
         "angular-ui-sortable": "^0.17.2",

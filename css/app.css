@@ -439,15 +439,12 @@ x-button[skin="tabnav"] x-label {
     border-left: 0;
 }
 .pane-sm {
-    <<<<<<< HEAD width: 300px;
-    max-width: 320px;
-    min-width: 250px;
+    max-width: 250px;
     border-right: 1px solid #c2c0c2;
     =======width: 200px;
     max-width: 320px;
     min-width: 250px;
     border-right: 1px solid #c2c0c2;
-    >>>>>>> b972e7ee7613d2ae39361489363ce8f4071d3af6
 }
 .pane-right {
     width: 315px;
