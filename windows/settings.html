@@ -1,0 +1,13 @@
+<form>
+    <p><b>Vibrancy Type</b></p>
+    <input type="radio" name="vibrancy" onclick="require('electron').remote.getCurrentWindow().setVibrancy()" checked>None
+    <br>
+    <input type="radio" name="vibrancy" onclick="require('electron').remote.getCurrentWindow().setVibrancy('light')">Light
+    <br>
+    <input type="radio" name="vibrancy" onclick="require('electron').remote.getCurrentWindow().setVibrancy('medium-light')">Medium Light
+    <br>
+    <input type="radio" name="vibrancy" onclick="require('electron').remote.getCurrentWindow().setVibrancy('dark')">Dark
+    <br>
+    <input type="radio" name="vibrancy" onclick="require('electron').remote.getCurrentWindow().setVibrancy('ultra-dark')">Ultra Dark
+    <br>
+</form>
