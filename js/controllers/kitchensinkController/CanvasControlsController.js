@@ -56,7 +56,8 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
                     : document.getElementById("scale-scaleY").value;
 
         }
-        if (!canvas.getActiveObject() && document.getElementById('enableShadow')) {
+        if ((!canvas.getActiveObject() && document.getElementById('enableShadow'))
+            || (canvas.getActiveObject() && !canvas.getActiveObject().shadow && document.getElementById('enableShadow'))) {
             document.getElementById('enableShadow').removeAttribute('toggled');
         }
 
@@ -64,13 +65,11 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
     })
 
     canvas.on('after:render', function (option) {
-
         // canvasObjectBackColor = canvas._activeObject && canvas._activeObject.fill ? canvas._activeObject.fill : canvasObjectBackColor;
         getCanvasObjBackgroundInputColor();
         setCanvasObjBackgroundInputColor();
         controlElementOnElementStyleTab();
     })
-
 
 
     // $scope.canvasAngle = canvasAngle;
