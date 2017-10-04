@@ -18,6 +18,8 @@ var canvasObjectShadowColor = "#ffffff";
 var canvasObjectBorderStrokeWidth = 0;
 var cavasObjectOpacity = 0;
 var cavasObjectCorner = 0;
+var canvasObjectShadowOffsetX = 0;
+var canvasObjectShadowOffsetY = 0;
 
 
 document.onkeydown = function (e) {
@@ -100,8 +102,11 @@ function setCanvasObjBackgroundInputColor() {
         document.getElementById('cavas-object-opacity-input').value = cavasObjectOpacity;
         document.getElementById('cavas-object-corner').value = cavasObjectCorner;
         document.getElementById('canvas-object-corner-input').value = cavasObjectCorner;
-
         document.getElementById('obj-shadow-color').value = canvasObjectShadowColor;
+
+
+        document.getElementById('shadow-Offset-X').value = canvasObjectShadowOffsetX;
+        document.getElementById('shadow-Offset-Y').value = canvasObjectShadowOffsetY;
 
     }
 
@@ -113,10 +118,11 @@ function getCanvasObjBackgroundInputColor() {
     canvasObjectBorderColor = canvas._activeObject && canvas._activeObject.stroke ? canvas._activeObject.stroke : "#ffffff";
     canvasObjectBorderStrokeWidth = canvas._activeObject && canvas._activeObject.strokeWidth ? canvas._activeObject.strokeWidth : 0;
     canvasObjectBackgroundColor = canvas._activeObject && canvas._activeObject.backgroundColor ? canvas._activeObject.backgroundColor : "#ffffff";
-    cavasObjectOpacity = canvas._activeObject && canvas._activeObject.opacity ? canvas._activeObject.opacity  : 0;
+    cavasObjectOpacity = canvas._activeObject && canvas._activeObject.opacity ? canvas._activeObject.opacity : 0;
     cavasObjectCorner = canvas._activeObject && canvas._activeObject.rx ? canvas._activeObject.rx : 0;
-
     canvasObjectShadowColor = canvas._activeObject && canvas._activeObject.shadow ? canvas._activeObject.shadow.color : "#ffffff";
+    canvasObjectShadowOffsetX = canvas._activeObject && canvas._activeObject.shadow ? canvas._activeObject.shadow.offsetX : 0;
+    canvasObjectShadowOffsetY = canvas._activeObject && canvas._activeObject.shadow ? canvas._activeObject.shadow.offsetY : 0;
 
 
     //
@@ -164,8 +170,6 @@ function controlElementOnElementStyleTab() {
         document.getElementById('obj-shadow-color-input').setAttribute('disabled', true);
         document.getElementById('shadow-Offset-X').setAttribute('disabled', true);
         document.getElementById('shadow-Offset-Y').setAttribute('disabled', true);
-
-
 
 
     }
@@ -297,7 +301,7 @@ function setActiveProp(name, value) {
 
 
 function getActiveShadow(name) {
-
+    debugger;
     if (canvas.getActiveObject()
         && canvas.getActiveObject().shadow
         && document.getElementById('enableShadow')
@@ -325,12 +329,13 @@ function getActiveShadow(name) {
 }
 
 function setActiveShadow(name, value) {
-
+    debugger;
     var object = canvas.getActiveObject();
 
     if (!object) return;
-    if (object.shadow)
+    if (object.shadow) {
         object.shadow[name] = value;
+    }
     else {
         var ob = {};
         ob[name] = value;
@@ -340,6 +345,23 @@ function setActiveShadow(name, value) {
     object.setCoords();
     canvas.renderAll();
 }
+
+// function setActiveShadow(name, value) {
+//     debugger;
+//     var object = canvas.getActiveObject();
+//
+//     if (!object) return;
+//     if (object.shadow)
+//         object.shadow[name] = value;
+//     else {
+//         var ob = {};
+//         ob[name] = value;
+//         object.setShadow(ob);
+//     }
+//
+//     object.setCoords();
+//     canvas.renderAll();
+// }
 
 
 ///////////
@@ -387,21 +409,25 @@ function addAccessors($scope, $rootScope) {
 
 
     $scope.setShadowOffsetX = function (value) {
+        debugger;
         setActiveShadow('offsetX', value);
         canvas.renderAll();
     };
 
     $scope.getShadowOffsetX = function (value) {
+        debugger;
         getActiveShadow('offsetX', value);
     };
 
 
     $scope.setShadowOffsetY = function (value) {
+
         setActiveShadow('offsetY', value);
         canvas.renderAll();
     };
 
-    $scope.setShadowOffsetY = function (value) {
+    $scope.getShadowOffsetY = function (value) {
+
         getActiveShadow('offsetY', value);
     };
 
