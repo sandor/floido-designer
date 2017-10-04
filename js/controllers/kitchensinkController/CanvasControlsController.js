@@ -31,7 +31,6 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
         //document.getElementById("position-y").value = Math.round(options.target.angle);
     });
     canvas.on('object:modified', function (options) {
-        debugger;
         if (document.getElementById("position-x")) {
 
             document.getElementById("transform-angle").value =
@@ -61,13 +60,24 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
             document.getElementById('enableShadow').removeAttribute('toggled');
         }
 
+        if (document.getElementById('shadow-Offset-X') && document.getElementById('shadow-Offset-Y') && canvas.getActiveObject()) {
+
+            document.getElementById('shadow-Offset-X').value = canvasObjectShadowOffsetX;
+            document.getElementById('shadow-Offset-Y').value = canvasObjectShadowOffsetY;
+            document.getElementById('shadow-blur').value = canvasObjectShadowBlur;
+
+        }
+
 
     })
 
     canvas.on('after:render', function (option) {
-        getCanvasObjBackgroundInputColor();
-        setCanvasObjBackgroundInputColor();
-        controlElementOnElementStyleTab();
+
+        getCanvasActiveObjectData();
+        setCanvasActiveObjectData();
+        enableDisableElement();
+
+
     })
 
 
@@ -137,14 +147,11 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
         }
         if (canvas._objects && canvas.getActiveObject()) {
 
-            // canvas.setZoom(param.zoom / 100);//Working line
-            //$scope.zoom =(param.zoom / 100);
+
             canvas.setZoom(scaleFactor);
             canvas.setWidth(canvas.getZoom() * canvas.getActiveObject().width);
             canvas.setHeight(canvas.getZoom() * canvas.getActiveObject().height);
-            // canvas.setHeight(canvas.height * scaleFactor);
-            // canvas.setWidth(canvas.width * scaleFactor);
-            //canvas.getActiveObject().scaleX=1
+
         }
 
         else {

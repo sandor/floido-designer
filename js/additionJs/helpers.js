@@ -20,6 +20,7 @@ var cavasObjectOpacity = 0;
 var cavasObjectCorner = 0;
 var canvasObjectShadowOffsetX = 0;
 var canvasObjectShadowOffsetY = 0;
+var canvasObjectShadowBlur = 0;
 
 
 document.onkeydown = function (e) {
@@ -88,7 +89,7 @@ function ungroup() {
     canvas.requestRenderAll();
 }
 
-function setCanvasObjBackgroundInputColor() {
+function setCanvasActiveObjectData() {
 
     if (document.getElementById('objectIn-canvas-background-colorselect')) {
         document.getElementById('objectIn-canvas-background-colorselect').value = canvasObjectBackColor;
@@ -105,14 +106,11 @@ function setCanvasObjBackgroundInputColor() {
         document.getElementById('obj-shadow-color').value = canvasObjectShadowColor;
 
 
-        document.getElementById('shadow-Offset-X').value = canvasObjectShadowOffsetX;
-        document.getElementById('shadow-Offset-Y').value = canvasObjectShadowOffsetY;
-
     }
 
 }
 
-function getCanvasObjBackgroundInputColor() {
+function getCanvasActiveObjectData() {
 
     canvasObjectBackColor = canvas._activeObject && canvas._activeObject.fill ? canvas._activeObject.fill : "#ffffff";
     canvasObjectBorderColor = canvas._activeObject && canvas._activeObject.stroke ? canvas._activeObject.stroke : "#ffffff";
@@ -121,19 +119,24 @@ function getCanvasObjBackgroundInputColor() {
     cavasObjectOpacity = canvas._activeObject && canvas._activeObject.opacity ? canvas._activeObject.opacity : 0;
     cavasObjectCorner = canvas._activeObject && canvas._activeObject.rx ? canvas._activeObject.rx : 0;
     canvasObjectShadowColor = canvas._activeObject && canvas._activeObject.shadow ? canvas._activeObject.shadow.color : "#ffffff";
+
+
     canvasObjectShadowOffsetX = canvas._activeObject && canvas._activeObject.shadow ? canvas._activeObject.shadow.offsetX : 0;
     canvasObjectShadowOffsetY = canvas._activeObject && canvas._activeObject.shadow ? canvas._activeObject.shadow.offsetY : 0;
+    canvasObjectShadowBlur = canvas._activeObject && canvas._activeObject.shadow ? canvas._activeObject.shadow.Blur : 0;
 
 
     //
 }
 
+
 // disable inputs and color picker
-function controlElementOnElementStyleTab() {
+function enableDisableElement() {
 
     if (canvas.getActiveObject()
         && document.getElementById('objectIn-canvas-background-colorselect')
         && document.getElementById('objectIn-canvas-background-colorselect-down')) {
+
         document.getElementById('objectIn-canvas-background-colorselect').removeAttribute('disabled');
         document.getElementById('objectIn-canvas-background-colorselect-down').removeAttribute('disabled');
         document.getElementById('canv-obj-fill-color').removeAttribute('disabled');
@@ -142,14 +145,16 @@ function controlElementOnElementStyleTab() {
         document.getElementById('canvas-border-object-colorSelect').removeAttribute('disabled');
         document.getElementById('canvas-object-corner').removeAttribute('disabled');
         document.getElementById('obj-shadow-color').removeAttribute('disabled');
-        document.getElementById('obj-shadow-color-input').removeAttribute('disabled');
+        document.getElementById('shadow-blur').removeAttribute('disabled');
         document.getElementById('shadow-Offset-X').removeAttribute('disabled');
         document.getElementById('shadow-Offset-Y').removeAttribute('disabled');
 
 
     }
+
     if (!canvas.getActiveObject() && document.getElementById('objectIn-canvas-background-colorselect')
         && document.getElementById('objectIn-canvas-background-colorselect-down')) {
+
         document.getElementById('objectIn-canvas-background-colorselect').setAttribute('disabled', true);
         document.getElementById('objectIn-canvas-background-colorselect-down').setAttribute('disabled', true);
         document.getElementById('canv-obj-fill-color').setAttribute('disabled', true);
@@ -166,20 +171,32 @@ function controlElementOnElementStyleTab() {
     }
 
     if (document.getElementById('enableShadow') && !document.getElementById('enableShadow').hasAttribute("toggled")) {
+
         document.getElementById('obj-shadow-color').setAttribute('disabled', true);
-        document.getElementById('obj-shadow-color-input').setAttribute('disabled', true);
+        document.getElementById('shadow-blur').setAttribute('disabled', true);
         document.getElementById('shadow-Offset-X').setAttribute('disabled', true);
         document.getElementById('shadow-Offset-Y').setAttribute('disabled', true);
 
 
     }
 
+                // removing data from  filters and shadows fields /////////////////
+    if ((document.getElementById('shadow-Offset-X')
+            && document.getElementById('shadow-Offset-Y')
+            && !canvas.getActiveObject())
+        || (document.getElementById('shadow-Offset-X')
+            && document.getElementById('shadow-Offset-Y')
+            && !canvas.getActiveObject().shadow)) {
 
-    // if (canvas.getActiveObject() && canvasObjectBackColor && document.getElementById("canv-obj-fill-color")) {
-    //
-    //     //document.getElementById("objectIn-canvas-background-colorselect").value = canvasObjectBackColor;
-    //     document.getElementById("canv-obj-fill-color").value = canvasObjectBackColor;
-    // }
+
+
+
+        document.getElementById('shadow-Offset-X').value = '';
+        document.getElementById('shadow-Offset-Y').value = '';
+        document.getElementById('shadow-blur').value = '';
+    }
+
+
 
 }
 
@@ -225,7 +242,7 @@ function paste() {
 
 function remove() {
 
-    if (document.activeElement && document.activeElement.hasAttribute('value')) {
+    if (document.activeElement && document.activeElement.hasAttribute('value') || (document.activeElement && document.activeElement.value)) {
         document.activeElement.value = 0;
     }
     else {
@@ -301,7 +318,7 @@ function setActiveProp(name, value) {
 
 
 function getActiveShadow(name) {
-    debugger;
+
     if (canvas.getActiveObject()
         && canvas.getActiveObject().shadow
         && document.getElementById('enableShadow')
@@ -315,9 +332,21 @@ function getActiveShadow(name) {
         document.getElementById('enableShadow').removeAttribute('toggled');
     }
 
+    if (document.getElementById('shadow-Offset-X')
+        && document.getElementById('shadow-Offset-Y')
+        && canvas.getActiveObject()
+        && canvas.getActiveObject().shadow) {
+
+        document.getElementById('shadow-Offset-X').value = canvas.getActiveObject().shadow.offsetX;
+        document.getElementById('shadow-Offset-Y').value = canvas.getActiveObject().shadow.offsetY;
+
+    }
+
 
     if (canvas.getActiveObject()
         && canvas.getActiveObject().shadow) {
+
+        document.getElementById()
 
         return canvas.getActiveObject().shadow;
     }
@@ -329,11 +358,11 @@ function getActiveShadow(name) {
 }
 
 function setActiveShadow(name, value) {
-    debugger;
     var object = canvas.getActiveObject();
 
     if (!object) return;
     if (object.shadow) {
+
         object.shadow[name] = value;
     }
     else {
@@ -347,7 +376,7 @@ function setActiveShadow(name, value) {
 }
 
 // function setActiveShadow(name, value) {
-//     debugger;
+//
 //     var object = canvas.getActiveObject();
 //
 //     if (!object) return;
@@ -409,13 +438,13 @@ function addAccessors($scope, $rootScope) {
 
 
     $scope.setShadowOffsetX = function (value) {
-        debugger;
+
         setActiveShadow('offsetX', value);
-        canvas.renderAll();
+        //canvas.renderAll();
     };
 
     $scope.getShadowOffsetX = function (value) {
-        debugger;
+
         getActiveShadow('offsetX', value);
     };
 
@@ -566,9 +595,9 @@ function addAccessors($scope, $rootScope) {
 
     $scope.getBgColor = function () {
 
-        getCanvasObjBackgroundInputColor();
-        setCanvasObjBackgroundInputColor();
-        controlElementOnElementStyleTab();
+        getCanvasActiveObjectData();
+        setCanvasActiveObjectData();
+        enableDisableElement();
         return getActiveProp('backgroundColor');
     };
     $scope.setBgColor = function (value) {
