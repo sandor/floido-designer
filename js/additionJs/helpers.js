@@ -97,8 +97,8 @@ function setCanvasObjBackgroundInputColor() {
 
 function getCanvasObjBackgroundInputColor() {
 
-    canvasObjectBackColor = canvas._activeObject && canvas._activeObject.fill ? canvas._activeObject.fill : "#ffffff";
-    canvasObjectBorderColor = canvas._activeObject && canvas._activeObject.stroke ? canvas._activeObject.stroke : "#ffffff";
+    canvasObjectBackColor = canvas._activeObject && canvas._activeObject.fill ? canvas._activeObject.fill : "";
+    canvasObjectBorderColor = canvas._activeObject && canvas._activeObject.stroke ? canvas._activeObject.stroke : "";
     canvasObjectBorderStrokeWidth = canvas._activeObject && canvas._activeObject.strokeWidth ? canvas._activeObject.strokeWidth : 0;
 
     //
