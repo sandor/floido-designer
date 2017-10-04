@@ -9,12 +9,14 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
     $scope.insideRulerheight = document.getElementsByClassName("rul_wrapper")[0].offsetHeight - document.getElementsByClassName("toolbar-header")[0].offsetHeight
         - document.getElementsByClassName("toolbar-footer")[0].offsetHeight - 90;
 
+
     addAccessors($scope);
     watchCanvas($scope);
 
 //get canvas Angle and set it
 
     canvas.on('object:rotating', function (options) {
+
         console.log(options.target);
         if (document.getElementById("canvas-angle")) {
             document.getElementById("canvas-angle").value =
@@ -29,6 +31,7 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
         //document.getElementById("position-y").value = Math.round(options.target.angle);
     });
     canvas.on('object:modified', function (options) {
+
         if (document.getElementById("position-x")) {
 
             document.getElementById("transform-angle").value =
@@ -53,7 +56,22 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
                     : document.getElementById("scale-scaleY").value;
 
         }
+        if (!canvas.getActiveObject() && document.getElementById('enableShadow')) {
+            document.getElementById('enableShadow').removeAttribute('toggled');
+        }
+
+
     })
+
+    canvas.on('after:render', function (option) {
+
+        // canvasObjectBackColor = canvas._activeObject && canvas._activeObject.fill ? canvas._activeObject.fill : canvasObjectBackColor;
+        getCanvasObjBackgroundInputColor();
+        setCanvasObjBackgroundInputColor();
+        controlElementOnElementStyleTab();
+    })
+
+
 
     // $scope.canvasAngle = canvasAngle;
     // Editing manipulating the Canvas Size

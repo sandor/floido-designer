@@ -1,436 +1,469 @@
-    <div class="col-12">
-        <h1 class="title_left">Element Styling</h1>
+<div class="col-12">
+    <h1 class="title_left">Element Styling</h1>
+    <hr>
+</div>
+
+<x-accordion expanded>
+    <header>
+        <x-label>Background</x-label>
+    </header>
+
+    <main>
+
+
+        <x-box>
+            <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Fill Color</x-label>
+
+            <x-colorselect ng-diasbled="getInputState()" id="objectIn-canvas-background-colorselect"
+                           style="margin-left:5px; margin-right: 15px; width: 70px;">
+                <x-popover style="width: 320px;">
+                    <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="fill"></x-rectcolorpicker>
+                </x-popover>
+            </x-colorselect>
+
+            <x-input id="canv-obj-fill-color" style="width: 130px;" bind-value-to="fill">
+                <x-icon name="invert-colors"></x-icon>
+            </x-input>
+
+        </x-box>
+
+        <div class="spacer"></div>
+
+        <x-box>
+            <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Background</x-label>
+
+            <x-colorselect ng-diasbled="getInputState()" style="margin-left:5px; margin-right: 15px; width: 70px;"
+                           id="objectIn-canvas-background-colorselect-down">
+                <x-popover style="width: 320px;">
+                    <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="bgColor"></x-rectcolorpicker>
+                </x-popover>
+            </x-colorselect>
+
+            <x-input id="canv-obj-back-color" style="width: 130px;" bind-value-to="bgColor">
+                <x-icon name="invert-colors"></x-icon>
+            </x-input>
+
+        </x-box>
+
+    </main>
+</x-accordion>
+
+<!--//////////////////////////////////	-->
+
+
+<hr>
+
+<x-accordion expanded>
+    <header>
+        <x-label>Element Border</x-label>
+    </header>
+
+    <main>
+        <x-box>
+
+            <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Border</x-label>
+
+            <x-slider id="canvas-object-border" style="width: 140px; top: 8px; margin-right: 5px;" min="0" max="100"
+                      bind-value-to="strokeWidth"
+                      skin="arrow">
+            </x-slider>
+
+            <x-numberinput id="canvas-object-border-input" ng-disabled="getInputState()" style="width: 75px;"
+                           value="'0'" suffix=" px" skin="condensed"
+                           bind-value-to="strokeWidth">
+                <x-stepper></x-stepper>
+            </x-numberinput>
+
+        </x-box>
+
+
+        <x-box>
+            <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Color</x-label>
+
+            <x-colorselect id="canvas-border-object-colorSelect"
+                           style="margin-left:5px; margin-right: 15px; width: 70px;">
+                <x-popover style="width: 320px;">
+                    <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="stroke"></x-rectcolorpicker>
+                </x-popover>
+            </x-colorselect>
+
+            <x-input ng-disabled="getInputState()" id="canvas-border-object-colorSelect-input" style="width: 130px;"
+                     bind-value-to="stroke">
+                <x-icon name="invert-colors"></x-icon>
+            </x-input>
+
+        </x-box>
+
+        <x-box>
+            <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Corner</x-label>
+
+            <x-slider id="canvas-object-corner" style="width: 140px; top: 8px; margin-right: 5px;" min="1" max="200"
+                      ng-value="0"
+                      bind-value-to="cornerWidth" skin="arrow">
+            </x-slider>
+
+            <x-numberinput ng-disabled="getInputState()" style="width: 75px;" suffix=" px" skin="condensed" ng-value="0"
+                           bind-value-to="cornerWidth">
+                <x-stepper></x-stepper>
+            </x-numberinput>
+        </x-box>
+
+
+    </main>
+</x-accordion>
+
+<hr>
+
+
+<!--	////////////////////////////////////-->
+
+<div class="spacer"></div>
+
+<x-box>
+    <x-label style="margin-left:10px; margin-right: 5px; width: 65px;">Opacity</x-label>
+
+    <x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="0" max="100" step="1" bind-value-to="opacity"
+              skin="arrow">
+    </x-slider>
+
+    <x-numberinput ng-disabled="getInputState()" style="width: 75px;" suffix=" %" skin="condensed"
+                   bind-value-to="opacity">
+        <x-stepper></x-stepper>
+    </x-numberinput>
+</x-box>
+
+<div clas="spacer"></div>
+<hr>
+
+<!--	////////////////////////////////////-->
+
+
+<x-accordion expanded>
+    <header>
+        <x-label>Shadow</x-label>
+        <x-switch ng-disabled="getInputState()" id="enableShadow" style="margin-right: 10px;"
+                  ng-click="shadowify()"></x-switch>
+    </header>
+
+    <main>
+        <x-box>
+            <x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Settings</x-label>
+
+            <x-numberinput ng-disabled="getInputState()" style="margin-right: 15px; width: 135px;" skin="condensed"
+                           suffix=" px" bind-value-to="shadowOffsetX">
+                <x-stepper></x-stepper>
+            </x-numberinput>
+
+            <x-numberinput ng-disabled="getInputState()" style="width: 135px; margin-right: 10px;" skin="condensed"
+                           suffix=" px" bind-value-to="shadowOffsetY">
+                <x-stepper></x-stepper>
+            </x-numberinput>
+
+        </x-box>
+        <x-box>
+            <x-label style="margin-left:5px; margin-right: 15px; width: 65px;"></x-label>
+            <x-label class="centered_sm" style="margin-right: 15px; width: 135px;">Offset X</x-label>
+            <x-label class="centered_sm" style="width: 135px; margin-right: 10px;">Offset Y</x-label>
+        </x-box>
+
+        <x-box>
+            <x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
+
+            <x-colorselect id="obj-shadow-color" style="margin-right: 15px; width: 135px;">
+                <x-popover style="width: 320px;">
+                    <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="shadowColor"
+                                       ng-model="color"></x-rectcolorpicker>
+                </x-popover>
+            </x-colorselect>
+
+            <x-numberinput ng-disabled="getInputState()" style="width: 135px; margin-right: 10px;" skin="condensed"
+                           suffix=" px" bind-value-to="shadowBlur">
+                <x-stepper></x-stepper>
+            </x-numberinput>
+
+        </x-box>
+        <x-box>
+            <x-label style="margin-left:5px; margin-right: 15px; width: 65px;"></x-label>
+            <x-label class="centered_sm" style="margin-right: 15px; width: 135px;">Shadow Color</x-label>
+            <x-label class="centered_sm" style="width: 135px; margin-right: 10px;">Blur</x-label>
+        </x-box>
+
+    </main>
+</x-accordion>
+<hr>
+
+<!--	////////////////////////////////////-->
+
+
+<!--////////////////// FILTERS -->
+
+<x-accordion expanded>
+    <header>
+        <x-label>Filters</x-label>
+    </header>
+
+    <main style="padding: 10px;">
+
+
+        <!--////////////////// BLUR	FILTER -->
         <hr>
-    </div>
-
-    <x-accordion expanded>
-        <header>
-            <x-label>Background</x-label>
-        </header>
-
-        <main>
-
-
-
-
-            <x-box>
-                <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Fill Color</x-label>
-
-                <x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;">
-                    <x-popover style="width: 320px;">
-                        <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="fill"></x-rectcolorpicker>
-                    </x-popover>
-                </x-colorselect>
-
-                <x-input id="select1" style="width: 130px;" bind-value-to="fill">
-                    <x-icon name="invert-colors"></x-icon>
-                </x-input>
-
-            </x-box>
-
-            <div class="spacer"></div>
-
-            <x-box>
-                <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Background</x-label>
-
-                <x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;">
-                    <x-popover style="width: 320px;">
-                        <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="bgColor"></x-rectcolorpicker>
-                    </x-popover>
-                </x-colorselect>
-
-                <x-input id="select1" style="width: 130px;" bind-value-to="bgColor">
-                    <x-icon name="invert-colors"></x-icon>
-                </x-input>
-
-            </x-box>
-
-        </main>
-    </x-accordion>
-
-    <!--//////////////////////////////////	-->
-
-
-    <hr>
-
-    <x-accordion expanded>
-        <header>
-            <x-label>Element Border</x-label>
-        </header>
-
-        <main>
-            <x-box>
-
-                <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Border</x-label>
-
-                <x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="0" max="100" bind-value-to="strokeWidth" skin="arrow">
-                </x-slider>
-
-                <x-numberinput style="width: 75px;" value="'0'" suffix=" px" skin="condensed" bind-value-to="strokeWidth">
-                    <x-stepper></x-stepper>
-                </x-numberinput>
-
-            </x-box>
-
-
-            <x-box>
-                <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Color</x-label>
-
-                <x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;">
-                    <x-popover style="width: 320px;">
-                        <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="stroke"></x-rectcolorpicker>
-                    </x-popover>
-                </x-colorselect>
-
-                <x-input id="select1" style="width: 130px;" bind-value-to="stroke">
-                    <x-icon name="invert-colors"></x-icon>
-                </x-input>
-
-            </x-box>
-
-            <x-box>
-                <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Corner</x-label>
-
-                <x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="1" max="200" ng-value="0" bind-value-to="cornerWidth" skin="arrow">
-                </x-slider>
-
-                <x-numberinput style="width: 75px;" suffix=" px" skin="condensed" ng-value="0" bind-value-to="cornerWidth">
-                    <x-stepper></x-stepper>
-                </x-numberinput>
-            </x-box>
-
-
-        </main>
-    </x-accordion>
-
-    <hr>
-
-
-    <!--	////////////////////////////////////-->
-
-    <div class="spacer"></div>
-
-    <x-box>
-        <x-label style="margin-left:10px; margin-right: 5px; width: 65px;">Opacity</x-label>
-
-        <x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="0" max="100" step="1" bind-value-to="opacity" skin="arrow">
-        </x-slider>
-
-        <x-numberinput style="width: 75px;" suffix=" %" skin="condensed" bind-value-to="opacity">
-            <x-stepper></x-stepper>
-        </x-numberinput>
-    </x-box>
-
-    <div clas="spacer"></div>
-    <hr>
-
-    <!--	////////////////////////////////////-->
-
-
-    <x-accordion expanded>
-        <header>
-            <x-label>Shadow</x-label>
-            <x-switch style="margin-right: 10px;" ng-click="shadowify()"></x-switch>
-        </header>
-
-        <main>
-            <x-box>
-                <x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Settings</x-label>
-
-                <x-numberinput style="margin-right: 15px; width: 135px;" skin="condensed" suffix=" px" bind-value-to="shadowOffsetX">
-                    <x-stepper></x-stepper>
-                </x-numberinput>
-
-                <x-numberinput style="width: 135px; margin-right: 10px;" skin="condensed" suffix=" px" bind-value-to="shadowOffsetY">
-                    <x-stepper></x-stepper>
-                </x-numberinput>
-
-            </x-box>
-            <x-box>
-                <x-label style="margin-left:5px; margin-right: 15px; width: 65px;"></x-label>
-                <x-label class="centered_sm" style="margin-right: 15px; width: 135px;">Offset X</x-label>
-                <x-label class="centered_sm" style="width: 135px; margin-right: 10px;">Offset Y</x-label>
-            </x-box>
-
-            <x-box>
-                <x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
-
-                <x-colorselect style="margin-right: 15px; width: 135px;">
-                    <x-popover style="width: 320px;">
-                        <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="shadowColor" ng-model="color"></x-rectcolorpicker>
-                    </x-popover>
-                </x-colorselect>
-
-                <x-numberinput style="width: 135px; margin-right: 10px;" skin="condensed" suffix=" px" bind-value-to="shadowBlur">
-                    <x-stepper></x-stepper>
-                </x-numberinput>
-
-            </x-box>
-            <x-box>
-                <x-label style="margin-left:5px; margin-right: 15px; width: 65px;"></x-label>
-                <x-label class="centered_sm" style="margin-right: 15px; width: 135px;">Shadow Color</x-label>
-                <x-label class="centered_sm" style="width: 135px; margin-right: 10px;">Blur</x-label>
-            </x-box>
-
-        </main>
-    </x-accordion>
-    <hr>
-
-    <!--	////////////////////////////////////-->
-
-
-
-    <!--////////////////// FILTERS -->
-
-    <x-accordion expanded>
-        <header>
-            <x-label>Filters</x-label>
-        </header>
-
-        <main style="padding: 10px;">
-
-
-            <!--////////////////// BLUR	FILTER -->
-            <hr>
-            <x-accordion>
-                <header>
-                    <x-label>Blur</x-label>
-                    <x-switch style="margin-right: 10px;" ng-click="blurFilter()"></x-switch>
-                </header>
-
-                <main>
-                    <x-box>
-
-                        <x-slider id="blurvalue" style="width: 200px; top: 8px; margin-left: 15px; margin-right: 10px;" min="0" max="200" skin="arrow">
-                        </x-slider>
-
-                        <x-numberinput style="width: 70px;" suffix=" px" skin="condensed" bind-value-to="blurFilter">
-                            <x-stepper></x-stepper>
-                        </x-numberinput>
-                    </x-box>
-                </main>
-            </x-accordion>
-            <hr>
-
-
-            <!--////////////////// BRIGHTNESS FILTER -->
-
-
-            <x-accordion>
-                <header>
-                    <x-label>Brightness</x-label>
-                    <x-switch style="margin-right: 10px;" ng-click="shadowify()"></x-switch>
-                </header>
-
-                <main>
-                    <x-box>
-
-                        <x-slider style="width: 200px; top: 8px; margin-left: 15px; margin-right: 10px;" min="1" max="200" ng-value="0" bind-value-to="blur" skin="arrow">
-                        </x-slider>
-
-                        <x-numberinput style="width: 70px;" suffix=" px" skin="condensed" ng-value="0" bind-value-to="blur">
-                            <x-stepper></x-stepper>
-                        </x-numberinput>
-                    </x-box>
-                </main>
-            </x-accordion>
-            <hr>
-
-            <!--////////////////// CONTRAST FILTER -->
-
-            <x-accordion>
-                <header>
-                    <x-label>Contrast</x-label>
-                    <x-switch style="margin-right: 10px;" ng-click="contrastFilter()"></x-switch>
-                </header>
-
-                <main>
-                    <x-box>
-
-                        <x-slider style="width: 200px; top: 8px; margin-left: 15px; margin-right: 10px;" min="0" max="200" bind-value-to="contrast" skin="arrow">
-                        </x-slider>
-
-                        <x-numberinput style="width: 70px;" suffix=" px" skin="condensed" ng-value="0" bind-value-to="blur">
-                            <x-stepper></x-stepper>
-                        </x-numberinput>
-                    </x-box>
-                </main>
-            </x-accordion>
-            <hr>
-
-            <!--////////////////// SATURATION FILTER -->
-
-            <x-accordion>
-                <header>
-                    <x-label>Saturation</x-label>
-                    <x-switch style="margin-right: 10px;" ng-click="shadowify()"></x-switch>
-                </header>
-
-                <main>
-                    <x-box>
-
-                        <x-slider style="width: 200px; top: 8px; margin-left: 15px; margin-right: 10px;" min="1" max="200" ng-value="0" bind-value-to="blur" skin="arrow">
-                        </x-slider>
-
-                        <x-numberinput style="width: 70px;" suffix=" px" skin="condensed" ng-value="0" bind-value-to="blur">
-                            <x-stepper></x-stepper>
-                        </x-numberinput>
-                    </x-box>
-                </main>
-            </x-accordion>
-            <hr>
-
-            <!--////////////////// HUE ROTATE FILTER -->
-
-            <x-accordion>
-                <header>
-                    <x-label>HUE Rotate</x-label>
-                    <x-switch style="margin-right: 10px;" ng-click="shadowify()"></x-switch>
-                </header>
-
-                <main>
-                    <x-box>
-
-                        <x-slider style="width: 200px; top: 8px; margin-left: 15px; margin-right: 10px;" min="1" max="200" ng-value="0" bind-value-to="blur" skin="arrow">
-                        </x-slider>
-
-                        <x-numberinput style="width: 70px;" suffix=" px" skin="condensed" ng-value="0" bind-value-to="blur">
-                            <x-stepper></x-stepper>
-                        </x-numberinput>
-                    </x-box>
-                </main>
-            </x-accordion>
-            <hr>
-
-            <!--////////////////// SEPIA FILTER -->
-
-            <x-accordion>
-                <header>
-                    <x-label>Sepia</x-label>
-                    <x-switch style="margin-right: 10px;" ng-click="shadowify()"></x-switch>
-                </header>
-
-                <main>
-                    <x-box>
-
-                        <x-slider style="width: 200px; top: 8px; margin-left: 15px; margin-right: 10px;" min="1" max="200" ng-value="0" bind-value-to="blur" skin="arrow">
-                        </x-slider>
-
-                        <x-numberinput style="width: 70px;" suffix=" px" skin="condensed" ng-value="0" bind-value-to="blur">
-                            <x-stepper></x-stepper>
-                        </x-numberinput>
-                    </x-box>
-                </main>
-            </x-accordion>
-            <hr>
-
-            <!--////////////////// GREYSCALE FILTER -->
-
-            <x-accordion>
-                <header>
-                    <x-label>Greyscale</x-label>
-                    <x-switch style="margin-right: 10px;" ng-click="shadowify()"></x-switch>
-                </header>
-
-                <main>
-                    <x-box>
-
-                        <x-slider style="width: 200px; top: 8px; margin-left: 15px; margin-right: 10px;" min="1" max="200" ng-value="0" bind-value-to="blur" skin="arrow">
-                        </x-slider>
-
-                        <x-numberinput style="width: 70px;" suffix=" px" skin="condensed" ng-value="0" bind-value-to="blur">
-                            <x-stepper></x-stepper>
-                        </x-numberinput>
-                    </x-box>
-                </main>
-            </x-accordion>
-            <hr>
-
-            <!--////////////////// BLEND COLOR FILTER -->
-
-            <x-accordion>
-                <header>
-                    <x-label>Blend</x-label>
-                    <x-switch style="margin-right: 10px;" ng-click="shadowify()"></x-switch>
-                </header>
-
-                <main>
-                    <x-box>
-                        <x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Mode</x-label>
-                        <x-select style="width: 285px; margin-right: 5px; margin-bottom: 5px;">
-                            <x-menu>
-                                <x-menuitem value="add" selected="true">
-                                    <x-label>Add</x-label>
-                                </x-menuitem>
-
-                                <x-menuitem value="diff">
-                                    <x-label>Diff</x-label>
-                                </x-menuitem>
-
-                                <x-menuitem value="subtract">
-                                    <x-label>Subtract</x-label>
-                                </x-menuitem>
-
-                                <x-menuitem value="multiply">
-                                    <x-label>Multiply</x-label>
-                                </x-menuitem>
-
-                                <x-menuitem value="screen">
-                                    <x-label>Screen</x-label>
-                                </x-menuitem>
-
-                                <x-menuitem value="lighten">
-                                    <x-label>Lighten</x-label>
-                                </x-menuitem>
-
-                                <x-menuitem value="darken">
-                                    <x-label>Darken</x-label>
-                                </x-menuitem>
-
-                                <x-menuitem value="overlay">
-                                    <x-label>Overlay</x-label>
-                                </x-menuitem>
-
-                                <x-menuitem value="exclusion">
-                                    <x-label>Exclusion</x-label>
-                                </x-menuitem>
-
-                                <x-menuitem value="tint">
-                                    <x-label>Tint</x-label>
-                                </x-menuitem>
-                            </x-menu>
-                        </x-select>
-                    </x-box>
-
-                    <x-box>
-                        <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Color</x-label>
-
-                        <x-colorselect style="margin-right: 15px; width: 70px;">
-                            <x-popover style="width: 320px;">
-                                <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="fill"></x-rectcolorpicker>
-                            </x-popover>
-                        </x-colorselect>
-
-                        <x-input id="select1" style="width: 130px;" bind-value-to="fill">
-                            <x-icon name="invert-colors"></x-icon>
-                        </x-input>
-
-                    </x-box>
-
-                    <x-box>
-                        <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Alpha</x-label>
-
-                        <x-slider style="width: 130px; top: 8px; margin-right: 5px;" min="1" max="200" ng-value="0" bind-value-to="cornerWidth" skin="arrow">
-                        </x-slider>
-
-                        <x-numberinput style="width: 80px;" suffix=" px" skin="condensed" ng-value="0" bind-value-to="cornerWidth">
-                            <x-stepper></x-stepper>
-                        </x-numberinput>
-                    </x-box>
-
-                </main>
-            </x-accordion>
-
-        </main>
-    </x-accordion>
-    <hr>
+        <x-accordion>
+            <header>
+                <x-label>Blur</x-label>
+                <x-switch ng-disabled="getInputState()" style="margin-right: 10px;" ng-click="blurFilter()"></x-switch>
+            </header>
+
+            <main>
+                <x-box>
+
+                    <x-slider id="blurvalue" style="width: 200px; top: 8px; margin-left: 15px; margin-right: 10px;"
+                              min="0" max="200" skin="arrow">
+                    </x-slider>
+
+                    <x-numberinput ng-disabled="getInputState()" style="width: 70px;" suffix=" px" skin="condensed"
+                                   bind-value-to="blurFilter">
+                        <x-stepper></x-stepper>
+                    </x-numberinput>
+                </x-box>
+            </main>
+        </x-accordion>
+        <hr>
+
+
+        <!--////////////////// BRIGHTNESS FILTER -->
+
+
+        <x-accordion>
+            <header>
+                <x-label>Brightness</x-label>
+                <x-switch ng-disabled="getInputState()" style="margin-right: 10px;" ng-click="shadowify()"></x-switch>
+            </header>
+
+            <main>
+                <x-box>
+
+                    <x-slider style="width: 200px; top: 8px; margin-left: 15px; margin-right: 10px;" min="1" max="200"
+                              ng-value="0" bind-value-to="blur" skin="arrow">
+                    </x-slider>
+
+                    <x-numberinput ng-disabled="getInputState()" style="width: 70px;" suffix=" px" skin="condensed"
+                                   ng-value="0" bind-value-to="blur">
+                        <x-stepper></x-stepper>
+                    </x-numberinput>
+                </x-box>
+            </main>
+        </x-accordion>
+        <hr>
+
+        <!--////////////////// CONTRAST FILTER -->
+
+        <x-accordion>
+            <header>
+                <x-label>Contrast</x-label>
+                <x-switch ng-disabled="getInputState()" style="margin-right: 10px;"
+                          ng-click="contrastFilter()"></x-switch>
+            </header>
+
+            <main>
+                <x-box>
+
+                    <x-slider style="width: 200px; top: 8px; margin-left: 15px; margin-right: 10px;" min="0" max="200"
+                              bind-value-to="contrast" skin="arrow">
+                    </x-slider>
+
+                    <x-numberinput ng-disabled="getInputState()" style="width: 70px;" suffix=" px" skin="condensed"
+                                   ng-value="0" bind-value-to="blur">
+                        <x-stepper></x-stepper>
+                    </x-numberinput>
+                </x-box>
+            </main>
+        </x-accordion>
+        <hr>
+
+        <!--////////////////// SATURATION FILTER -->
+
+        <x-accordion>
+            <header>
+                <x-label>Saturation</x-label>
+                <x-switch ng-disabled="getInputState()" style="margin-right: 10px;" ng-click="shadowify()"></x-switch>
+            </header>
+
+            <main>
+                <x-box>
+
+                    <x-slider style="width: 200px; top: 8px; margin-left: 15px; margin-right: 10px;" min="1" max="200"
+                              ng-value="0" bind-value-to="blur" skin="arrow">
+                    </x-slider>
+
+                    <x-numberinput ng-disabled="getInputState()" style="width: 70px;" suffix=" px" skin="condensed"
+                                   ng-value="0" bind-value-to="blur">
+                        <x-stepper></x-stepper>
+                    </x-numberinput>
+                </x-box>
+            </main>
+        </x-accordion>
+        <hr>
+
+        <!--////////////////// HUE ROTATE FILTER -->
+
+        <x-accordion>
+            <header>
+                <x-label>HUE Rotate</x-label>
+                <x-switch ng-disabled="getInputState()" style="margin-right: 10px;" ng-click="shadowify()"></x-switch>
+            </header>
+
+            <main>
+                <x-box>
+
+                    <x-slider style="width: 200px; top: 8px; margin-left: 15px; margin-right: 10px;" min="1" max="200"
+                              ng-value="0" bind-value-to="blur" skin="arrow">
+                    </x-slider>
+
+                    <x-numberinput ng-disabled="getInputState()" style="width: 70px;" suffix=" px" skin="condensed"
+                                   ng-value="0" bind-value-to="blur">
+                        <x-stepper></x-stepper>
+                    </x-numberinput>
+                </x-box>
+            </main>
+        </x-accordion>
+        <hr>
+
+        <!--////////////////// SEPIA FILTER -->
+
+        <x-accordion>
+            <header>
+                <x-label>Sepia</x-label>
+                <x-switch ng-disabled="getInputState()" style="margin-right: 10px;" ng-click="shadowify()"></x-switch>
+            </header>
+
+            <main>
+                <x-box>
+
+                    <x-slider style="width: 200px; top: 8px; margin-left: 15px; margin-right: 10px;" min="1" max="200"
+                              ng-value="0" bind-value-to="blur" skin="arrow">
+                    </x-slider>
+
+                    <x-numberinput ng-disabled="getInputState()" style="width: 70px;" suffix=" px" skin="condensed"
+                                   ng-value="0" bind-value-to="blur">
+                        <x-stepper></x-stepper>
+                    </x-numberinput>
+                </x-box>
+            </main>
+        </x-accordion>
+        <hr>
+
+        <!--////////////////// GREYSCALE FILTER -->
+
+        <x-accordion>
+            <header>
+                <x-label>Greyscale</x-label>
+                <x-switch ng-disabled="getInputState()" style="margin-right: 10px;" ng-click="shadowify()"></x-switch>
+            </header>
+
+            <main>
+                <x-box>
+
+                    <x-slider style="width: 200px; top: 8px; margin-left: 15px; margin-right: 10px;" min="1" max="200"
+                              ng-value="0" bind-value-to="blur" skin="arrow">
+                    </x-slider>
+
+                    <x-numberinput ng-disabled="getInputState()" style="width: 70px;" suffix=" px" skin="condensed"
+                                   ng-value="0" bind-value-to="blur">
+                        <x-stepper></x-stepper>
+                    </x-numberinput>
+                </x-box>
+            </main>
+        </x-accordion>
+        <hr>
+
+        <!--////////////////// BLEND COLOR FILTER -->
+
+        <x-accordion>
+            <header>
+                <x-label>Blend</x-label>
+                <x-switch ng-disabled="getInputState()" style="margin-right: 10px;" ng-click="shadowify()"></x-switch>
+            </header>
+
+            <main>
+                <x-box>
+                    <x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Mode</x-label>
+                    <x-select style="width: 285px; margin-right: 5px; margin-bottom: 5px;">
+                        <x-menu>
+                            <x-menuitem value="add" selected="true">
+                                <x-label>Add</x-label>
+                            </x-menuitem>
+
+                            <x-menuitem value="diff">
+                                <x-label>Diff</x-label>
+                            </x-menuitem>
+
+                            <x-menuitem value="subtract">
+                                <x-label>Subtract</x-label>
+                            </x-menuitem>
+
+                            <x-menuitem value="multiply">
+                                <x-label>Multiply</x-label>
+                            </x-menuitem>
+
+                            <x-menuitem value="screen">
+                                <x-label>Screen</x-label>
+                            </x-menuitem>
+
+                            <x-menuitem value="lighten">
+                                <x-label>Lighten</x-label>
+                            </x-menuitem>
+
+                            <x-menuitem value="darken">
+                                <x-label>Darken</x-label>
+                            </x-menuitem>
+
+                            <x-menuitem value="overlay">
+                                <x-label>Overlay</x-label>
+                            </x-menuitem>
+
+                            <x-menuitem value="exclusion">
+                                <x-label>Exclusion</x-label>
+                            </x-menuitem>
+
+                            <x-menuitem value="tint">
+                                <x-label>Tint</x-label>
+                            </x-menuitem>
+                        </x-menu>
+                    </x-select>
+                </x-box>
+
+                <x-box>
+                    <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Color</x-label>
+
+                    <x-colorselect style="margin-right: 15px; width: 70px;">
+                        <x-popover style="width: 320px;">
+                            <x-rectcolorpicker style="width: 320px;" alphaslider
+                                               bind-value-to="fill"></x-rectcolorpicker>
+                        </x-popover>
+                    </x-colorselect>
+
+                    <x-input id="select1" style="width: 130px;" bind-value-to="fill">
+                        <x-icon name="invert-colors"></x-icon>
+                    </x-input>
+
+                </x-box>
+
+                <x-box>
+                    <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Alpha</x-label>
+
+                    <x-slider style="width: 130px; top: 8px; margin-right: 5px;" min="1" max="200" ng-value="0"
+                              bind-value-to="cornerWidth" skin="arrow">
+                    </x-slider>
+
+                    <x-numberinput ng-disabled="getInputState()" style="width: 80px;" suffix=" px" skin="condensed"
+                                   ng-value="0" bind-value-to="cornerWidth">
+                        <x-stepper></x-stepper>
+                    </x-numberinput>
+                </x-box>
+
+            </main>
+        </x-accordion>
+
+    </main>
+</x-accordion>
+<hr>

@@ -1,4 +1,5 @@
 kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
+    $scope.hasShadow;
     $scope.tabs = [{
         title: 'One',
         url: 'templates/project_menu.html',
@@ -36,7 +37,9 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
     $scope.currentTab = 'templates/page_menu.html';
 
     $scope.onClickTab = function (tab) {
+
         $scope.currentTab = tab.url;
+        //document.getElementById("objectIn-canvas-background-colorselect").value = canvasObjectBackColor;
     }
 
     $scope.isActiveTab = function (tabUrl) {
@@ -44,8 +47,9 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
     }
 
     $scope.getInputState = function () {
-
         return canvas._activeObject ? false : true;
     }
+
+
 
 }])
