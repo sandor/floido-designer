@@ -100,7 +100,7 @@ function setCanvasObjBackgroundInputColor() {
         document.getElementById('cavas-object-opacity-input').value = cavasObjectOpacity;
         document.getElementById('cavas-object-corner').value = cavasObjectCorner;
         document.getElementById('canvas-object-corner-input').value = cavasObjectCorner;
-        
+
         document.getElementById('obj-shadow-color').value = canvasObjectShadowColor;
 
     }
@@ -113,7 +113,7 @@ function getCanvasObjBackgroundInputColor() {
     canvasObjectBorderColor = canvas._activeObject && canvas._activeObject.stroke ? canvas._activeObject.stroke : "#ffffff";
     canvasObjectBorderStrokeWidth = canvas._activeObject && canvas._activeObject.strokeWidth ? canvas._activeObject.strokeWidth : 0;
     canvasObjectBackgroundColor = canvas._activeObject && canvas._activeObject.backgroundColor ? canvas._activeObject.backgroundColor : "#ffffff";
-    cavasObjectOpacity = canvas._activeObject && canvas._activeObject.opacity ? (canvas._activeObject.opacity * 100) : 0;
+    cavasObjectOpacity = canvas._activeObject && canvas._activeObject.opacity ? canvas._activeObject.opacity  : 0;
     cavasObjectCorner = canvas._activeObject && canvas._activeObject.rx ? canvas._activeObject.rx : 0;
 
     canvasObjectShadowColor = canvas._activeObject && canvas._activeObject.shadow ? canvas._activeObject.shadow.color : "#ffffff";
