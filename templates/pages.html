@@ -1,29 +1,49 @@
-<div id="objects"  ng-controller="PagesController">
-	
-                <x-box class="middle">
-                    <x-label class="title_left">Pages</x-label>
-                    <x-button style="top: 5px; right: 5px;" skin="flat">
-  <x-icon name="add"></x-icon>
-</x-button>
-                </x-box>
-			<hr>
+<div id="thumb_pages" ng-controller="PagesController" style="margin-left: -5px;">
+
+	<x-box class="middle">
+		<h1 class="title_left">Pages</h1>
+		<x-buttons tracking="-1">
+			<x-button skin="mini">
+				<x-icon name="add"></x-icon>
+			</x-button>
+
+			<x-button skin="mini">
+				<x-icon name="remove"></x-icon>
+			</x-button>
+
+			<x-button skin="mini">
+				<x-icon name="refresh"></x-icon>
+			</x-button>
+		</x-buttons>
+	</x-box>
+	<hr>
+
+	<!--
+	<x-box class="middle" style="margin-top: 5px;">
+		<h1 class="title_left" style="top: -10px;">Pages</h1>
+		<x-button style="right: 5px;" skin="flat">
+			<x-icon name="add"></x-icon>
+		</x-button>
+	</x-box>
+	<hr>
+-->
 
 	<ul class="list-group middle" ui-sortable ng-model="objects">
 
-		<li ng-class="{active: object.active}" class="list-group-item" ng-repeat="object in objects" ng-click="setAsActive(object); setAsActiveLayer(object, objects)" ng-if="!object.ignore">
-			
-			
-			<x-box  class="thumbnail justify">
-				
-			<img style="margin: auto;" ng-src="{{object.thumbnail}}" title="{{ object.name }}" />
-				</x-box>
+		<li ng-class="{active: object.active}" class="list-pages-item" ng-repeat="object in objects" ng-click="setAsActive(object); setAsActiveLayer(object, objects)" ng-if="!object.ignore">
+
+
+			<x-box class="thumbnail justify">
+
+				<img style="margin: auto;" ng-src="{{object.thumbnail}}" title="{{ object.name }}" />
+			</x-box>
 			<x-box>
-							<div class="media-body" style="margin: auto;">
-				<p contenteditable="true">{{ object.name}}</p>
-			</div>
+				<div class="media-body" style="margin: auto;">
+					<p contenteditable="true">{{ object.name}}</p>
+				</div>
 
 
-</x-box>
+			</x-box>
 		</li>
 	</ul>
 </div>

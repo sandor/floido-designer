@@ -161,7 +161,7 @@ if (process.platform === 'darwin') {
                             icon: '../icons/mac/icon.icns'
                         })
                         win.loadURL(url.format({
-                            pathname: path.join(__dirname, '../aboutWindow/index.html'),
+                            pathname: path.join(__dirname, '../windows/index.html'),
                             protocol: 'file:',
                             slashes: true
                         }))
@@ -252,7 +252,7 @@ if (process.platform === 'darwin') {
                     backgroundColor: '#312450'
                 })
                 win.loadURL(url.format({
-                    pathname: path.join(__dirname, '../WelcomeWindow/index.html'),
+                    pathname: path.join(__dirname, '../windows/settings.html'),
                     protocol: 'file:',
                     slashes: true
                 }))
