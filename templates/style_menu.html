@@ -94,10 +94,21 @@
 
         </x-box>
 
-        <x-box>
-            <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Corner</x-label>
 
-            <x-slider id="canvas-object-corner" style="width: 140px; top: 8px; margin-right: 5px;" min="1" max="200"
+
+
+    </main>
+</x-accordion>
+
+<hr>
+
+<!--	////////////////////////////////////-->
+<div class="spacer"></div>
+
+        <x-box>
+            <x-label style="margin-left:10px; margin-right: 5px; width: 65px;">Corner</x-label>
+
+            <x-slider id="canvas-object-corner" style="width: 140px; top: 8px; margin-right: 5px;" min="0" max="200"
                       ng-value="0"
                       bind-value-to="cornerWidth" skin="arrow">
             </x-slider>
@@ -108,12 +119,7 @@
             </x-numberinput>
         </x-box>
 
-
-    </main>
-</x-accordion>
-
 <hr>
-
 
 <!--	////////////////////////////////////-->
 
