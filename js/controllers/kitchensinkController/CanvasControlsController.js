@@ -31,7 +31,7 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
         //document.getElementById("position-y").value = Math.round(options.target.angle);
     });
     canvas.on('object:modified', function (options) {
-
+        debugger;
         if (document.getElementById("position-x")) {
 
             document.getElementById("transform-angle").value =
@@ -65,7 +65,6 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
     })
 
     canvas.on('after:render', function (option) {
-        // canvasObjectBackColor = canvas._activeObject && canvas._activeObject.fill ? canvas._activeObject.fill : canvasObjectBackColor;
         getCanvasObjBackgroundInputColor();
         setCanvasObjBackgroundInputColor();
         controlElementOnElementStyleTab();
