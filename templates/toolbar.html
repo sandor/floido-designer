@@ -1,14 +1,12 @@
 <div class="toolbar-actions">
     <x-box class="middle">
 
-        <x-buttons tracking="1" >
-            <x-button ng-repeat="tab in tabs" skin="iconic" ng-class="{active1:isActiveTab(tab.url)}"
-                      ng-click="onClickTab(tab)">
+        <x-buttons tracking="1">
+            <x-button ng-repeat="tab in tabs" skin="iconic" ng-class="{active1:isActiveTab(tab.url)}" ng-click="onClickTab(tab)">
                 <x-box vertical>
                     <x-icon name="{{tab.micon}}"></x-icon>
                     <x-label style="color: #5a5a5a !Important">{{tab.title}}</x-label>
                 </x-box>
-            </x-button>
             </x-button>
         </x-buttons>
 
@@ -132,14 +130,14 @@
                 </x-box>
             </x-button>
 
-            <x-button skin="iconic" >
+            <x-button skin="iconic">
                 <x-box vertical>
                     <x-icon name="image"></x-icon>
                     <x-label style="color: #5a5a5a !Important">Asset Library</x-label>
                 </x-box>
             </x-button>
 
-            <x-button skin="iconic" >
+            <x-button skin="iconic">
                 <x-box vertical>
                     <x-icon name="get-app"></x-icon>
                     <x-label style="color: #5a5a5a !Important">Export</x-label>

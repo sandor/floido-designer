@@ -1,18 +1,22 @@
 kitchensink.service('leftPanleTabService', function () {
     var selfTabService = this;
     selfTabService.tabs = [{
-        title: 'Layers',
-        url: 'templates/layers.html',
-        micon: 'layers',
-        custom: 'images/icons.svg'
-
+            title: 'Layers',
+            url: 'templates/layers.html',
+            micon: 'layers',
+            custom: 'images/icons.svg'
     },
         {
             title: 'Pages',
             url: 'templates/pages.html',
-            micon: 'pages',
+            micon: 'content-copy',
             custom: 'images/icons.svg'
-
+    },
+        {
+            title: 'Templates',
+            url: 'templates/templates.html',
+            micon: 'new-releases',
+            custom: 'images/icons.svg'
         }
     ];
 
@@ -34,7 +38,7 @@ kitchensink.service('leftPanleTabService', function () {
 
     selfTabService.getTab = function () {
         selfTabService.temp++
-        debugger;
+            debugger;
         return selfTabService.tab;
 
     }
