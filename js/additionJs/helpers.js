@@ -144,13 +144,15 @@ function enableDisableElement() {
         document.getElementById('canvas-object-border').removeAttribute('disabled');
         document.getElementById('canvas-border-object-colorSelect').removeAttribute('disabled');
         document.getElementById('canvas-object-corner').removeAttribute('disabled');
-        document.getElementById('obj-shadow-color').removeAttribute('disabled');
-        document.getElementById('shadow-blur').removeAttribute('disabled');
-        document.getElementById('shadow-Offset-X').removeAttribute('disabled');
-        document.getElementById('shadow-Offset-Y').removeAttribute('disabled');
+        // document.getElementById('obj-shadow-color').removeAttribute('disabled');
+        // document.getElementById('shadow-blur').removeAttribute('disabled');
+        // document.getElementById('shadow-Offset-X').removeAttribute('disabled');
+        // document.getElementById('shadow-Offset-Y').removeAttribute('disabled');
 
 
     }
+
+
 
     if (!canvas.getActiveObject() && document.getElementById('objectIn-canvas-background-colorselect')
         && document.getElementById('objectIn-canvas-background-colorselect-down')) {
@@ -180,7 +182,7 @@ function enableDisableElement() {
 
     }
 
-                // removing data from  filters and shadows fields /////////////////
+    // removing data from  filters and shadows fields /////////////////
     if ((document.getElementById('shadow-Offset-X')
             && document.getElementById('shadow-Offset-Y')
             && !canvas.getActiveObject())
@@ -189,13 +191,28 @@ function enableDisableElement() {
             && !canvas.getActiveObject().shadow)) {
 
 
-
-
         document.getElementById('shadow-Offset-X').value = '';
         document.getElementById('shadow-Offset-Y').value = '';
         document.getElementById('shadow-blur').value = '';
     }
 
+    if (canvas.getActiveObject()
+        && canvas.getActiveObject.name != "Image"
+        && canvas.getActiveObject.name != "Text"
+    ) {
+
+
+        if (document.getElementById('obj-shadow-color')
+            && document.getElementById('shadow-blur')
+        ) {
+            document.getElementById('obj-shadow-color').removeAttribute('disabled');
+            document.getElementById('shadow-blur').removeAttribute('disabled');
+            document.getElementById('shadow-Offset-X').removeAttribute('disabled');
+            document.getElementById('shadow-Offset-Y').removeAttribute('disabled');
+        }
+
+
+    }
 
 
 }
@@ -346,7 +363,7 @@ function getActiveShadow(name) {
     if (canvas.getActiveObject()
         && canvas.getActiveObject().shadow) {
 
-        document.getElementById()
+        // document.getElementById()
 
         return canvas.getActiveObject().shadow;
     }
