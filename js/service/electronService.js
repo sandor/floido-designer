@@ -20,7 +20,7 @@ electangular.service("electron", ['$q', 'electron_core', function($q, core) {
           } else {
             deferred.resolve(result);
           }
-        })
+        });
         return deferred.promise;
       },
       showSaveDialog: function(bw, options) {
@@ -40,7 +40,7 @@ electangular.service("electron", ['$q', 'electron_core', function($q, core) {
       },
       showMessageBox: function(bw, options) {
         if (!options) {
-          options = bw
+          options = bw;
           bw = remote.BrowserWindow.getFocusedWindow();
         }
         var deferred = $q.defer();
