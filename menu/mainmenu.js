@@ -30,6 +30,7 @@ const template = [
       },
 			{
 				label: 'Close Window',
+				role: 'close',
 				accelerator: 'CmdOrCtrl+W'
       },
 			{
@@ -318,6 +319,18 @@ const template = [
 	{
 		label: 'View',
 		submenu: [
+
+			{
+				type: 'separator'
+      },
+			{
+				role: 'togglefullscreen'
+      }
+    ]
+  },
+	{
+		role: 'window',
+		submenu: [
 			{
 				label: 'Reload',
 				accelerator: 'CmdOrCtrl+R',
@@ -336,31 +349,31 @@ const template = [
 				type: 'separator'
       },
 			{
-				role: 'resetzoom'
-      },
-			{
-				role: 'zoomin'
-      },
-			{
-				role: 'zoomout'
+				label: 'Project Window'
       },
 			{
 				type: 'separator'
       },
 			{
+				label: 'Zoom',
+				role: 'zoom'
+    },
+			{
 				role: 'togglefullscreen'
-      }
-    ]
-  },
-	{
-		role: 'window',
-		submenu: [
+      },
 			{
 				role: 'minimize'
       },
 			{
 				role: 'close'
-      }
+      },
+			{
+				type: 'separator'
+    },
+			{
+				label: 'Bring All to Front',
+				role: 'front'
+    }
     ]
   },
 	{
@@ -477,22 +490,43 @@ if (process.platform === 'darwin') {
 		})
 		// Window menu.
 	template[7].submenu = [
-		{
-			label: 'Close',
-			accelerator: 'CmdOrCtrl+W',
-			role: 'close'
+	{
+			label: 'Show Inspector',
+			accelerator: 'Shift+CmdOrCtrl+1'
     },
 		{
-			label: 'Minimize',
-			accelerator: 'CmdOrCtrl+M',
-			role: 'minimize'
-    },
+			label: 'Show Asset Library',
+			accelerator: 'Shift+CmdOrCtrl+2'
+    },	
 		{
-			label: 'Zoom',
-			role: 'zoom'
-    },
-		{
+			label: 'Show Export Settings',
+			accelerator: 'Shift+CmdOrCtrl+3'
+    },			{
 			type: 'separator'
+    },
+		{
+			label: 'Project Settings',
+			accelerator: 'CmdOrCtrl+1'
+    },			
+		{
+			label: 'Page Settings',
+			accelerator: 'CmdOrCtrl+2'
+    },
+		{
+			label: 'Element Styling',
+			accelerator: 'CmdOrCtrl+4'
+    },
+		{
+			label: 'Typography',
+			accelerator: 'CmdOrCtrl+5'
+    },	
+		{
+			label: 'Actions Settings',
+			accelerator: 'CmdOrCtrl+6'
+    },
+		{
+			label: 'page Settings',
+			accelerator: 'CmdOrCtrl+2'
     },
 		{
 			label: 'Open origninal index.html',
@@ -523,13 +557,6 @@ if (process.platform === 'darwin') {
 					slashes: true
 				}))
 			}
-    },
-		{
-			type: 'separator'
-    },
-		{
-			label: 'Bring All to Front',
-			role: 'front'
     }
   ]
 }
