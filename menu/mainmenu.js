@@ -30,6 +30,7 @@ const template = [
       },
 			{
 				label: 'Close Window',
+				role: 'close',
 				accelerator: 'CmdOrCtrl+W'
       },
 			{
@@ -318,6 +319,18 @@ const template = [
 	{
 		label: 'View',
 		submenu: [
+
+			{
+				type: 'separator'
+      },
+			{
+				role: 'togglefullscreen'
+      }
+    ]
+  },
+	{
+		role: 'window',
+		submenu: [
 			{
 				label: 'Reload',
 				accelerator: 'CmdOrCtrl+R',
@@ -336,50 +349,120 @@ const template = [
 				type: 'separator'
       },
 			{
-				role: 'resetzoom'
-      },
+				label: 'Project Window',
+				click() {
+					let win = new BrowserWindow({
+						title: 'Project Window',
+						width: 600,
+						height: 400,
+						backgroundColor: '#6b0098',
+						alwaysOnTop: true,
+						minimizable: false,
+						maximizable: false,
+						fullscreenable: false,
+						resizable: true,
+						titleBarStyle: 'hidden',
+						icon: '../icons/mac/icon.icns'
+					})
+					win.loadURL(url.format({
+						pathname: path.join(__dirname, '../windows/project.html'),
+						protocol: 'file:',
+						slashes: true
+					}))
+				}     
+			},
 			{
-				role: 'zoomin'
-      },
+				label: 'Manage Project Fonts',
+				click() {
+					let win = new BrowserWindow({
+						title: 'Fonts Window',
+						width: 600,
+						height: 400,
+						backgroundColor: '#6b0098',
+						alwaysOnTop: true,
+						minimizable: false,
+						maximizable: false,
+						fullscreenable: false,
+						resizable: false,
+						titleBarStyle: 'hidden',
+						icon: '../icons/mac/icon.icns'
+					})
+					win.loadURL(url.format({
+						pathname: path.join(__dirname, '../windows/settings.html'),
+						protocol: 'file:',
+						slashes: true
+					}))
+				}	
+    },
 			{
-				role: 'zoomout'
-      },
+				label: 'manage External Assets',
+				click() {
+					let win = new BrowserWindow({
+						title: 'External Assets Window',
+						width: 600,
+						height: 400,
+						backgroundColor: '#6b0098',
+						alwaysOnTop: true,
+						minimizable: false,
+						maximizable: false,
+						fullscreenable: false,
+						resizable: false,
+						titleBarStyle: 'hidden',
+						icon: '../icons/mac/icon.icns'
+					})
+					win.loadURL(url.format({
+						pathname: path.join(__dirname, '../windows/settings.html'),
+						protocol: 'file:',
+						slashes: true
+					}))
+				}	
+    },
 			{
 				type: 'separator'
       },
 			{
+				label: 'Zoom',
+				role: 'zoom'
+    },
+			{
 				role: 'togglefullscreen'
-      }
-    ]
-  },
-	{
-		role: 'window',
-		submenu: [
+      },
 			{
 				role: 'minimize'
       },
 			{
 				role: 'close'
-      }
+      },
+			{
+				type: 'separator'
+    },
+			{
+				label: 'Bring All to Front',
+				role: 'front'
+    }
     ]
   },
 	{
 		role: 'help',
 		submenu: [
 			{
-				label: 'My Learn More',
+				label: 'Show Shortcuts',
 				click() {
 					let win = new BrowserWindow({
-						frame: false,
-						width: 800,
-						height: 600,
-						minWidth: 800,
-						minHeight: 600,
-						backgroundColor: '#312450',
-						parent: mainWindow
+						title: 'Shortcuts',
+						width: 600,
+						height: 400,
+						backgroundColor: '#6b0098',
+						alwaysOnTop: true,
+						minimizable: false,
+						maximizable: false,
+						fullscreenable: false,
+						resizable: false,
+						titleBarStyle: 'hidden',
+						icon: '../icons/mac/icon.icns'
 					})
 					win.loadURL(url.format({
-						pathname: path.join(__dirname, 'WelcomeWindow/index.html'),
+						pathname: path.join(__dirname, '../windows/settings.html'),
 						protocol: 'file:',
 						slashes: true
 					}))
@@ -405,7 +488,8 @@ if (process.platform === 'darwin') {
 						backgroundColor: '#6b0098',
 						alwaysOnTop: true,
 						minimizable: false,
-						fullscreen: false,
+						maximizable: false,
+						fullscreenable: false,
 						resizable: false,
 						titleBarStyle: 'hidden',
 						icon: '../icons/mac/icon.icns'
@@ -478,58 +562,90 @@ if (process.platform === 'darwin') {
 		// Window menu.
 	template[7].submenu = [
 		{
-			label: 'Close',
-			accelerator: 'CmdOrCtrl+W',
-			role: 'close'
+			label: 'Show Layers',
+			accelerator: 'Shift+CmdOrCtrl+1'
     },
 		{
-			label: 'Minimize',
-			accelerator: 'CmdOrCtrl+M',
-			role: 'minimize'
+			label: 'Show pages',
+			accelerator: 'Shift+CmdOrCtrl+2'
     },
 		{
-			label: 'Zoom',
-			role: 'zoom'
-    },
-		{
-			type: 'separator'
-    },
-		{
-			label: 'Open origninal index.html',
-			click() {
-				const modalPath = path.join('floido.jpg')
-				let win = new BrowserWindow({
-					width: 400,
-					height: 320
-				})
-				win.on('close', function () {
-					win = null
-				})
-				win.loadURL(modalPath)
-				win.show()
-			}
-    },
-		{
-			label: 'Welcome',
-			click() {
-				let win = new BrowserWindow({
-					width: 800,
-					height: 600,
-					backgroundColor: '#312450'
-				})
-				win.loadURL(url.format({
-					pathname: path.join(__dirname, '../windows/settings.html'),
-					protocol: 'file:',
-					slashes: true
-				}))
-			}
+			label: 'Show Templates',
+			accelerator: 'Shift+CmdOrCtrl+3'
     },
 		{
 			type: 'separator'
     },
 		{
-			label: 'Bring All to Front',
-			role: 'front'
+			label: 'Show Inspector',
+			accelerator: 'Shift+CmdOrCtrl+4'
+    },
+		{
+			label: 'Show Asset Library',
+			accelerator: 'Shift+CmdOrCtrl+5'
+    },
+		{
+			label: 'Show Export Settings',
+			accelerator: 'Shift+CmdOrCtrl+6'
+    }, {
+			type: 'separator'
+    },
+		{
+			label: 'Project Settings',
+			accelerator: 'CmdOrCtrl+1'
+    },
+		{
+			label: 'Page Settings',
+			accelerator: 'CmdOrCtrl+2'
+    },
+		{
+			label: 'Element Styling',
+			accelerator: 'CmdOrCtrl+4'
+    },
+		{
+			label: 'Typography',
+			accelerator: 'CmdOrCtrl+5'
+    },
+		{
+			label: 'Actions Settings',
+			accelerator: 'CmdOrCtrl+6'
+    },
+		{
+			type: 'separator'
+    },
+		{
+			label: 'Show Page Editor',
+			accelerator: 'Alt+CmdOrCtrl+P'
+    },
+		{
+			label: 'Show Actions Editor',
+			accelerator: 'Alt+CmdOrCtrl+A'
+    },
+		{
+			label: 'Show Page Flow',
+			accelerator: 'Alt+CmdOrCtrl+F'
+    },
+		{
+			type: 'separator'
+    },
+		{
+			label: 'Show Ruler',
+			accelerator: 'Alt+CmdOrCtrl+R'
+    },
+		{
+			label: 'Show Grid',
+			accelerator: 'Alt+CmdOrCtrl+G'
+    },
+		{
+			label: 'Enable Snap-To Guides',
+			accelerator: 'Alt+CmdOrCtrl+S'
+    },
+		{
+			type: 'separator'
+    },
+		{
+			label: 'Hide Toolbar',
+			accelerator: 'Alt+CmdOrCtrl+T'
     }
   ]
 }
