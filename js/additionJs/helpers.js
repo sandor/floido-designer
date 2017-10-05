@@ -10,6 +10,18 @@
 
 
 //move objects on the canvas with keyboard
+var canvasObjectFillColor = "#ffffff";
+var canvasObjectBackColor = "#ffffff";
+var canvasObjectBorderColor = "#ffffff";
+var canvasObjectBackgroundColor = "#ffffff";
+var canvasObjectShadowColor = "#ffffff";
+var canvasObjectBorderStrokeWidth = 0;
+var cavasObjectOpacity = 0;
+var cavasObjectCorner = 0;
+var canvasObjectShadowOffsetX = 0;
+var canvasObjectShadowOffsetY = 0;
+var canvasObjectShadowBlur = 0;
+
 
 document.onkeydown = function (e) {
 
@@ -77,6 +89,134 @@ function ungroup() {
     canvas.requestRenderAll();
 }
 
+function setCanvasActiveObjectData() {
+
+    if (document.getElementById('objectIn-canvas-background-colorselect')) {
+        document.getElementById('objectIn-canvas-background-colorselect').value = canvasObjectBackColor;
+        document.getElementById('canv-obj-fill-color').value = canvasObjectBackColor;
+        document.getElementById('canvas-border-object-colorSelect').value = canvasObjectBorderColor;
+        document.getElementById('canvas-border-object-colorSelect-input').value = canvasObjectBorderColor;
+        document.getElementById('canvas-object-border').value = canvasObjectBorderStrokeWidth;
+        document.getElementById('canvas-object-border-input').value = canvasObjectBorderStrokeWidth;
+        document.getElementById('canv-obj-back-color').value = canvasObjectBackgroundColor;
+        document.getElementById('objectIn-canvas-background-colorselect-down').value = canvasObjectBackgroundColor;
+        document.getElementById('cavas-object-opacity-input').value = cavasObjectOpacity;
+        document.getElementById('cavas-object-corner').value = cavasObjectCorner;
+        document.getElementById('canvas-object-corner-input').value = cavasObjectCorner;
+        document.getElementById('obj-shadow-color').value = canvasObjectShadowColor;
+
+
+    }
+
+}
+
+function getCanvasActiveObjectData() {
+
+    canvasObjectBackColor = canvas._activeObject && canvas._activeObject.fill ? canvas._activeObject.fill : "#ffffff";
+    canvasObjectBorderColor = canvas._activeObject && canvas._activeObject.stroke ? canvas._activeObject.stroke : "#ffffff";
+    canvasObjectBorderStrokeWidth = canvas._activeObject && canvas._activeObject.strokeWidth ? canvas._activeObject.strokeWidth : 0;
+    canvasObjectBackgroundColor = canvas._activeObject && canvas._activeObject.backgroundColor ? canvas._activeObject.backgroundColor : "#ffffff";
+    cavasObjectOpacity = canvas._activeObject && canvas._activeObject.opacity ? canvas._activeObject.opacity : 0;
+    cavasObjectCorner = canvas._activeObject && canvas._activeObject.rx ? canvas._activeObject.rx : 0;
+    canvasObjectShadowColor = canvas._activeObject && canvas._activeObject.shadow ? canvas._activeObject.shadow.color : "#ffffff";
+
+
+    canvasObjectShadowOffsetX = canvas._activeObject && canvas._activeObject.shadow ? canvas._activeObject.shadow.offsetX : 0;
+    canvasObjectShadowOffsetY = canvas._activeObject && canvas._activeObject.shadow ? canvas._activeObject.shadow.offsetY : 0;
+    canvasObjectShadowBlur = canvas._activeObject && canvas._activeObject.shadow ? canvas._activeObject.shadow.Blur : 0;
+
+
+    //
+}
+
+
+// disable inputs and color picker
+function enableDisableElement() {
+
+    if (canvas.getActiveObject()
+        && document.getElementById('objectIn-canvas-background-colorselect')
+        && document.getElementById('objectIn-canvas-background-colorselect-down')) {
+
+        document.getElementById('objectIn-canvas-background-colorselect').removeAttribute('disabled');
+        document.getElementById('objectIn-canvas-background-colorselect-down').removeAttribute('disabled');
+        document.getElementById('canv-obj-fill-color').removeAttribute('disabled');
+        document.getElementById('canv-obj-back-color').removeAttribute('disabled');
+        document.getElementById('canvas-object-border').removeAttribute('disabled');
+        document.getElementById('canvas-border-object-colorSelect').removeAttribute('disabled');
+        document.getElementById('canvas-object-corner').removeAttribute('disabled');
+        // document.getElementById('obj-shadow-color').removeAttribute('disabled');
+        // document.getElementById('shadow-blur').removeAttribute('disabled');
+        // document.getElementById('shadow-Offset-X').removeAttribute('disabled');
+        // document.getElementById('shadow-Offset-Y').removeAttribute('disabled');
+
+
+    }
+
+
+
+    if (!canvas.getActiveObject() && document.getElementById('objectIn-canvas-background-colorselect')
+        && document.getElementById('objectIn-canvas-background-colorselect-down')) {
+
+        document.getElementById('objectIn-canvas-background-colorselect').setAttribute('disabled', true);
+        document.getElementById('objectIn-canvas-background-colorselect-down').setAttribute('disabled', true);
+        document.getElementById('canv-obj-fill-color').setAttribute('disabled', true);
+        document.getElementById('canv-obj-back-color').setAttribute('disabled', true);
+        document.getElementById('canvas-object-border').setAttribute('disabled', true);
+        document.getElementById('canvas-border-object-colorSelect').setAttribute('disabled', true);
+        document.getElementById('canvas-object-corner').setAttribute('disabled', true);
+        document.getElementById('obj-shadow-color').setAttribute('disabled', true);
+
+///
+        canvasObjectBackColor = canvas._activeObject && canvas._activeObject.fill ? canvas._activeObject.fill : "";
+        canvasObjectBorderColor = canvas._activeObject && canvas._activeObject.stroke ? canvas._activeObject.stroke : "";
+        canvasObjectBackgroundColor = canvas._activeObject && canvas._activeObject.backgroundColor ? canvas._activeObject.backgroundColor : "";
+    }
+
+    if (document.getElementById('enableShadow') && !document.getElementById('enableShadow').hasAttribute("toggled")) {
+
+        document.getElementById('obj-shadow-color').setAttribute('disabled', true);
+        document.getElementById('shadow-blur').setAttribute('disabled', true);
+        document.getElementById('shadow-Offset-X').setAttribute('disabled', true);
+        document.getElementById('shadow-Offset-Y').setAttribute('disabled', true);
+
+
+    }
+
+    // removing data from  filters and shadows fields /////////////////
+    if ((document.getElementById('shadow-Offset-X')
+            && document.getElementById('shadow-Offset-Y')
+            && !canvas.getActiveObject())
+        || (document.getElementById('shadow-Offset-X')
+            && document.getElementById('shadow-Offset-Y')
+            && !canvas.getActiveObject().shadow)) {
+
+
+        document.getElementById('shadow-Offset-X').value = '';
+        document.getElementById('shadow-Offset-Y').value = '';
+        document.getElementById('shadow-blur').value = '';
+    }
+
+    if (canvas.getActiveObject()
+        && canvas.getActiveObject.name != "Image"
+        && canvas.getActiveObject.name != "Text"
+    ) {
+
+
+        if (document.getElementById('obj-shadow-color')
+            && document.getElementById('shadow-blur')
+        ) {
+            document.getElementById('obj-shadow-color').removeAttribute('disabled');
+            document.getElementById('shadow-blur').removeAttribute('disabled');
+            document.getElementById('shadow-Offset-X').removeAttribute('disabled');
+            document.getElementById('shadow-Offset-Y').removeAttribute('disabled');
+        }
+
+
+    }
+
+
+}
+
 var customProperties = 'name icon'.split(' ');
 
 
@@ -119,7 +259,7 @@ function paste() {
 
 function remove() {
 
-    if (document.activeElement && document.activeElement.hasAttribute('value')) {
+    if (document.activeElement && document.activeElement.hasAttribute('value') || (document.activeElement && document.activeElement.value)) {
         document.activeElement.value = 0;
     }
     else {
@@ -176,6 +316,7 @@ function setActiveStyle(styleName, value, object) {
 };
 
 function getActiveProp(name) {
+
     var object = canvas.getActiveObject();
     if (!object) return '';
 
@@ -194,17 +335,53 @@ function setActiveProp(name, value) {
 
 
 function getActiveShadow(name) {
-    var object = canvas.getActiveObject();
-    if (!object) return '';
-    return object.shadow[name] || '';
+
+    if (canvas.getActiveObject()
+        && canvas.getActiveObject().shadow
+        && document.getElementById('enableShadow')
+        && !document.getElementById('enableShadow').hasAttribute('toggled')) {
+
+        document.getElementById('enableShadow').setAttribute('toggled', 'true');
+
+    }
+    if ((!canvas.getActiveObject() && document.getElementById('enableShadow'))
+        || (canvas.getActiveObject() && !canvas.getActiveObject().shadow && document.getElementById('enableShadow'))) {
+        document.getElementById('enableShadow').removeAttribute('toggled');
+    }
+
+    if (document.getElementById('shadow-Offset-X')
+        && document.getElementById('shadow-Offset-Y')
+        && canvas.getActiveObject()
+        && canvas.getActiveObject().shadow) {
+
+        document.getElementById('shadow-Offset-X').value = canvas.getActiveObject().shadow.offsetX;
+        document.getElementById('shadow-Offset-Y').value = canvas.getActiveObject().shadow.offsetY;
+
+    }
+
+
+    if (canvas.getActiveObject()
+        && canvas.getActiveObject().shadow) {
+
+        // document.getElementById()
+
+        return canvas.getActiveObject().shadow;
+    }
+    else {
+        return '';
+    }
+
+
 }
 
 function setActiveShadow(name, value) {
-
     var object = canvas.getActiveObject();
+
     if (!object) return;
-    if (object.shadow)
+    if (object.shadow) {
+
         object.shadow[name] = value;
+    }
     else {
         var ob = {};
         ob[name] = value;
@@ -214,6 +391,23 @@ function setActiveShadow(name, value) {
     object.setCoords();
     canvas.renderAll();
 }
+
+// function setActiveShadow(name, value) {
+//
+//     var object = canvas.getActiveObject();
+//
+//     if (!object) return;
+//     if (object.shadow)
+//         object.shadow[name] = value;
+//     else {
+//         var ob = {};
+//         ob[name] = value;
+//         object.setShadow(ob);
+//     }
+//
+//     object.setCoords();
+//     canvas.renderAll();
+// }
 
 
 ///////////
@@ -261,21 +455,25 @@ function addAccessors($scope, $rootScope) {
 
 
     $scope.setShadowOffsetX = function (value) {
+
         setActiveShadow('offsetX', value);
-        canvas.renderAll();
+        //canvas.renderAll();
     };
 
     $scope.getShadowOffsetX = function (value) {
+
         getActiveShadow('offsetX', value);
     };
 
 
     $scope.setShadowOffsetY = function (value) {
+
         setActiveShadow('offsetY', value);
         canvas.renderAll();
     };
 
-    $scope.setShadowOffsetY = function (value) {
+    $scope.getShadowOffsetY = function (value) {
+
         getActiveShadow('offsetY', value);
     };
 
@@ -299,6 +497,7 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.shadowify = function () {
+
         var obj = canvas.getActiveObject();
         if (!obj) return;
 
@@ -320,9 +519,12 @@ function addAccessors($scope, $rootScope) {
 
     $scope.getOpacity =
         function () {
+
             return getActiveStyle('opacity') * 100;
         };
     $scope.setOpacity = function (value) {
+
+        cavasObjectOpacity = value;
         setActiveStyle('opacity', parseInt(value, 10) / 100);
     };
 
@@ -409,9 +611,14 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getBgColor = function () {
+
+        getCanvasActiveObjectData();
+        setCanvasActiveObjectData();
+        enableDisableElement();
         return getActiveProp('backgroundColor');
     };
     $scope.setBgColor = function (value) {
+
         setActiveProp('backgroundColor', value);
     };
 
@@ -440,6 +647,11 @@ function addAccessors($scope, $rootScope) {
         return parseInt(getActiveProp('left'), 0) ? parseInt(getActiveProp('left'), 0) : '';
         console.log(value);
     };
+
+    $scope.setColorInputsColor = function () {
+
+
+    }
     $scope.setPropLeft = function (value) {
         setActiveProp('left', parseInt(value, 0));
         canvas.renderAll();
@@ -538,6 +750,7 @@ function addAccessors($scope, $rootScope) {
         return parseInt(getActiveProp('ry'), 10) ? parseInt(getActiveProp('ry'), 10) : '';
     };
     $scope.setCornerWidth = function (value) {
+        cavasObjectCorner = value;
         setActiveProp('rx', parseInt(value, 10));
         setActiveProp('ry', parseInt(value, 10));
     };
@@ -577,13 +790,30 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getCanvasBgColor = function () {
+
+        if (canvasObjectFillColor) {
+            document.getElementById("canvas-background-colorselect").value = canvasObjectFillColor;
+        }
+        if (canvas.getActiveObject() && canvas.getActiveObject().shadow && canvasObjectBackColor) {
+
+            document.getElementById("objectIn-canvas-background-colorselect").value = canvasObjectBackColor;
+            document.getElementById("canv-obj-fill-color").value = canvasObjectBackColor;
+        }
         return canvas.backgroundColor;
     };
+
+
     $scope.setCanvasBgColor = function (value) {
+
+        canvasObjectFillColor = value;
         canvas.backgroundColor = value;
+        document.getElementById("select1").value = value;
         canvas.renderAll();
     };
 
+    $scope.setCanvasObjectBgColor = function (value) {
+
+    }
 
     $scope.flipX = function () {
         var obj = canvas.getActiveObject();

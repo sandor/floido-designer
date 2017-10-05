@@ -611,7 +611,7 @@ x-button[skin="tabnav"] x-label {
     margin-top: 7px;
     margin-bottom: 5px;
     padding-right: 30px;
-    padding-left: 5px;
+    padding-left: 30px;
     /*padding-left: 30px;*/
     padding-bottom: 3px;
     -webkit-app-region: drag;
@@ -685,21 +685,21 @@ x-button[skin="tabnav"] x-label {
     color: rgb(18, 131, 252) !important;
 }
 
-.left-part {
-    position: absolute;
-    left: -33px;
-    z-index: 11;
-    top: -29px;
-    padding-left: 0px;
-    width: 240px;
-	margin-top: -10px;
-}
+/*.left-part {*/
+    /*position: absolute;*/
+    /*left: -33px;*/
+    /*z-index: 11;*/
+    /*top: -29px;*/
+    /*padding-left: 0px;*/
+    /*width: 240px;*/
+	/*margin-top: -10px;*/
+/*}*/
 
-#layers .dummy_icons x-icon {
-    margin-bottom: 10px;
-	width: 32px;
-	height: 32px;
-}
+/*#layers .dummy_icons x-icon {*/
+    /*margin-bottom: 10px;*/
+	/*width: 32px;*/
+	/*height: 32px;*/
+/*}*/
 
 /*
 .list-group-item x-icon {

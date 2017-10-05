@@ -29,7 +29,6 @@
     <script src='js/fabric/fabric.min.js'></script>
 
 
-
     <script src='js/additionJs/xel.min.js'></script>
 
     <script src='js/angular/angular.min.js'></script>
@@ -39,6 +38,7 @@
     <!-- this services must loaded after electAngular -->
     <script src='js/service/electangularServiceIpc.js'></script>
     <script src='js/service/electronService.js'></script>
+
 
     <script src='node_modules/angular-ui-sortable/dist/sortable.min.js'></script>
     <script src='js/additionJs/aligning_guidelines.js'></script>
@@ -76,6 +76,7 @@
 
     <script src="js/ruler/ruler_demo.js"></script>
 
+    <script src='js/service/leftPanleTabService.js'></script>
 
     <!-- <script src="js/jsFromIndex.js"></script> -->
 
@@ -111,77 +112,71 @@
 </head>
 
 
-
 <body style="background: rgba(0, 0, 0, 0.0);" ng-app="kitchensink" ng-controller="CanvasControlsController">
-    <div class="window" style="background: rgba(255, 255, 255, 0.0)">
-        <header class="toolbar toolbar-header">
-            <h1 class="title">Untitled</h1>
-            <div ng-include="'templates/toolbar.html'"></div>
-        </header>
+<div class="window" style="background: rgba(255, 255, 255, 0.0)">
+    <header class="toolbar toolbar-header">
+        <h1 class="title">Untitled</h1>
+        <div ng-include="'templates/toolbar.html'"></div>
+    </header>
 
-        <div class="window-content">
-            <div class="pane-group">
-                <div id="layers" class="pane-sm " ng-controller="LeftTabsCtrl">
-
-                    <!--<x-box>-->
-                    <!--<x-buttons tracking="1">-->
-                    <!--<x-button ng-repeat="tab in tabs" skin="tabnav" id="{{tab.micon+'Tab'}}"-->
-                    <!--ng-class="{'active1':isActiveTab(tab.url)}" ng-click="onClickTab(tab)">-->
-                    <!--<x-icon name="{{tab.micon}}"></x-icon>-->
-
-                    <!--</x-button>-->
-                    <!--</x-buttons>-->
-                    <!--</x-box>-->
-                    <!--<hr>-->
-                    <!--<div ng-include="currentTab" ng-controller="LayersController"></div>-->
+    <div class="window-content">
+        <div class="pane-group">
 
 
-                </div>
+            <!--<div ng-include="currentTab1"></div>-->
+            <div id="layers" class="pane-sm " >
 
-                <div class="pane content-empty image-builder-container">
+                <hr>
+                <div ng-include="currentTab"  ng-controller="LayersController"></div>
 
-                    <div id="wrapper" class='image-builder' parent-click="fabric.deactivateAll()">
-                        <div class='fabric-container'>
-                            <canvas id="canvas" width="1024" height="768"></canvas>
-                        </div>
+
+            </div>
+
+            <div class="pane content-empty image-builder-container">
+
+                <div id="wrapper" class='image-builder' parent-click="fabric.deactivateAll()">
+                    <div class='fabric-container'>
+                        <canvas id="canvas" width="1024" height="768"></canvas>
                     </div>
                 </div>
+            </div>
 
-                <div id="inspector" class="pane-right sidebar" ng-controller="RightTabsCtrl">
+            <div id="inspector" class="pane-right sidebar" ng-controller="RightTabsCtrl">
 
-                    <x-box>
-                        <x-buttons tracking="1">
-                            <x-button ng-repeat="tab in tabs" class="tab" skin="tabnav" ng-class="{'active1': isActiveTab(tab.url)}" ng-click="onClickTab(tab)">
-                                <!--								<x-icon name="{{tab.ticon}}" iconset="{{tab.custom}}"></x-icon>-->
-                                <x-icon class="icon-in-tab" name="{{tab.micon}}"></x-icon>
+                <x-box>
+                    <x-buttons tracking="1">
+                        <x-button ng-repeat="tab in tabs" class="tab" skin="tabnav"
+                                  ng-class="{'active1': isActiveTab(tab.url)}" ng-click="onClickTab(tab)">
+                            <!--								<x-icon name="{{tab.ticon}}" iconset="{{tab.custom}}"></x-icon>-->
+                            <x-icon class="icon-in-tab" name="{{tab.micon}}"></x-icon>
 
-                            </x-button>
-                        </x-buttons>
-                    </x-box>
-                    <hr>
+                        </x-button>
+                    </x-buttons>
+                </x-box>
+                <hr>
 
-                    <div ng-include="currentTab" class="inner"></div>
+                <div ng-include="currentTab" class="inner"></div>
 
-                </div>
             </div>
         </div>
-        <footer class="toolbar toolbar-footer" ng-controller="CanvasControlsController">
-            <x-box class="right" style="width: 320px;">
-                <x-label class="zoom-bar-percent-on-footer">Zoom: {{zoom}}%</x-label>
-                <!-- <x-slider  style="margin-right: 15px; width: 240px;" value="0" min="-400" max="400"></x-slider> -->
-                <input class="zoom-bar-on-footer" ng-model="zoom" ng-change="setZoom(this)" type="range" min="5" max="450" value="100" step="1" />
-                <button class="original-size" ng-click="originalSize(this)" skin="flat-condensed">
-                    <x-icon name="aspect-ratio"></x-icon>
-                </button>
-                <button class="fit-to-win" ng-click="fitToWin()" skin="flat-condensed">
-                    <x-icon name="settings-overscan"></x-icon>
-                </button>
-            </x-box>
-        </footer>
     </div>
+    <footer class="toolbar toolbar-footer" ng-controller="CanvasControlsController">
+        <x-box class="right" style="width: 320px;">
+            <x-label class="zoom-bar-percent-on-footer">Zoom: {{zoom}}%</x-label>
+            <!-- <x-slider  style="margin-right: 15px; width: 240px;" value="0" min="-400" max="400"></x-slider> -->
+            <input class="zoom-bar-on-footer" ng-model="zoom" ng-change="setZoom(this)" type="range" min="5" max="450"
+                   value="100" step="1"/>
+            <button class="original-size" ng-click="originalSize(this)" skin="flat-condensed">
+                <x-icon name="aspect-ratio"></x-icon>
+            </button>
+            <button class="fit-to-win" ng-click="fitToWin()" skin="flat-condensed">
+                <x-icon name="settings-overscan"></x-icon>
+            </button>
+        </x-box>
+    </footer>
+</div>
 
-    <script src="js/additionJs/jsFromIndex.js"></script>
-
+<script src="js/additionJs/jsFromIndex.js"></script>
 
 
 </body>

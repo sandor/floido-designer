@@ -1,5 +1,6 @@
-kitchensink.controller('CanvasControlsController', function ($scope) {
+kitchensink.controller('CanvasControlsController', function ($scope, leftPanleTabService) {
 
+    $scope.currentTab = leftPanleTabService.tab.url;
     $scope.canvas = canvas;
     $scope.getActiveStyle = getActiveStyle;
     $scope.zoom = 0;//default zoom
@@ -9,12 +10,17 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
     $scope.insideRulerheight = document.getElementsByClassName("rul_wrapper")[0].offsetHeight - document.getElementsByClassName("toolbar-header")[0].offsetHeight
         - document.getElementsByClassName("toolbar-footer")[0].offsetHeight - 90;
 
+
+    $scope.tabs = leftPanleTabService.tabs;
+
+
     addAccessors($scope);
     watchCanvas($scope);
 
 //get canvas Angle and set it
 
     canvas.on('object:rotating', function (options) {
+
         console.log(options.target);
         if (document.getElementById("canvas-angle")) {
             document.getElementById("canvas-angle").value =
@@ -53,7 +59,31 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
                     : document.getElementById("scale-scaleY").value;
 
         }
-    })
+        if ((!canvas.getActiveObject() && document.getElementById('enableShadow'))
+            || (canvas.getActiveObject() && !canvas.getActiveObject().shadow && document.getElementById('enableShadow'))) {
+            document.getElementById('enableShadow').removeAttribute('toggled');
+        }
+
+        if (document.getElementById('shadow-Offset-X') && document.getElementById('shadow-Offset-Y') && canvas.getActiveObject()) {
+
+            document.getElementById('shadow-Offset-X').value = canvasObjectShadowOffsetX;
+            document.getElementById('shadow-Offset-Y').value = canvasObjectShadowOffsetY;
+            document.getElementById('shadow-blur').value = canvasObjectShadowBlur;
+
+        }
+
+
+    });
+
+    canvas.on('after:render', function (option) {
+
+        getCanvasActiveObjectData();
+        setCanvasActiveObjectData();
+        enableDisableElement();
+
+
+    });
+
 
     // $scope.canvasAngle = canvasAngle;
     // Editing manipulating the Canvas Size
@@ -66,7 +96,7 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
         var setHeight = document.getElementById('myHeight').value;
         canvas.setWidth(setWidth);
         canvas.setHeight(setHeight);
-        console.log(setWidth, setHeight);
+        console.info(setWidth, setHeight);
         canvas.calcOffset();
     };
 
@@ -121,14 +151,11 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
         }
         if (canvas._objects && canvas.getActiveObject()) {
 
-            // canvas.setZoom(param.zoom / 100);//Working line
-            //$scope.zoom =(param.zoom / 100);
+
             canvas.setZoom(scaleFactor);
             canvas.setWidth(canvas.getZoom() * canvas.getActiveObject().width);
             canvas.setHeight(canvas.getZoom() * canvas.getActiveObject().height);
-            // canvas.setHeight(canvas.height * scaleFactor);
-            // canvas.setWidth(canvas.width * scaleFactor);
-            //canvas.getActiveObject().scaleX=1
+
         }
 
         else {
@@ -138,7 +165,7 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
         //;
 
 
-    }
+    };
 
 
     $scope.originalSize = function (param) {
@@ -170,7 +197,7 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
         }
 
 
-    }
+    };
 
     $scope.fitToWin = function (param) {
 
@@ -234,7 +261,41 @@ kitchensink.controller('CanvasControlsController', function ($scope) {
         }
 
 
+    };
+
+
+    // // $scope.currentTab = 'templates/pages.html';
+    // $scope.onClickTab = function (tab) {
+    //
+    //     leftPanleTabService.setTab(tab);
+    //
+    //     $scope.currentTab = leftPanleTabService.getTab().url;
+    //
+    //     //document.getElementById("objectIn-canvas-background-colorselect").value = canvasObjectBackColor;
+    // }
+    //
+    // $scope.isActiveTab = function (tabUrl) {
+    //     return tabUrl == $scope.currentTab;
+    // }
+
+
+    $scope.tabs = leftPanleTabService.tabs;
+
+    $scope.currentTab = leftPanleTabService.tab.url;
+
+
+    $scope.onClickTab = function (tab) {
+
+
+        leftPanleTabService.setTab(tab);
+
+        //$scope.currentTab = tab.url;
+        $scope.currentTab = leftPanleTabService.getTab().url;
     }
 
+    $scope.isActiveTab = function (tabUrl) {
+        debugger;
+        return tabUrl == $scope.currentTab;
+    }
 
-})
+});
