@@ -31,7 +31,7 @@ kitchensink.service('rightPanelTabService', function () {
 
 
     selfTabService.getTab = function () {
-        
+
         return selfTabService.tab;
 
     }

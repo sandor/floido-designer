@@ -4,6 +4,7 @@ const {
 const electron = require('electron')
 const app = electron.app
 
+
 const BrowserWindow = electron.BrowserWindow
 
 const path = require('path')
@@ -398,9 +399,9 @@ const template = [
 				label: 'manage External Assets',
 				click() {
 					let win = new BrowserWindow({
-						title: 'External Assets Window',
-						width: 600,
-						height: 400,
+						title: 'Simulator',
+						width: 1024,
+						height: 768,
 						backgroundColor: '#6b0098',
 						alwaysOnTop: true,
 						minimizable: false,
@@ -411,7 +412,7 @@ const template = [
 						icon: '../icons/mac/icon.icns'
 					})
 					win.loadURL(url.format({
-						pathname: path.join(__dirname, '../windows/settings.html'),
+						pathname: path.join(__dirname, '../windows/simulator.html'),
 						protocol: 'file:',
 						slashes: true
 					}))
