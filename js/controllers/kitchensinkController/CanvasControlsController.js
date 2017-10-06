@@ -1,6 +1,7 @@
-kitchensink.controller('CanvasControlsController', function ($scope, leftPanleTabService) {
+kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTabService, rightPanelTabService) {
 
-    $scope.currentTab = leftPanleTabService.tab.url;
+    $scope.currentLeftTab = leftPanelTabService.tab.url;
+    $scope.currentRightTab = rightPanelTabService.tab.url;
     $scope.canvas = canvas;
     $scope.getActiveStyle = getActiveStyle;
     $scope.zoom = 0;//default zoom
@@ -11,7 +12,8 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanleTa
         - document.getElementsByClassName("toolbar-footer")[0].offsetHeight - 90;
 
 
-    $scope.tabs = leftPanleTabService.tabs;
+    $scope.leftTab = leftPanelTabService.leftTab;
+    $scope.rightTab = rightPanelTabService.rightTab;
 
 
     addAccessors($scope);
@@ -264,38 +266,53 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanleTa
     };
 
 
-    // // $scope.currentTab = 'templates/pages.html';
-    // $scope.onClickTab = function (tab) {
-    //
-    //     leftPanleTabService.setTab(tab);
-    //
-    //     $scope.currentTab = leftPanleTabService.getTab().url;
-    //
-    //     //document.getElementById("objectIn-canvas-background-colorselect").value = canvasObjectBackColor;
-    // }
-    //
-    // $scope.isActiveTab = function (tabUrl) {
-    //     return tabUrl == $scope.currentTab;
-    // }
+    //$scope.rightPanelTab = 'templates/inspectorTab.html';
+    // $scope.rightPanelTab = $scope.rightTab[1].url;
+
+    $scope.leftTab = leftPanelTabService.leftTab;
+    $scope.rightTab = rightPanelTabService.rightTab;
+
+    $scope.currentLeftTab = leftPanelTabService.tab.url;
+    $scope.currentRightTab = rightPanelTabService.tab.url;
+
+    $scope.onClickRightTab = function (tab) {
 
 
-    $scope.tabs = leftPanleTabService.tabs;
+        rightPanelTabService.setTab(tab);
 
-    $scope.currentTab = leftPanleTabService.tab.url;
+        //$scope.currentLeftTab = tab.url;
+        $scope.currentRightTab = rightPanelTabService.getTab().url;
 
-
-    $scope.onClickTab = function (tab) {
-
-
-        leftPanleTabService.setTab(tab);
-
-        //$scope.currentTab = tab.url;
-        $scope.currentTab = leftPanleTabService.getTab().url;
     }
 
-    $scope.isActiveTab = function (tabUrl) {
-        debugger;
-        return tabUrl == $scope.currentTab;
+
+    $scope.onClickLeftTab = function (tab) {
+
+
+        leftPanelTabService.setTab(tab);
+
+        //$scope.currentLeftTab = tab.url;
+        $scope.currentLeftTab = leftPanelTabService.getTab().url;
+    }
+
+    $scope.isActiveTab = function (tabUrl, side) {
+
+
+        if (side && side == 'l') {
+            return (tabUrl == $scope.currentLeftTab);
+        }
+        if (side && side == 'r') {
+
+
+            [].__proto__.forEach.call(document.getElementsByClassName('right-tab'), (rightTabItem) => {
+
+                rightTabItem.removeAttribute('toggled');
+
+            });
+
+            return (tabUrl == $scope.currentRightTab);
+        }
+        return false;
     }
 
 });

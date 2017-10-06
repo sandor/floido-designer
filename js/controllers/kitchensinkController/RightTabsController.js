@@ -1,6 +1,6 @@
 kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
     $scope.hasShadow;
-    $scope.tabs = [{
+    $scope.leftTab = [{
         title: 'One',
         url: 'templates/project_menu.html',
         micon: 'phonelink-setup',
@@ -34,16 +34,16 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
 
     ];
 
-    $scope.currentTab = 'templates/page_menu.html';
+    $scope.currentLeftTab = 'templates/page_menu.html';
 
-    $scope.onClickTab = function (tab) {
+    $scope.onClickLeftTab = function (tab) {
 
-        $scope.currentTab = tab.url;
+        $scope.currentLeftTab = tab.url;
         //document.getElementById("objectIn-canvas-background-colorselect").value = canvasObjectBackColor;
     }
 
     $scope.isActiveTab = function (tabUrl) {
-        return tabUrl == $scope.currentTab;
+        return tabUrl == $scope.currentLeftTab;
     }
 
     $scope.getInputState = function () {

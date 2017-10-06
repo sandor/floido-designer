@@ -1,5 +1,5 @@
-kitchensink.controller('LeftTabsCtrl', function ($scope, leftPanleTabService) {
-    // $scope.tabs = [{
+kitchensink.controller('LeftTabsCtrl', function ($scope, leftPanelTabService) {
+    // $scope.leftTab = [{
     //     title: 'Layers',
     //     url: 'templates/layers.html',
     //     micon: 'layers',
@@ -18,23 +18,23 @@ kitchensink.controller('LeftTabsCtrl', function ($scope, leftPanleTabService) {
 
 
     //////////
-    // $scope.tabs = leftPanleTabService.tabs;
+    // $scope.leftTab = leftPanelTabService.leftTab;
     //
     //
-    // // $scope.currentTab = 'templates/layers.html';
+    // // $scope.currentLeftTab = 'templates/layers.html';
     // debugger
-    // $scope.currentTab = leftPanleTabService.tab.url;
+    // $scope.currentLeftTab = leftPanelTabService.tab.url;
     //
-    // $scope.onClickTab = function (tab) {
-    //     leftPanleTabService.setTab(tab);
+    // $scope.onClickLeftTab = function (tab) {
+    //     leftPanelTabService.setTab(tab);
     //
-    //     //$scope.currentTab = tab.url;
-    //     $scope.currentTab = leftPanleTabService.getTab().url;
-    //     debugger;
+    //     //$scope.currentLeftTab = tab.url;
+    //     $scope.currentLeftTab = leftPanelTabService.getTab().url;
+    //
     // }
     //
     // $scope.isActiveTab = function (tabUrl) {
-    //     return tabUrl == $scope.currentTab;
+    //     return tabUrl == $scope.currentLeftTab;
     // }
 
 })

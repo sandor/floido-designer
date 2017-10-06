@@ -76,7 +76,8 @@
 
     <script src="js/ruler/ruler_demo.js"></script>
 
-    <script src='js/service/leftPanleTabService.js'></script>
+    <script src='js/service/leftPanelTabService.js'></script>
+    <script src='js/service/rightPanelTabService.js'></script>
 
     <!-- <script src="js/jsFromIndex.js"></script> -->
 
@@ -127,7 +128,7 @@
             <div id="layers" class="pane-sm " >
 
                 <hr>
-                <div ng-include="currentTab"  ng-controller="LayersController"></div>
+                <div ng-include="currentLeftTab"  ng-controller="LayersController"></div>
 
 
             </div>
@@ -141,23 +142,28 @@
                 </div>
             </div>
 
-            <div id="inspector" class="pane-right sidebar" ng-controller="RightTabsCtrl">
+            <div ng-include="currentRightTab" class="inner">
 
-                <x-box>
-                    <x-buttons tracking="1">
-                        <x-button ng-repeat="tab in tabs" class="tab" skin="tabnav"
-                                  ng-class="{'active1': isActiveTab(tab.url)}" ng-click="onClickTab(tab)">
-                            <!--								<x-icon name="{{tab.ticon}}" iconset="{{tab.custom}}"></x-icon>-->
-                            <x-icon class="icon-in-tab" name="{{tab.micon}}"></x-icon>
-
-                        </x-button>
-                    </x-buttons>
-                </x-box>
-                <hr>
-
-                <div ng-include="currentTab" class="inner"></div>
 
             </div>
+
+            <!--<div id="inspector" class="pane-right sidebar" ng-controller="RightTabsCtrl">-->
+
+                <!--<x-box>-->
+                    <!--<x-buttons tracking="1">-->
+                        <!--<x-button ng-repeat="tab in leftTab" class="tab" skin="tabnav"-->
+                                  <!--ng-class="{'active1': isActiveTab(tab.url)}" ng-click="onClickLeftTab(tab)">-->
+                            <!--&lt;!&ndash;								<x-icon name="{{tab.ticon}}" iconset="{{tab.custom}}"></x-icon>&ndash;&gt;-->
+                            <!--<x-icon class="icon-in-tab" name="{{tab.micon}}"></x-icon>-->
+
+                        <!--</x-button>-->
+                    <!--</x-buttons>-->
+                <!--</x-box>-->
+                <!--<hr>-->
+
+                <!--<div ng-include="currentLeftTab" class="inner"></div>-->
+
+            <!--</div>-->
         </div>
     </div>
     <footer class="toolbar toolbar-footer" ng-controller="CanvasControlsController">

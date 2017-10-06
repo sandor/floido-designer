@@ -279,7 +279,7 @@ li:nth-child(even) {
     animation: fadeEffect 2.25s;
 }
 
-/* Fade in tabs */
+/* Fade in leftTab */
 
 @-webkit-keyframes fadeEffect {
     from {
