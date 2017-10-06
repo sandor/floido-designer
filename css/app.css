@@ -513,7 +513,7 @@ x-button[skin="tabnav"] x-label {
 */
 
 .pane-sm {
-    width: 250px;
+    width: 315px;
     max-width: 320px;
     min-width: 230px;
 /*    border-right: 1px solid #c2c0c2;*/
@@ -529,7 +529,7 @@ x-button[skin="tabnav"] x-label {
 .inner {
     overflow-y: overlay;
     height: 100%;
-    padding-bottom: 80px;
+    /*padding-bottom: 80px;*/
 }
 
 .pane-mini {
