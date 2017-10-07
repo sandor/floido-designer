@@ -133,9 +133,7 @@ function getCanvasActiveObjectData() {
 // disable inputs and color picker
 function enableDisableElement() {
 
-    if (canvas.getActiveObject()
-        && document.getElementById('objectIn-canvas-background-colorselect')
-        && document.getElementById('objectIn-canvas-background-colorselect-down')) {
+    if (canvas.getActiveObject() && document.getElementById('objectIn-canvas-background-colorselect') && document.getElementById('objectIn-canvas-background-colorselect-down')) {
 
         document.getElementById('objectIn-canvas-background-colorselect').removeAttribute('disabled');
         document.getElementById('objectIn-canvas-background-colorselect-down').removeAttribute('disabled');
@@ -154,8 +152,7 @@ function enableDisableElement() {
 
 
 
-    if (!canvas.getActiveObject() && document.getElementById('objectIn-canvas-background-colorselect')
-        && document.getElementById('objectIn-canvas-background-colorselect-down')) {
+    if (!canvas.getActiveObject() && document.getElementById('objectIn-canvas-background-colorselect') && document.getElementById('objectIn-canvas-background-colorselect-down')) {
 
         document.getElementById('objectIn-canvas-background-colorselect').setAttribute('disabled', true);
         document.getElementById('objectIn-canvas-background-colorselect-down').setAttribute('disabled', true);
@@ -166,7 +163,7 @@ function enableDisableElement() {
         document.getElementById('canvas-object-corner').setAttribute('disabled', true);
         document.getElementById('obj-shadow-color').setAttribute('disabled', true);
 
-///
+        ///
         canvasObjectBackColor = canvas._activeObject && canvas._activeObject.fill ? canvas._activeObject.fill : "";
         canvasObjectBorderColor = canvas._activeObject && canvas._activeObject.stroke ? canvas._activeObject.stroke : "";
         canvasObjectBackgroundColor = canvas._activeObject && canvas._activeObject.backgroundColor ? canvas._activeObject.backgroundColor : "";
@@ -183,12 +180,7 @@ function enableDisableElement() {
     }
 
     // removing data from  filters and shadows fields /////////////////
-    if ((document.getElementById('shadow-Offset-X')
-            && document.getElementById('shadow-Offset-Y')
-            && !canvas.getActiveObject())
-        || (document.getElementById('shadow-Offset-X')
-            && document.getElementById('shadow-Offset-Y')
-            && !canvas.getActiveObject().shadow)) {
+    if ((document.getElementById('shadow-Offset-X') && document.getElementById('shadow-Offset-Y') && !canvas.getActiveObject()) || (document.getElementById('shadow-Offset-X') && document.getElementById('shadow-Offset-Y') && !canvas.getActiveObject().shadow)) {
 
 
         document.getElementById('shadow-Offset-X').value = '';
@@ -196,15 +188,10 @@ function enableDisableElement() {
         document.getElementById('shadow-blur').value = '';
     }
 
-    if (canvas.getActiveObject()
-        && canvas.getActiveObject.name != "Image"
-        && canvas.getActiveObject.name != "Text"
-    ) {
+    if (canvas.getActiveObject() && canvas.getActiveObject.name != "Image" && canvas.getActiveObject.name != "Text") {
 
 
-        if (document.getElementById('obj-shadow-color')
-            && document.getElementById('shadow-blur')
-        ) {
+        if (document.getElementById('obj-shadow-color') && document.getElementById('shadow-blur')) {
             document.getElementById('obj-shadow-color').removeAttribute('disabled');
             document.getElementById('shadow-blur').removeAttribute('disabled');
             document.getElementById('shadow-Offset-X').removeAttribute('disabled');
@@ -261,8 +248,7 @@ function remove() {
 
     if (document.activeElement && document.activeElement.hasAttribute('value') || (document.activeElement && document.activeElement.value)) {
         document.activeElement.value = 0;
-    }
-    else {
+    } else {
         var activeObject = canvas.getActiveObject(),
             activeGroup = canvas.getActiveObject().type !== 'group';
 
@@ -336,23 +322,16 @@ function setActiveProp(name, value) {
 
 function getActiveShadow(name) {
 
-    if (canvas.getActiveObject()
-        && canvas.getActiveObject().shadow
-        && document.getElementById('enableShadow')
-        && !document.getElementById('enableShadow').hasAttribute('toggled')) {
+    if (canvas.getActiveObject() && canvas.getActiveObject().shadow && document.getElementById('enableShadow') && !document.getElementById('enableShadow').hasAttribute('toggled')) {
 
         document.getElementById('enableShadow').setAttribute('toggled', 'true');
 
     }
-    if ((!canvas.getActiveObject() && document.getElementById('enableShadow'))
-        || (canvas.getActiveObject() && !canvas.getActiveObject().shadow && document.getElementById('enableShadow'))) {
+    if ((!canvas.getActiveObject() && document.getElementById('enableShadow')) || (canvas.getActiveObject() && !canvas.getActiveObject().shadow && document.getElementById('enableShadow'))) {
         document.getElementById('enableShadow').removeAttribute('toggled');
     }
 
-    if (document.getElementById('shadow-Offset-X')
-        && document.getElementById('shadow-Offset-Y')
-        && canvas.getActiveObject()
-        && canvas.getActiveObject().shadow) {
+    if (document.getElementById('shadow-Offset-X') && document.getElementById('shadow-Offset-Y') && canvas.getActiveObject() && canvas.getActiveObject().shadow) {
 
         document.getElementById('shadow-Offset-X').value = canvas.getActiveObject().shadow.offsetX;
         document.getElementById('shadow-Offset-Y').value = canvas.getActiveObject().shadow.offsetY;
@@ -360,14 +339,12 @@ function getActiveShadow(name) {
     }
 
 
-    if (canvas.getActiveObject()
-        && canvas.getActiveObject().shadow) {
+    if (canvas.getActiveObject() && canvas.getActiveObject().shadow) {
 
         // document.getElementById()
 
         return canvas.getActiveObject().shadow;
-    }
-    else {
+    } else {
         return '';
     }
 
@@ -381,8 +358,7 @@ function setActiveShadow(name, value) {
     if (object.shadow) {
 
         object.shadow[name] = value;
-    }
-    else {
+    } else {
         var ob = {};
         ob[name] = value;
         object.setShadow(ob);
@@ -599,6 +575,17 @@ function addAccessors($scope, $rootScope) {
         setActiveProp('fontFamily', value.toLowerCase());
     };
 
+    //    set text decorations like underline/overline/linethrough
+    //    function for respecttive buttons is: changeTextStyle('underline')
+
+    $scope.changeTextStyle = function (val) {
+        var text = canvas.getActiveObject();
+        console.log(val);
+        text[val] = !text[val];
+        text.dirty = true;
+        canvas.renderAll();
+    }
+
     //	set active text family in the text listbox
 
     $scope.setActive = function (item, list) {
@@ -687,7 +674,7 @@ function addAccessors($scope, $rootScope) {
         canvas.renderAll();
     };
 
-    $scope.getPropAngle = function () {/// if object a=inactive return ""must implement
+    $scope.getPropAngle = function () { /// if object a=inactive return ""must implement
         if (parseFloat(getActiveProp('angle')) == 0) {
             return parseFloat(getActiveProp('angle'));
         }
@@ -874,8 +861,8 @@ function addAccessors($scope, $rootScope) {
                 y2: canvas.height,
             },
             colorStops: [{
-                color: leftColor,
-                offset: 0,
+                    color: leftColor,
+                    offset: 0,
             },
                 {
                     color: rightColor,
@@ -914,8 +901,7 @@ function addAccessors($scope, $rootScope) {
         const {
             ipcRenderer
         } = require('electron')
-        ipcRenderer.send('openFile', () => {
-        })
+        ipcRenderer.send('openFile', () => {})
         ipcRenderer.once('fileData', (event, filepath) => {
             fabric.Image.fromURL(filepath, function (image) {
                 //                var hCent = canvas.getHeight / 2;
@@ -1041,8 +1027,8 @@ function addAccessors($scope, $rootScope) {
         var coord = getRandomLeftTop();
 
         this.canvas.add(new fabric.Polygon([{
-            x: 185,
-            y: 0
+                x: 185,
+                y: 0
         },
             {
                 x: 250,
@@ -1144,10 +1130,10 @@ function addAccessors($scope, $rootScope) {
             var loadedObject = fabric.util.groupSVGElements(objects, options);
 
             loadedObject.set({
-                left: coord.left,
-                top: coord.top,
-                angle: getRandomInt(-10, 10)
-            })
+                    left: coord.left,
+                    top: coord.top,
+                    angle: getRandomInt(-10, 10)
+                })
                 .setCoords();
 
             canvas.add(loadedObject);
@@ -1176,8 +1162,7 @@ function addAccessors($scope, $rootScope) {
         const {
             ipcRenderer
         } = require('electron')
-        ipcRenderer.send('openFile', () => {
-        })
+        ipcRenderer.send('openFile', () => {})
         ipcRenderer.once('fileData', (event, filepath) => {
             fabric.Image.fromURL(filepath, function (image) {
 
@@ -1328,10 +1313,10 @@ function addAccessors($scope, $rootScope) {
         fabric.Image.fromURL(file.path, function (image) {
 
             image.set({
-                left: coord.left,
-                top: coord.top,
-                angle: getRandomInt(-10, 10)
-            })
+                    left: coord.left,
+                    top: coord.top,
+                    angle: getRandomInt(-10, 10)
+                })
                 .scale(getRandomNum(minScale, maxScale))
                 .setCoords();
 
@@ -1410,8 +1395,8 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getScaleLockX = function () {
-        return getActiveProp('lockScalingX');
-    },
+            return getActiveProp('lockScalingX');
+        },
         $scope.setScaleLockX = function (value) {
             setActiveProp('lockScalingX', value);
         };
@@ -1865,5 +1850,3 @@ function watchCanvas($scope) {
         .on('path:created', updateScope)
         .on('selection:cleared', updateScope);
 }
-
-

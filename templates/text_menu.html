@@ -1,401 +1,396 @@
 <div class="grid-middle-noGutter" ng-controller="FontsCtrl" class="object-controls" object-buttons-enabled="getSelected()">
 
-	<h1 class="title_left">Typography</h1>
-	<hr>
-
-
-	<x-accordion expanded>
-		<header>
-			<x-label>Font Selection</x-label>
-		</header>
-
-		<main>
-			<div class="spacer"></div>
-
-			<x-box>
-				<x-select style="width: 290px; margin-left: 5px; margin-bottom: 5px;">
-					<x-menu>
-						<x-menuitem value="all">
-							<x-label>Show all Fonts</x-label>
-						</x-menuitem>
-
-						<x-menuitem value="ios" selected="true">
-							<x-label>iOS Fonts</x-label>
-						</x-menuitem>
-
-						<x-menuitem value="google" selected="true">
-							<x-label>Google Fonts</x-label>
-						</x-menuitem>
-
-						<x-menuitem value="add" selected="true">
-							<x-label>Typekit Fonts</x-label>
-						</x-menuitem>
-
-						<x-menuitem value="add" selected="true">
-							<x-label>Fontsquirrel Fonts</x-label>
-						</x-menuitem>
-					</x-menu>
-				</x-select>
-			</x-box>
+    <h1 class="title_left">Typography</h1>
+    <hr>
+
+
+    <x-accordion expanded>
+        <header>
+            <x-label>Font Selection</x-label>
+        </header>
+
+        <main>
+            <div class="spacer"></div>
+
+            <x-box>
+                <x-select style="width: 290px; margin-left: 5px; margin-bottom: 5px;">
+                    <x-menu>
+                        <x-menuitem value="all">
+                            <x-label>Show all Fonts</x-label>
+                        </x-menuitem>
+
+                        <x-menuitem value="ios" selected="true">
+                            <x-label>iOS Fonts</x-label>
+                        </x-menuitem>
+
+                        <x-menuitem value="google" selected="true">
+                            <x-label>Google Fonts</x-label>
+                        </x-menuitem>
+
+                        <x-menuitem value="add" selected="true">
+                            <x-label>Typekit Fonts</x-label>
+                        </x-menuitem>
+
+                        <x-menuitem value="add" selected="true">
+                            <x-label>Fontsquirrel Fonts</x-label>
+                        </x-menuitem>
+                    </x-menu>
+                </x-select>
+            </x-box>
 
-			<x-box>
-				<x-select style="width: 140px; margin-left: 5px; margin-right: 10px;">
-					<x-menu>
-						<x-menuitem value="serif">
-							<x-label>Serif</x-label>
-						</x-menuitem>
+            <x-box>
+                <x-select style="width: 140px; margin-left: 5px; margin-right: 10px;">
+                    <x-menu>
+                        <x-menuitem value="serif">
+                            <x-label>Serif</x-label>
+                        </x-menuitem>
 
-						<x-menuitem value="sans serif" selected="true">
-							<x-label>Sans Serif</x-label>
-						</x-menuitem>
+                        <x-menuitem value="sans serif" selected="true">
+                            <x-label>Sans Serif</x-label>
+                        </x-menuitem>
 
-						<x-menuitem value="display" selected="true">
-							<x-label>Display</x-label>
-						</x-menuitem>
+                        <x-menuitem value="display" selected="true">
+                            <x-label>Display</x-label>
+                        </x-menuitem>
 
-						<x-menuitem value="handwrightig" selected="true">
-							<x-label>Handwrighting</x-label>
-						</x-menuitem>
+                        <x-menuitem value="handwrightig" selected="true">
+                            <x-label>Handwrighting</x-label>
+                        </x-menuitem>
 
-						<x-menuitem value="monospace" selected="true">
-							<x-label>Monospace</x-label>
-						</x-menuitem>
-					</x-menu>
-				</x-select>
+                        <x-menuitem value="monospace" selected="true">
+                            <x-label>Monospace</x-label>
+                        </x-menuitem>
+                    </x-menu>
+                </x-select>
 
-				<x-input style="max-width: 140px; height: 25px;" ng-model="q">
-					<x-icon name="search"></x-icon>
-					<x-label>Filter</x-label>
-				</x-input>
-			</x-box>
-			<div class="spacer"></div>
+                <x-input style="max-width: 140px; height: 25px;" ng-model="q">
+                    <x-icon name="search"></x-icon>
+                    <x-label>Filter</x-label>
+                </x-input>
+            </x-box>
+            <div class="spacer"></div>
 
-			<x-box>
-				<x-card class="fontCard">
-					<ul class="font-group">
-						<li ng-class="{active: font.active}" class="font-group-item" style="font-family: {{font.value}}" ng-repeat="font in fonts | filter:q as results" ng-click="setFontFamily(font.value); setActive(font, fonts)">{{font.name}}</li>
-						<li class="font-group-item" ng-if="results.length === 0">
-							Dude, how's about Helvetica?
-						</li>
-					</ul>
-				</x-card>
-			</x-box>
+            <x-box>
+                <x-card class="fontCard">
+                    <ul class="font-group">
+                        <li ng-class="{active: font.active}" class="font-group-item" style="font-family: {{font.value}}" ng-repeat="font in fonts | filter:q as results" ng-click="setFontFamily(font.value); setActive(font, fonts)">{{font.name}}</li>
+                        <li class="font-group-item" ng-if="results.length === 0">
+                            Dude, how's about Helvetica?
+                        </li>
+                    </ul>
+                </x-card>
+            </x-box>
 
-			<div class="spacer"></div>
+            <div class="spacer"></div>
 
-			<x-box>
-				<x-button skin="textured" style="width: 290px; margin-left: 5px; margin-bottom: 5px;">
-					<x-box>
-						<x-icon name="text-fields"></x-icon>
-						<x-label class="white">Add Fonts...</x-label>
-					</x-box>
-				</x-button>
-			</x-box>
+            <x-box>
+                <x-button skin="textured" style="width: 290px; margin-left: 5px; margin-bottom: 5px;">
+                    <x-box>
+                        <x-icon name="text-fields"></x-icon>
+                        <x-label class="white">Add Fonts...</x-label>
+                    </x-box>
+                </x-button>
+            </x-box>
 
-		</main>
-	</x-accordion>
+        </main>
+    </x-accordion>
 
-	<hr>
+    <hr>
 
-	<!--////////////////// FONT STYLING /////////// -->
+    <!--////////////////// FONT STYLING /////////// -->
 
 
-	<x-accordion expanded>
-		<header>
-			<x-label>Text Styling</x-label>
-		</header>
+    <x-accordion expanded>
+        <header>
+            <x-label>Text Styling</x-label>
+        </header>
 
-		<main>
+        <main>
 
 
-			<div class="spacer"></div>
+            <div class="spacer"></div>
 
 
-			<x-box style="width: 290px; margin-left: 5px; margin-bottom: 5px;">
-				<x-buttons tracking="1" >
-					<x-button toggled class="aButton" ng-click="setTextAlign('left')">
-						<x-icon name="format-align-left"></x-icon>
-					</x-button>
+            <x-box style="width: 290px; margin-left: 5px; margin-bottom: 5px;">
+                <x-buttons tracking="1">
+                    <x-button toggled class="aButton" ng-click="setTextAlign('left')">
+                        <x-icon name="format-align-left"></x-icon>
+                    </x-button>
 
-					<x-button value="" class="aButton" ng-click="setTextAlign('center')">
-						<x-icon name="format-align-center"></x-icon>
-					</x-button>
+                    <x-button value="" class="aButton" ng-click="setTextAlign('center')">
+                        <x-icon name="format-align-center"></x-icon>
+                    </x-button>
 
-					<x-button class="aButton" ng-click="setTextAlign('right')">
-						<x-icon name="format-align-right"></x-icon>
-					</x-button>
+                    <x-button class="aButton" ng-click="setTextAlign('right')">
+                        <x-icon name="format-align-right"></x-icon>
+                    </x-button>
 
-					<x-button class="aButton" ng-click="setTextAlign('justify')">
-						<x-icon name="format-align-justify"></x-icon>
-					</x-button>
-				</x-buttons>
-			</x-box>
+                    <x-button class="aButton" ng-click="setTextAlign('justify')">
+                        <x-icon name="format-align-justify"></x-icon>
+                    </x-button>
+                </x-buttons>
+            </x-box>
 
-			<div class="spacer"></div>
+            <div class="spacer"></div>
 
 
 
 
-			<!--/////////////// FONT STYLE //////////////-->
+            <!--/////////////// FONT STYLE //////////////-->
 
-			<x-box>
+            <x-box>
 
-				<x-buttons tracking="2" style="width: 140px; margin-left: 5px; margin-right: 10px;">
-					<x-button ng-click="toggleBold()">
-						<x-icon name="format-bold"></x-icon>
-					</x-button>
+                <x-buttons tracking="2" style="width: 140px; margin-left: 5px; margin-right: 10px;">
+                    <x-button ng-click="toggleBold()">
+                        <x-icon name="format-bold"></x-icon>
+                    </x-button>
 
-					<x-button ng-click="toggleUnderline()">
-						<x-icon name="format-underlined"></x-icon>
-					</x-button>
+                    <x-button ng-value="'underline'" ng-click="changeTextStyle('underline')">
+                        <x-icon name="format-underlined"></x-icon>
+                    </x-button>
 
-					<x-button ng-click="toggleItalic()">
-						<x-icon name="format-italic"></x-icon>
-					</x-button>
-				</x-buttons>
+                    <x-button ng-click="toggleItalic()">
+                        <x-icon name="format-italic"></x-icon>
+                    </x-button>
+                </x-buttons>
 
-				<x-select style="width: 140px;" bind-value-to="fontWeight">
-					<x-menu>
-						<x-menuitem value="" selected="true">
-							<x-label>Font Weight</x-label>
-						</x-menuitem>
+                <x-select style="width: 140px;" bind-value-to="fontWeight">
+                    <x-menu>
+                        <x-menuitem value="" selected="true">
+                            <x-label>Font Weight</x-label>
+                        </x-menuitem>
 
-						<hr>
+                        <hr>
 
-						<x-menuitem value="normal">
-							<x-label>Normal</x-label>
-						</x-menuitem>
+                        <x-menuitem value="normal">
+                            <x-label>Normal</x-label>
+                        </x-menuitem>
 
-						<x-menuitem value="bold">
-							<x-label>Bold</x-label>
-						</x-menuitem>
+                        <x-menuitem value="bold">
+                            <x-label>Bold</x-label>
+                        </x-menuitem>
 
-						<hr>
+                        <hr>
 
-						<x-menuitem value="lighter">
-							<x-label>Lighter</x-label>
-						</x-menuitem>
+                        <x-menuitem value="lighter">
+                            <x-label>Lighter</x-label>
+                        </x-menuitem>
 
-						<x-menuitem value="bolder">
-							<x-label>Bolder</x-label>
-						</x-menuitem>
+                        <x-menuitem value="bolder">
+                            <x-label>Bolder</x-label>
+                        </x-menuitem>
 
-						<hr>
+                        <hr>
 
-						<x-menuitem value="100">
-							<x-label>100</x-label>
-						</x-menuitem>
+                        <x-menuitem value="100">
+                            <x-label>100</x-label>
+                        </x-menuitem>
 
-						<x-menuitem value="200">
-							<x-label>200</x-label>
-						</x-menuitem>
+                        <x-menuitem value="200">
+                            <x-label>200</x-label>
+                        </x-menuitem>
 
-						<x-menuitem value="300">
-							<x-label>300</x-label>
-						</x-menuitem>
+                        <x-menuitem value="300">
+                            <x-label>300</x-label>
+                        </x-menuitem>
 
-						<x-menuitem value="400">
-							<x-label>400</x-label>
-						</x-menuitem>
+                        <x-menuitem value="400">
+                            <x-label>400</x-label>
+                        </x-menuitem>
 
-						<x-menuitem value="500">
-							<x-label>500</x-label>
-						</x-menuitem>
+                        <x-menuitem value="500">
+                            <x-label>500</x-label>
+                        </x-menuitem>
 
-						<x-menuitem value="600">
-							<x-label>600</x-label>
-						</x-menuitem>
+                        <x-menuitem value="600">
+                            <x-label>600</x-label>
+                        </x-menuitem>
 
-						<x-menuitem value="700">
-							<x-label>700</x-label>
-						</x-menuitem>
+                        <x-menuitem value="700">
+                            <x-label>700</x-label>
+                        </x-menuitem>
 
-						<x-menuitem value="800">
-							<x-label>800</x-label>
-						</x-menuitem>
+                        <x-menuitem value="800">
+                            <x-label>800</x-label>
+                        </x-menuitem>
 
-						<x-menuitem value="900">
-							<x-label>900</x-label>
-						</x-menuitem>
-					</x-menu>
-				</x-select>
-			</x-box>
+                        <x-menuitem value="900">
+                            <x-label>900</x-label>
+                        </x-menuitem>
+                    </x-menu>
+                </x-select>
+            </x-box>
 
-			<div class="spacer"></div>
+            <div class="spacer"></div>
 
-			<!--/////////////////// FONT COLORS //////////////////-->
+            <!--/////////////////// FONT COLORS //////////////////-->
 
 
 
-			<div class="spacer"></div>
-			<hr>
-			<div class="spacer"></div>
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Font Color</x-label>
+            <div class="spacer"></div>
+            <hr>
+            <div class="spacer"></div>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Font Color</x-label>
 
-				<x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;">
-					<x-popover style="width: 320px;">
-						<x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="fill"></x-rectcolorpicker>
-					</x-popover>
-				</x-colorselect>
+                <x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;">
+                    <x-popover style="width: 320px;">
+                        <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="fill"></x-rectcolorpicker>
+                    </x-popover>
+                </x-colorselect>
 
-				<x-input id="select1" style="width: 130px;" bind-value-to="fill">
-					<x-icon name="invert-colors"></x-icon>
-				</x-input>
+                <x-input id="select1" style="width: 130px;" bind-value-to="fill">
+                    <x-icon name="invert-colors"></x-icon>
+                </x-input>
 
-			</x-box>
+            </x-box>
 
-			<div class="spacer"></div>
+            <div class="spacer"></div>
 
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Background</x-label>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Background</x-label>
 
-				<x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;">
-					<x-popover style="width: 320px;">
-						<x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="bgColor"></x-rectcolorpicker>
-					</x-popover>
-				</x-colorselect>
+                <x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;">
+                    <x-popover style="width: 320px;">
+                        <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="bgColor"></x-rectcolorpicker>
+                    </x-popover>
+                </x-colorselect>
 
-				<x-input id="select1" style="width: 130px;" bind-value-to="bgColor">
-					<x-icon name="invert-colors"></x-icon>
-				</x-input>
+                <x-input id="select1" style="width: 130px;" bind-value-to="bgColor">
+                    <x-icon name="invert-colors"></x-icon>
+                </x-input>
 
-			</x-box>
+            </x-box>
 
 
 
-			<div class="spacer"></div>
+            <div class="spacer"></div>
 
-			<hr>
+            <hr>
 
-			<!--    ////////////////////// FONT SIZE //////////////////-->
+            <!--    ////////////////////// FONT SIZE //////////////////-->
 
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Font Size</x-label>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Font Size</x-label>
 
-				<x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="1" max="200" ng-value="0" bind-value-to="fontSize" skin="arrow">
-				</x-slider>
+                <x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="1" max="200" ng-value="0" bind-value-to="fontSize" skin="arrow">
+                </x-slider>
 
-				<x-numberinput style="width: 75px;" suffix=" px" skin="condensed" ng-value="0" bind-value-to="fontSize">
-					<x-stepper></x-stepper>
-				</x-numberinput>
-			</x-box>
+                <x-numberinput style="width: 75px;" suffix=" px" skin="condensed" ng-value="0" bind-value-to="fontSize">
+                    <x-stepper></x-stepper>
+                </x-numberinput>
+            </x-box>
 
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Line Height</x-label>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Line Height</x-label>
 
-				<x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="0" max="10" step="0.01" ng-value="0" bind-value-to="lineHeight" skin="arrow">
-				</x-slider>
+                <x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="0" max="10" step="0.01" ng-value="0" bind-value-to="lineHeight" skin="arrow">
+                </x-slider>
 
-				<x-numberinput style="width: 75px;" suffix=" em" skin="condensed" step="0.01" bind-value-to="lineHeight">
-					<x-stepper></x-stepper>
-				</x-numberinput>
-			</x-box>
+                <x-numberinput style="width: 75px;" suffix=" em" skin="condensed" step="0.01" bind-value-to="lineHeight">
+                    <x-stepper></x-stepper>
+                </x-numberinput>
+            </x-box>
 
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Spacing</x-label>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Spacing</x-label>
 
-				<x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="-200" max="1000" step="1.0" ng-value="0" bind-value-to="charSpacing" skin="arrow">
-				</x-slider>
+                <x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="-200" max="1000" step="1.0" ng-value="0" bind-value-to="charSpacing" skin="arrow">
+                </x-slider>
 
-				<x-numberinput style="width: 75px;" suffix=" em" skin="condensed" min="-200" max="1000" step="1" ng-value="0" bind-value-to="charSpacing">
-					<x-stepper></x-stepper>
-				</x-numberinput>
-			</x-box>
+                <x-numberinput style="width: 75px;" suffix=" em" skin="condensed" min="-200" max="1000" step="1" ng-value="0" bind-value-to="charSpacing">
+                    <x-stepper></x-stepper>
+                </x-numberinput>
+            </x-box>
 
-			<hr>
+            <hr>
 
-			<!--//////////////////////// FONT BORDER //////////////////////////-->
+            <!--//////////////////////// FONT BORDER //////////////////////////-->
 
-			<x-box>
+            <x-box>
 
-				<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Border</x-label>
+                <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Border</x-label>
 
-				<x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="0" max="100" bind-value-to="strokeWidth" skin="arrow">
-				</x-slider>
+                <x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="0" max="100" bind-value-to="strokeWidth" skin="arrow">
+                </x-slider>
 
-				<x-numberinput style="width: 75px;" value="'0'" suffix=" px" skin="condensed" bind-value-to="strokeWidth">
-					<x-stepper></x-stepper>
-				</x-numberinput>
+                <x-numberinput style="width: 75px;" value="'0'" suffix=" px" skin="condensed" bind-value-to="strokeWidth">
+                    <x-stepper></x-stepper>
+                </x-numberinput>
 
-			</x-box>
+            </x-box>
 
 
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Color</x-label>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Color</x-label>
 
-				<x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;">
-					<x-popover style="width: 320px;">
-						<x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="stroke"></x-rectcolorpicker>
-					</x-popover>
-				</x-colorselect>
+                <x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;">
+                    <x-popover style="width: 320px;">
+                        <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="stroke"></x-rectcolorpicker>
+                    </x-popover>
+                </x-colorselect>
 
-				<x-input id="select1" style="width: 130px;" bind-value-to="stroke">
-					<x-icon name="invert-colors"></x-icon>
-				</x-input>
+                <x-input id="select1" style="width: 130px;" bind-value-to="stroke">
+                    <x-icon name="invert-colors"></x-icon>
+                </x-input>
 
-			</x-box>
+            </x-box>
 
 
-		</main>
-	</x-accordion>
-				<hr>
-	
-			<!--//////////////////////// TEXT SHADOW //////////////////////////-->
-	
-	<x-accordion expanded>
-    <header>
-        <x-label>Shadow</x-label>
-        <x-switch ng-disabled="getInputState()" id="enableShadow" style="margin-right: 10px;"
-                  ng-click="shadowify()"></x-switch>
-    </header>
+        </main>
+    </x-accordion>
+    <hr>
 
-    <main>
-        <x-box>
-            <x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Settings</x-label>
+    <!--//////////////////////// TEXT SHADOW //////////////////////////-->
 
-            <x-numberinput id="shadow-Offset-X" ng-disabled="getInputState()" style="margin-right: 15px; width: 135px;" skin="condensed"
-                           suffix=" px" bind-value-to="shadowOffsetX">
-                <x-stepper></x-stepper>
-            </x-numberinput>
+    <x-accordion expanded>
+        <header>
+            <x-label>Shadow</x-label>
+            <x-switch ng-disabled="getInputState()" id="enableShadow" style="margin-right: 10px;" ng-click="shadowify()"></x-switch>
+        </header>
 
-            <x-numberinput id="shadow-Offset-Y" ng-disabled="getInputState()" style="width: 135px; margin-right: 10px;" skin="condensed"
-                           suffix=" px" bind-value-to="shadowOffsetY">
-                <x-stepper></x-stepper>
-            </x-numberinput>
+        <main>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Settings</x-label>
 
-        </x-box>
-        <x-box>
-            <x-label style="margin-left:5px; margin-right: 15px; width: 65px;"></x-label>
-            <x-label class="centered_sm" style="margin-right: 15px; width: 135px;">Offset X</x-label>
-            <x-label class="centered_sm" style="width: 135px; margin-right: 10px;">Offset Y</x-label>
-        </x-box>
+                <x-numberinput id="shadow-Offset-X" ng-disabled="getInputState()" style="margin-right: 15px; width: 135px;" skin="condensed" suffix=" px" bind-value-to="shadowOffsetX">
+                    <x-stepper></x-stepper>
+                </x-numberinput>
 
-        <x-box>
-            <x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
+                <x-numberinput id="shadow-Offset-Y" ng-disabled="getInputState()" style="width: 135px; margin-right: 10px;" skin="condensed" suffix=" px" bind-value-to="shadowOffsetY">
+                    <x-stepper></x-stepper>
+                </x-numberinput>
 
-            <x-colorselect id="obj-shadow-color" style="margin-right: 15px; width: 135px;">
-                <x-popover style="width: 320px;">
-                    <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="shadowColor"
-                                       ng-model="color"></x-rectcolorpicker>
-                </x-popover>
-            </x-colorselect>
+            </x-box>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 15px; width: 65px;"></x-label>
+                <x-label class="centered_sm" style="margin-right: 15px; width: 135px;">Offset X</x-label>
+                <x-label class="centered_sm" style="width: 135px; margin-right: 10px;">Offset Y</x-label>
+            </x-box>
 
-            <x-numberinput id="shadow-blur" ng-disabled="getInputState()" style="width: 135px; margin-right: 10px;" skin="condensed"
-                           suffix=" px" bind-value-to="shadowBlur">
-                <x-stepper></x-stepper>
-            </x-numberinput>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
 
-        </x-box>
-        <x-box>
-            <x-label style="margin-left:5px; margin-right: 15px; width: 65px;"></x-label>
-            <x-label class="centered_sm" style="margin-right: 15px; width: 135px;">Shadow Color</x-label>
-            <x-label class="centered_sm" style="width: 135px; margin-right: 10px;">Blur</x-label>
-        </x-box>
+                <x-colorselect id="obj-shadow-color" style="margin-right: 15px; width: 135px;">
+                    <x-popover style="width: 320px;">
+                        <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="shadowColor" ng-model="color"></x-rectcolorpicker>
+                    </x-popover>
+                </x-colorselect>
 
-    </main>
-</x-accordion>
-<hr>
-	
+                <x-numberinput id="shadow-blur" ng-disabled="getInputState()" style="width: 135px; margin-right: 10px;" skin="condensed" suffix=" px" bind-value-to="shadowBlur">
+                    <x-stepper></x-stepper>
+                </x-numberinput>
+
+            </x-box>
+            <x-box>
+                <x-label style="margin-left:5px; margin-right: 15px; width: 65px;"></x-label>
+                <x-label class="centered_sm" style="margin-right: 15px; width: 135px;">Shadow Color</x-label>
+                <x-label class="centered_sm" style="width: 135px; margin-right: 10px;">Blur</x-label>
+            </x-box>
+
+        </main>
+    </x-accordion>
+    <hr>
+
 
 </div>
