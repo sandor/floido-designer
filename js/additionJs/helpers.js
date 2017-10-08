@@ -9,7 +9,6 @@
 //		initCenteringGuidelines(canvas);
 
 
-//move objects on the canvas with keyboard
 var canvasObjectFillColor = "#ffffff";
 var canvasObjectBackColor = "#ffffff";
 var canvasObjectBorderColor = "#ffffff";
@@ -22,6 +21,7 @@ var canvasObjectShadowOffsetX = 0;
 var canvasObjectShadowOffsetY = 0;
 var canvasObjectShadowBlur = 0;
 
+//move objects on the canvas with keyboard
 
 document.onkeydown = function (e) {
 
@@ -368,22 +368,6 @@ function setActiveShadow(name, value) {
     canvas.renderAll();
 }
 
-// function setActiveShadow(name, value) {
-//
-//     var object = canvas.getActiveObject();
-//
-//     if (!object) return;
-//     if (object.shadow)
-//         object.shadow[name] = value;
-//     else {
-//         var ob = {};
-//         ob[name] = value;
-//         object.setShadow(ob);
-//     }
-//
-//     object.setCoords();
-//     canvas.renderAll();
-// }
 
 
 ///////////
@@ -1305,7 +1289,7 @@ function addAccessors($scope, $rootScope) {
     };
 
 
-    //-----
+
 
     function addImage(imageName) {
         var coord = getRandomLeftTop();
@@ -1472,33 +1456,7 @@ function addAccessors($scope, $rootScope) {
         return setActiveProp('hasControls', value);
     };
 
-    $scope.sendBackwards = function () {
-        var activeObject = canvas.getActiveObject();
-        if (activeObject) {
-            canvas.sendBackwards(activeObject);
-        }
-    };
 
-    $scope.sendToBack = function () {
-        var activeObject = canvas.getActiveObject();
-        if (activeObject) {
-            canvas.sendToBack(activeObject);
-        }
-    };
-
-    $scope.bringForward = function () {
-        var activeObject = canvas.getActiveObject();
-        if (activeObject) {
-            canvas.bringForward(activeObject);
-        }
-    };
-
-    $scope.bringToFront = function () {
-        var activeObject = canvas.getActiveObject();
-        if (activeObject) {
-            canvas.bringToFront(activeObject);
-        }
-    };
 
     var pattern = new fabric.Pattern({
         source: 'images/escheresque.png',
