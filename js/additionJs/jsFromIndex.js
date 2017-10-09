@@ -1,6 +1,3 @@
-
-
-
 var kitchensink = {};
 var canvas = new fabric.Canvas('canvas', {
     backgroundColor: "#FFFFFF",
@@ -171,7 +168,7 @@ var updateCanvasState = function () {
             _config.canvasState.push(canvasAsJson);
         }
         _config.currentStateIndex = _config.canvasState.length - 1;
-        if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) { }
+        if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) {}
     }
 }
 
@@ -190,7 +187,7 @@ var undo = function () {
                         canvas.renderAll();
                         _config.undoStatus = false;
                         _config.currentStateIndex -= 1;
-                        if (_config.currentStateIndex !== _config.canvasState.length - 1) { }
+                        if (_config.currentStateIndex !== _config.canvasState.length - 1) {}
                         _config.undoFinishedStatus = 1;
                     });
                 } else if (_config.currentStateIndex == 0) {
@@ -205,7 +202,7 @@ var undo = function () {
 
 var redo = function () {
     if (_config.redoFinishedStatus) {
-        if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) { } else {
+        if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) {} else {
             if (_config.canvasState.length > _config.currentStateIndex && _config.canvasState.length != 0) {
                 _config.redoFinishedStatus = 0;
                 _config.redoStatus = true;
@@ -214,9 +211,9 @@ var redo = function () {
                     canvas.renderAll();
                     _config.redoStatus = false;
                     _config.currentStateIndex += 1;
-                    if (_config.currentStateIndex != -1) { }
+                    if (_config.currentStateIndex != -1) {}
                     _config.redoFinishedStatus = 1;
-                    if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) { }
+                    if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) {}
                 });
             }
         }
@@ -224,56 +221,106 @@ var redo = function () {
 }
 
 
-require('electron').ipcRenderer.on('ping', function (event, message) {
-    console.log(message); // Prints "whoooooooh!"
-});
+/*
+setup IPC communication/functions with mainmenu.js
+*/
 
-require('electron').ipcRenderer.on('delete', function () {
-    remove(); // Prints "whoooooooh!"
-});
+//edit menu
 
-require('electron').ipcRenderer.on('copy', function () {
-    copy(); // Prints "whoooooooh!"
-});
-
-require('electron').ipcRenderer.on('paste', function () {
-    paste(); // Prints "whoooooooh!"
-});
-
-
-
-key('⌘+c, ctrl+c', function () {
-    copy();
-});
-key('⌘+v, ctrl+v', function () {
-    paste();
-});
-key('backspace, del', function () {
-    remove();
-});
-key('⌘+g', function () {
-    group();
-});
-key('⌘+u', function () {
-    ungroup();
-});
-key('⌘+z', function () {
+require('electron').ipcRenderer.on('undo', function (event, message) {
+    console.log(message);
     undo();
 });
-key('shift+⌘+z', function () {
+
+require('electron').ipcRenderer.on('redo', function (event, message) {
+    console.log(message);
     redo();
 });
 
+require('electron').ipcRenderer.on('cut', function (event, message) {
+    console.log(message);
+    copy();
+    remove();
+});
 
-// electron contextMenu test
-//		Create a context menu in electron
+require('electron').ipcRenderer.on('copy', function (event, message) {
+    console.log(message);
+    copy();
+});
+
+require('electron').ipcRenderer.on('paste', function (event, message) {
+    console.log(message);
+    paste();
+});
+
+require('electron').ipcRenderer.on('duplicate', function (event, message) {
+    console.log(message);
+    copy();
+    paste();
+});
+
+//Arrange menu
+
+require('electron').ipcRenderer.on('group', function (event, message) {
+    console.log(message);
+    group();
+});
+
+require('electron').ipcRenderer.on('ungroup', function (event, message) {
+    console.log(message);
+    ungroup();
+});
+
+require('electron').ipcRenderer.on('bringForward', function (event, message) {
+    console.log(message);
+    bringForward();
+});
+
+/*
+Utility functions for selecting and aranging objects on the canvas
+*/
+
+
+//sen the objects forward and backward
+
+function sendBackwards() {
+    var activeObject = canvas.getActiveObject();
+    if (activeObject) {
+        canvas.sendBackwards(activeObject);
+    }
+};
+
+function sendToBack() {
+    var activeObject = canvas.getActiveObject();
+    if (activeObject) {
+        canvas.sendToBack(activeObject);
+    }
+};
+
+function bringForward() {
+    var activeObject = canvas.getActiveObject();
+    if (activeObject) {
+        canvas.bringForward(activeObject);
+    }
+};
+
+function bringToFront() {
+    var activeObject = canvas.getActiveObject();
+    if (activeObject) {
+        canvas.bringToFront(activeObject);
+    }
+};
+
+
+// electron contextMenu test this should be moved in a separate JS file in menus
+// Create a context menu in electron
 
 const {
-        remote
-    } = require('electron')
+    remote
+} = require('electron')
 const {
-        Menu, MenuItem
-    } = remote
+    Menu, MenuItem
+} = remote
 
 const menu = new Menu()
 
@@ -283,28 +330,28 @@ const menu = new Menu()
 menu.append(new MenuItem({
     label: 'Send backwards',
     click() {
-        sendBackwards()
+        sendBackwards();
     }
 }))
 
 menu.append(new MenuItem({
     label: 'Send to back',
     click() {
-        sendToBack()
+        sendToBack();
     }
 }))
 
 menu.append(new MenuItem({
     label: 'Bring forwards',
     click() {
-        bringForward()
+        bringForward();
     }
 }))
 
 menu.append(new MenuItem({
     label: 'Bring to front',
     click() {
-        bringToFront()
+        bringToFront();
     }
 }))
 
@@ -348,58 +395,80 @@ menu.append(new MenuItem({
 
 menu.append(new MenuItem({
     label: 'Group Selected',
-    click() { }
-}))
-
-menu.append(new MenuItem({
-    label: 'Ungroup Selected',
-    click() { }
-}))
-
-menu.append(new MenuItem({
-    type: 'separator'
-}))
-
-menu.append(new MenuItem({
-    role: 'undo'
-}))
-
-menu.append(new MenuItem({
-    role: 'redo'
-}))
-
-menu.append(new MenuItem({
-    type: 'separator'
-}))
-
-menu.append(new MenuItem({
-    role: 'cut'
-}))
-
-menu.append(new MenuItem({
-    role: 'copy'
-}))
-
-menu.append(new MenuItem({
-    role: 'paste'
-}))
-
-menu.append(new MenuItem({
-    role: 'delete',
-    click: function () {
-        var focusedWindow = BrowserWindow.getFocusedWindow();
-        focusedWindow.webContents.send('delete');
+    click() {
+        group();
     }
 }))
 
 menu.append(new MenuItem({
-    role: 'selectall'
+    label: 'Ungroup Selected',
+    click() {
+        ungroup();
+    }
+}))
+
+menu.append(new MenuItem({
+    type: 'separator'
+}))
+
+menu.append(new MenuItem({
+    label: 'Undo',
+    click() {
+        undo();
+    }
+}))
+
+menu.append(new MenuItem({
+    label: 'Redo',
+    click() {
+        redo();
+    }
+}))
+
+menu.append(new MenuItem({
+    type: 'separator'
+}))
+
+menu.append(new MenuItem({
+    label: 'Cut',
+    click() {
+        copy();
+        remove();
+    }
+}))
+
+menu.append(new MenuItem({
+    label: 'Copy',
+    click() {
+        copy();
+    }
+}))
+
+menu.append(new MenuItem({
+    label: 'Paste',
+    click() {
+        paste();
+    }
+}))
+
+menu.append(new MenuItem({
+    label: 'Delete',
+    click() {
+        remove();
+    }
+}))
+
+menu.append(new MenuItem({
+    label: 'Select All',
+    click() {
+        selectAllCanvasObjects();
+    }
 }))
 
 
 
 // Prevent default action of right click in chromium. Replace with our menu.
-window.addEventListener('contextmenu', (e) => {
+document.getElementById("wrapper").addEventListener('contextmenu', (e) => {
     e.preventDefault()
     menu.popup(remote.getCurrentWindow())
 }, false)
