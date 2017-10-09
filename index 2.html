@@ -18,7 +18,6 @@
 			window.module = module;
 			module = undefined;
 		}
-
 	</script>
 
 
@@ -84,7 +83,6 @@
 	<!-- Insert this line after script imports -->
 	<script>
 		if (window.module) module = window.module;
-
 	</script>
 
 	<!-- dummy function – toggle left and right panel -->
@@ -107,7 +105,6 @@
 				x.style.display = 'none';
 			}
 		}
-
 	</script>
 
 </head>
@@ -138,26 +135,7 @@
 						<div class='fabric-container'>
 							<canvas id="canvas" width="1024" height="768"></canvas>
 						</div>
-						
-					<x-textarea id="jsonresult"></x-textarea>
-
-
-					<div class="row">
-						<div class="panel panel-default">
-							<div class="panel-body">
-								<button type="button" class="btn btn-default btn-lg" id="jsonfy">
-									<span class="glyphicon glyphicon-align-justify"></span> JSONfy Canvas 1
-								</button>
-								<button type="button" class="btn btn-default btn-lg" id="clone">
-									<span class="glyphicon glyphicon-paste"></span> Clone Canvas 1
-								</button>
-							</div>
-						</div>
 					</div>
-
-						
-					</div>
-
 				</div>
 
 				<div id="inspector" class="pane-right sidebar" ng-controller="RightTabsCtrl">
@@ -185,34 +163,6 @@
 	</div>
 
 	<script src="js/additionJs/jsFromIndex.js"></script>
-	
-	<script type="text/javascript">
-    $("document").ready(function () {
-       
-        // //////////////////////////////////
-
-        $("#jsonfy").click(function () {
-
-            var jsoncanvas = canvas.toJSON();
-//            console.log(JSON.stringify(jsoncanvas));
-            $("#jsonresult").html("<b>JSON Canvas 1:</b></br>" + JSON.stringify(jsoncanvas, null, 4));
-
-        });
-        
-        $("#clone").click(function () {
-
-
-            var jsoncanvas = $("#jsonresult").html;
-
-            canvas.dispose();
-
-            canvas.loadFromJSON(jsoncanvas, canvas.renderAll.bind(canvas));
-
-        });
-
-    });
-
-</script>
 
 
 </body>

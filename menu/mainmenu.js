@@ -396,20 +396,12 @@ const template = [
 				}	
     },
 			{
-				label: 'manage External Assets',
+				label: 'Simulator',
 				click() {
 					let win = new BrowserWindow({
 						title: 'Simulator',
 						width: 1024,
-						height: 768,
-						backgroundColor: '#6b0098',
-						alwaysOnTop: true,
-						minimizable: false,
-						maximizable: false,
-						fullscreenable: false,
-						resizable: false,
-						titleBarStyle: 'hidden',
-						icon: '../icons/mac/icon.icns'
+						height: 798
 					})
 					win.loadURL(url.format({
 						pathname: path.join(__dirname, '../windows/simulator.html'),
