@@ -411,7 +411,6 @@ const template = [
                     }))
                 }
     },
-<<<<<<< HEAD
 			{
 				label: 'Simulator',
 				click() {
@@ -425,8 +424,8 @@ const template = [
 						protocol: 'file:',
 						slashes: true
 					}))
-				}	
-=======
+				}
+			},
             {
                 label: 'manage External Assets',
                 click() {
@@ -449,7 +448,6 @@ const template = [
                         slashes: true
                     }))
                 }
->>>>>>> faac7f3b1fa521f83656a44ccba0925c611b8489
     },
             {
                 type: 'separator'

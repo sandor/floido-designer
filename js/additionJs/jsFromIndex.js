@@ -1,10 +1,10 @@
 var kitchensink = {};
 var canvas = new fabric.Canvas('canvas', {
-    backgroundColor: "#FFFFFF",
-    selectionColor: "rgba(0, 108, 223, 0.05)",
-    selectionBorderColor: "rgba(0, 108, 223, 0.3)",
-    selectionDashArray: [2, 2],
-    preserveObjectStacking: true
+	backgroundColor: "#FFFFFF",
+	selectionColor: "rgba(0, 108, 223, 0.05)",
+	selectionBorderColor: "rgba(0, 108, 223, 0.3)",
+	selectionDashArray: [2, 2],
+	preserveObjectStacking: true
 });
 initAligningGuidelines(canvas);
 initCenteringGuidelines(canvas);
@@ -33,21 +33,21 @@ canvas.on('object:rotating', onObjectModification);
 canvas.on('object:selected', onObjectModification);
 
 function onObjectModification(e) {
-    var activeObject = e.target;
-    if (!activeObject) {
-        return;
-    }
-    var canvasWidth = canvas.width;
-    var canvasHeight = canvas.height;
-    var reachedLimit = false;
-    var objectLeft = Math.round(activeObject.left);
-    var objectTop = Math.round(activeObject.top);
-    var objectAngle = Math.round(activeObject.angle * 10) / 10;
-    var objectWidth = Math.round(activeObject.width);
-    var objectHeight = Math.round(activeObject.height);
-    var objWidth = Math.round(activeObject.width * activeObject.scaleX);
-    var objHeight = Math.round(activeObject.height * activeObject.scaleY);
-    //	console.log(canvasWidth, canvasHeight, objectLeft, objectTop, objectAngle, objectWidth, objectHeight, objWidth, objHeight);
+	var activeObject = e.target;
+	if (!activeObject) {
+		return;
+	}
+	var canvasWidth = canvas.width;
+	var canvasHeight = canvas.height;
+	var reachedLimit = false;
+	var objectLeft = Math.round(activeObject.left);
+	var objectTop = Math.round(activeObject.top);
+	var objectAngle = Math.round(activeObject.angle * 10) / 10;
+	var objectWidth = Math.round(activeObject.width);
+	var objectHeight = Math.round(activeObject.height);
+	var objWidth = Math.round(activeObject.width * activeObject.scaleX);
+	var objHeight = Math.round(activeObject.height * activeObject.scaleY);
+	//	console.log(canvasWidth, canvasHeight, objectLeft, objectTop, objectAngle, objectWidth, objectHeight, objWidth, objHeight);
 
 
 }
@@ -117,107 +117,107 @@ function onObjectModification(e) {
         undo and redo functions – this should be integrated in the controllers later on
 */
 var _config = {
-    canvasState: [],
-    currentStateIndex: -1,
-    undoStatus: false,
-    redoStatus: false,
-    undoFinishedStatus: 1,
-    redoFinishedStatus: 1,
+	canvasState: [],
+	currentStateIndex: -1,
+	undoStatus: false,
+	redoStatus: false,
+	undoFinishedStatus: 1,
+	redoFinishedStatus: 1,
 
 };
 canvas.on(
-    'object:modified',
-    function () {
-        updateCanvasState();
-    }
+	'object:modified',
+	function () {
+		updateCanvasState();
+	}
 );
 
 
 canvas.on(
-    'object:added',
-    function () {
-        updateCanvasState();
-    }
+	'object:added',
+	function () {
+		updateCanvasState();
+	}
 );
 
 canvas.on(
-    'object:removed',
-    function () {
-        updateCanvasState();
-    }
+	'object:removed',
+	function () {
+		updateCanvasState();
+	}
 );
 
 
 canvas.on(
-    'selection:created',
-    function () {
-        updateCanvasState();
-    }
+	'selection:created',
+	function () {
+		updateCanvasState();
+	}
 );
 
 var updateCanvasState = function () {
-    if ((_config.undoStatus == false && _config.redoStatus == false)) {
-        var jsonData = canvas.toJSON();
-        var canvasAsJson = JSON.stringify(jsonData);
-        if (_config.currentStateIndex < _config.canvasState.length - 1) {
-            var indexToBeInserted = _config.currentStateIndex + 1;
-            _config.canvasState[indexToBeInserted] = canvasAsJson;
-            var numberOfElementsToRetain = indexToBeInserted + 1;
-            _config.canvasState = _config.canvasState.splice(0, numberOfElementsToRetain);
-        } else {
-            _config.canvasState.push(canvasAsJson);
-        }
-        _config.currentStateIndex = _config.canvasState.length - 1;
-        if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) {}
-    }
+	if ((_config.undoStatus == false && _config.redoStatus == false)) {
+		var jsonData = canvas.toJSON();
+		var canvasAsJson = JSON.stringify(jsonData);
+		if (_config.currentStateIndex < _config.canvasState.length - 1) {
+			var indexToBeInserted = _config.currentStateIndex + 1;
+			_config.canvasState[indexToBeInserted] = canvasAsJson;
+			var numberOfElementsToRetain = indexToBeInserted + 1;
+			_config.canvasState = _config.canvasState.splice(0, numberOfElementsToRetain);
+		} else {
+			_config.canvasState.push(canvasAsJson);
+		}
+		_config.currentStateIndex = _config.canvasState.length - 1;
+		if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) {}
+	}
 }
 
 
 var undo = function () {
-    if (_config.undoFinishedStatus) {
-        if (_config.currentStateIndex == -1) {
-            _config.undoStatus = false;
-        } else {
-            if (_config.canvasState.length >= 1) {
-                _config.undoFinishedStatus = 0;
-                if (_config.currentStateIndex != 0) {
-                    _config.undoStatus = true;
-                    canvas.loadFromJSON(_config.canvasState[_config.currentStateIndex - 1], function () {
-                        var jsonData = JSON.parse(_config.canvasState[_config.currentStateIndex - 1]);
-                        canvas.renderAll();
-                        _config.undoStatus = false;
-                        _config.currentStateIndex -= 1;
-                        if (_config.currentStateIndex !== _config.canvasState.length - 1) {}
-                        _config.undoFinishedStatus = 1;
-                    });
-                } else if (_config.currentStateIndex == 0) {
-                    canvas.clear();
-                    _config.undoFinishedStatus = 1;
-                    _config.currentStateIndex -= 1;
-                }
-            }
-        }
-    }
+	if (_config.undoFinishedStatus) {
+		if (_config.currentStateIndex == -1) {
+			_config.undoStatus = false;
+		} else {
+			if (_config.canvasState.length >= 1) {
+				_config.undoFinishedStatus = 0;
+				if (_config.currentStateIndex != 0) {
+					_config.undoStatus = true;
+					canvas.loadFromJSON(_config.canvasState[_config.currentStateIndex - 1], function () {
+						var jsonData = JSON.parse(_config.canvasState[_config.currentStateIndex - 1]);
+						canvas.renderAll();
+						_config.undoStatus = false;
+						_config.currentStateIndex -= 1;
+						if (_config.currentStateIndex !== _config.canvasState.length - 1) {}
+						_config.undoFinishedStatus = 1;
+					});
+				} else if (_config.currentStateIndex == 0) {
+					canvas.clear();
+					_config.undoFinishedStatus = 1;
+					_config.currentStateIndex -= 1;
+				}
+			}
+		}
+	}
 }
 
 var redo = function () {
-    if (_config.redoFinishedStatus) {
-        if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) {} else {
-            if (_config.canvasState.length > _config.currentStateIndex && _config.canvasState.length != 0) {
-                _config.redoFinishedStatus = 0;
-                _config.redoStatus = true;
-                canvas.loadFromJSON(_config.canvasState[_config.currentStateIndex + 1], function () {
-                    var jsonData = JSON.parse(_config.canvasState[_config.currentStateIndex + 1]);
-                    canvas.renderAll();
-                    _config.redoStatus = false;
-                    _config.currentStateIndex += 1;
-                    if (_config.currentStateIndex != -1) {}
-                    _config.redoFinishedStatus = 1;
-                    if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) {}
-                });
-            }
-        }
-    }
+	if (_config.redoFinishedStatus) {
+		if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) {} else {
+			if (_config.canvasState.length > _config.currentStateIndex && _config.canvasState.length != 0) {
+				_config.redoFinishedStatus = 0;
+				_config.redoStatus = true;
+				canvas.loadFromJSON(_config.canvasState[_config.currentStateIndex + 1], function () {
+					var jsonData = JSON.parse(_config.canvasState[_config.currentStateIndex + 1]);
+					canvas.renderAll();
+					_config.redoStatus = false;
+					_config.currentStateIndex += 1;
+					if (_config.currentStateIndex != -1) {}
+					_config.redoFinishedStatus = 1;
+					if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) {}
+				});
+			}
+		}
+	}
 }
 
 
@@ -228,52 +228,52 @@ setup IPC communication/functions with mainmenu.js
 //edit menu
 
 require('electron').ipcRenderer.on('undo', function (event, message) {
-    console.log(message);
-    undo();
+	console.log(message);
+	undo();
 });
 
 require('electron').ipcRenderer.on('redo', function (event, message) {
-    console.log(message);
-    redo();
+	console.log(message);
+	redo();
 });
 
 require('electron').ipcRenderer.on('cut', function (event, message) {
-    console.log(message);
-    copy();
-    remove();
+	console.log(message);
+	copy();
+	remove();
 });
 
 require('electron').ipcRenderer.on('copy', function (event, message) {
-    console.log(message);
-    copy();
+	console.log(message);
+	copy();
 });
 
 require('electron').ipcRenderer.on('paste', function (event, message) {
-    console.log(message);
-    paste();
+	console.log(message);
+	paste();
 });
 
 require('electron').ipcRenderer.on('duplicate', function (event, message) {
-    console.log(message);
-    copy();
-    paste();
+	console.log(message);
+	copy();
+	paste();
 });
 
 //Arrange menu
 
 require('electron').ipcRenderer.on('group', function (event, message) {
-    console.log(message);
-    group();
+	console.log(message);
+	group();
 });
 
 require('electron').ipcRenderer.on('ungroup', function (event, message) {
-    console.log(message);
-    ungroup();
+	console.log(message);
+	ungroup();
 });
 
 require('electron').ipcRenderer.on('bringForward', function (event, message) {
-    console.log(message);
-    bringForward();
+	console.log(message);
+	bringForward();
 });
 
 /*
@@ -284,31 +284,31 @@ Utility functions for selecting and aranging objects on the canvas
 //sen the objects forward and backward
 
 function sendBackwards() {
-    var activeObject = canvas.getActiveObject();
-    if (activeObject) {
-        canvas.sendBackwards(activeObject);
-    }
+	var activeObject = canvas.getActiveObject();
+	if (activeObject) {
+		canvas.sendBackwards(activeObject);
+	}
 };
 
 function sendToBack() {
-    var activeObject = canvas.getActiveObject();
-    if (activeObject) {
-        canvas.sendToBack(activeObject);
-    }
+	var activeObject = canvas.getActiveObject();
+	if (activeObject) {
+		canvas.sendToBack(activeObject);
+	}
 };
 
 function bringForward() {
-    var activeObject = canvas.getActiveObject();
-    if (activeObject) {
-        canvas.bringForward(activeObject);
-    }
+	var activeObject = canvas.getActiveObject();
+	if (activeObject) {
+		canvas.bringForward(activeObject);
+	}
 };
 
 function bringToFront() {
-    var activeObject = canvas.getActiveObject();
-    if (activeObject) {
-        canvas.bringToFront(activeObject);
-    }
+	var activeObject = canvas.getActiveObject();
+	if (activeObject) {
+		canvas.bringToFront(activeObject);
+	}
 };
 
 
@@ -316,10 +316,10 @@ function bringToFront() {
 // Create a context menu in electron
 
 const {
-    remote
+	remote
 } = require('electron')
 const {
-    Menu, MenuItem
+	Menu, MenuItem
 } = remote
 
 const menu = new Menu()
@@ -328,147 +328,147 @@ const menu = new Menu()
 
 
 menu.append(new MenuItem({
-    label: 'Send backwards',
-    click() {
-        sendBackwards();
-    }
+	label: 'Send backwards',
+	click() {
+		sendBackwards();
+	}
 }))
 
 menu.append(new MenuItem({
-    label: 'Send to back',
-    click() {
-        sendToBack();
-    }
+	label: 'Send to back',
+	click() {
+		sendToBack();
+	}
 }))
 
 menu.append(new MenuItem({
-    label: 'Bring forwards',
-    click() {
-        bringForward();
-    }
+	label: 'Bring forwards',
+	click() {
+		bringForward();
+	}
 }))
 
 menu.append(new MenuItem({
-    label: 'Bring to front',
-    click() {
-        bringToFront();
-    }
+	label: 'Bring to front',
+	click() {
+		bringToFront();
+	}
 }))
 
 menu.append(new MenuItem({
-    type: 'separator'
+	type: 'separator'
 }))
 
 
 menu.append(new MenuItem({
-    label: 'Align',
-    submenu: [{
-        label: 'Left'
+	label: 'Align',
+	submenu: [{
+		label: 'Left'
     }, {
-        label: 'Center'
+		label: 'Center'
     }, {
-        label: 'Right'
+		label: 'Right'
     }, {
-        type: 'separator'
+		type: 'separator'
     }, {
-        label: 'Top'
+		label: 'Top'
     }, {
-        label: 'Middle'
+		label: 'Middle'
     }, {
-        label: 'Bottom'
+		label: 'Bottom'
     }]
 }))
 
 menu.append(new MenuItem({
-    label: 'Distribute',
-    submenu: [{
-        label: 'Horizontal'
+	label: 'Distribute',
+	submenu: [{
+		label: 'Horizontal'
     }, {
-        label: 'Vertical'
+		label: 'Vertical'
     }]
 }))
 
 
 menu.append(new MenuItem({
-    type: 'separator'
+	type: 'separator'
 }))
 
 menu.append(new MenuItem({
-    label: 'Group Selected',
-    click() {
-        group();
-    }
+	label: 'Group Selected',
+	click() {
+		group();
+	}
 }))
 
 menu.append(new MenuItem({
-    label: 'Ungroup Selected',
-    click() {
-        ungroup();
-    }
+	label: 'Ungroup Selected',
+	click() {
+		ungroup();
+	}
 }))
 
 menu.append(new MenuItem({
-    type: 'separator'
+	type: 'separator'
 }))
 
 menu.append(new MenuItem({
-    label: 'Undo',
-    click() {
-        undo();
-    }
+	label: 'Undo',
+	click() {
+		undo();
+	}
 }))
 
 menu.append(new MenuItem({
-    label: 'Redo',
-    click() {
-        redo();
-    }
+	label: 'Redo',
+	click() {
+		redo();
+	}
 }))
 
 menu.append(new MenuItem({
-    type: 'separator'
+	type: 'separator'
 }))
 
 menu.append(new MenuItem({
-    label: 'Cut',
-    click() {
-        copy();
-        remove();
-    }
+	label: 'Cut',
+	click() {
+		copy();
+		remove();
+	}
 }))
 
 menu.append(new MenuItem({
-    label: 'Copy',
-    click() {
-        copy();
-    }
+	label: 'Copy',
+	click() {
+		copy();
+	}
 }))
 
 menu.append(new MenuItem({
-    label: 'Paste',
-    click() {
-        paste();
-    }
+	label: 'Paste',
+	click() {
+		paste();
+	}
 }))
 
 menu.append(new MenuItem({
-    label: 'Delete',
-    click() {
-        remove();
-    }
+	label: 'Delete',
+	click() {
+		remove();
+	}
 }))
 
 menu.append(new MenuItem({
-    label: 'Select All',
-    click() {
-        selectAllCanvasObjects();
-    }
+	label: 'Select All',
+	click() {
+		selectAllCanvasObjects();
+	}
 }))
 
 
 
 // Prevent default action of right click in chromium. Replace with our menu.
 document.getElementById("wrapper").addEventListener('contextmenu', (e) => {
-    e.preventDefault()
-    menu.popup(remote.getCurrentWindow())
+	e.preventDefault()
+	menu.popup(remote.getCurrentWindow())
 }, false)
