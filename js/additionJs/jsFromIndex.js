@@ -12,6 +12,20 @@ initCenteringGuidelines(canvas);
 
 
 // create grid and snap to grid
+var grid = document.getElementsByClassName('rul_line')
+
+
+canvas.on('object:moving', function(options) {
+  if (Math.round(options.target.left / grid * 4) % 4 == 0 &&
+    Math.round(options.target.top / grid * 4) % 4 == 0) {
+    options.target.set({
+      left: Math.round(options.target.left / grid) * grid,
+      top: Math.round(options.target.top / grid) * grid
+    }).setCoords();
+  }
+});
+
+
 
 
 //canvas.on('object:moving', function(options) {
