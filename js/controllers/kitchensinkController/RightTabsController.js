@@ -1,4 +1,10 @@
 kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
+
+    const {dialog} = require('electron').remote;
+
+    var fs = require('fs');
+
+
     $scope.hasShadow;
     $scope.leftTab = [{
         title: 'One',
@@ -49,6 +55,25 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
     $scope.getInputState = function () {
         return canvas._activeObject ? false : true;
     }
+
+    function download(text, name, type) {
+        var a = document.createElement("a");
+        var file = new Blob([text], {type: type});
+        a.href = URL.createObjectURL(file);
+        a.download = name;
+        a.click();
+    }
+
+    var fileSavedPath = "";
+
+
+
+
+    //////////////
+
+
+
+
 
 
 

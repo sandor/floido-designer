@@ -19,13 +19,6 @@
 			module = undefined;
 		}
 	</script>
-	<!-- Insert this line above script imports  -->
-	<script>
-		if (typeof module === 'object') {
-			window.module = module;
-			module = undefined;
-		}
-	</script>
 
 
 	<!--    <script src='js/xel.min.js'></script>-->
@@ -85,15 +78,11 @@
 	<script src='js/service/leftPanelTabService.js'></script>
 	<script src='js/service/rightPanelTabService.js'></script>
 
-
+	<!-- <script src="js/jsFromIndex.js"></script> -->
 
 	<!-- Insert this line after script imports -->
 	<script>
 		if (window.module) module = window.module;
-	</script>
-	<script>
-	function toggleInspector() { var x = document.getElementById('inspector'); if (x.style.display === 'none') { x.style.display = 'block'; } else { x.style.display = 'none'; } }
-
 	</script>
 
 	<!-- dummy function – toggle left and right panel -->
@@ -136,7 +125,6 @@
 				<div id="layers" class="pane-sm ">
 
 					<div ng-include="currentLeftTab" ng-controller="LayersController"></div>
-					<hr>
 
 
 				</div>
@@ -148,34 +136,33 @@
 							<canvas id="canvas" width="1024" height="768"></canvas>
 						</div>
 					</div>
+				</div>
+
+				<div id="inspector" class="pane-right sidebar" ng-controller="RightTabsCtrl">
+
+					<div ng-include="currentRightTab" class="inner"></div>
 
 				</div>
-							<div id="inspector" class="pane-right sidebar" ng-controller="RightTabsCtrl">
 
-				<div ng-include="currentRightTab" class="inner"></div>
 
 			</div>
-
-			</div>
-
 		</div>
-	<footer class="toolbar toolbar-footer" ng-controller="CanvasControlsController">
-		<x-box class="right" style="width: 320px;">
-			<x-label class="zoom-bar-percent-on-footer">Zoom: {{zoom}}%</x-label>
-			<!-- <x-slider  style="margin-right: 15px; width: 240px;" value="0" min="-400" max="400"></x-slider> -->
-			<input class="zoom-bar-on-footer" ng-model="zoom" ng-change="setZoom(this)" type="range" min="5" max="450" value="100" step="1" />
-			<button class="original-size" ng-click="originalSize(this)" skin="flat-condensed">
-				<x-icon name="aspect-ratio"></x-icon>
-			</button>
-			<button class="fit-to-win" ng-click="fitToWin()" skin="flat-condensed">
-				<x-icon name="settings-overscan"></x-icon>
-			</button>
-		</x-box>
-	</footer>
+		<footer class="toolbar toolbar-footer" ng-controller="CanvasControlsController">
+			<x-box class="right" style="width: 320px;">
+				<x-label class="zoom-bar-percent-on-footer">Zoom: {{zoom}}%</x-label>
+				<!-- <x-slider  style="margin-right: 15px; width: 240px;" value="0" min="-400" max="400"></x-slider> -->
+				<input class="zoom-bar-on-footer" ng-model="zoom" ng-change="setZoom(this)" type="range" min="5" max="450" value="100" step="1" />
+				<button class="original-size" ng-click="originalSize(this)" skin="flat-condensed">
+					<x-icon name="aspect-ratio"></x-icon>
+				</button>
+				<button class="fit-to-win" ng-click="fitToWin()" skin="flat-condensed">
+					<x-icon name="settings-overscan"></x-icon>
+				</button>
+			</x-box>
+		</footer>
 	</div>
 
 	<script src="js/additionJs/jsFromIndex.js"></script>
-
 
 
 </body>

@@ -1,10 +1,14 @@
-var kitchensink = angular.module('kitchensink', ['ui.sortable', 'electangular']);
+'use strict';
+
+var kitchensink = angular.module('kitchensink', ['ui.sortable']);
 
 /*kitchensink.config(function($interpolateProvider) {
   $interpolateProvider
     .startSymbol('{[')
     .endSymbol(']}');
 });*/
+
+
 
 kitchensink.directive('bindValueTo', function () {
     return {

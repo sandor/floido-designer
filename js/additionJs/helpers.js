@@ -9,7 +9,6 @@
 //		initCenteringGuidelines(canvas);
 
 
-//move objects on the canvas with keyboard
 var canvasObjectFillColor = "#ffffff";
 var canvasObjectBackColor = "#ffffff";
 var canvasObjectBorderColor = "#ffffff";
@@ -22,6 +21,35 @@ var canvasObjectShadowOffsetX = 0;
 var canvasObjectShadowOffsetY = 0;
 var canvasObjectShadowBlur = 0;
 
+///////////Typography//////////////
+
+var fontSelectDropdown = "iOS Fonts";
+var fontSelectDropdownSmall = "serif";
+var fontSelectDropdownFilter = "";
+var fontSelectList = "Arial";
+var textDecorating = "left";
+var fontStyleBold = "";
+var fontStyleUnderline = "";
+var fontStyleItalic = "";
+var fontWeight = 400;
+var fontColor = "#000000";
+// var fontColorInput = fontColor;
+var fontBackgroundColor = "#ffffff";
+// var fontBackgroundColorInput = fontBackgroundColor;
+var fontSize = 20;
+// var fontSizeInput = fontSize;
+var lineHeight = 1;
+// var lineHeightInput = lineHeight;
+var fontSpacing = 1;
+// var fontSpacingInput = fontSpacing;
+var fontBorder = 0;
+// var fontBorderInput = fontBorder;
+var fontBorderColor = "#ffffff";
+
+
+//////////////Typography//////////
+
+//move objects on the canvas with keyboard
 
 document.onkeydown = function (e) {
 
@@ -105,6 +133,25 @@ function setCanvasActiveObjectData() {
         document.getElementById('canvas-object-corner-input').value = cavasObjectCorner;
         document.getElementById('obj-shadow-color').value = canvasObjectShadowColor;
 
+    }
+
+    ///////////Typography//////////////
+    if (canvas.getActiveObject() && canvas.getActiveObject().hasOwnProperty('text')) {
+
+        fontSelectList = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fontFamily : "Arial";
+        textDecorating = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.textAlign : "left";//text styling
+        fontStyleBold = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fontWeight : "";
+        // fontStyleUnderline = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fontWeight : ""; //underline:true
+        fontStyleItalic = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fontStyle : "";
+        fontWeight = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fontWeight : 400;
+        fontColor = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fill : "#000000";
+        fontBackgroundColor = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') && canvas._activeObject.backgroundColor != "" ? canvas._activeObject.backgroundColor : "#ffffff";
+
+
+        fontSize = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fontSize : 20;
+        lineHeight = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.lineHeight : 1;
+        fontSpacing = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.charSpacing : 1;
+
 
     }
 
@@ -126,6 +173,250 @@ function getCanvasActiveObjectData() {
     canvasObjectShadowBlur = canvas._activeObject && canvas._activeObject.shadow ? canvas._activeObject.shadow.Blur : 0;
 
 
+    ///////////Typography//////////////
+
+
+    // fontSelectDropdown = //canvas._activeObject && canvas._activeObject.hasOwnProperty('text')?canvas._activeObject.fontSize:12;//////////To be comfirmed
+    //     fontSelectDropdownSmall =   //canvas._activeObject && canvas._activeObject.hasOwnProperty('text')?canvas._activeObject.fontSize: "serif"; //////////To be comfirmed
+    //         fontSelectDropdownFilter = //canvas._activeObject && canvas._activeObject.hasOwnProperty('text')?canvas._activeObject.fontSize:";//////////To be comfirmed
+    //
+    //             fontSelectList = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fontFamily : "Arial";
+    // //
+    // textDecorating = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.textAlign : "left";//text styling
+    // fontStyleBold = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fontWeight : "";
+    // // fontStyleUnderline = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fontWeight : ""; //underline:true
+    // fontStyleItalic = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fontStyle : "";
+    // fontWeight = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fontWeight : 400;
+    // fontColor = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fill : "#000000";
+    // fontBackgroundColor = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') && canvas._activeObject.backgroundColor != "" ? canvas._activeObject.backgroundColor : "#ffffff";
+    // fontSize = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.backgroundColor : 20;
+    // lineHeight = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.lineHeight : 1;
+    // fontSpacing = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.charSpacing : 1;
+
+
+    // fontBorder = 0;
+    // fontBorderColor = "#ffffff";
+
+
+    ///////////Typography//////////////
+
+    if (canvas.getActiveObject() && canvas.getActiveObject().hasOwnProperty('text')) {
+
+
+        // if()
+
+//////////////////////font style
+        [].__proto__.forEach.call(document.getElementsByClassName("font-style"), (item) => {
+
+            item.removeAttribute("disabled");
+            item.removeAttribute("toggled");
+
+            if (item.hasAttribute("id")) {
+                //in textDecorating we stre button id wich was applied in text
+
+                if ((item.getAttribute("id").search("bold") != -1) && (fontStyleBold == 'bold')) {
+                    item.setAttribute("toggled", "true");
+                }
+                if ((item.getAttribute("id").search("italic") != -1) && (fontStyleItalic == 'italic')) {
+                    item.setAttribute("toggled", "true");
+                }
+
+
+            }
+
+
+        });
+
+//////////////////text decorating
+        [].__proto__.forEach.call(document.getElementsByClassName("text-decorating"), (item) => {
+            // console.log(canvasItem.name);
+
+            item.removeAttribute("disabled");
+
+            if (item.hasAttribute("id")) {
+                //in textDecorating we stre button id wich was applied in text
+
+                item.removeAttribute("toggled");
+
+                if (item.getAttribute("id").search(textDecorating) != -1) {
+
+                    item.setAttribute("toggled", "true");
+
+                }
+
+            }
+
+
+        });
+
+
+        if (document.getElementById("font-color")) {
+
+            //////////////////font-color
+            document.getElementById("font-color").removeAttribute("disabled");
+            document.getElementById("font-color-input").removeAttribute("disabled");
+            document.getElementById("font-color").value = fontColor;
+            document.getElementById("font-color-input").value = fontColor;
+
+            //////////////////font-size
+
+            document.getElementById("font-size").removeAttribute("disabled");
+            document.getElementById("font-size-input").removeAttribute("disabled");
+            document.getElementById("font-size").value = fontSize;
+            document.getElementById("font-size-input").value = fontSize;
+
+
+            //////////////////font-background-color
+            document.getElementById("font-background-color").removeAttribute("disabled");
+            document.getElementById("font-background-color-input").removeAttribute("disabled");
+            document.getElementById("font-background-color").value = fontBackgroundColor;
+            document.getElementById("font-background-color-input").value = fontBackgroundColor;
+
+            //////////////////line-height
+            document.getElementById("line-height").removeAttribute("disabled");
+            document.getElementById("line-height-input").removeAttribute("disabled");
+            document.getElementById("line-height").value = lineHeight;
+            document.getElementById("line-height-input").value = lineHeight;
+
+            //////////////////font-spacing
+            document.getElementById("font-spacing").removeAttribute("disabled");
+            document.getElementById("font-spacing-input").removeAttribute("disabled");
+            document.getElementById("font-spacing").value = fontSpacing;
+            document.getElementById("font-spacing-input").value = fontSpacing;
+
+            //////////////////font-border///it doesnt need
+            // document.getElementById("font-border").removeAttribute("disabled");
+            // document.getElementById("font-border-input").removeAttribute("disabled");
+            document.getElementById("font-border").value = fontBorder;
+            document.getElementById("font-border-input").value = fontBorder;
+
+
+            //////////////////obj-shadow-color
+            document.getElementById("obj-shadow-color").removeAttribute("disabled");
+            document.getElementById("shadow-Offset-X").removeAttribute("disabled");
+            document.getElementById("shadow-Offset-Y").removeAttribute("disabled");
+
+            ///font
+            document.getElementById("font-select-dropdown").removeAttribute("disabled");
+            document.getElementById("font-select-dropdown-small").removeAttribute("disabled");
+            document.getElementById("font-select-dropdown-filter").removeAttribute("disabled");
+            document.getElementById("font-add").setAttribute("disabled", "true");
+
+            //font weight
+            document.getElementById("font-weight").removeAttribute("disabled");
+
+            //font-border-
+            document.getElementById("font-border-input").removeAttribute("disabled");
+            document.getElementById("font-border").removeAttribute("disabled");
+            document.getElementById("font-border-color").removeAttribute("disabled");
+            document.getElementById("font-border-color-input").removeAttribute("disabled");
+            //
+
+            document.getElementById("font-border-input").value = canvasObjectBorderStrokeWidth;
+            document.getElementById("font-border").value = canvasObjectBorderStrokeWidth;
+            document.getElementById("font-border-color").value = canvasObjectBorderColor;
+            document.getElementById("font-border-color-input").value = canvasObjectBorderColor;
+
+
+            if (canvas._activeObject.shadow) {
+
+                document.getElementById("obj-shadow-color").value = canvasObjectShadowColor;
+                document.getElementById("shadow-Offset-X").value = canvasObjectShadowOffsetX;
+                document.getElementById("shadow-Offset-Y").value = canvasObjectShadowOffsetY;
+                //document.getElementById("obj-shadow-color").removeAttribute("disabled");
+            }
+
+
+        }
+
+
+    } else {
+
+        if (document.getElementById("font-color")) {
+            //font
+            document.getElementById("font-select-dropdown").setAttribute("disabled", "true");
+            document.getElementById("font-select-dropdown-small").setAttribute("disabled", "true");
+            document.getElementById("font-select-dropdown-filter").setAttribute("disabled", "true");
+            document.getElementById("font-add").setAttribute("disabled", "true");
+
+            //font weight
+            document.getElementById("font-weight").setAttribute("disabled", "true");
+
+
+            // font shadow
+            document.getElementById("font-color").setAttribute("disabled", "true");
+            document.getElementById("font-color-input").setAttribute("disabled", "true");
+            document.getElementById("font-background-color").setAttribute("disabled", "true");
+            document.getElementById("font-background-color-input").setAttribute("disabled", "true");
+            document.getElementById("font-background-color-input").value = '';
+
+            //////////////////font-size
+            document.getElementById("font-size").setAttribute("disabled", "true");
+            document.getElementById("font-size").value = 0;
+            document.getElementById("font-size-input").setAttribute("disabled", "true");
+            document.getElementById("font-size-input").value = '';
+
+            //////////////////line-height
+            document.getElementById("line-height").setAttribute("disabled", "true");
+            document.getElementById("line-height-input").setAttribute("disabled", "true");
+            document.getElementById("line-height").value = 0;
+            document.getElementById("line-height-input").value = '';
+
+
+            //////////////////font-spacing
+            document.getElementById("font-spacing").setAttribute("disabled", "true");
+            document.getElementById("font-spacing-input").setAttribute("disabled", "true");
+            document.getElementById("font-spacing").value = 0;
+            document.getElementById("font-spacing-input").value = '';
+
+
+            //////////////////font-border///it doesnt need
+            document.getElementById("font-border").setAttribute("disabled", "true");
+            document.getElementById("font-border-input").setAttribute("disabled", "true");
+            document.getElementById("font-border").value = 0;
+            document.getElementById("font-border-input").value = '';
+
+            //////////////////obj-shadow-color
+
+            document.getElementById("obj-shadow-color").setAttribute("disabled", "true");
+            document.getElementById("shadow-Offset-X").setAttribute("disabled", "true");
+            document.getElementById("shadow-Offset-Y").setAttribute("disabled", "true");
+            //document.getElementById("obj-shadow-color").setAttribute("disabled", "true");
+
+            document.getElementById("obj-shadow-color").value = "#ffffff";
+            document.getElementById("shadow-Offset-X").value = '';
+            document.getElementById("shadow-Offset-Y").value = '';
+            //document.getElementById("font-spacing-input").value = '';
+
+
+            //font-border-
+
+            document.getElementById("font-border-input").value = '';
+            document.getElementById("font-border").value = '';
+            document.getElementById("font-border-color").value = "#ffffff";
+            document.getElementById("font-border-color-input").value = "#ffffff";
+
+
+            [].__proto__.forEach.call(document.getElementsByClassName("font-style"), (item) => {
+
+                item.setAttribute("disabled", "true");
+                item.removeAttribute("toggled");
+
+            });
+            [].__proto__.forEach.call(document.getElementsByClassName("text-decorating"), (item) => {
+
+                item.setAttribute("disabled", "true");
+                item.removeAttribute("toggled");
+
+            });
+
+        }
+
+
+    }
+
+
+    ///////////Typography//////////////
     //
 }
 
@@ -133,9 +424,7 @@ function getCanvasActiveObjectData() {
 // disable inputs and color picker
 function enableDisableElement() {
 
-    if (canvas.getActiveObject()
-        && document.getElementById('objectIn-canvas-background-colorselect')
-        && document.getElementById('objectIn-canvas-background-colorselect-down')) {
+    if (canvas.getActiveObject() && document.getElementById('objectIn-canvas-background-colorselect') && document.getElementById('objectIn-canvas-background-colorselect-down')) {
 
         document.getElementById('objectIn-canvas-background-colorselect').removeAttribute('disabled');
         document.getElementById('objectIn-canvas-background-colorselect-down').removeAttribute('disabled');
@@ -153,9 +442,9 @@ function enableDisableElement() {
     }
 
 
-
     if (!canvas.getActiveObject() && document.getElementById('objectIn-canvas-background-colorselect')
         && document.getElementById('objectIn-canvas-background-colorselect-down')) {
+
 
         document.getElementById('objectIn-canvas-background-colorselect').setAttribute('disabled', true);
         document.getElementById('objectIn-canvas-background-colorselect-down').setAttribute('disabled', true);
@@ -166,7 +455,7 @@ function enableDisableElement() {
         document.getElementById('canvas-object-corner').setAttribute('disabled', true);
         document.getElementById('obj-shadow-color').setAttribute('disabled', true);
 
-///
+        ///
         canvasObjectBackColor = canvas._activeObject && canvas._activeObject.fill ? canvas._activeObject.fill : "";
         canvasObjectBorderColor = canvas._activeObject && canvas._activeObject.stroke ? canvas._activeObject.stroke : "";
         canvasObjectBackgroundColor = canvas._activeObject && canvas._activeObject.backgroundColor ? canvas._activeObject.backgroundColor : "";
@@ -183,12 +472,7 @@ function enableDisableElement() {
     }
 
     // removing data from  filters and shadows fields /////////////////
-    if ((document.getElementById('shadow-Offset-X')
-            && document.getElementById('shadow-Offset-Y')
-            && !canvas.getActiveObject())
-        || (document.getElementById('shadow-Offset-X')
-            && document.getElementById('shadow-Offset-Y')
-            && !canvas.getActiveObject().shadow)) {
+    if ((document.getElementById('shadow-Offset-X') && document.getElementById('shadow-Offset-Y') && !canvas.getActiveObject()) || (document.getElementById('shadow-Offset-X') && document.getElementById('shadow-Offset-Y') && !canvas.getActiveObject().shadow)) {
 
 
         document.getElementById('shadow-Offset-X').value = '';
@@ -196,15 +480,10 @@ function enableDisableElement() {
         document.getElementById('shadow-blur').value = '';
     }
 
-    if (canvas.getActiveObject()
-        && canvas.getActiveObject.name != "Image"
-        && canvas.getActiveObject.name != "Text"
-    ) {
+    if (canvas.getActiveObject() && canvas.getActiveObject.name != "Image" && canvas.getActiveObject.name != "Text") {
 
 
-        if (document.getElementById('obj-shadow-color')
-            && document.getElementById('shadow-blur')
-        ) {
+        if (document.getElementById('obj-shadow-color') && document.getElementById('shadow-blur')) {
             document.getElementById('obj-shadow-color').removeAttribute('disabled');
             document.getElementById('shadow-blur').removeAttribute('disabled');
             document.getElementById('shadow-Offset-X').removeAttribute('disabled');
@@ -261,8 +540,7 @@ function remove() {
 
     if (document.activeElement && document.activeElement.hasAttribute('value') || (document.activeElement && document.activeElement.value)) {
         document.activeElement.value = 0;
-    }
-    else {
+    } else {
         var activeObject = canvas.getActiveObject(),
             activeGroup = canvas.getActiveObject().type !== 'group';
 
@@ -336,23 +614,16 @@ function setActiveProp(name, value) {
 
 function getActiveShadow(name) {
 
-    if (canvas.getActiveObject()
-        && canvas.getActiveObject().shadow
-        && document.getElementById('enableShadow')
-        && !document.getElementById('enableShadow').hasAttribute('toggled')) {
+    if (canvas.getActiveObject() && canvas.getActiveObject().shadow && document.getElementById('enableShadow') && !document.getElementById('enableShadow').hasAttribute('toggled')) {
 
         document.getElementById('enableShadow').setAttribute('toggled', 'true');
 
     }
-    if ((!canvas.getActiveObject() && document.getElementById('enableShadow'))
-        || (canvas.getActiveObject() && !canvas.getActiveObject().shadow && document.getElementById('enableShadow'))) {
+    if ((!canvas.getActiveObject() && document.getElementById('enableShadow')) || (canvas.getActiveObject() && !canvas.getActiveObject().shadow && document.getElementById('enableShadow'))) {
         document.getElementById('enableShadow').removeAttribute('toggled');
     }
 
-    if (document.getElementById('shadow-Offset-X')
-        && document.getElementById('shadow-Offset-Y')
-        && canvas.getActiveObject()
-        && canvas.getActiveObject().shadow) {
+    if (document.getElementById('shadow-Offset-X') && document.getElementById('shadow-Offset-Y') && canvas.getActiveObject() && canvas.getActiveObject().shadow) {
 
         document.getElementById('shadow-Offset-X').value = canvas.getActiveObject().shadow.offsetX;
         document.getElementById('shadow-Offset-Y').value = canvas.getActiveObject().shadow.offsetY;
@@ -360,14 +631,12 @@ function getActiveShadow(name) {
     }
 
 
-    if (canvas.getActiveObject()
-        && canvas.getActiveObject().shadow) {
+    if (canvas.getActiveObject() && canvas.getActiveObject().shadow) {
 
         // document.getElementById()
 
         return canvas.getActiveObject().shadow;
-    }
-    else {
+    } else {
         return '';
     }
 
@@ -381,8 +650,7 @@ function setActiveShadow(name, value) {
     if (object.shadow) {
 
         object.shadow[name] = value;
-    }
-    else {
+    } else {
         var ob = {};
         ob[name] = value;
         object.setShadow(ob);
@@ -391,23 +659,6 @@ function setActiveShadow(name, value) {
     object.setCoords();
     canvas.renderAll();
 }
-
-// function setActiveShadow(name, value) {
-//
-//     var object = canvas.getActiveObject();
-//
-//     if (!object) return;
-//     if (object.shadow)
-//         object.shadow[name] = value;
-//     else {
-//         var ob = {};
-//         ob[name] = value;
-//         object.setShadow(ob);
-//     }
-//
-//     object.setCoords();
-//     canvas.renderAll();
-// }
 
 
 ///////////
@@ -599,6 +850,17 @@ function addAccessors($scope, $rootScope) {
         setActiveProp('fontFamily', value.toLowerCase());
     };
 
+    //    set text decorations like underline/overline/linethrough
+    //    function for respecttive buttons is: changeTextStyle('underline')
+
+    $scope.changeTextStyle = function (val) {
+        var text = canvas.getActiveObject();
+        console.log(val);
+        text[val] = !text[val];
+        text.dirty = true;
+        canvas.renderAll();
+    }
+
     //	set active text family in the text listbox
 
     $scope.setActive = function (item, list) {
@@ -687,7 +949,7 @@ function addAccessors($scope, $rootScope) {
         canvas.renderAll();
     };
 
-    $scope.getPropAngle = function () {/// if object a=inactive return ""must implement
+    $scope.getPropAngle = function () { /// if object a=inactive return ""must implement
         if (parseFloat(getActiveProp('angle')) == 0) {
             return parseFloat(getActiveProp('angle'));
         }
@@ -886,6 +1148,8 @@ function addAccessors($scope, $rootScope) {
         canvas.backgroundColor = grad.toLive(canvas.contextContainer);
         canvas.renderAll();
     };
+
+
 
     $scope.addRect = function () {
         var coord = getRandomLeftTop();
@@ -1319,8 +1583,6 @@ function addAccessors($scope, $rootScope) {
         };
     };
 
-
-    //-----
 
     function addImage(imageName) {
         var coord = getRandomLeftTop();
@@ -1865,5 +2127,3 @@ function watchCanvas($scope) {
         .on('path:created', updateScope)
         .on('selection:cleared', updateScope);
 }
-
-

@@ -1,6 +1,3 @@
-
-
-
 var kitchensink = {};
 var canvas = new fabric.Canvas('canvas', {
     backgroundColor: "#FFFFFF",
@@ -11,7 +8,6 @@ var canvas = new fabric.Canvas('canvas', {
 });
 initAligningGuidelines(canvas);
 initCenteringGuidelines(canvas);
-
 
 
 // create grid and snap to grid
@@ -171,12 +167,14 @@ var updateCanvasState = function () {
             _config.canvasState.push(canvasAsJson);
         }
         _config.currentStateIndex = _config.canvasState.length - 1;
-        if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) { }
+        if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) {
+        }
     }
 }
 
 
 var undo = function () {
+
     if (_config.undoFinishedStatus) {
         if (_config.currentStateIndex == -1) {
             _config.undoStatus = false;
@@ -190,7 +188,8 @@ var undo = function () {
                         canvas.renderAll();
                         _config.undoStatus = false;
                         _config.currentStateIndex -= 1;
-                        if (_config.currentStateIndex !== _config.canvasState.length - 1) { }
+                        if (_config.currentStateIndex !== _config.canvasState.length - 1) {
+                        }
                         _config.undoFinishedStatus = 1;
                     });
                 } else if (_config.currentStateIndex == 0) {
@@ -203,9 +202,157 @@ var undo = function () {
     }
 }
 
+var saveAS = function saveAS() {
+
+    // var tempFile = JSON.stringify(canvas);
+    //
+    // download(tempFile, 'test.json', 'text/plain');
+
+    dialog.showSaveDialog(function (fileName) {
+        fileSavedPath = fileName;
+        if (fileName === undefined) {
+            console.log("You didn't save the file");
+            return;
+        }
+
+        fs.writeFile(fileName, JSON.stringify(GenerateCanvasJson()), function (err) {
+
+            if (err) {
+                alert("An error ocurred creating the file " + err.message)
+            }
+
+            alert("The file has been succesfully saved");
+        });
+    });
+}
+
+function GenerateCanvasJson() {
+    return {
+        leftColor: document.getElementById('gradLeft').value,
+        rightColor: document.getElementById('gradRight').value,
+        canvasWidth: canvas.width,
+        canvasHeight: canvas.height,
+        state: canvas.toJSON()
+    }
+}
+
+var save = function () {
+
+    if (fileSavedPath) {
+        fs.writeFile(fileSavedPath, JSON.stringify(GenerateCanvasJson()), function (err) {
+
+            if (err) {
+                alert("An error ocurred creating the file " + err.message)
+            }
+
+            alert("The file has been succesfully saved");
+        });
+    }
+    else {
+        saveAS();
+    }
+}
+
+
+var loadJSON = function () {
+
+
+    const {
+        ipcRenderer
+    } = require('electron')
+    ipcRenderer.send('openFile', () => {
+    })
+    ipcRenderer.once('fileData', (event, filepath) => {
+
+        var reader = new FileReader();
+
+        function readTextFile(file) {
+            return new Promise(function (resolve, reject,) {
+                var rawFile = new XMLHttpRequest();
+
+                rawFile.open("GET", file, false);
+                rawFile.onreadystatechange = function () {
+                    if (rawFile.readyState === 4) {
+                        if (rawFile.status === 200 || rawFile.status == 0) {
+                            resolve(rawFile.responseText);
+
+                            // alert(allText);
+                        }
+                    }
+                }
+                rawFile.send(null);
+            })
+
+        }
+
+        readTextFile(filepath).then(function (resolvedPAram) {
+            var tempOPenedCanvas = JSON.parse(resolvedPAram)
+            var tempCanvas = tempOPenedCanvas.state;
+
+            canvas.loadFromJSON(tempCanvas, function () {
+                canvas.renderAll();
+            });
+
+            setCanvasSize(tempOPenedCanvas.canvasHeight, tempOPenedCanvas.canvasWidth);
+            addGradient(tempOPenedCanvas.leftColor, tempOPenedCanvas.rightColor);
+
+        })
+
+
+    })
+
+}
+
+function setCanvasSize(height, width) {
+    //;
+
+    document.getElementById('myWidth').value = width;
+    document.getElementById('myHeight').value = height;
+
+
+    var setWidth = document.getElementById('myWidth').value;
+    var setHeight = document.getElementById('myHeight').value;
+    canvas.setWidth(setWidth);
+    canvas.setHeight(setHeight);
+    console.info(setWidth, setHeight);
+    canvas.calcOffset();
+
+}
+
+function addGradient(left, right) {
+
+    document.getElementById('gradLeft').value = left;
+    document.getElementById('gradRight').value = right;
+
+    var leftColor = document.getElementById('gradLeft').value;
+    var rightColor = document.getElementById('gradRight').value;
+    console.log(leftColor, rightColor);
+
+    var grad = new fabric.Gradient({
+        type: 'linear',
+        coords: {
+            x1: 0,
+            y1: 0,
+            x2: canvas.width,
+            y2: canvas.height,
+        },
+        colorStops: [{
+            color: leftColor,
+            offset: 0,
+        },
+            {
+                color: rightColor,
+                offset: 1,
+            }
+        ]
+    });
+    canvas.backgroundColor = grad.toLive(canvas.contextContainer);
+    canvas.renderAll();
+};
 var redo = function () {
     if (_config.redoFinishedStatus) {
-        if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) { } else {
+        if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) {
+        } else {
             if (_config.canvasState.length > _config.currentStateIndex && _config.canvasState.length != 0) {
                 _config.redoFinishedStatus = 0;
                 _config.redoStatus = true;
@@ -214,9 +361,11 @@ var redo = function () {
                     canvas.renderAll();
                     _config.redoStatus = false;
                     _config.currentStateIndex += 1;
-                    if (_config.currentStateIndex != -1) { }
+                    if (_config.currentStateIndex != -1) {
+                    }
                     _config.redoFinishedStatus = 1;
-                    if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) { }
+                    if ((_config.currentStateIndex == _config.canvasState.length - 1) && _config.currentStateIndex != -1) {
+                    }
                 });
             }
         }
@@ -224,56 +373,140 @@ var redo = function () {
 }
 
 
-require('electron').ipcRenderer.on('ping', function (event, message) {
-    console.log(message); // Prints "whoooooooh!"
+/*
+setup IPC communication/functions with mainmenu.js
+*/
+
+//File Menu
+
+require('electron').ipcRenderer.on('open', function (event, message) {
+
+    console.log(message);
+    loadJSON();
+});
+require('electron').ipcRenderer.on('save', function (event, message) {
+
+    console.log(message);
+    save();
 });
 
-require('electron').ipcRenderer.on('delete', function () {
-    remove(); // Prints "whoooooooh!"
-});
 
-require('electron').ipcRenderer.on('copy', function () {
-    copy(); // Prints "whoooooooh!"
-});
+//// for save  json ////
+const {dialog} = require('electron').remote;
 
-require('electron').ipcRenderer.on('paste', function () {
-    paste(); // Prints "whoooooooh!"
-});
+var fs = require('fs');
+
+var fileSavedPath = "";
+//// for save json ////
 
 
+require('electron').ipcRenderer.on('saveAs', function (event, message) {
 
-key('⌘+c, ctrl+c', function () {
-    copy();
+    console.log(message);
+    saveAS();
 });
-key('⌘+v, ctrl+v', function () {
-    paste();
-});
-key('backspace, del', function () {
-    remove();
-});
-key('⌘+g', function () {
-    group();
-});
-key('⌘+u', function () {
-    ungroup();
-});
-key('⌘+z', function () {
+
+//edit menu
+
+require('electron').ipcRenderer.on('undo', function (event, message) {
+    console.log(message);
     undo();
 });
-key('shift+⌘+z', function () {
+
+require('electron').ipcRenderer.on('redo', function (event, message) {
+    console.log(message);
     redo();
 });
 
+require('electron').ipcRenderer.on('remove', function (event, message) {
+    console.log(message);
+    remove();
+});
 
-// electron contextMenu test
-//		Create a context menu in electron
+require('electron').ipcRenderer.on('cut', function (event, message) {
+    console.log(message);
+    copy();
+    remove();
+});
+
+require('electron').ipcRenderer.on('copy', function (event, message) {
+    console.log(message);
+    copy();
+});
+
+require('electron').ipcRenderer.on('paste', function (event, message) {
+    console.log(message);
+    paste();
+});
+
+require('electron').ipcRenderer.on('duplicate', function (event, message) {
+    console.log(message);
+    copy();
+    paste();
+});
+
+//Arrange menu
+
+require('electron').ipcRenderer.on('group', function (event, message) {
+    console.log(message);
+    group();
+});
+
+require('electron').ipcRenderer.on('ungroup', function (event, message) {
+    console.log(message);
+    ungroup();
+});
+
+require('electron').ipcRenderer.on('bringForward', function (event, message) {
+    console.log(message);
+    bringForward();
+});
+
+/*
+Utility functions for selecting and aranging objects on the canvas
+*/
+
+
+//sen the objects forward and backward
+
+function sendBackwards() {
+    var activeObject = canvas.getActiveObject();
+    if (activeObject) {
+        canvas.sendBackwards(activeObject);
+    }
+};
+
+function sendToBack() {
+    var activeObject = canvas.getActiveObject();
+    if (activeObject) {
+        canvas.sendToBack(activeObject);
+    }
+};
+
+function bringForward() {
+    var activeObject = canvas.getActiveObject();
+    if (activeObject) {
+        canvas.bringForward(activeObject);
+    }
+};
+
+function bringToFront() {
+    var activeObject = canvas.getActiveObject();
+    if (activeObject) {
+        canvas.bringToFront(activeObject);
+    }
+};
+
+
+// electron contextMenu test this should be moved in a separate JS file in menus
+// Create a context menu in electron
 
 const {
-        remote
-    } = require('electron')
+    remote
+} = require('electron')
 const {
-        Menu, MenuItem
-    } = remote
+    Menu, MenuItem
+} = remote
 
 const menu = new Menu()
 
@@ -283,28 +516,28 @@ const menu = new Menu()
 menu.append(new MenuItem({
     label: 'Send backwards',
     click() {
-        sendBackwards()
+        sendBackwards();
     }
 }))
 
 menu.append(new MenuItem({
     label: 'Send to back',
     click() {
-        sendToBack()
+        sendToBack();
     }
 }))
 
 menu.append(new MenuItem({
     label: 'Bring forwards',
     click() {
-        bringForward()
+        bringForward();
     }
 }))
 
 menu.append(new MenuItem({
     label: 'Bring to front',
     click() {
-        bringToFront()
+        bringToFront();
     }
 }))
 
@@ -348,58 +581,87 @@ menu.append(new MenuItem({
 
 menu.append(new MenuItem({
     label: 'Group Selected',
-    click() { }
-}))
-
-menu.append(new MenuItem({
-    label: 'Ungroup Selected',
-    click() { }
-}))
-
-menu.append(new MenuItem({
-    type: 'separator'
-}))
-
-menu.append(new MenuItem({
-    role: 'undo'
-}))
-
-menu.append(new MenuItem({
-    role: 'redo'
-}))
-
-menu.append(new MenuItem({
-    type: 'separator'
-}))
-
-menu.append(new MenuItem({
-    role: 'cut'
-}))
-
-menu.append(new MenuItem({
-    role: 'copy'
-}))
-
-menu.append(new MenuItem({
-    role: 'paste'
-}))
-
-menu.append(new MenuItem({
-    role: 'delete',
-    click: function () {
-        var focusedWindow = BrowserWindow.getFocusedWindow();
-        focusedWindow.webContents.send('delete');
+    click() {
+        group();
     }
 }))
 
 menu.append(new MenuItem({
-    role: 'selectall'
+    label: 'Ungroup Selected',
+    click() {
+        ungroup();
+    }
+}))
+
+menu.append(new MenuItem({
+    type: 'separator'
+}))
+
+menu.append(new MenuItem({
+    label: 'Undo',
+    click() {
+
+        undo();
+    }
+}))
+
+menu.append(new MenuItem({
+    label: 'Save',
+    click() {
+        save();
+    }
+}))
+
+menu.append(new MenuItem({
+    label: 'Redo',
+    click() {
+        redo();
+    }
+}))
+
+menu.append(new MenuItem({
+    type: 'separator'
+}))
+
+menu.append(new MenuItem({
+    label: 'Cut',
+    click() {
+        copy();
+        remove();
+    }
+}))
+
+menu.append(new MenuItem({
+    label: 'Copy',
+    click() {
+        copy();
+    }
+}))
+
+menu.append(new MenuItem({
+    label: 'Paste',
+    click() {
+        paste();
+    }
+}))
+
+menu.append(new MenuItem({
+    label: 'Delete',
+    click() {
+        remove();
+    }
+}))
+
+menu.append(new MenuItem({
+    label: 'Select All',
+    click() {
+        selectAllCanvasObjects();
+    }
 }))
 
 
-
 // Prevent default action of right click in chromium. Replace with our menu.
-window.addEventListener('contextmenu', (e) => {
+document.getElementById("wrapper").addEventListener('contextmenu', (e) => {
     e.preventDefault()
     menu.popup(remote.getCurrentWindow())
 }, false)
