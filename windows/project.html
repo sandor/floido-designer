@@ -8,55 +8,235 @@
 <script src='../js/additionJs/xel.min.js'></script>
 
 <style>
-	.logo {
-			    background: #6b0098;
-		background-image: url(../icons/project_bg.png);
-		background-repeat: no-repeat;
-	}
-	. dark-header {
-		background-color: #160022 !Important;
-		color: white;
-		height: 50px;
-	}
-	
-	.left{
-		margin-top: 180px;
-	}
+    .logo {
+        background: #6b0098;
+        background-image: url(../icons/project_bg.png);
+        background-repeat: no-repeat;
+    }
+    
+    . dark-header {
+        background-color: #160022 !Important;
+        color: white;
+        height: 50px;
+    }
+    
+    .left {
+        margin-top: 180px;
+    }
+    
+    .nav-group-item {
+        padding-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-right: 10px;
+        font-size: 13px;
+        color: #cdb0d8 !Important;
+        border-top: 1px solid #672381;
+    }
+    
+    .nav-group-item:nth-child(even) {
+        background-color: rgba(104, 61, 121, 0.28);
+    }
+    
+    .nav-group-item:last-child {
+        border-bottom: 1px solid #683d79;
+    }
+    
+    .li {
+        color: #683d79;
+    }
+    
+    .bg_sm {
+        background: #6b0098;
+        background-image: url(../icons/project_bg_sm.png);
+        background-repeat: repeat-x;
+    }
+    /*********************** Project List Styles ***************************************/
+    
+    .project-list-group {
+        width: 100%;
+        list-style: none;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 105px;
+        bottom: 190px;
+        height: 400px;
+        padding: 0;
+    }
+    
+    .project-list-group * {
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .project-list-group-item {
+        padding-left: 10px;
+        padding-right: 8px;
+        padding-top: 5px;
+        padding-bottom: 0px;
+        width: 95%;
+        height: 80px;
+        font-size: 12px;
+        color: #cdb0d8;
+        border-top: 1px solid rgba(245, 245, 244, 0.43);
+        cursor: move;
+    }
+    
+    li:nth-child(even) {
+        background-color: rgba(245, 245, 244, 0.1);
+    }
+    
+    .project-list-group-item li:nth-child(even) {
+        background-color: rgba(245, 245, 244, 0.4);
+    }
+    
+    .project-list-group-item:first-child {
+        border-top: 1px solid rgba(245, 245, 244, 0.3);
+    }
+    
+    .project-list-group-item:last-child {
+        border-bottom: 1px solid rgba(245, 245, 244, 0.3);
+    }
+    
+    .project-list-group-item.active,
+    .list-group-item.selected {
+        color: #fff;
+        background-color: rgba(74, 74, 74, 0.44);
+    }
+    
+    .project-list-group-header {
+        padding-top: 10px;
+    }
+    
+    .project-media-object {
+        margin-top: 2px;
+        width: 90px;
+        height: 65px;
+    }
+    
+    .project-media-object.pull-left {
+        margin-right: 10px;
+        margin-top: 4px;
+        color: #8b8b8b;
+    }
+    
+    .project-media-object.pull-right {
+        margin-left: 10px;
+    }
+    
+    .project-media-body {
+        overflow: hidden;
+        margin-top: 3px;
+    }
 </style>
 
 <div class="window" style="background: #6b0098;">
-	<header class="toolbar toolbar-header dark-header" style="background-color: #160022 !Important; height: 30px; border: 0px;">
-		<h1 class="title" style="color: rgba(255, 255, 255, 0.74) !Important; margin-top: 5px;">Floido | Project Window</h1>
-	</header>
-	<div class="window-content">
-		<div class="pane-group">
-			<div class="pane-sm sidebar logo">
-				<nav class="nav-group left">
-					<h5 class="nav-group-title">Favorites</h5>
-					<a class="nav-group-item active">
-						<span class="icon icon-home"></span> connors
-					</a>
-					<span class="nav-group-item">
-    <span class="icon icon-download"></span> Downloads
-					</span>
-					<span class="nav-group-item">
-    <span class="icon icon-folder"></span> Documents
-					</span>
-					<span class="nav-group-item">
-    <span class="icon icon-signal"></span> AirPlay
-					</span>
-					<span class="nav-group-item">
-    <span class="icon icon-print"></span> Applications
-					</span>
-					<span class="nav-group-item">
-    <span class="icon icon-cloud"></span> Desktop
-					</span>
-				</nav>
-			</div>
-			<div class="pane">...</div>
-		</div>
-	</div>
-	<footer class="toolbar toolbar-footer" style="background-color: #6b0098 !Important; height: 30px; border: 0px;">
-		<h1 class="title" style="color: rgba(255, 255, 255, 0.74) !Important; margin-top: 5px;">Footer</h1>
-	</footer>
+    <header class="toolbar toolbar-header dark-header" style="background-color: #160022 !Important; height: 30px; border: 0px;">
+        <h1 class="title" style="color: rgba(255, 255, 255, 0.74) !Important; margin-top: 5px;">floido designer | Project Window</h1>
+    </header>
+    <div class="window-content">
+        <div class="pane-group">
+            <div class="pane-sm sidebar logo">
+                <nav class="nav-group left">
+                    <hr>
+                    <h5 class="nav-group-title" style="color: '#8a6e95 !Important;">Projects</h5>
+                    <a class="nav-group-item">
+                        <span class="icon icon-home"></span> Current Projects
+                    </a>
+                    <span class="nav-group-item">
+    <span class="icon icon-download"></span> Templates
+                    </span>
+                    <hr>
+                    <h5 class="nav-group-title" style="color: '#8a6e95 !Important;">Web Links</h5>
+                    <a class="nav-group-item">
+                        <span class="icon icon-home"></span> Tutorials
+                    </a>
+                    <span class="nav-group-item">
+    <span class="icon icon-download"></span> floido webpage
+                    </span>
+                    <span class="nav-group-item">
+    <span class="icon icon-folder"></span> Help
+                    </span>
+                    <span class="nav-group-item">
+    <span class="icon icon-signal"></span> Shortcuts
+                    </span>
+                    <span class="nav-group-item">
+    <span class="icon icon-print"></span> floido market
+                    </span>
+                </nav>
+            </div>
+
+
+            <div class="pane bg_sm">
+                <x-box id="project-window-tabs">
+                    <x-tabs centered style="height: 30px; top:85px;">
+                        <x-tab selected>
+                            <x-label>Current Projects</x-label>
+                        </x-tab>
+
+                        <x-tab>
+                            <x-label>Active Templates</x-label>
+                        </x-tab>
+                    </x-tabs>
+                </x-box>
+                <x-box>
+                </x-box>
+                <x-box >
+                    <ul class="project-list-group">
+
+                        <li class="project-list-group-item">
+                            <img class="img-circle project-media-object pull-left" src="/assets/img/avatar.jpg" width="32" height="32">
+                            <div class="project-media-body">
+                                <strong>List item title</strong>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </li>
+                        <li class="project-list-group-item">
+                            <img class="img-circle project-media-object pull-left" src="/assets/img/avatar2.png" width="32" height="32">
+                            <div class="project-media-body">
+                                <strong>List item title</strong>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </li>
+                        ...
+                    </ul>
+
+                </x-box>
+
+            </div>
+
+
+        </div>
+    </div>
+    <footer class="toolbar toolbar-footer" style="background-color: #6b0098 !Important; height: 35px; border: 0px;">
+        <x-box class="middle">
+            <x-box style="margin-left: 15px; margin-top:9px; color: #8a6e95;">
+                <x-checkbox id="checkbox" toggled></x-checkbox>
+                <x-label for="checkbox" id="label-1">Show this Window on startup</x-label>
+            </x-box>
+            <x-buttons tracking="1">
+                <x-box>
+                    <x-button style="margin-top:5px; margin-left:20px; margin-right:40px; background-color: rgba(153, 99, 175, 0.35);">
+                        <x-box>
+                            <x-label style=" color: #c0a6cb;">New Project...</x-label>
+                        </x-box>
+                    </x-button>
+
+                    <x-button style="margin-top:5px; margin-left:2px; margin-right:10px;  background-color: rgba(153, 99, 175, 0.35);">
+                        <x-box>
+                            <x-label style=" color: #c0a6cb;">Open Project...</x-label>
+                        </x-box>
+                    </x-button>
+
+                    <x-button style="margin-top:5px; margin-left:2px; margin-right:15px; background-color: rgba(153, 99, 175, 0.35);">
+                        <x-box>
+                            <x-label style=" color: #c0a6cb;">Cancel</x-label>
+                        </x-box>
+                    </x-button>
+                </x-box>
+            </x-buttons>
+        </x-box>
+    </footer>
 </div>

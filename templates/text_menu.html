@@ -1,4 +1,5 @@
-<div class="grid-middle-noGutter" ng-controller="FontsCtrl" class="object-controls" object-buttons-enabled="getSelected()">
+<div class="grid-middle-noGutter" ng-controller="FontsCtrl" class="object-controls"
+     object-buttons-enabled="getSelected()">
 
     <h1 class="title_left">Typography</h1>
     <hr>
@@ -13,7 +14,8 @@
             <div class="spacer"></div>
 
             <x-box>
-                <x-select style="width: 290px; margin-left: 5px; margin-bottom: 5px;">
+                <x-select style="width: 290px; margin-left: 5px; margin-bottom: 5px;" id="font-select-dropdown"
+                          disabled>
                     <x-menu>
                         <x-menuitem value="all">
                             <x-label>Show all Fonts</x-label>
@@ -39,7 +41,8 @@
             </x-box>
 
             <x-box>
-                <x-select style="width: 140px; margin-left: 5px; margin-right: 10px;">
+                <x-select style="width: 140px; margin-left: 5px; margin-right: 10px;" id="font-select-dropdown-small"
+                          disabled>
                     <x-menu>
                         <x-menuitem value="serif">
                             <x-label>Serif</x-label>
@@ -63,7 +66,7 @@
                     </x-menu>
                 </x-select>
 
-                <x-input style="max-width: 140px; height: 25px;" ng-model="q">
+                <x-input style="max-width: 140px; height: 25px;" ng-model="q" id="font-select-dropdown-filter" disabled>
                     <x-icon name="search"></x-icon>
                     <x-label>Filter</x-label>
                 </x-input>
@@ -71,9 +74,12 @@
             <div class="spacer"></div>
 
             <x-box>
-                <x-card class="fontCard">
+                <x-card class="fontCard" id="font-select-list" disabled>
                     <ul class="font-group">
-                        <li ng-class="{active: font.active}" class="font-group-item" style="font-family: {{font.value}}" ng-repeat="font in fonts | filter:q as results" ng-click="setFontFamily(font.value); setActive(font, fonts)">{{font.name}}</li>
+                        <li ng-class="{active: font.active}" class="font-group-item" style="font-family: {{font.value}}"
+                            ng-repeat="font in fonts | filter:q as results"
+                            ng-click="setFontFamily(font.value); setActive(font, fonts)">{{font.name}}
+                        </li>
                         <li class="font-group-item" ng-if="results.length === 0">
                             Dude, how's about Helvetica?
                         </li>
@@ -84,7 +90,8 @@
             <div class="spacer"></div>
 
             <x-box>
-                <x-button skin="textured" style="width: 290px; margin-left: 5px; margin-bottom: 5px;">
+                <x-button skin="textured" style="width: 290px; margin-left: 5px; margin-bottom: 5px;" id="font-add"
+                          disabled>
                     <x-box>
                         <x-icon name="text-fields"></x-icon>
                         <x-label class="white">Add Fonts...</x-label>
@@ -112,20 +119,24 @@
 
 
             <x-box style="width: 290px; margin-left: 5px; margin-bottom: 5px;">
-                <x-buttons tracking="1">
-                    <x-button toggled class="aButton" ng-click="setTextAlign('left')">
+                <x-buttons tracking="1" id="text-decorating"  disabled>
+                    <x-button toggled class="aButton text-decorating" ng-click="setTextAlign('left')" id="text-decorating-left" disabled
+                               >
                         <x-icon name="format-align-left"></x-icon>
                     </x-button>
 
-                    <x-button value="" class="aButton" ng-click="setTextAlign('center')">
+                    <x-button value="" class="aButton text-decorating" ng-click="setTextAlign('center')" id="text-decorating-center" disabled
+                              class="text-decorating">
                         <x-icon name="format-align-center"></x-icon>
                     </x-button>
 
-                    <x-button class="aButton" ng-click="setTextAlign('right')">
+                    <x-button class="aButton text-decorating" ng-click="setTextAlign('right')" id="text-decorating-right" disabled
+                              >
                         <x-icon name="format-align-right"></x-icon>
                     </x-button>
 
-                    <x-button class="aButton" ng-click="setTextAlign('justify')">
+                    <x-button class="aButton text-decorating" ng-click="setTextAlign('justify')" id="text-decorating-justify" disabled
+                              >
                         <x-icon name="format-align-justify"></x-icon>
                     </x-button>
                 </x-buttons>
@@ -134,27 +145,25 @@
             <div class="spacer"></div>
 
 
-
-
             <!--/////////////// FONT STYLE //////////////-->
 
             <x-box>
 
-                <x-buttons tracking="2" style="width: 140px; margin-left: 5px; margin-right: 10px;">
-                    <x-button ng-click="toggleBold()">
+                <x-buttons tracking="2" id="font-style"  style="width: 140px; margin-left: 5px; margin-right: 10px;">
+                    <x-button ng-click="toggleBold()" id="font-style-bold" class="font-style" disabled>
                         <x-icon name="format-bold"></x-icon>
                     </x-button>
 
-                    <x-button ng-value="'underline'" ng-click="changeTextStyle('underline')">
+                    <x-button ng-click="toggleUnderline()" id="font-style-underline" class="font-style" disabled>
                         <x-icon name="format-underlined"></x-icon>
                     </x-button>
 
-                    <x-button ng-click="toggleItalic()">
+                    <x-button ng-click="toggleItalic()" id="font-style-italic" class="font-style" disabled>
                         <x-icon name="format-italic"></x-icon>
                     </x-button>
                 </x-buttons>
 
-                <x-select style="width: 140px;" bind-value-to="fontWeight">
+                <x-select style="width: 140px;" bind-value-to="fontWeight" id="font-weight"  disabled>
                     <x-menu>
                         <x-menuitem value="" selected="true">
                             <x-label>Font Weight</x-label>
@@ -213,6 +222,29 @@
                         <x-menuitem value="800">
                             <x-label>800</x-label>
                         </x-menuitem>
+<!--/////////////////// dddddd //////////////////-->
+            <x-box style="width: 290px; margin-left: 5px; margin-bottom: 5px;">
+                <x-buttons tracking="1">
+                    <x-button toggled class="aButton" ng-click="setTextAlign('left')">
+                        <x-icon name="format-align-left"></x-icon>
+                    </x-button>
+
+                    <x-button value="" class="aButton" ng-click="setTextAlign('center')">
+                        <x-icon name="format-align-center"></x-icon>
+                    </x-button>
+
+                    <x-button class="aButton" ng-click="setTextAlign('right')">
+                        <x-icon name="format-align-right"></x-icon>
+                    </x-button>
+
+                    <x-button class="aButton" ng-click="setTextAlign('justify')">
+                        <x-icon name="format-align-justify"></x-icon>
+                    </x-button>
+                </x-buttons>
+            </x-box>
+
+            <div class="spacer"></div>
+<!--/////////////////// dddddd //////////////////-->
 
                         <x-menuitem value="900">
                             <x-label>900</x-label>
@@ -226,20 +258,19 @@
             <!--/////////////////// FONT COLORS //////////////////-->
 
 
-
             <div class="spacer"></div>
             <hr>
             <div class="spacer"></div>
             <x-box>
                 <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Font Color</x-label>
 
-                <x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;">
+                <x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;" id="font-color" disabled>
                     <x-popover style="width: 320px;">
                         <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="fill"></x-rectcolorpicker>
                     </x-popover>
                 </x-colorselect>
 
-                <x-input id="select1" style="width: 130px;" bind-value-to="fill">
+                <x-input  style="width: 130px;" bind-value-to="fill" id="font-color-input" disabled>
                     <x-icon name="invert-colors"></x-icon>
                 </x-input>
 
@@ -250,18 +281,20 @@
             <x-box>
                 <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Background</x-label>
 
-                <x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;">
+                <x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;" id="font-background-color"
+                               disabled>
                     <x-popover style="width: 320px;">
-                        <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="bgColor"></x-rectcolorpicker>
+                        <x-rectcolorpicker style="width: 320px;" alphaslider
+                                           bind-value-to="bgColor"></x-rectcolorpicker>
                     </x-popover>
                 </x-colorselect>
 
-                <x-input id="select1" style="width: 130px;" bind-value-to="bgColor">
+                <x-input  style="width: 130px;" bind-value-to="bgColor" id="font-background-color-input"
+                         disabled>
                     <x-icon name="invert-colors"></x-icon>
                 </x-input>
 
             </x-box>
-
 
 
             <div class="spacer"></div>
@@ -273,10 +306,13 @@
             <x-box>
                 <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Font Size</x-label>
 
-                <x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="1" max="200" ng-value="0" bind-value-to="fontSize" skin="arrow">
+                <x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="1" max="200" ng-value="0"
+                          id="font-size" disabled
+                          bind-value-to="fontSize" skin="arrow">
                 </x-slider>
 
-                <x-numberinput style="width: 75px;" suffix=" px" skin="condensed" ng-value="0" bind-value-to="fontSize">
+                <x-numberinput style="width: 75px;" suffix=" px" skin="condensed" ng-value="0" bind-value-to="fontSize"
+                               id="font-size-input" disabled>
                     <x-stepper></x-stepper>
                 </x-numberinput>
             </x-box>
@@ -284,10 +320,14 @@
             <x-box>
                 <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Line Height</x-label>
 
-                <x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="0" max="10" step="0.01" ng-value="0" bind-value-to="lineHeight" skin="arrow">
+                <x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="0" max="10" step="0.01" ng-value="0"
+                          id="line-height" disabled
+                          bind-value-to="lineHeight" skin="arrow">
                 </x-slider>
 
-                <x-numberinput style="width: 75px;" suffix=" em" skin="condensed" step="0.01" bind-value-to="lineHeight">
+                <x-numberinput style="width: 75px;" suffix=" em" skin="condensed" step="0.01" id="line-height-input"
+                               disabled
+                               bind-value-to="lineHeight">
                     <x-stepper></x-stepper>
                 </x-numberinput>
             </x-box>
@@ -295,10 +335,14 @@
             <x-box>
                 <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Spacing</x-label>
 
-                <x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="-200" max="1000" step="1.0" ng-value="0" bind-value-to="charSpacing" skin="arrow">
+                <x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="-200" max="1000" step="1.0"
+                          id="font-spacing" disabled
+                          ng-value="0" bind-value-to="charSpacing" skin="arrow">
                 </x-slider>
 
-                <x-numberinput style="width: 75px;" suffix=" em" skin="condensed" min="-200" max="1000" step="1" ng-value="0" bind-value-to="charSpacing">
+                <x-numberinput style="width: 75px;" suffix=" em" skin="condensed" min="-200" max="1000" step="1"
+                               id="font-spacing-input" disabled
+                               ng-value="0" bind-value-to="charSpacing">
                     <x-stepper></x-stepper>
                 </x-numberinput>
             </x-box>
@@ -311,10 +355,13 @@
 
                 <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Border</x-label>
 
-                <x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="0" max="100" bind-value-to="strokeWidth" skin="arrow">
+                <x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="0" max="100" id="font-border" disabled
+                          bind-value-to="strokeWidth" skin="arrow">
                 </x-slider>
 
-                <x-numberinput style="width: 75px;" value="'0'" suffix=" px" skin="condensed" bind-value-to="strokeWidth">
+                <x-numberinput style="width: 75px;" value="'0'" suffix=" px" skin="condensed" id="font-border-input"
+                               disabled
+                               bind-value-to="strokeWidth">
                     <x-stepper></x-stepper>
                 </x-numberinput>
 
@@ -324,13 +371,15 @@
             <x-box>
                 <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Color</x-label>
 
-                <x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;">
+                <x-colorselect style="margin-left:5px; margin-right: 15px; width: 70px;" id="font-border-color"
+                               disabled>
                     <x-popover style="width: 320px;">
                         <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="stroke"></x-rectcolorpicker>
                     </x-popover>
                 </x-colorselect>
 
-                <x-input id="select1" style="width: 130px;" bind-value-to="stroke">
+                <x-input style="width: 130px;" bind-value-to="stroke" id="font-border-color-input"
+                         disabled>
                     <x-icon name="invert-colors"></x-icon>
                 </x-input>
 
@@ -346,18 +395,23 @@
     <x-accordion expanded>
         <header>
             <x-label>Shadow</x-label>
-            <x-switch ng-disabled="getInputState()" id="enableShadow" style="margin-right: 10px;" ng-click="shadowify()"></x-switch>
+            <x-switch ng-disabled="getInputState()" id="enableShadow" style="margin-right: 10px;"
+                      ng-click="shadowify()"></x-switch>
         </header>
 
         <main>
             <x-box>
                 <x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Settings</x-label>
 
-                <x-numberinput id="shadow-Offset-X" ng-disabled="getInputState()" style="margin-right: 15px; width: 135px;" skin="condensed" suffix=" px" bind-value-to="shadowOffsetX">
+                <x-numberinput id="shadow-Offset-X" ng-disabled="getInputState()"
+                               style="margin-right: 15px; width: 135px;" skin="condensed"
+                               suffix=" px" bind-value-to="shadowOffsetX">
                     <x-stepper></x-stepper>
                 </x-numberinput>
 
-                <x-numberinput id="shadow-Offset-Y" ng-disabled="getInputState()" style="width: 135px; margin-right: 10px;" skin="condensed" suffix=" px" bind-value-to="shadowOffsetY">
+                <x-numberinput id="shadow-Offset-Y" ng-disabled="getInputState()"
+                               style="width: 135px; margin-right: 10px;" skin="condensed"
+                               suffix=" px" bind-value-to="shadowOffsetY">
                     <x-stepper></x-stepper>
                 </x-numberinput>
 
@@ -373,11 +427,14 @@
 
                 <x-colorselect id="obj-shadow-color" style="margin-right: 15px; width: 135px;">
                     <x-popover style="width: 320px;">
-                        <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="shadowColor" ng-model="color"></x-rectcolorpicker>
+                        <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="shadowColor"
+                                           ng-model="color"></x-rectcolorpicker>
                     </x-popover>
                 </x-colorselect>
 
-                <x-numberinput id="shadow-blur" ng-disabled="getInputState()" style="width: 135px; margin-right: 10px;" skin="condensed" suffix=" px" bind-value-to="shadowBlur">
+                <x-numberinput id="shadow-blur" ng-disabled="getInputState()" style="width: 135px; margin-right: 10px;"
+                               skin="condensed"
+                               suffix=" px" bind-value-to="shadowBlur">
                     <x-stepper></x-stepper>
                 </x-numberinput>
 

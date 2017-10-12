@@ -393,8 +393,8 @@ const template = [
                 click() {
                     let win = new BrowserWindow({
                         title: 'Project Window',
-                        width: 600,
-                        height: 400,
+                        width: 800,
+                        height: 600,
                         backgroundColor: '#6b0098',
                         alwaysOnTop: true,
                         minimizable: false,
