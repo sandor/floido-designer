@@ -20,6 +20,16 @@ var appfolderPath = "";
 //// for save json ////
 
 
+var os = require('os');
+var platf = os.platform();
+debugger;
+
+var slashForWin = "\\";
+var slashForMac = "/";
+
+var slash = platf == "win32" ? slashForWin : slashForMac;
+
+
 // create grid and snap to grid
 
 
@@ -219,7 +229,7 @@ var saveAS = function saveAS(fromDir) {
     // download(tempFile, 'test.json', 'text/plain');
 
     if (fromDir) {
-        var fileName = "\\tempProjectJson.json";
+        var fileName = slash + "tempProjectJson.json";
         debugger;
         fileName = rootFolder + fileName;
         fileSavedPath = fileName;
@@ -267,7 +277,7 @@ var path = dialog.showOpenDialog({
     properties: ['openDirectory']
 });
 
-var rootFolder = path + '\\MyDesignProject';
+var rootFolder = path + slash + 'MyDesignProject';
 
 function createDirectory(appfolderPath) {
 
@@ -287,15 +297,16 @@ function createDirectory(appfolderPath) {
     //var dir = appfolderPath + './Assets';
 
 
+    debugger;
     var directoriesTobeCreated = {
         rootFolder: rootFolder,
-        assets: appfolderPath + '\\MyDesignProject' + '\\Assets',
-        assetsSubImages: appfolderPath + '\\MyDesignProject' + '\\Assets' + '\\images',
-        assetsSubMovies: appfolderPath + '\\MyDesignProject' + '\\Assets' + '\\movies',
-        assetsSubThumbnails: appfolderPath + '\\MyDesignProject' + '\\Assets' + '\\thumbnails',
-        framerExport: appfolderPath + '\\MyDesignProject' + '\\framerExport',
-        json: appfolderPath + '\\MyDesignProject' + '\\json',
-        pages: appfolderPath + '\\MyDesignProject' + '\\pages',
+        assets: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets',
+        assetsSubImages: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets' + slash + 'images',
+        assetsSubMovies: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets' + slash + 'movies',
+        assetsSubThumbnails: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets' + slash + 'thumbnails',
+        framerExport: appfolderPath + slash + 'MyDesignProject' + slash + 'framerExport',
+        json: appfolderPath + slash + 'MyDesignProject' + slash + 'json',
+        pages: appfolderPath + slash + 'MyDesignProject' + slash + 'pages',
 
 
     };
@@ -312,7 +323,6 @@ function createDirectory(appfolderPath) {
     }
 
     save(true);
-
 
 }
 
