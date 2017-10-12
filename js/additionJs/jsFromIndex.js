@@ -212,15 +212,18 @@ var undo = function () {
     }
 }
 
-var saveAS = function saveAS() {
+var saveAS = function saveAS(fromDir) {
 
     // var tempFile = JSON.stringify(canvas);
     //
     // download(tempFile, 'test.json', 'text/plain');
 
-    dialog.showSaveDialog(function (fileName) {
+    if (fromDir) {
+        var fileName = "\\tempProjectJson.json";
+        debugger;
+        fileName = rootFolder + fileName;
         fileSavedPath = fileName;
-        createDirectory(fileName);
+        //createDirectory(fileName);
 
         if (fileName === undefined) {
             console.log("You didn't save the file");
@@ -235,41 +238,64 @@ var saveAS = function saveAS() {
 
             alert("The file has been succesfully saved");
         });
-    });
-}
 
-/// this function sed to create Directory for projects
-function selectDirectory() {
-    debugger;
-    dialog.showOpenDialog({
-        properties: ['openDirectory']
-    })
-}
+    } else {
+        dialog.showSaveDialog(function (fileName) {
+            debugger;
+            fileSavedPath = fileName;
+            //createDirectory(fileName);
 
-// selectDirectory()
+            if (fileName === undefined) {
+                console.log("You didn't save the file");
+                return;
+            }
 
-function createDirectory(appDir) {
+            fs.writeFile(fileName, JSON.stringify(GenerateCanvasJson()), function (err) {
 
-    var appDirTemp = JSON.parse(JSON.stringify(appDir));
-    debugger;
-    var res = appDirTemp.split('\\');
+                if (err) {
+                    alert("An error ocurred creating the file " + err.message)
+                }
 
-
-    for (let i = -1; i++ < res.length - 2;) {
-        appfolderPath += res[i] + '\\';
+                alert("The file has been succesfully saved");
+            });
+        });
     }
-    debugger;
 
+}
+
+var path = dialog.showOpenDialog({
+    properties: ['openDirectory']
+});
+
+var rootFolder = path + '\\MyDesignProject';
+
+function createDirectory(appfolderPath) {
+
+    // var appDirTemp = JSON.parse(JSON.stringify(appDir));
+    // debugger;
+    // var res = appDirTemp.split('\\');
+    //
+    //
+    // for (let i = -1; i++ < res.length - 2;) {
+    //     appfolderPath += res[i] + '\\';
+    // }
+    // debugger;
+    // var path = dialog.showOpenDialog({
+    //     properties: ['openDirectory']
+    // });
 
     //var dir = appfolderPath + './Assets';
+
+
     var directoriesTobeCreated = {
-        assets: appfolderPath + './Assets',
-        assetsSubImages: appfolderPath + './Assets' + '/images',
-        assetsSubMovies: appfolderPath + './Assets' + '/movies',
-        assetsSubThumbnails: appfolderPath + './Assets' + '/thumbnails',
-        framerExport: appfolderPath + './framerExport',
-        json: appfolderPath + './json',
-        pages: appfolderPath + './pages',
+        rootFolder: rootFolder,
+        assets: appfolderPath + '\\MyDesignProject' + '\\Assets',
+        assetsSubImages: appfolderPath + '\\MyDesignProject' + '\\Assets' + '\\images',
+        assetsSubMovies: appfolderPath + '\\MyDesignProject' + '\\Assets' + '\\movies',
+        assetsSubThumbnails: appfolderPath + '\\MyDesignProject' + '\\Assets' + '\\thumbnails',
+        framerExport: appfolderPath + '\\MyDesignProject' + '\\framerExport',
+        json: appfolderPath + '\\MyDesignProject' + '\\json',
+        pages: appfolderPath + '\\MyDesignProject' + '\\pages',
 
 
     };
@@ -280,30 +306,29 @@ function createDirectory(appDir) {
             if (!fs.existsSync(directoriesTobeCreated[directoriKey])) {
                 fs.mkdirSync(directoriesTobeCreated[directoriKey]);
             }
-            debugger;
         }
 
 
     }
 
-    // if (!fs.existsSync(dir)) {
-    //     fs.mkdirSync(dir);
-    // }
+    save(true);
 
 
 }
 
+createDirectory(path);
+
 function GenerateCanvasJson() {
     return {
-        leftColor: document.getElementById('gradLeft').value,
-        rightColor: document.getElementById('gradRight').value,
-        canvasWidth: canvas.width,
-        canvasHeight: canvas.height,
+        leftColor: document.getElementById('gradLeft') ? document.getElementById('gradLeft').value : "#ffffff",
+        rightColor: document.getElementById('gradRight') ? document.getElementById('gradRight').value : "#ffffff",
+        canvasWidth: canvas ? canvas.width : 1024,
+        canvasHeight: canvas ? canvas.height : 768,
         state: canvas.toJSON()
     }
 }
 
-var save = function () {
+function save(fromDir) {
 
     if (fileSavedPath) {
         fs.writeFile(fileSavedPath, JSON.stringify(GenerateCanvasJson()), function (err) {
@@ -316,11 +341,13 @@ var save = function () {
         });
     }
     else {
-        saveAS();
+        saveAS(fromDir);
     }
 }
 
-save();
+
+debugger;
+
 var loadJSON = function () {
 
 
