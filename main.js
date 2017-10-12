@@ -27,8 +27,6 @@ const {
 const reload = require('electron-reload')(__dirname)
 
 
-
-
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 
@@ -46,7 +44,8 @@ function createWindow() {
         height: 1050,
         titleBarStyle: 'hidden',
         vibrancy: 'medium-light',
-        show: true
+        show: true,
+        icon: __dirname + 'icon.ico'
     })
 
 
