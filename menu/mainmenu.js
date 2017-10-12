@@ -396,7 +396,7 @@ const template = [
                         width: 800,
                         height: 600,
                         backgroundColor: '#6b0098',
-                        alwaysOnTop: true,
+                        alwaysOnTop: false,
                         minimizable: false,
                         maximizable: false,
                         fullscreenable: false,

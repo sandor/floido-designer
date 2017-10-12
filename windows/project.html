@@ -21,7 +21,7 @@
     }
     
     .left {
-        margin-top: 180px;
+        margin-top: 90px;
     }
     
     .nav-group-item {
@@ -143,24 +143,24 @@
                     <hr>
                     <h5 class="nav-group-title" style="color: '#8a6e95 !Important;">Projects</h5>
                     <a class="nav-group-item">
-                        <span class="icon icon-home"></span> Current Projects
+                        <span class="icon icon-heart"></span> Current Projects
                     </a>
                     <span class="nav-group-item">
-    <span class="icon icon-download"></span> Templates
+    <span class="icon icon-heart-empty"></span> Templates
                     </span>
                     <hr>
                     <h5 class="nav-group-title" style="color: '#8a6e95 !Important;">Web Links</h5>
                     <a class="nav-group-item">
-                        <span class="icon icon-home"></span> Tutorials
+                        <span class="icon icon-home"></span> tutorials
                     </a>
                     <span class="nav-group-item">
     <span class="icon icon-download"></span> floido webpage
                     </span>
                     <span class="nav-group-item">
-    <span class="icon icon-folder"></span> Help
+    <span class="icon icon-folder"></span> help
                     </span>
                     <span class="nav-group-item">
-    <span class="icon icon-signal"></span> Shortcuts
+    <span class="icon icon-signal"></span> shortcuts
                     </span>
                     <span class="nav-group-item">
     <span class="icon icon-print"></span> floido market
@@ -171,7 +171,7 @@
 
             <div class="pane bg_sm">
                 <x-box id="project-window-tabs">
-                    <x-tabs centered style="height: 30px; top:85px;">
+                    <x-tabs centered style="height: 30px; top:40px;">
                         <x-tab selected>
                             <x-label>Current Projects</x-label>
                         </x-tab>
@@ -216,9 +216,9 @@
                 <x-checkbox id="checkbox" toggled></x-checkbox>
                 <x-label for="checkbox" id="label-1">Show this Window on startup</x-label>
             </x-box>
-            <x-buttons tracking="1">
+            <x-buttons id="ipcremote" tracking="1">
                 <x-box>
-                    <x-button style="margin-top:5px; margin-left:20px; margin-right:40px; background-color: rgba(153, 99, 175, 0.35);">
+                    <x-button id="open-secondwindow-button" style="margin-top:5px; margin-left:20px; margin-right:40px; background-color: rgba(153, 99, 175, 0.35);">
                         <x-box>
                             <x-label style=" color: #c0a6cb;">New Project...</x-label>
                         </x-box>
