@@ -29,11 +29,13 @@ const reload = require('electron-reload')(__dirname)
 
 
 
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 
 
 let mainWindow
+let projectWindow
     //let secondWindow
 
 function createWindow() {
@@ -46,7 +48,8 @@ function createWindow() {
         height: 1050,
         titleBarStyle: 'hidden',
         vibrancy: 'medium-light',
-        show: true
+        show: true,
+        icon: path.join(__dirname, 'icons/png/64x64.png'),
     })
 
 
@@ -65,22 +68,23 @@ function createWindow() {
         mainWindow.webContents.send('ping', 'whoooooooh!');
     })
 
-    //    secondWindow = new BrowserWindow({
-    //        frame: false,
-    //        width: 800,
-    //        height: 600,
-    //        minWidth: 800,
-    //        minHeight: 600,
-    //        backgroundColor: '#312450',
-    //        show: true,
-    //        parent: mainWindow
-    //    })
-    //
-    //    secondWindow.loadURL(url.format({
-    //        pathname: path.join(__dirname, 'aboutWindow/index.html'),
-    //        protocol: 'file:',
-    //        slashes: true
-    //    }))
+//    projectWindow = new BrowserWindow({
+//            frame: false,
+//            width: 800,
+//            height: 600,
+//            minWidth: 800,
+//            minHeight: 600,
+//            backgroundColor: '#312450',
+//            show: false,
+//            icon: path.join(__dirname, 'icons/png/64x64.png'),
+//            parent: mainWindow
+//        })
+//    
+//    projectWindow.loadURL(url.format({
+//            pathname: path.join(__dirname, 'windows/project.html'),
+//            protocol: 'file:',
+//            slashes: true
+//    ))
 
 
     // Open the DevTools.
@@ -126,7 +130,13 @@ ipcMain.on('openFile', (event, path) => {
     }
 })
 
+ipcMain.on('open-second-window', (event, arg)=> {
+    mainWindow.show()
+})
 
+ipcMain.on('close-second-window', (event, arg)=> {
+    projectWindow.hide()
+})
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
