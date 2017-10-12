@@ -10,6 +10,16 @@ initAligningGuidelines(canvas);
 initCenteringGuidelines(canvas);
 
 
+//// for save  json ////
+const {dialog} = require('electron').remote;
+
+var fs = require('fs');
+
+var fileSavedPath = "";
+var appfolderPath = "";
+//// for save json ////
+
+
 // create grid and snap to grid
 
 
@@ -210,6 +220,8 @@ var saveAS = function saveAS() {
 
     dialog.showSaveDialog(function (fileName) {
         fileSavedPath = fileName;
+        createDirectory(fileName);
+
         if (fileName === undefined) {
             console.log("You didn't save the file");
             return;
@@ -224,6 +236,61 @@ var saveAS = function saveAS() {
             alert("The file has been succesfully saved");
         });
     });
+}
+
+/// this function sed to create Directory for projects
+function selectDirectory() {
+    debugger;
+    dialog.showOpenDialog({
+        properties: ['openDirectory']
+    })
+}
+
+// selectDirectory()
+
+function createDirectory(appDir) {
+
+    var appDirTemp = JSON.parse(JSON.stringify(appDir));
+    debugger;
+    var res = appDirTemp.split('\\');
+
+
+    for (let i = -1; i++ < res.length - 2;) {
+        appfolderPath += res[i] + '\\';
+    }
+    debugger;
+
+
+    //var dir = appfolderPath + './Assets';
+    var directoriesTobeCreated = {
+        assets: appfolderPath + './Assets',
+        assetsSubImages: appfolderPath + './Assets' + '/images',
+        assetsSubMovies: appfolderPath + './Assets' + '/movies',
+        assetsSubThumbnails: appfolderPath + './Assets' + '/thumbnails',
+        framerExport: appfolderPath + './framerExport',
+        json: appfolderPath + './json',
+        pages: appfolderPath + './pages',
+
+
+    };
+
+    for (let directoriKey in directoriesTobeCreated) {
+        if (directoriesTobeCreated[directoriKey]) {
+
+            if (!fs.existsSync(directoriesTobeCreated[directoriKey])) {
+                fs.mkdirSync(directoriesTobeCreated[directoriKey]);
+            }
+            debugger;
+        }
+
+
+    }
+
+    // if (!fs.existsSync(dir)) {
+    //     fs.mkdirSync(dir);
+    // }
+
+
 }
 
 function GenerateCanvasJson() {
@@ -253,7 +320,7 @@ var save = function () {
     }
 }
 
-
+save();
 var loadJSON = function () {
 
 
@@ -389,15 +456,6 @@ require('electron').ipcRenderer.on('save', function (event, message) {
     console.log(message);
     save();
 });
-
-
-//// for save  json ////
-const {dialog} = require('electron').remote;
-
-var fs = require('fs');
-
-var fileSavedPath = "";
-//// for save json ////
 
 
 require('electron').ipcRenderer.on('saveAs', function (event, message) {
