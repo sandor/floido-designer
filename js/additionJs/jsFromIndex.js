@@ -253,7 +253,7 @@ var saveAS = function saveAS(fromDir) {
         dialog.showSaveDialog(function (fileName) {
             debugger;
             fileSavedPath = fileName;
-            //createDirectory(fileName);
+            createDirectory(fileName, true);
 
             if (fileName === undefined) {
                 console.log("You didn't save the file");
@@ -279,43 +279,80 @@ var path = dialog.showOpenDialog({
 
 var rootFolder = path + slash + 'MyDesignProject';
 
-function createDirectory(appfolderPath) {
+function createDirectory(appfolderPath, cutomFolder) {
+    debugger;
+    if (cutomFolder) {
+        var appDirTemp = (JSON.parse(JSON.stringify(appfolderPath))).toString();
 
-    // var appDirTemp = JSON.parse(JSON.stringify(appDir));
-    // debugger;
-    // var res = appDirTemp.split('\\');
-    //
-    //
-    // for (let i = -1; i++ < res.length - 2;) {
-    //     appfolderPath += res[i] + '\\';
-    // }
-    // debugger;
+        debugger;
+        var res = appDirTemp.split(slash);
+
+        appfolderPath = appDirTemp;
+
+        rootFolder = path + slash + res[res.length - 1];
+
+        // for (let i = -1; i++ < res.length - 2;) {
+        //     if (i != res.length - 3) {
+        //         appfolderPath += res[i] + slash;
+        //     }
+        //     appfolderPath += res[i];
+        //
+        // }
+        debugger;
+
+
+        if (!fs.existsSync(res[res.length - 1])) {
+            fs.mkdirSync(res[res.length - 1]);
+        }
+    }
+
+
     // var path = dialog.showOpenDialog({
     //     properties: ['openDirectory']
     // });
+
 
     //var dir = appfolderPath + './Assets';
 
 
     debugger;
-    var directoriesTobeCreated = {
-        rootFolder: rootFolder,
-        assets: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets',
-        assetsSubImages: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets' + slash + 'images',
-        assetsSubMovies: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets' + slash + 'movies',
-        assetsSubThumbnails: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets' + slash + 'thumbnails',
-        framerExport: appfolderPath + slash + 'MyDesignProject' + slash + 'framerExport',
-        json: appfolderPath + slash + 'MyDesignProject' + slash + 'json',
-        pages: appfolderPath + slash + 'MyDesignProject' + slash + 'pages',
+
+    if (cutomFolder) {
+        var directoriesTobeCreated = {
+            rootFolder: rootFolder,
+            assets: appfolderPath + slash + 'Assets',
+            assetsSubImages: appfolderPath + slash + 'Assets' + slash + 'images',
+            assetsSubMovies: appfolderPath + slash + 'Assets' + slash + 'movies',
+            assetsSubThumbnails: appfolderPath + slash + 'Assets' + slash + 'thumbnails',
+            framerExport: appfolderPath + slash + 'framerExport',
+            json: appfolderPath + slash + 'json',
+            pages: appfolderPath + slash + 'pages',
 
 
-    };
+        };
+
+    } else {
+        debugger;
+        var directoriesTobeCreated = {
+            rootFolder: rootFolder,
+            assets: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets',
+            assetsSubImages: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets' + slash + 'images',
+            assetsSubMovies: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets' + slash + 'movies',
+            assetsSubThumbnails: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets' + slash + 'thumbnails',
+            framerExport: appfolderPath + slash + 'MyDesignProject' + slash + 'framerExport',
+            json: appfolderPath + slash + 'MyDesignProject' + slash + 'json',
+            pages: appfolderPath + slash + 'MyDesignProject' + slash + 'pages',
+
+
+        };
+    }
 
     for (let directoriKey in directoriesTobeCreated) {
         if (directoriesTobeCreated[directoriKey]) {
 
             if (!fs.existsSync(directoriesTobeCreated[directoriKey])) {
                 fs.mkdirSync(directoriesTobeCreated[directoriKey]);
+                console.log(directoriesTobeCreated[directoriKey]);
             }
         }
 
