@@ -28,6 +28,7 @@ var slashForWin = "\\";
 var slashForMac = "/";
 
 var slash = platf == "win32" ? slashForWin : slashForMac;
+alert("your slash is "+slash);
 
 
 // create grid and snap to grid
