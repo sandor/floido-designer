@@ -1,11 +1,72 @@
+
 <link rel="stylesheet" href="../css/macos.theme.css">
 
 <link rel="stylesheet" href="../css/app.css">
 
 <link rel='stylesheet prefetch' href='../css/font-awesome.min.css'>
 
-<link rel="stylesheet" href="../css/style.css">
-<script src='../js/additionJs/xel.min.js'></script>
+<link rel="stylesheet" href="../css/style.css">	
+
+<!-- Insert this line above script imports  -->
+	<script>
+		if (typeof module === 'object') {
+			window.module = module;
+			module = undefined;
+		}
+	</script>
+
+
+	<script src='../js/jquery/jquery.min.js'></script>
+	<script src='../js/jquery/jquery.nestable.js'></script>
+	<script src='../js/jquery/jquery-ui.min.js'></script>
+	<script src='../js/fabric/fabric.min.js'></script>
+
+
+	<script src='../js/additionJs/xel.min.js'></script>
+
+	<script src='../js/angular/angular.min.js'></script>
+
+	<script src='../js/additionJs/electAngular.js'></script>
+	<!-- loading Services -->
+	<!-- this services must loaded after electAngular -->
+	<script src='../js/service/electangularServiceIpc.js'></script>
+	<script src='../js/service/electronService.js'></script>
+
+
+	<script src='../node_modules/angular-ui-sortable/dist/sortable.min.js'></script>
+	<script src='../js/additionJs/aligning_guidelines.js'></script>
+	<script src='../js/additionJs/centering_guidelines.js'></script>
+
+
+	<script src="../js/additionJs/utils.js"></script>
+	<!-- <script src="js/direcives/kitchensinkDirectives/app_config.js"></script> -->
+
+	<!-- loading Directives -->
+	<script src="../js/direcives/kitchensinkDirectives/bindValueToDirective.js"></script>
+	<script src="../js/direcives/kitchensinkDirectives/edObjectsPanelSortableDirective.js"></script>
+	<script src="../js/direcives/kitchensinkDirectives/objectButtonsEnabledDirective.js"></script>
+
+
+	<script src="../js/additionJs/helpers.js"></script>
+	<script src="../js/controllers/kitchensinkController/bgContrlController.js"></script>
+	<script src="../js/controllers/kitchensinkController/CanvasControlsController.js"></script>
+	<script src="../js/controllers/kitchensinkController/LayersController.js"></script>
+	<script src="../js/controllers/kitchensinkController/RightTabsController.js"></script>
+	<script src="../js/controllers/kitchensinkController/LeftTabsController.js"></script>
+	<script src="../js/controllers/kitchensinkController/FontsController.js"></script>
+    <script src="../js/controllers/kitchensinkController/ProjectListController.js"></script>
+	<script src="../js/controllers/kitchensinkController/PagesController.js"></script>
+
+
+
+
+
+	<!-- Insert this line after script imports -->
+	<script>
+		if (window.module) module = window.module;
+	</script>
+
+
 
 <style>
     .logo {
@@ -62,6 +123,7 @@
         bottom: 190px;
         height: 400px;
         padding: 0;
+        overflow: auto;
     }
     
     .project-list-group * {
@@ -81,7 +143,6 @@
         font-size: 12px;
         color: #cdb0d8;
         border-top: 1px solid rgba(245, 245, 244, 0.43);
-        cursor: move;
     }
     
     li:nth-child(even) {
@@ -132,7 +193,7 @@
     }
 </style>
 
-<div class="window" style="background: #6b0098;">
+<div ng-app="kitchensink" class="window" style="background: #6b0098;"  ng-controller="ProjectListCtrl">
     <header class="toolbar toolbar-header dark-header" style="background-color: #160022 !Important; height: 30px; border: 0px;">
         <h1 class="title" style="color: rgba(255, 255, 255, 0.74) !Important; margin-top: 5px;">floido designer | Project Window</h1>
     </header>
@@ -151,27 +212,27 @@
                     <hr>
                     <h5 class="nav-group-title" style="color: '#8a6e95 !Important;">Web Links</h5>
                     <a class="nav-group-item">
-                        <span class="icon icon-home"></span> tutorials
+                        <img class="icon" ng-src="../images/thumbnail-flows.png" width="28" height="28"> tutorials
                     </a>
                     <span class="nav-group-item">
-    <span class="icon icon-download"></span> floido webpage
+    <img class="icon" ng-src="../images/thumbnail-loading.png" width="28" height="28"> floido webpage
                     </span>
                     <span class="nav-group-item">
-    <span class="icon icon-folder"></span> help
+    <img class="icon" ng-src="../images/thumbnail-paging.png" width="28" height="28"> help
                     </span>
                     <span class="nav-group-item">
-    <span class="icon icon-signal"></span> shortcuts
+    <img class="icon" ng-src="../images/thumbnail-scrolling.png" width="28" height="28"> shortcuts
                     </span>
                     <span class="nav-group-item">
-    <span class="icon icon-print"></span> floido market
+    <img class="icon" ng-src="../images/thumbnail-states.png" width="28" height="28"> floido market
                     </span>
                 </nav>
             </div>
 
 
-            <div class="pane bg_sm">
+            <div class="pane bg_sm" style="overflow: hidden;">
                 <x-box id="project-window-tabs">
-                    <x-tabs centered style="height: 30px; top:40px;">
+                    <x-tabs centered style="height: 30px; top:42px;">
                         <x-tab selected>
                             <x-label>Current Projects</x-label>
                         </x-tab>
@@ -184,23 +245,17 @@
                 <x-box>
                 </x-box>
                 <x-box >
-                    <ul class="project-list-group">
+                    <ul class="project-list-group" ng-model="projects">
 
-                        <li class="project-list-group-item">
-                            <img class="img-circle project-media-object pull-left" src="/assets/img/avatar.jpg" width="32" height="32">
+                        <li class="project-list-group-item" ng-class="{active: project.active}" class="list-pages-item" ng-repeat="project in projects" ng-click="setAsActive(object); setAsActiveLayer(project, projects)" ng-if="!object.ignore">
+                            
+                            <img class="img-circle project-media-object pull-left" ng-src="{{project.thumbnail}}" width="32" height="32">
                             <div class="project-media-body">
-                                <strong>List item title</strong>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <strong>{{project.title}}</strong>
+                                <hr style="margin: 5px;">
+                                <p>{{project.value}}</p>
                             </div>
                         </li>
-                        <li class="project-list-group-item">
-                            <img class="img-circle project-media-object pull-left" src="/assets/img/avatar2.png" width="32" height="32">
-                            <div class="project-media-body">
-                                <strong>List item title</strong>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                        </li>
-                        ...
                     </ul>
 
                 </x-box>
@@ -210,15 +265,18 @@
 
         </div>
     </div>
-    <footer class="toolbar toolbar-footer" style="background-color: #6b0098 !Important; height: 35px; border: 0px;">
+    <footer class="toolbar toolbar-footer" style="background-color: #6b0098 !Important; height: 40px; border: 0px;">
         <x-box class="middle">
-            <x-box style="margin-left: 15px; margin-top:9px; color: #8a6e95;">
+            <x-box style="margin-left: 15px; margin-top:9px; padding-bottom: 5px; color: #8a6e95;">
                 <x-checkbox id="checkbox" toggled></x-checkbox>
                 <x-label for="checkbox" id="label-1">Show this Window on startup</x-label>
             </x-box>
             <x-buttons id="ipcremote" tracking="1">
                 <x-box>
-                    <x-button id="open-secondwindow-button" style="margin-top:5px; margin-left:20px; margin-right:40px; background-color: rgba(153, 99, 175, 0.35);">
+                    <x-button id="open-secondwindow-button" style="margin-top:5px; margin-left:20px; margin-right:40px; background-color: rgba(153, 99, 175, 0.35);" onclick="function () {
+                    var focusedWindow = BrowserWindow.getFocusedWindow();
+                    focusedWindow.webContents.send('saveAs', 'saving as');
+                }">
                         <x-box>
                             <x-label style=" color: #c0a6cb;">New Project...</x-label>
                         </x-box>
