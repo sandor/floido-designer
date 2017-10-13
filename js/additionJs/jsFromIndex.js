@@ -20,6 +20,16 @@ var appfolderPath = "";
 //// for save json ////
 
 
+var os = require('os');
+var platf = os.platform();
+debugger;
+
+var slashForWin = "\\";
+var slashForMac = "/";
+
+var slash = platf == "win32" ? slashForWin : slashForMac;
+
+
 // create grid and snap to grid
 
 
@@ -218,7 +228,14 @@ var saveAS = function saveAS() {
     //
     // download(tempFile, 'test.json', 'text/plain');
 
+<<<<<<< HEAD
     dialog.showSaveDialog(function (fileName) {
+=======
+    if (fromDir) {
+        var fileName = slash + "tempProjectJson.json";
+        debugger;
+        fileName = rootFolder + fileName;
+>>>>>>> 3821988c6bc2fcd832c3a1c2a228fa916d3c7243
         fileSavedPath = fileName;
         createDirectory(fileName);
 
@@ -249,6 +266,8 @@ function selectDirectory() {
 // selectDirectory()
 
 function createDirectory(appDir) {
+=======
+var rootFolder = path + slash + 'MyDesignProject';
 
     var appDirTemp = JSON.parse(JSON.stringify(appDir));
     debugger;
@@ -271,6 +290,16 @@ function createDirectory(appDir) {
         json: appfolderPath + './json',
         pages: appfolderPath + './pages',
 
+        debugger;
+    var directoriesTobeCreated = {
+        rootFolder: rootFolder,
+        assetsSubImages: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets' + slash + 'images',
+        assetsSubMovies: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets' + slash + 'movies',
+        assetsSubThumbnails: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets' + slash + 'thumbnails',
+        framerExport: appfolderPath + slash + 'MyDesignProject' + slash + 'framerExport',
+        json: appfolderPath + slash + 'MyDesignProject' + slash + 'json',
+        pages: appfolderPath + slash + 'MyDesignProject' + slash + 'pages',
+
 
     };
 
@@ -289,7 +318,6 @@ function createDirectory(appDir) {
     // if (!fs.existsSync(dir)) {
     //     fs.mkdirSync(dir);
     // }
-
 
 }
 
