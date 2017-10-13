@@ -293,6 +293,7 @@ var rootFolder = path + slash + 'MyDesignProject';
         debugger;
     var directoriesTobeCreated = {
         rootFolder: rootFolder,
+        assets: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets',
         assetsSubImages: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets' + slash + 'images',
         assetsSubMovies: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets' + slash + 'movies',
         assetsSubThumbnails: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets' + slash + 'thumbnails',
