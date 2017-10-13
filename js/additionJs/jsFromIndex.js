@@ -631,7 +631,7 @@ function bringToFront() {
 };
 
 
-// electron contextMenu test this should be moved in a separate JS file in menus
+// electron contextMenu – should be moved in a separate JS file in menus
 // Create a context menu in electron
 
 const {
