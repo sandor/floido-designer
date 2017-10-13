@@ -522,279 +522,288 @@ setup IPC communication/functions with mainmenu.js
 //File Menu
 
 require('electron').ipcRenderer.on('open', function (event, message) {
-
-    console.log(message);
-    loadJSON();
-});
-require('electron').ipcRenderer.on('save', function (event, message) {
-
-    console.log(message);
-    save();
-});
-
-
-require('electron').ipcRenderer.on('saveAs', function (event, message) {
-
-    console.log(message);
-    saveAS();
-});
-
-//edit menu
-
-require('electron').ipcRenderer.on('undo', function (event, message) {
-    console.log(message);
-    undo();
-});
-
-require('electron').ipcRenderer.on('redo', function (event, message) {
-    console.log(message);
-    redo();
-});
-
-require('electron').ipcRenderer.on('remove', function (event, message) {
-    console.log(message);
-    remove();
-});
-
-require('electron').ipcRenderer.on('cut', function (event, message) {
-    console.log(message);
-    copy();
-    remove();
-});
-
-require('electron').ipcRenderer.on('copy', function (event, message) {
-    console.log(message);
-    copy();
-});
-
-require('electron').ipcRenderer.on('paste', function (event, message) {
-    console.log(message);
-    paste();
-});
-
-require('electron').ipcRenderer.on('duplicate', function (event, message) {
-    console.log(message);
-    copy();
-    paste();
-});
-
-//Arrange menu
-
-require('electron').ipcRenderer.on('group', function (event, message) {
-    console.log(message);
-    group();
-});
-
-require('electron').ipcRenderer.on('ungroup', function (event, message) {
-    console.log(message);
-    ungroup();
-});
-
-require('electron').ipcRenderer.on('bringForward', function (event, message) {
-    console.log(message);
-    bringForward();
-});
-
-/*
-Utility functions for selecting and aranging objects on the canvas
-*/
-
-
-//sen the objects forward and backward
-
-function sendBackwards() {
-    var activeObject = canvas.getActiveObject();
-    if (activeObject) {
-        canvas.sendBackwards(activeObject);
-    }
-};
-
-function sendToBack() {
-    var activeObject = canvas.getActiveObject();
-    if (activeObject) {
-        canvas.sendToBack(activeObject);
-    }
-};
-
-function bringForward() {
-    var activeObject = canvas.getActiveObject();
-    if (activeObject) {
-        canvas.bringForward(activeObject);
-    }
-};
-
-function bringToFront() {
-    var activeObject = canvas.getActiveObject();
-    if (activeObject) {
-        canvas.bringToFront(activeObject);
-    }
-};
-
-
-// electron contextMenu – should be moved in a separate JS file in menus
-// Create a context menu in electron
-
-const {
-    remote
-} = require('electron')
-const {
-    Menu, MenuItem
-} = remote
-
-const menu = new Menu()
-
-// Build menu one item at a time, unlike
-
-
-menu.append(new MenuItem({
-    label: 'Send backwards',
-    click() {
-        sendBackwards();
-    }
-}))
-
-menu.append(new MenuItem({
-    label: 'Send to back',
-    click() {
-        sendToBack();
-    }
-}))
-
-menu.append(new MenuItem({
-    label: 'Bring forwards',
-    click() {
-        bringForward();
-    }
-}))
-
-menu.append(new MenuItem({
-    label: 'Bring to front',
-    click() {
-        bringToFront();
-    }
-}))
-
-menu.append(new MenuItem({
-    type: 'separator'
-}))
-
-
-menu.append(new MenuItem({
-    label: 'Align',
-    submenu: [{
-        label: 'Left'
-    }, {
-        label: 'Center'
-    }, {
-        label: 'Right'
-    }, {
-        type: 'separator'
-    }, {
-        label: 'Top'
-    }, {
-        label: 'Middle'
-    }, {
-        label: 'Bottom'
-    }]
-}))
-
-menu.append(new MenuItem({
-    label: 'Distribute',
-    submenu: [{
-        label: 'Horizontal'
-    }, {
-        label: 'Vertical'
-    }]
-}))
-
-
-menu.append(new MenuItem({
-    type: 'separator'
-}))
-
-menu.append(new MenuItem({
-    label: 'Group Selected',
-    click() {
-        group();
-    }
-}))
-
-menu.append(new MenuItem({
-    label: 'Ungroup Selected',
-    click() {
-        ungroup();
-    }
-}))
-
-menu.append(new MenuItem({
-    type: 'separator'
-}))
-
-menu.append(new MenuItem({
-    label: 'Undo',
-    click() {
-
-        undo();
-    }
-}))
-
-menu.append(new MenuItem({
-    label: 'Save',
-    click() {
+    
+        console.log(message);
+        loadJSON();
+    });
+    require('electron').ipcRenderer.on('save', function (event, message) {
+    
+        console.log(message);
         save();
-    }
-}))
-
-menu.append(new MenuItem({
-    label: 'Redo',
-    click() {
+    });
+    
+    
+    //// for save  json ////
+    const {dialog} = require('electron').remote;
+    
+    var fs = require('fs');
+    
+    var fileSavedPath = "";
+    //// for save json ////
+    
+    
+    require('electron').ipcRenderer.on('saveAs', function (event, message) {
+    
+        console.log(message);
+        saveAS();
+    });
+    
+    //edit menu
+    
+    require('electron').ipcRenderer.on('undo', function (event, message) {
+        console.log(message);
+        undo();
+    });
+    
+    require('electron').ipcRenderer.on('redo', function (event, message) {
+        console.log(message);
         redo();
-    }
-}))
-
-menu.append(new MenuItem({
-    type: 'separator'
-}))
-
-menu.append(new MenuItem({
-    label: 'Cut',
-    click() {
+    });
+    
+    require('electron').ipcRenderer.on('remove', function (event, message) {
+        console.log(message);
+        remove();
+    });
+    
+    require('electron').ipcRenderer.on('cut', function (event, message) {
+        console.log(message);
         copy();
         remove();
-    }
-}))
-
-menu.append(new MenuItem({
-    label: 'Copy',
-    click() {
+    });
+    
+    require('electron').ipcRenderer.on('copy', function (event, message) {
+        console.log(message);
         copy();
-    }
-}))
-
-menu.append(new MenuItem({
-    label: 'Paste',
-    click() {
+    });
+    
+    require('electron').ipcRenderer.on('paste', function (event, message) {
+        console.log(message);
         paste();
-    }
-}))
-
-menu.append(new MenuItem({
-    label: 'Delete',
-    click() {
-        remove();
-    }
-}))
-
-menu.append(new MenuItem({
-    label: 'Select All',
-    click() {
-        selectAllCanvasObjects();
-    }
-}))
-
-
-// Prevent default action of right click in chromium. Replace with our menu.
-document.getElementById("wrapper").addEventListener('contextmenu', (e) => {
-    e.preventDefault()
-    menu.popup(remote.getCurrentWindow())
-}, false)
+    });
+    
+    require('electron').ipcRenderer.on('duplicate', function (event, message) {
+        console.log(message);
+        copy();
+        paste();
+    });
+    
+    //Arrange menu
+    
+    require('electron').ipcRenderer.on('group', function (event, message) {
+        console.log(message);
+        group();
+    });
+    
+    require('electron').ipcRenderer.on('ungroup', function (event, message) {
+        console.log(message);
+        ungroup();
+    });
+    
+    require('electron').ipcRenderer.on('bringForward', function (event, message) {
+        console.log(message);
+        bringForward();
+    });
+    
+    /*
+    Utility functions for selecting and aranging objects on the canvas
+    */
+    
+    
+    //sen the objects forward and backward
+    
+    function sendBackwards() {
+        var activeObject = canvas.getActiveObject();
+        if (activeObject) {
+            canvas.sendBackwards(activeObject);
+        }
+    };
+    
+    function sendToBack() {
+        var activeObject = canvas.getActiveObject();
+        if (activeObject) {
+            canvas.sendToBack(activeObject);
+        }
+    };
+    
+    function bringForward() {
+        var activeObject = canvas.getActiveObject();
+        if (activeObject) {
+            canvas.bringForward(activeObject);
+        }
+    };
+    
+    function bringToFront() {
+        var activeObject = canvas.getActiveObject();
+        if (activeObject) {
+            canvas.bringToFront(activeObject);
+        }
+    };
+    
+    
+    // electron contextMenu test this should be moved in a separate JS file in menus
+    // Create a context menu in electron
+    
+    const {
+        remote
+    } = require('electron')
+    const {
+        Menu, MenuItem
+    } = remote
+    
+    const menu = new Menu()
+    
+    // Build menu one item at a time, unlike
+    
+    
+    menu.append(new MenuItem({
+        label: 'Send backwards',
+        click() {
+            sendBackwards();
+        }
+    }))
+    
+    menu.append(new MenuItem({
+        label: 'Send to back',
+        click() {
+            sendToBack();
+        }
+    }))
+    
+    menu.append(new MenuItem({
+        label: 'Bring forwards',
+        click() {
+            bringForward();
+        }
+    }))
+    
+    menu.append(new MenuItem({
+        label: 'Bring to front',
+        click() {
+            bringToFront();
+        }
+    }))
+    
+    menu.append(new MenuItem({
+        type: 'separator'
+    }))
+    
+    
+    menu.append(new MenuItem({
+        label: 'Align',
+        submenu: [{
+            label: 'Left'
+        }, {
+            label: 'Center'
+        }, {
+            label: 'Right'
+        }, {
+            type: 'separator'
+        }, {
+            label: 'Top'
+        }, {
+            label: 'Middle'
+        }, {
+            label: 'Bottom'
+        }]
+    }))
+    
+    menu.append(new MenuItem({
+        label: 'Distribute',
+        submenu: [{
+            label: 'Horizontal'
+        }, {
+            label: 'Vertical'
+        }]
+    }))
+    
+    
+    menu.append(new MenuItem({
+        type: 'separator'
+    }))
+    
+    menu.append(new MenuItem({
+        label: 'Group Selected',
+        click() {
+            group();
+        }
+    }))
+    
+    menu.append(new MenuItem({
+        label: 'Ungroup Selected',
+        click() {
+            ungroup();
+        }
+    }))
+    
+    menu.append(new MenuItem({
+        type: 'separator'
+    }))
+    
+    menu.append(new MenuItem({
+        label: 'Undo',
+        click() {
+    
+            undo();
+        }
+    }))
+    
+    menu.append(new MenuItem({
+        label: 'Save',
+        click() {
+            save();
+        }
+    }))
+    
+    menu.append(new MenuItem({
+        label: 'Redo',
+        click() {
+            redo();
+        }
+    }))
+    
+    menu.append(new MenuItem({
+        type: 'separator'
+    }))
+    
+    menu.append(new MenuItem({
+        label: 'Cut',
+        click() {
+            copy();
+            remove();
+        }
+    }))
+    
+    menu.append(new MenuItem({
+        label: 'Copy',
+        click() {
+            copy();
+        }
+    }))
+    
+    menu.append(new MenuItem({
+        label: 'Paste',
+        click() {
+            paste();
+        }
+    }))
+    
+    menu.append(new MenuItem({
+        label: 'Delete',
+        click() {
+            remove();
+        }
+    }))
+    
+    menu.append(new MenuItem({
+        label: 'Select All',
+        click() {
+            selectAllCanvasObjects();
+        }
+    }))
+    
+    
+    // Prevent default action of right click in chromium. Replace with our menu.
+    document.getElementById("wrapper").addEventListener('contextmenu', (e) => {
+        e.preventDefault()
+        menu.popup(remote.getCurrentWindow())
+    }, false)

@@ -29,7 +29,10 @@ const reload = require('electron-reload')(__dirname)
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of fced3c5... adding some icons
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 
@@ -48,8 +51,12 @@ function createWindow() {
         height: 1050,
         titleBarStyle: 'hidden',
         vibrancy: 'medium-light',
+<<<<<<< HEAD
         show: true,
         icon: path.join(__dirname, 'icons/png/64x64.png'),
+=======
+        show: true
+>>>>>>> parent of fced3c5... adding some icons
     })
 
 
