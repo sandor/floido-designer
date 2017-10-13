@@ -228,14 +228,11 @@ var saveAS = function saveAS() {
     //
     // download(tempFile, 'test.json', 'text/plain');
 
-<<<<<<< HEAD
     dialog.showSaveDialog(function (fileName) {
-=======
     if (fromDir) {
         var fileName = slash + "tempProjectJson.json";
         debugger;
         fileName = rootFolder + fileName;
->>>>>>> 3821988c6bc2fcd832c3a1c2a228fa916d3c7243
         fileSavedPath = fileName;
         createDirectory(fileName);
 
@@ -266,8 +263,8 @@ function selectDirectory() {
 // selectDirectory()
 
 function createDirectory(appDir) {
-=======
-var rootFolder = path + slash + 'MyDesignProject';
+
+    var rootFolder = path + slash + 'MyDesignProject';
 
     var appDirTemp = JSON.parse(JSON.stringify(appDir));
     debugger;
@@ -554,7 +551,7 @@ Utility functions for selecting and aranging objects on the canvas
 */
 
 
-//sen the objects forward and backward
+//send the objects forward and backward
 
 function sendBackwards() {
     var activeObject = canvas.getActiveObject();
