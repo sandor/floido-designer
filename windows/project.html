@@ -70,7 +70,6 @@
 
 <style>
     .logo {
-        background: #6b0098;
         background-image: url(../icons/project_bg.png);
         background-repeat: no-repeat;
     }
@@ -86,9 +85,9 @@
     }
     
     .nav-group-item {
-        padding-left: 5px;
-        padding-top: 2px;
-        padding-bottom: 2px;
+        padding-left: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         padding-right: 10px;
         font-size: 13px;
         color: #cdb0d8 !Important;
@@ -108,9 +107,13 @@
     }
     
     .bg_sm {
-        background: #6b0098;
         background-image: url(../icons/project_bg_sm.png);
         background-repeat: repeat-x;
+    }
+    .nav-group-item .icon {
+        width: 20px;
+        height: 20px;
+        margin-top: 0px;
     }
     /*********************** Project List Styles ***************************************/
     
@@ -204,10 +207,10 @@
                     <hr>
                     <h5 class="nav-group-title" style="color: '#8a6e95 !Important;">Projects</h5>
                     <a class="nav-group-item">
-                        <span class="icon icon-heart"></span> Current Projects
+                        <img class="icon" ng-src="../images/thumbnail-tutorial.png" width="28" height="28"> Current Projects
                     </a>
                     <span class="nav-group-item">
-    <span class="icon icon-heart-empty"></span> Templates
+                        <img class="icon" ng-src="../images/thumbnail-tutorial2.png" width="28" height="28"> Templates
                     </span>
                     <hr>
                     <h5 class="nav-group-title" style="color: '#8a6e95 !Important;">Web Links</h5>
@@ -265,15 +268,15 @@
 
         </div>
     </div>
-    <footer class="toolbar toolbar-footer" style="background-color: #6b0098 !Important; height: 40px; border: 0px;">
+    <footer class="toolbar toolbar-footer" style="background-color: #660091 !Important; height: 40px; border: 0px;">
         <x-box class="middle">
-            <x-box style="margin-left: 15px; margin-top:9px; padding-bottom: 5px; color: #8a6e95;">
+            <x-box style="margin-left: 15px; margin-top:12px; padding-bottom: 5px; color: #8a6e95;">
                 <x-checkbox id="checkbox" toggled></x-checkbox>
                 <x-label for="checkbox" id="label-1">Show this Window on startup</x-label>
             </x-box>
             <x-buttons id="ipcremote" tracking="1">
                 <x-box>
-                    <x-button id="open-secondwindow-button" style="margin-top:5px; margin-left:20px; margin-right:40px; background-color: rgba(153, 99, 175, 0.35);" onclick="function () {
+                    <x-button id="open-secondwindow-button" style="margin-top:2px; margin-left:20px; margin-right:40px; background-color: rgba(153, 99, 175, 0.35);" onclick="function () {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('saveAs', 'saving as');
                 }">
@@ -282,13 +285,13 @@
                         </x-box>
                     </x-button>
 
-                    <x-button style="margin-top:5px; margin-left:2px; margin-right:10px;  background-color: rgba(153, 99, 175, 0.35);">
+                    <x-button style="margin-top:2px; margin-left:2px; margin-right:10px;  background-color: rgba(153, 99, 175, 0.35);">
                         <x-box>
                             <x-label style=" color: #c0a6cb;">Open Project...</x-label>
                         </x-box>
                     </x-button>
 
-                    <x-button style="margin-top:5px; margin-left:2px; margin-right:15px; background-color: rgba(153, 99, 175, 0.35);">
+                    <x-button style="margin-top:2px; margin-left:2px; margin-right:15px; background-color: rgba(153, 99, 175, 0.35);">
                         <x-box>
                             <x-label style=" color: #c0a6cb;">Cancel</x-label>
                         </x-box>

@@ -19,13 +19,6 @@
 			module = undefined;
 		}
 	</script>
-	<!-- Insert this line above script imports  -->
-	<script>
-		if (typeof module === 'object') {
-			window.module = module;
-			module = undefined;
-		}
-	</script>
 
 
 	<!--    <script src='js/xel.min.js'></script>-->
@@ -90,10 +83,6 @@
 	<!-- Insert this line after script imports -->
 	<script>
 		if (window.module) module = window.module;
-	</script>
-	<script>
-	function toggleInspector() { var x = document.getElementById('inspector'); if (x.style.display === 'none') { x.style.display = 'block'; } else { x.style.display = 'none'; } }
-
 	</script>
 
 	<!-- dummy function – toggle left and right panel -->
