@@ -11,7 +11,7 @@ initCenteringGuidelines(canvas);
 
 
 //// for save  json ////
-const {dialog} = require('electron').remote;
+const { dialog } = require('electron').remote;
 
 var fs = require('fs');
 
@@ -22,13 +22,12 @@ var appfolderPath = "";
 
 var os = require('os');
 var platf = os.platform();
-debugger;
+
 
 var slashForWin = "\\";
 var slashForMac = "/";
 
 var slash = platf == "win32" ? slashForWin : slashForMac;
-alert("your slash is "+slash);
 
 
 // create grid and snap to grid
@@ -253,15 +252,14 @@ var saveAS = function saveAS(fromDir) {
     } else {
         dialog.showSaveDialog(function (fileName) {
             debugger;
-            fileSavedPath = fileName;
             createDirectory(fileName, true);
-
-            if (fileName === undefined) {
+            var TempFileNameforWriting = fileName + slash + "tempProjectJson.json"
+            if (TempFileNameforWriting === undefined) {
                 console.log("You didn't save the file");
                 return;
             }
 
-            fs.writeFile(fileName, JSON.stringify(GenerateCanvasJson()), function (err) {
+            fs.writeFile(TempFileNameforWriting, JSON.stringify(GenerateCanvasJson()), function (err) {
 
                 if (err) {
                     alert("An error ocurred creating the file " + err.message)
@@ -299,11 +297,10 @@ function createDirectory(appfolderPath, cutomFolder) {
         //     appfolderPath += res[i];
         //
         // }
-        debugger;
 
 
-        if (!fs.existsSync(res[res.length - 1])) {
-            fs.mkdirSync(res[res.length - 1]);
+        if (!fs.existsSync(rootFolder)) {
+            fs.mkdirSync(rootFolder);
         }
     }
 
@@ -316,7 +313,6 @@ function createDirectory(appfolderPath, cutomFolder) {
     //var dir = appfolderPath + './Assets';
 
 
-    debugger;
 
     if (cutomFolder) {
         var directoriesTobeCreated = {
@@ -377,7 +373,7 @@ function GenerateCanvasJson() {
 }
 
 function save(fromDir) {
-
+    debugger;
     if (fileSavedPath) {
         fs.writeFile(fileSavedPath, JSON.stringify(GenerateCanvasJson()), function (err) {
 
@@ -409,7 +405,7 @@ var loadJSON = function () {
         var reader = new FileReader();
 
         function readTextFile(file) {
-            return new Promise(function (resolve, reject,) {
+            return new Promise(function (resolve, reject, ) {
                 var rawFile = new XMLHttpRequest();
 
                 rawFile.open("GET", file, false);
@@ -482,10 +478,10 @@ function addGradient(left, right) {
             color: leftColor,
             offset: 0,
         },
-            {
-                color: rightColor,
-                offset: 1,
-            }
+        {
+            color: rightColor,
+            offset: 1,
+        }
         ]
     });
     canvas.backgroundColor = grad.toLive(canvas.contextContainer);
