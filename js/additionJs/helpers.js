@@ -1174,8 +1174,6 @@ function addAccessors($scope, $rootScope) {
     };
 
 
-
-
     $scope.bgImage = function () {
         const {
             ipcRenderer

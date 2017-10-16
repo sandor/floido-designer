@@ -6,8 +6,6 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
     $scope.getActiveStyle = getActiveStyle;
     $scope.zoom = 0;//default zoom
 
-    $scope.pageFlowShow = false;
-
     $scope.insideRulerWidth = document.getElementsByClassName("rul_wrapper")[0].offsetWidth
         - document.getElementsByClassName("rul_ruler_Vertical")[0].offsetHeight - 70;
     $scope.insideRulerheight = document.getElementsByClassName("rul_wrapper")[0].offsetHeight - document.getElementsByClassName("toolbar-header")[0].offsetHeight
@@ -21,7 +19,7 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
     addAccessors($scope);
     watchCanvas($scope);
 
-    //get canvas Angle and set it
+//get canvas Angle and set it
 
     canvas.on('object:rotating', function (options) {
 
@@ -109,21 +107,21 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
         height: 768,
         width: 1024
     },
-    {
-        name: 'iPad Portrait',
-        height: 1024,
-        width: 766
-    },
-    {
-        name: 'iPad Pro Landscape',
-        height: 1024,
-        width: 1366
-    },
-    {
-        name: 'iPad Pro Portrait',
-        height: 1366,
-        width: 1024
-    }
+        {
+            name: 'iPad Portrait',
+            height: 1024,
+            width: 766
+        },
+        {
+            name: 'iPad Pro Landscape',
+            height: 1024,
+            width: 1366
+        },
+        {
+            name: 'iPad Pro Portrait',
+            height: 1366,
+            width: 1024
+        }
     ];
 
 
@@ -135,10 +133,6 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
 
     };
 
-
-    $scope.pageFlow = function () {
-        debugger;
-    }
 
     $scope.setZoom = function (param) {
 
@@ -245,8 +239,8 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
 
 
                 // $scope.zoom = ((canvas.width ) / canvas._activeObject.width) * 100;
-                $scope.zoom = ((canvas.width) / canvas._activeObject.width) > ((canvas.height) / canvas._activeObject.height)
-                    ? (((canvas.height) / canvas._activeObject.height) * 100) : (((canvas.width) / canvas._activeObject.width) * 100);
+                $scope.zoom = ((canvas.width ) / canvas._activeObject.width) > ((canvas.height ) / canvas._activeObject.height)
+                    ? (((canvas.height ) / canvas._activeObject.height) * 100) : (((canvas.width ) / canvas._activeObject.width) * 100);
 
 
                 let scaleFactorWidth = ((canvas.width / canvas._activeObject.width) * canvas._activeObject.width);
@@ -255,7 +249,7 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
             }
             else {
                 let tempScale = (window.innerHeight - 170) / canvas.getActiveObject().height;
-                let tempZoom = ((canvas.width) / canvas._activeObject.width) > ((canvas.height) / canvas._activeObject.height)
+                let tempZoom = ((canvas.width ) / canvas._activeObject.width) > ((canvas.height ) / canvas._activeObject.height)
                     ? (tempScale * 100) : (tempScale * 100);
                 $scope.zoom = tempZoom
 
