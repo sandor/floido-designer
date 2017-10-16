@@ -272,12 +272,11 @@ var saveAS = function (fromDir) {
 
 }
 
-/// you must uncoment it and after save functionality will work 
+// you must uncoment it and after save functionality will work 
 // var path = dialog.showOpenDialog({
 //     properties: ['openDirectory']
 // });
-
-var rootFolder = path + slash + 'MyDesignProject';
+//var rootFolder = path + slash + 'MyDesignProject';
 
 function createDirectory(appfolderPath, cutomFolder) {
 
@@ -361,7 +360,8 @@ function createDirectory(appfolderPath, cutomFolder) {
 
 }
 
-createDirectory(path);
+// you must uncoment it and after save functionality will work 
+//createDirectory(path);
 
 function GenerateCanvasJson() {
     return {
