@@ -18,35 +18,30 @@ const template = [
         label: 'File',
         submenu: [
             {
-                label: 'New Project',
-                accelerator: 'CmdOrCtrl+N'
+                label: 'New Project'
             },
             {
                 label: 'Open Project...',
-                accelerator: 'CmdOrCtrl+O',
                 click: function () {/// must be implemented fpr project now orking for file.json
                     var focusedWindow = BrowserWindow.getFocusedWindow();
-                    focusedWindow.webContents.send('open', 'loading JSON');
+                    focusedWindow.webContents.send('openProject', 'loading project');
                 }
             },
             {
                 label: 'Save Project',
-                accelerator: 'CmdOrCtrl+S',
                 click: function () {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
-                    focusedWindow.webContents.send('save', 'saving');
+                    focusedWindow.webContents.send('saveProject', 'saving project');
                 }
             },
             {
                 label: 'Save Project As...',
-              //  accelerator: 'Shift+CmdOrCtrl+S',
                 click: function () {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
-                    focusedWindow.webContents.send('saveAs', 'saving as');
+                    focusedWindow.webContents.send('saveAsProject', 'saving project as');
                 }
             }, {
-                label: 'Rename  Project...',
-                accelerator: 'Shift+CmdOrCtrl+S',
+                label: 'Rename  Project...'
                 // click: function () { ///// to be implemented for rename project
                 //     var focusedWindow = BrowserWindow.getFocusedWindow();
                 //     focusedWindow.webContents.send('saveAs', 'saving as');
@@ -57,8 +52,7 @@ const template = [
                 label: 'Open Recent Project ',
                 submenu: [
                     {
-                        label: 'Open Recent Project',
-                        accelerator: 'Shift+CmdOrCtrl+S',
+                        label: 'Open Recent Project'
                         // click: function () {   ////////////////to be imlemented
                         //     var focusedWindow = BrowserWindow.getFocusedWindow();
                         //     focusedWindow.webContents.send('saveAs', 'saving as');
@@ -84,7 +78,7 @@ const template = [
 
 
             {
-                label: 'Save Page...',
+                label: 'Save Page',
                 accelerator: 'CmdOrCtrl+S',
                 click: function () {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
@@ -100,7 +94,7 @@ const template = [
                 // }
             }, {
                 label: 'Rename Page...',
-                accelerator: 'Shift+CmdOrCtrl+S',
+                accelerator: 'CmdOrCtrl+R'
                 // click: function () { ///// to be implemented for rename project
                 //     var focusedWindow = BrowserWindow.getFocusedWindow();
                 //     focusedWindow.webContents.send('saveAs', 'saving as');
@@ -110,8 +104,7 @@ const template = [
                 label: 'Open Recent Page',
                 submenu: [
                     {
-                        label: 'Open Recent Project',
-                        accelerator: 'Shift+CmdOrCtrl+S',
+                        label: 'Open Recent Project'
                         // click: function () {   ////////////////to be imlemented
                         //     var focusedWindow = BrowserWindow.getFocusedWindow();
                         //     focusedWindow.webContents.send('saveAs', 'saving as');
