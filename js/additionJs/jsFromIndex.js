@@ -222,7 +222,7 @@ var undo = function () {
     }
 }
 
-var saveAS = function saveAS(fromDir) {
+var saveAS = function (fromDir) {
 
     // var tempFile = JSON.stringify(canvas);
     //
@@ -230,7 +230,7 @@ var saveAS = function saveAS(fromDir) {
 
     if (fromDir) {
         var fileName = slash + "tempProjectJson.json";
-        debugger;
+
         fileName = rootFolder + fileName;
         fileSavedPath = fileName;
         //createDirectory(fileName);
@@ -251,7 +251,7 @@ var saveAS = function saveAS(fromDir) {
 
     } else {
         dialog.showSaveDialog(function (fileName) {
-            debugger;
+
             createDirectory(fileName, true);
             var TempFileNameforWriting = fileName + slash + "tempProjectJson.json"
             if (TempFileNameforWriting === undefined) {
@@ -272,18 +272,19 @@ var saveAS = function saveAS(fromDir) {
 
 }
 
-var path = dialog.showOpenDialog({
-    properties: ['openDirectory']
-});
+/// you must uncoment it and after save functionality will work 
+// var path = dialog.showOpenDialog({
+//     properties: ['openDirectory']
+// });
 
 var rootFolder = path + slash + 'MyDesignProject';
 
 function createDirectory(appfolderPath, cutomFolder) {
-    debugger;
+
     if (cutomFolder) {
         var appDirTemp = (JSON.parse(JSON.stringify(appfolderPath))).toString();
 
-        debugger;
+
         var res = appDirTemp.split(slash);
 
         appfolderPath = appDirTemp;
@@ -329,7 +330,7 @@ function createDirectory(appfolderPath, cutomFolder) {
         };
 
     } else {
-        debugger;
+
         var directoriesTobeCreated = {
             rootFolder: rootFolder,
             assets: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets',
@@ -373,7 +374,9 @@ function GenerateCanvasJson() {
 }
 
 function save(fromDir) {
-    debugger;
+
+
+
     if (fileSavedPath) {
         fs.writeFile(fileSavedPath, JSON.stringify(GenerateCanvasJson()), function (err) {
 
@@ -385,12 +388,13 @@ function save(fromDir) {
         });
     }
     else {
+
         saveAS(fromDir);
     }
 }
 
 
-debugger;
+
 
 var loadJSON = function () {
 
@@ -743,198 +747,12 @@ menu.append(new MenuItem({
 }))
 
 
-
-require('electron').ipcRenderer.on('saveAs', function (event, message) {
-
-    console.log(message);
-    saveAS();
-});
-
-//edit menu
-
-require('electron').ipcRenderer.on('undo', function (event, message) {
-    console.log(message);
-    undo();
-});
-
-require('electron').ipcRenderer.on('redo', function (event, message) {
-    console.log(message);
-    redo();
-});
-
-require('electron').ipcRenderer.on('remove', function (event, message) {
-    console.log(message);
-    remove();
-});
-
-require('electron').ipcRenderer.on('cut', function (event, message) {
-    console.log(message);
-    copy();
-    remove();
-});
-
-require('electron').ipcRenderer.on('copy', function (event, message) {
-    console.log(message);
-    copy();
-});
-
-require('electron').ipcRenderer.on('paste', function (event, message) {
-    console.log(message);
-    paste();
-});
-
-require('electron').ipcRenderer.on('duplicate', function (event, message) {
-    console.log(message);
-    copy();
-    paste();
-});
-
-//Arrange menu
-
-require('electron').ipcRenderer.on('group', function (event, message) {
-    console.log(message);
-    group();
-});
-
-require('electron').ipcRenderer.on('ungroup', function (event, message) {
-    console.log(message);
-    ungroup();
-});
-
-require('electron').ipcRenderer.on('bringForward', function (event, message) {
-    console.log(message);
-    bringForward();
-});
-
-/*
-Utility functions for selecting and aranging objects on the canvas
-*/
-
-
-//sen the objects forward and backward
-
-function sendBackwards() {
-    var activeObject = canvas.getActiveObject();
-    if (activeObject) {
-        canvas.sendBackwards(activeObject);
-    }
-};
-
-function sendToBack() {
-    var activeObject = canvas.getActiveObject();
-    if (activeObject) {
-        canvas.sendToBack(activeObject);
-    }
-};
-
-function bringForward() {
-    var activeObject = canvas.getActiveObject();
-    if (activeObject) {
-        canvas.bringForward(activeObject);
-    }
-};
-
-function bringToFront() {
-    var activeObject = canvas.getActiveObject();
-    if (activeObject) {
-        canvas.bringToFront(activeObject);
-    }
-};
-
-
-
-
-menu.append(new MenuItem({
-    label: 'Send backwards',
-    click() {
-        sendBackwards();
-    }
-}))
-
-menu.append(new MenuItem({
-    label: 'Send to back',
-    click() {
-        sendToBack();
-    }
-}))
-
-menu.append(new MenuItem({
-    label: 'Bring forwards',
-    click() {
-        bringForward();
-    }
-}))
-
-menu.append(new MenuItem({
-    label: 'Bring to front',
-    click() {
-        bringToFront();
-    }
-}))
-
 menu.append(new MenuItem({
     type: 'separator'
 }))
 
 
-menu.append(new MenuItem({
-    label: 'Align',
-    submenu: [{
-        label: 'Left'
-    }, {
-        label: 'Center'
-    }, {
-        label: 'Right'
-    }, {
-        type: 'separator'
-    }, {
-        label: 'Top'
-    }, {
-        label: 'Middle'
-    }, {
-        label: 'Bottom'
-    }]
-}))
 
-menu.append(new MenuItem({
-    label: 'Distribute',
-    submenu: [{
-        label: 'Horizontal'
-    }, {
-        label: 'Vertical'
-    }]
-}))
-
-
-menu.append(new MenuItem({
-    type: 'separator'
-}))
-
-menu.append(new MenuItem({
-    label: 'Group Selected',
-    click() {
-        group();
-    }
-}))
-
-menu.append(new MenuItem({
-    label: 'Ungroup Selected',
-    click() {
-        ungroup();
-    }
-}))
-
-menu.append(new MenuItem({
-    type: 'separator'
-}))
-
-menu.append(new MenuItem({
-    label: 'Undo',
-    click() {
-
-        undo();
-    }
-}))
 
 menu.append(new MenuItem({
     label: 'Save',

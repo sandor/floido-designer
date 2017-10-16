@@ -39,7 +39,7 @@ const template = [
             },
             {
                 label: 'Save Project As...',
-                accelerator: 'Shift+CmdOrCtrl+S',
+              //  accelerator: 'Shift+CmdOrCtrl+S',
                 click: function () {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('saveAs', 'saving as');
@@ -93,11 +93,11 @@ const template = [
             },
             {
                 label: 'Save Page As...',
-                accelerator: 'Shift+CmdOrCtrl+S',
-                click: function () {
-                    var focusedWindow = BrowserWindow.getFocusedWindow();
-                    focusedWindow.webContents.send('saveAs', 'saving as');
-                }
+                accelerator: 'Shift+CmdOrCtrl+S'//,
+                // click: function () {
+                //     var focusedWindow = BrowserWindow.getFocusedWindow();
+                //     focusedWindow.webContents.send('saveAs', 'saving as');
+                // }
             }, {
                 label: 'Rename Page...',
                 accelerator: 'Shift+CmdOrCtrl+S',
