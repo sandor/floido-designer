@@ -84,7 +84,7 @@ const template = [
 
 
             {
-                label: 'Save Page...',
+                label: 'Save Page',
                 accelerator: 'CmdOrCtrl+S',
                 click: function () {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
