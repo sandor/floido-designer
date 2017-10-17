@@ -496,6 +496,8 @@ function enableDisableElement() {
 
 }
 
+/* This is for adding custom attribute to the objects!
+ */
 var customProperties = 'name icon'.split(' ');
 
 
@@ -1122,34 +1124,189 @@ function addAccessors($scope, $rootScope) {
         canvas.requestRenderAll();
     }
 
-    $scope.addGradient = function (left, right) {
-        var leftColor = document.getElementById('gradLeft').value;
-        var rightColor = document.getElementById('gradRight').value;
-        console.log(leftColor, rightColor);
 
-        var grad = new fabric.Gradient({
-            type: 'linear',
-            coords: {
-                x1: 0,
-                y1: 0,
-                x2: canvas.width,
-                y2: canvas.height,
-            },
-            colorStops: [{
-                color: leftColor,
-                offset: 0,
-            },
-                {
-                    color: rightColor,
-                    offset: 1,
-                }
-            ]
-        });
-        canvas.backgroundColor = grad.toLive(canvas.contextContainer);
-        canvas.renderAll();
-    };
+/* Setting canvas background gradient test with x/y to angle settings – not working well
+ */
+
+// This is working without angle settings
+
+$scope.addGradient = function (left, right) {
+    var leftColor = document.getElementById('gradLeft').value;
+    var rightColor = document.getElementById('gradRight').value;
+    
+    console.log(leftColor, rightColor);
+
+    var grad = new fabric.Gradient({
+        type: 'linear',
+        coords: {
+            x1: 0,
+            y1: 0,
+            x2: canvas.width,
+            y2: canvas.height,
+        },
+        colorStops: [{
+            color: leftColor,
+            offset: 0,
+        },
+            {
+                color: rightColor,
+                offset: 1,
+            }
+        ]
+    });
+    canvas.backgroundColor = grad.toLive(canvas.contextContainer);
+    canvas.renderAll();
+}
 
 
+// This is testing 2 – kind of working with degrees
+
+
+// var deg2rad = Math.PI/180;
+// var rad2deg = 180/Math.PI;
+
+// /* convert angle to rectangle perimeter coordinates */
+// function angle2rect(angle,sx,sy){
+//     while(angle < 0) angle += 360; angle %= 360;
+    
+//     var a = sy, b = a+sx, c = b+sy, // 3 first corners
+//         p = (sx+sy)*2, // perimeter
+//         rp = p * 0.00277, // ratio between perimeter & 360
+//         pp = Math.round( ( (angle*rp)+(sy >> 1) )%p ); // angle position on perimeter
+    
+//     if(pp <= a) return { x:0,  y:sy - pp };
+//     if(pp <= b) return { y:0,  x:pp - a  };
+//     if(pp <= c) return { x:sx, y:pp - b  };
+//                 return { y:sy, x:sx - ( pp - c ) };
+// }
+
+// /* convert angle to circle perimeter coordinates */
+// function angle2circle(angle,radius){
+//     var a = (angle + 180) * deg2rad;
+//     return { x: Math.round( (Math.cos(a)+1)*radius ),
+//              y: Math.round( (Math.sin(a)+1)*radius )
+//     };
+// }
+
+// /* convert perimeter coordinate to angle */
+// function xy2angle(x,y,sx,sy){
+//     x -= sx>>1, y -= sy>>1;
+//     var a = Math.round(Math.atan( Math.abs(x) / Math.abs(y) )*rad2deg );
+//     if(x >= 0 && y <= 0) return a+90;
+//     if(x >= 0 && y >= 0) return 270-a;
+//     if(x <= 0 && y >= 0) return a+270;
+//     return 90-a;
+// }
+
+// $scope.addGradient = function (left, right, angle) {
+//     var leftColor = document.getElementById('gradLeft').value;
+//     var rightColor = document.getElementById('gradRight').value;
+//     var angle = document.getElementById('canvas-angle').value;
+//     console.log(leftColor, rightColor, angle);
+
+//     var obj = canvas;
+
+//     var odx = obj.width  >> 1, /* object center */
+//     ody = obj.height >> 1,
+//     gradient;
+
+//     gradient = {
+//         start : angle2rect(angle, obj.width, obj.height)
+//         //,end   : angle2rect(angle+180, obj.width,obj.height)
+//     };
+
+//     gradient.end = {
+//         x : obj.width  - gradient.start.x,
+//         y : obj.height - gradient.start.y
+//     }
+
+//     var grad = new fabric.Gradient({
+//         type: 'linear',
+//         coords: {
+//             x1: gradient.start.x - odx,
+//             y1: gradient.start.y - ody,
+//             x2: gradient.end.x   - odx,
+//             y2: gradient.end.y   - ody,
+//         },
+//         colorStops: [{
+//             color: leftColor,
+//             offset: 0,
+//         },
+//             {
+//                 color: rightColor,
+//                 offset: 1,
+//             }
+//         ]
+//     });
+//     canvas.backgroundColor = grad.toLive(canvas.contextContainer);
+//     canvas.renderAll();
+// };
+
+
+//  This is testing 1:
+
+//     $scope.addGradient = function (left, right, angle) {
+//         var leftColor = document.getElementById('gradLeft').value;
+//         var rightColor = document.getElementById('gradRight').value;
+//         var angle = document.getElementById('canvas-angle').value;
+//         console.log(leftColor, rightColor, angle);
+
+//         var deg2rad = Math.PI/180, rad2deg = 180/Math.PI;
+//         var odx = canvas.width  /2;
+//         ody = canvas.height /2;
+//         gradient = {};
+//         gradient.start = angle2rect(angle,canvas.width,canvas.height);
+//         /* simple simetrie between start & end */
+//     gradient.end = { x : canvas.width  - gradient.start.x, y : canvas.height - gradient.start.y };
+
+//         /* convert angle to circle perimeter coordinates */
+//     function angle2circle(angle,radius){
+//         var a = (angle + 180) * deg2rad;
+//         return { x: Math.round( (Math.cos(a)+1)*radius ),
+//                 y: Math.round( (Math.sin(a)+1)*radius )
+//             };
+//     }
+
+// /* convert angle to rectangle perimeter coordinates, thx a lot to RHJPP for this */
+//     function angle2rect(angle,sx,sy){
+//         var a = ((angle + 180) % 360) * deg2rad;
+//         var xr = Math.tan(a - Math.PI / 2) * sy / 2;
+//         var yr = Math.tan(-a) * sx / 2;
+        
+//         if (a <= Math.PI) xr = -xr;
+//         if (a <= Math.PI / 2 || a > 3 * Math.PI / 2) yr = -yr;
+        
+//         xr = Math.min(Math.max(xr + sx / 2, 0), sx);
+//         yr = Math.min(Math.max(yr + sy / 2, 0), sy);
+        
+//         return {x:xr, y:yr};
+//     }
+    
+
+//         var grad = new fabric.Gradient({
+//             type: 'linear',
+//             coords: {
+//                 x1: gradient.start.x - odx,
+//                 y1: gradient.start.y - ody,
+//                 x2: gradient.end.x   - odx,
+//                 y2: gradient.end.y   - ody,
+//             },
+//             colorStops: [{
+//                 color: leftColor,
+//                 offset: 0,
+//             },
+//                 {
+//                     color: rightColor,
+//                     offset: 1,
+//                 }
+//             ]
+//         });
+//         canvas.backgroundColor = grad.toLive(canvas.contextContainer);
+//         canvas.renderAll();
+//     };
+
+/* Adding primitives to canvas
+ */
 
     $scope.addRect = function () {
         var coord = getRandomLeftTop();

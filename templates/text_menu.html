@@ -154,9 +154,7 @@
                         <x-icon name="format-bold"></x-icon>
                     </x-button>
 
-                    <x-button ng-click="toggleUnderline()" id="font-style-underline" class="font-style" disabled>
-                        <x-icon name="format-underlined"></x-icon>
-                    </x-button>
+                    <x-button ng-value="'underline'" ng-click="changeTextStyle('underline')"> <x-icon name="format-underlined"></x-icon> </x-button>
 
                     <x-button ng-click="toggleItalic()" id="font-style-italic" class="font-style" disabled>
                         <x-icon name="format-italic"></x-icon>
@@ -222,29 +220,6 @@
                         <x-menuitem value="800">
                             <x-label>800</x-label>
                         </x-menuitem>
-<!--/////////////////// dddddd //////////////////-->
-            <x-box style="width: 290px; margin-left: 5px; margin-bottom: 5px;">
-                <x-buttons tracking="1">
-                    <x-button toggled class="aButton" ng-click="setTextAlign('left')">
-                        <x-icon name="format-align-left"></x-icon>
-                    </x-button>
-
-                    <x-button value="" class="aButton" ng-click="setTextAlign('center')">
-                        <x-icon name="format-align-center"></x-icon>
-                    </x-button>
-
-                    <x-button class="aButton" ng-click="setTextAlign('right')">
-                        <x-icon name="format-align-right"></x-icon>
-                    </x-button>
-
-                    <x-button class="aButton" ng-click="setTextAlign('justify')">
-                        <x-icon name="format-align-justify"></x-icon>
-                    </x-button>
-                </x-buttons>
-            </x-box>
-
-            <div class="spacer"></div>
-<!--/////////////////// dddddd //////////////////-->
 
                         <x-menuitem value="900">
                             <x-label>900</x-label>
