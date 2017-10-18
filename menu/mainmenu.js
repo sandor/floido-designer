@@ -84,7 +84,7 @@ const template = [
 
 
             {
-                label: 'Save Page...',
+                label: 'Save Page',
                 accelerator: 'CmdOrCtrl+S',
                 click: function () {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
@@ -193,9 +193,13 @@ const template = [
                     focusedWindow.webContents.send('paste', 'pasting');
                 }
             },
-
             {
-                role: 'selectall'
+                label: 'Select All',
+                accelerator: 'CmdOrCtrl+A',
+                click: function () {
+                    var focusedWindow = BrowserWindow.getFocusedWindow();
+                    focusedWindow.webContents.send('selectAll', 'selecting All Objects');
+                }
             },
             {
                 type: 'separator'
@@ -288,15 +292,27 @@ const template = [
             },
             {
                 label: 'Bring to Front',
-                accelerator: 'Shift+CmdOrCtrl+F'
+                accelerator: 'Shift+CmdOrCtrl+F',
+                click: function () {
+                    var focusedWindow = BrowserWindow.getFocusedWindow();
+                    focusedWindow.webContents.send('bringToFront', 'bringing to front');
+                }
             },
             {
-                label: 'Bring Backward',
-                accelerator: 'Alt+Shift+CmdOrCtrl+B'
+                label: 'Send Backwards',
+                accelerator: 'Alt+Shift+CmdOrCtrl+B',
+                click: function () {
+                    var focusedWindow = BrowserWindow.getFocusedWindow();
+                    focusedWindow.webContents.send('sendBackwards', 'sending backwards');
+                }
             },
             {
-                label: 'Bring to Back',
-                accelerator: 'Shift+CmdOrCtrl+B'
+                label: 'Send to Back',
+                accelerator: 'Shift+CmdOrCtrl+B',
+                click: function () {
+                    var focusedWindow = BrowserWindow.getFocusedWindow();
+                    focusedWindow.webContents.send('sendToBack', 'sending to back');
+                }
             },
             {
                 type: 'separator'

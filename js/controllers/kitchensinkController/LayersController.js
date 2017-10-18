@@ -126,6 +126,4 @@ kitchensink.controller('LayersController', ['$scope', '$rootScope', '$timeout', 
 
             canvas.renderAll();
         }
-
-
     }])

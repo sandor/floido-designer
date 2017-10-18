@@ -496,6 +496,8 @@ function enableDisableElement() {
 
 }
 
+/* This is for adding custom attribute to the objects!
+ */
 var customProperties = 'name icon'.split(' ');
 
 
@@ -1122,34 +1124,52 @@ function addAccessors($scope, $rootScope) {
         canvas.requestRenderAll();
     }
 
-    $scope.addGradient = function (left, right) {
-        var leftColor = document.getElementById('gradLeft').value;
-        var rightColor = document.getElementById('gradRight').value;
-        console.log(leftColor, rightColor);
 
-        var grad = new fabric.Gradient({
-            type: 'linear',
-            coords: {
-                x1: 0,
-                y1: 0,
-                x2: canvas.width,
-                y2: canvas.height,
-            },
-            colorStops: [{
-                color: leftColor,
-                offset: 0,
-            },
-                {
-                    color: rightColor,
-                    offset: 1,
-                }
-            ]
-        });
-        canvas.backgroundColor = grad.toLive(canvas.contextContainer);
-        canvas.renderAll();
-    };
+/* Setting canvas background gradient with x/y to angle settings
+ */
 
 
+$scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
+    var leftColor = document.getElementById('gradLeft').value;
+    var rightColor = document.getElementById('gradRight').value;
+    var angle = document.getElementById('canvas-angle').value;
+    var offset_1 = document.getElementById('offset_1').value;
+    var offset_2 = document.getElementById('offset_2').value;
+    
+    console.log(leftColor, rightColor, angle);
+
+    var angleCoords = {
+        'x1': (Math.round(50 + Math.sin(angle) * 50) * canvas.width) / 100,
+        'y1': (Math.round(50 + Math.cos(angle) * 50) * canvas.height) / 100,
+        'x2': (Math.round(50 + Math.sin(angle + Math.PI) * 50) * canvas.width) / 100,
+        'y2': (Math.round(50 + Math.cos(angle + Math.PI) * 50) * canvas.height) / 100,
+    }
+
+    var grad = new fabric.Gradient({
+        type: 'linear',
+        coords: {
+            x1: angleCoords.x1 || 0,
+            y1: angleCoords.y1 || 0,
+            x2: angleCoords.x2 || 0,
+            y2: angleCoords.y2 || 0,
+        },
+        colorStops: [{
+            color: leftColor,
+            offset: offset_1,
+        },
+            {
+                color: rightColor,
+                offset: offset_2,
+            }
+        ]
+    });
+    canvas.backgroundColor = grad.toLive(canvas.contextContainer);
+    canvas.renderAll();
+}
+
+
+/* Adding primitives to canvas
+ */
 
     $scope.addRect = function () {
         var coord = getRandomLeftTop();
@@ -1182,11 +1202,17 @@ function addAccessors($scope, $rootScope) {
         })
         ipcRenderer.once('fileData', (event, filepath) => {
             fabric.Image.fromURL(filepath, function (image) {
-                //                var hCent = canvas.getHeight / 2;
-                //                var wCent = canvas.getWidth / 2;
+                var hCent = canvas.getHeight / 2;
+                var wCent = canvas.getWidth / 2;
                 canvas.setBackgroundColor({
                     source: filepath,
-                    repeat: 'repeat'
+                    top: hCent,
+                    left: wCent,
+                    originX: 'center',
+                    originY: 'middle',
+                    repeat: 'no-repeat',
+                    scaleX: 10,
+                    scaleY: 10 
                 }, canvas.renderAll.bind(canvas));
             })
         })

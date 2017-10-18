@@ -1,8 +1,5 @@
-<div class="grid-middle-noGutter"   >
-	<div class="col-12">
-		<h1 class="title_left">Page Settings</h1>
-		<hr>
-	</div>
+	<h1 class="title_left">Page Settings</h1>
+	<hr>
 
 
 	<x-accordion expanded >
@@ -97,7 +94,7 @@
 				<x-label style="margin-left:5px; margin-right: 16px; width: 75px;">Colors</x-label>
 				<x-colorselect style="margin-right: 5px; width: 130px;">
 					<x-popover style="width: 320px;">
-						<x-rectcolorpicker id="gradLeft" style="width: 320px;" alphaslider ind-value-to="addGradient()" ng-model="leftColor"></x-rectcolorpicker>
+						<x-rectcolorpicker id="gradLeft" value="#ffffff" style="width: 320px;" alphaslider ng-model="leftColor"></x-rectcolorpicker>
 					</x-popover>
 				</x-colorselect>
 
@@ -106,7 +103,7 @@
 
 				<x-colorselect style="width: 130px; margin-right: 10px;">
 					<x-popover style="width: 320px;">
-						<x-rectcolorpicker id="gradRight" style="width: 320px;" alphaslider ind-value-to="addGradient()" ng-model="rightColor"></x-rectcolorpicker>
+						<x-rectcolorpicker id="gradRight" value="#000000" style="width: 320px;" alphaslider ng-model="rightColor"></x-rectcolorpicker>
 					</x-popover>
 				</x-colorselect>
 
@@ -122,21 +119,19 @@
 			<x-box>
 				<x-label style="margin-left:5px; margin-right: 16px; width: 80px;">Direction</x-label>
 
-				<x-numberinput ng-disabled="getInputState()" id="canvas-angle" style="margin-right: 15px; width: 137px;" skin="condensed" suffix=" °" bind-value-to="propAngle">
+				<x-numberinput id="canvas-angle" ng-value="0" style="margin-right: 15px; width: 137px;" skin="condensed" suffix=" °" ng-model="angle" min="0" max="360" step="1">
 					<x-stepper></x-stepper>
 				</x-numberinput>
 
 				<div style="width: 10px; margin-right: 5px;">
 				</div>
 
-				<x-buttons tracking="2" style="width: 140px; margin-right: 10px;">
-					<x-button style="width: 48px;" skin="textured-condensed" ng-click="flipX()">
+				<x-buttons tracking="1" style="width: 140px; margin-right: 10px;">
+					<x-button style="width: 96px;" skin="textured-condensed" ng-click="flipX()">
 						<x-icon name="swap-horiz"></x-icon>
 					</x-button>
 
-					<x-button style="width: 48px;" skin="textured-condensed" ng-click="flipY()">
-						<x-icon name="swap-vert"></x-icon>
-					</x-button>
+
 
 				</x-buttons>
 
@@ -145,11 +140,47 @@
 				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
 				<x-label class="centered_sm" style="margin-right: 15px; width: 137px;">Gradient Angle</x-label>
 				<x-label class="centered_sm" style="width: 10px; margin-right: 5px;"></x-label>
-				<x-label class="centered_sm" style="width: 140px; margin-right: 10px;">Direction</x-label>
+				<x-label class="centered_sm" style="width: 140px; margin-right: 10px;">Swap Colors</x-label>
 			</x-box>
 
 			<x-box>
-				<x-button skin="textured" style="margin-left: 75px; width:220px;" ng-click="addGradient();">
+				<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Offset Left</x-label>
+
+				<x-slider id="offset_1" style="width: 220px; top: 8px; margin-right: 10px;" min="0" max="1" step="0.05" ng-value="0" ng-model="offset_1" skin="arrow">
+						<x-label value="0">0</x-label>
+						<x-label value=".1"></x-label>
+						<x-label value=".2"></x-label>
+						<x-label value=".3"></x-label>
+						<x-label value=".4"></x-label>
+						<x-label value=".5">0.5</x-label>
+						<x-label value=".6"></x-label>
+						<x-label value=".7"></x-label>
+						<x-label value=".8"></x-label>
+						<x-label value=".9"></x-label>
+						<x-label value="1">1</x-label>
+				</x-slider>
+			</x-box>
+
+			<x-box>
+				<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Offset right</x-label>
+
+				<x-slider id="offset_2" style="width: 220px; top: 8px; margin-right: 10px;" min="0" max="1" step="0.05" ng-value="1" ng-model="offset_2" skin="arrow">
+						<x-label value="0">0</x-label>
+						<x-label value=".1"></x-label>
+						<x-label value=".2"></x-label>
+						<x-label value=".3"></x-label>
+						<x-label value=".4"></x-label>
+						<x-label value=".5">0.5</x-label>
+						<x-label value=".6"></x-label>
+						<x-label value=".7"></x-label>
+						<x-label value=".8"></x-label>
+						<x-label value=".9"></x-label>
+						<x-label value="1">1</x-label>
+				</x-slider>
+			</x-box>
+
+			<x-box>
+				<x-button skin="textured" style="margin-top: 15px; margin-left: 75px; width:220px;" ng-click="addBackgroundGradient();">
 					<x-box>
 						<x-label>Apply Background</x-label>
 					</x-box>

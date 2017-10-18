@@ -177,6 +177,8 @@ canvas.on(
     }
 );
 
+
+
 var updateCanvasState = function () {
     if ((_config.undoStatus == false && _config.redoStatus == false)) {
         var jsonData = canvas.toJSON();
@@ -517,6 +519,49 @@ var redo = function () {
     }
 }
 
+/*
+Utility functions for selecting and aranging objects on the canvas
+*/
+
+function selectAll() {
+    canvas.discardActiveObject();
+    var sel = new fabric.ActiveSelection(canvas.getObjects(), {
+      canvas: canvas,
+    });
+    canvas.setActiveObject(sel);
+    canvas.requestRenderAll();
+  };
+
+
+//sen the objects forward and backward
+
+function sendBackwards() {
+    var activeObject = canvas.getActiveObject();
+    if (activeObject) {
+        canvas.sendBackwards(activeObject);
+    }
+};
+
+function sendToBack() {
+    var activeObject = canvas.getActiveObject();
+    if (activeObject) {
+        canvas.sendToBack(activeObject);
+    }
+};
+
+function bringForward() {
+    var activeObject = canvas.getActiveObject();
+    if (activeObject) {
+        canvas.bringForward(activeObject);
+    }
+};
+
+function bringToFront() {
+    var activeObject = canvas.getActiveObject();
+    if (activeObject) {
+        canvas.bringToFront(activeObject);
+    }
+};
 
 /*
 setup IPC communication/functions with mainmenu.js
@@ -525,20 +570,16 @@ setup IPC communication/functions with mainmenu.js
 //File Menu
 
 require('electron').ipcRenderer.on('open', function (event, message) {
-
-
     console.log(message);
     loadJSON();
 });
 require('electron').ipcRenderer.on('save', function (event, message) {
-
     console.log(message);
     save();
 });
 
 
 require('electron').ipcRenderer.on('saveAs', function (event, message) {
-
     console.log(message);
     saveAS();
 });
@@ -582,6 +623,11 @@ require('electron').ipcRenderer.on('duplicate', function (event, message) {
     paste();
 });
 
+require('electron').ipcRenderer.on('selectAll', function (event, message) {
+    console.log(message);
+    selectAll();
+});
+
 //Arrange menu
 
 require('electron').ipcRenderer.on('group', function (event, message) {
@@ -599,41 +645,20 @@ require('electron').ipcRenderer.on('bringForward', function (event, message) {
     bringForward();
 });
 
-/*
-Utility functions for selecting and aranging objects on the canvas
-*/
+require('electron').ipcRenderer.on('bringToFront', function (event, message) {
+    console.log(message);
+    bringToFront();
+});
 
+require('electron').ipcRenderer.on('sendBackwards', function (event, message) {
+    console.log(message);
+    sendBackwards();
+});
 
-//sen the objects forward and backward
-
-function sendBackwards() {
-    var activeObject = canvas.getActiveObject();
-    if (activeObject) {
-        canvas.sendBackwards(activeObject);
-    }
-};
-
-function sendToBack() {
-    var activeObject = canvas.getActiveObject();
-    if (activeObject) {
-        canvas.sendToBack(activeObject);
-    }
-};
-
-function bringForward() {
-    var activeObject = canvas.getActiveObject();
-    if (activeObject) {
-        canvas.bringForward(activeObject);
-    }
-};
-
-function bringToFront() {
-    var activeObject = canvas.getActiveObject();
-    if (activeObject) {
-        canvas.bringToFront(activeObject);
-    }
-};
-
+require('electron').ipcRenderer.on('sendToBack', function (event, message) {
+    console.log(message);
+    sendToBack();
+});
 
 // electron contextMenu test this should be moved in a separate JS file in menus
 // Create a context menu in electron
@@ -771,6 +796,7 @@ menu.append(new MenuItem({
     }
 }))
 
+
 menu.append(new MenuItem({
     type: 'separator'
 }))
@@ -807,7 +833,7 @@ menu.append(new MenuItem({
 menu.append(new MenuItem({
     label: 'Select All',
     click() {
-        selectAllCanvasObjects();
+        selectAll();
     }
 }))
 
