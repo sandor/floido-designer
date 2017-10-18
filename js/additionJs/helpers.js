@@ -1205,7 +1205,10 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
         ipcRenderer.once('fileData', (event, filepath) => {
             fabric.Image.fromURL(filepath, function (image) {
                 var hCent = canvas.height / 2;
-                var wCent = canvas.width / 2;
+                var wCent = canvas.getWidth() / 2;
+                document.getElementById('bgButton').style.background = 'url('+filepath+') center center / cover';
+                document.getElementById('imgIcon').style.display = 'none';
+                console.log(filepath);
                 canvas.setBackgroundImage(filepath, canvas.renderAll.bind(canvas), {
                   originX: 'center',
                   originY: 'center',
@@ -1264,7 +1267,10 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
 
 
     $scope.resetBgImage = function () {
-        canvas.setBackgroundImage(none, canvas.renderAll.bind(canvas));
+        document.getElementById('bgButton').style.background = null;
+        document.getElementById('imgIcon').style.display = 'block';
+        canvas.backgroundImage = null;
+        canvas.renderAll();
     };
 
 

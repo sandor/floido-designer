@@ -199,55 +199,89 @@
 
 		<main>
 			<x-box>
-				<x-label style="margin-left: 5px; margin-right: 15px; width: 60px;">Image</x-label>
+				<x-label style="margin-left: 5px; margin-right: 10px; width: 60px;">Image</x-label>
 
-				<x-button style="width: 55px; height: 55px; background-image: 'canvas.getBackgroundImage();'" ng-click="bgImage()">
-					<x-icon name="insert-drive-file"></x-icon>
+				<x-button id="bgButton" style="width: 85px; height: 85px; margin-right: 10px;" ng-click="bgImage()">
+					<x-icon id="imgIcon" name="insert-drive-file"></x-icon>
 				</x-button>
 
-				<div style="width: 20px; margin-right: 5px;">
-				</div>
 
-				<x-box vertical style="width: 140px; margin-right: 10px;">
-					<x-select style="width: 140px; margin-right: 10px; margin-bottom: 8px;">
-						<x-menu>
-							<x-menuitem value="no-repeat">
-								<x-label>No Repeat</x-label>
-							</x-menuitem>
 
-							<x-menuitem value="repeat">
-								<x-label>Repeat X/Y</x-label>
-							</x-menuitem>
-
-							<x-menuitem value="repeat-x">
-								<x-label>Repeat X</x-label>
-							</x-menuitem>
-
-							<x-menuitem value="repeat-y">
-								<x-label>Repeat Y</x-label>
-							</x-menuitem>
-						</x-menu>
-					</x-select>
-
-					<x-button skin="textured" style="width: 140px; margin-right: 10px;" ng-click="resetBgImage()">
-						<x-box>
-							<x-label>Reset Background</x-label>
-						</x-box>
-					</x-button>
+				<x-box vertical style="width: 120px; margin-right: 10px;">
+						<x-slider id="bgSize" style="width: 120px; top: 8px; margin-right: 5px; margin-bottom: -14px;" min="0" max="10" step="0.01" ng-value="1" bind-value-to="bgSize" skin="arrow">
+								<x-label class="centered_sm" style="margin-left: 90px; margin-top: -15px;" value="1">Size</x-label>
+						</x-slider>
+						<x-slider id="offsetX" style="width: 120px; top: 8px; margin-right: 5px; margin-bottom: -14px;" min="0" max="1" step="0.01" ng-value="0.5" bind-value-to="offsetX" skin="arrow">
+								<x-label class="centered_sm" style="margin-left: 40px; margin-top: -15px;" value="0.5">OffsetX</x-label>
+						</x-slider>
+						<x-slider id="offsetY" style="width: 120px; top: 8px; margin-right: 5px; margin-bottom: 5px;" min="0" max="1" step="0.01" ng-value="0.5" bind-value-to="offsetY" skin="arrow">
+								<x-label class="centered_sm" style="margin-left: 40px; margin-top: -15px;" value="0.5">OffsetY</x-label>
+						</x-slider>
+				</x-box>
+				<x-box>
+					
 				</x-box>
 			</x-box>
-
+			<x-button skin="textured" style="margin-left: 75px; width: 220px; margin-right: 10px;" ng-click="resetBgImage()">
+					<x-box>
+						<x-label>Reset Background</x-label>
+					</x-box>
+				</x-button>
 			<x-box>
-				<x-label style="margin-left:10px; margin-right: 5px; width: 65px;">Image Size</x-label>
-
-				<x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="0.1" max="10" step="0.1" ng-value="0" bind-value-to="bgSize" skin="arrow">
-				</x-slider>
-
-				<x-numberinput style="width: 70px;" suffix=" px" min="0.1" max="10" step="0.1" skin="condensed" ng-value="1" bind-value-to="bgSize">
-					<x-stepper></x-stepper>
-				</x-numberinput>
+				
 			</x-box>
 
+			<hr>
+
+			<x-box>
+					<x-label style="margin-left: 5px; margin-right: 15px; width: 60px;">Image</x-label>
+	
+					<x-button id="bgButton" style="width: 55px; height: 55px;" ng-click="bgImage()">
+						<x-icon id="imgIcon" name="insert-drive-file"></x-icon>
+					</x-button>
+	
+					<div style="width: 20px; margin-right: 5px;">
+					</div>
+	
+					<x-box vertical style="width: 140px; margin-right: 10px;">
+						<x-select style="width: 140px; margin-right: 10px; margin-bottom: 8px;">
+							<x-menu>
+								<x-menuitem value="no-repeat">
+									<x-label>No Repeat</x-label>
+								</x-menuitem>
+	
+								<x-menuitem value="repeat">
+									<x-label>Repeat X/Y</x-label>
+								</x-menuitem>
+	
+								<x-menuitem value="repeat-x">
+									<x-label>Repeat X</x-label>
+								</x-menuitem>
+	
+								<x-menuitem value="repeat-y">
+									<x-label>Repeat Y</x-label>
+								</x-menuitem>
+							</x-menu>
+						</x-select>
+	
+						<x-button skin="textured" style="width: 140px; margin-right: 10px;" ng-click="resetBgImage()">
+							<x-box>
+								<x-label>Reset Background</x-label>
+							</x-box>
+						</x-button>
+					</x-box>
+				</x-box>
+	
+				<x-box>
+					<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Image Size</x-label>
+	
+					<x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="0.1" max="10" step="0.01" ng-value="0" bind-value-to="bgSize" skin="arrow">
+					</x-slider>
+	
+					<x-numberinput style="width: 70px;" suffix=" x" min="0.1" max="10" step="0.1" skin="condensed" ng-value="1" bind-value-to="bgSize">
+						<x-stepper></x-stepper>
+					</x-numberinput>
+				</x-box>
 		</main>
 	</x-accordion>
 	<hr>
