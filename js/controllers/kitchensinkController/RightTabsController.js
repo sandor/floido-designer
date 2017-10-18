@@ -40,7 +40,7 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
 
     ];
 
-    $scope.currentLeftTab = 'templates/project_menu.html';
+    $scope.currentLeftTab = 'templates/page_menu.html';
 
     $scope.onClickLeftTab = function (tab) {
 
