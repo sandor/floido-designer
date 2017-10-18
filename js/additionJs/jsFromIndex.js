@@ -1,4 +1,7 @@
-var kitchensink = {};
+
+// var kitchensink = {};
+
+
 var canvas = new fabric.Canvas('canvas', {
     backgroundColor: "#FFFFFF",
     selectionColor: "rgba(0, 108, 223, 0.05)",
@@ -761,6 +764,28 @@ menu.append(new MenuItem({
     click() {
 
         undo();
+    }
+}))
+
+menu.append(new MenuItem({
+    label: 'Save',
+    click() {
+        save();
+    }
+}))
+
+
+menu.append(new MenuItem({
+    type: 'separator'
+}))
+
+
+
+
+menu.append(new MenuItem({
+    label: 'Save',
+    click() {
+        save();
     }
 }))
 

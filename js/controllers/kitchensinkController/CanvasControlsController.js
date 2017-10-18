@@ -6,6 +6,9 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
     $scope.getActiveStyle = getActiveStyle;
     $scope.zoom = 0;//default zoom
 
+
+    $scope.pageFlowShow = false;
+
     $scope.insideRulerWidth = document.getElementsByClassName("rul_wrapper")[0].offsetWidth
         - document.getElementsByClassName("rul_ruler_Vertical")[0].offsetHeight - 70;
     $scope.insideRulerheight = document.getElementsByClassName("rul_wrapper")[0].offsetHeight - document.getElementsByClassName("toolbar-header")[0].offsetHeight
@@ -315,4 +318,20 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
         return false;
     }
 
+    $scope.pageFlow = function () {
+        debugger;
+        $scope.pageFlowShow = !$scope.pageFlowShow;
+    }
+
+
+    $scope.pageFlowTab = 'templates/pageFlow.html';
+
+    // $scope.onDragComplete = function (data, evt) {
+    //     debugger;
+    //     console.log("drag success, data:", data);
+    // }
+    // $scope.onDropComplete = function (data, evt) {
+    //     debugger;
+    //     console.log("drop success, data:", data);
+    // }
 });

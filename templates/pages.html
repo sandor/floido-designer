@@ -28,22 +28,26 @@
 	<hr>
 -->
 
-	<ul class="list-group middle" ui-sortable ng-model="objects">
+	<ul class="draggable-objects" class="list-group middle" ui-sortable ng-model="objects">
 
-		<li ng-class="{active: object.active}" class="list-pages-item" ng-repeat="object in objects" ng-click="setAsActive(object); setAsActiveLayer(object, objects)" ng-if="!object.ignore">
+		<li style="list-style-type: none; " ng-drag="true" ng-drag-data="object" ng-drag-success="onDragComplete($data,$event)" ng-center-anchor="true" ng-class="{active: object.active}"
+		 class="list-pages-item" ng-repeat="object in objects" ng-click="setAsActive(object); setAsActiveLayer(object, objects)"
+		 ng-if="!object.ignore">
+			<!-- <li ng-class="{active: object.active}" class="list-pages-item" ng-repeat="object in objects" ng-click="setAsActive(object); setAsActiveLayer(object, objects)" ng-if="!object.ignore"> -->
+			<div ng-drag="true" ng-drag-data="obj" data-allow-transform="true">
+				<x-box class="thumbnail justify">
+
+					<img style="margin: auto;" ng-src="{{object.thumbnail}}" title="{{ object.name }}" />
+				</x-box>
+				<x-box>
+					<div class="media-body" style="margin: auto;">
+						<p contenteditable="true">{{ object.name}}</p>
+					</div>
 
 
-			<x-box class="thumbnail justify">
+				</x-box>
+			</div>
 
-				<img style="margin: auto;" ng-src="{{object.thumbnail}}" title="{{ object.name }}" />
-			</x-box>
-			<x-box>
-				<div class="media-body" style="margin: auto;">
-					<p contenteditable="true">{{ object.name}}</p>
-				</div>
-
-
-			</x-box>
 		</li>
 	</ul>
 </div>
