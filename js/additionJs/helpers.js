@@ -1194,6 +1194,8 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
     };
 
 
+   
+
     $scope.bgImage = function () {
         const {
             ipcRenderer
@@ -1202,34 +1204,67 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
         })
         ipcRenderer.once('fileData', (event, filepath) => {
             fabric.Image.fromURL(filepath, function (image) {
-                var hCent = canvas.getHeight / 2;
-                var wCent = canvas.getWidth / 2;
-                canvas.setBackgroundColor({
-                    source: filepath,
-                    top: hCent,
-                    left: wCent,
-                    originX: 'center',
-                    originY: 'middle',
-                    repeat: 'no-repeat',
-                    scaleX: 10,
-                    scaleY: 10 
-                }, canvas.renderAll.bind(canvas));
+                var hCent = canvas.height / 2;
+                var wCent = canvas.width / 2;
+                canvas.setBackgroundImage(filepath, canvas.renderAll.bind(canvas), {
+                  originX: 'center',
+                  originY: 'center',
+                  left: wCent,
+                  top: hCent,
+                  repeat: 'repeat',
+                  scaleX: 1,
+                  scaleY: 1
+                });
             })
         })
     };
 
+    // $scope.bgImage = function () {
+    //     const {
+    //         ipcRenderer
+    //     } = require('electron')
+    //     ipcRenderer.send('openFile', () => {
+    //     })
+    //     ipcRenderer.once('fileData', (event, filepath) => {
+    //         fabric.Image.fromURL(filepath, function (image) {
+    //             var hCent = canvas.getHeight / 2;
+    //             var wCent = canvas.getWidth / 2;
+    //             canvas.setBackgroundColor({
+    //                 source: filepath,
+    //                 top: hCent,
+    //                 left: wCent,
+    //                 originX: 'center',
+    //                 originY: 'middle',
+    //                 repeat: 'no-repeat',
+    //                 scaleX: 10,
+    //                 scaleY: 10 
+    //             }, canvas.renderAll.bind(canvas));
+    //         })
+    //     })
+    // };
+
+    $scope.getBgSize = function () {
+        return canvas.backgroundImage.scaleX;
+    };
+
+    $scope.setBgSize = function (value) {
+        canvas.backgroundImage.scaleX = value;
+        canvas.backgroundImage.scaleY = value;
+        canvas.renderAll();
+    };
+
     $scope.getBgRepeat = function () {
-        return canvas.backgroundColor.repeat;
+        return canvas.backgroundImage.scaleX;
     };
 
     $scope.setBgRepeat = function (value) {
-        canvas.backgroundColor.repeat = value;
+        canvas.backgroundImage.scaleX = value;
         canvas.renderAll();
     };
 
 
     $scope.resetBgImage = function () {
-        canvas.setBackgroundColor('#ffffff', canvas.renderAll.bind(canvas));
+        canvas.setBackgroundImage(none, canvas.renderAll.bind(canvas));
     };
 
 
