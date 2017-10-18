@@ -323,4 +323,15 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
         debugger;
     }
 
+
+    $scope.pageFlowTab = 'templates/pageFlow.html';
+
+    // $scope.onDragComplete = function (data, evt) {
+    //     debugger;
+    //     console.log("drag success, data:", data);
+    // }
+    // $scope.onDropComplete = function (data, evt) {
+    //     debugger;
+    //     console.log("drop success, data:", data);
+    // }
 });

@@ -1,4 +1,7 @@
-var kitchensink = {};
+
+// var kitchensink = {};
+
+
 var canvas = new fabric.Canvas('canvas', {
     backgroundColor: "#FFFFFF",
     selectionColor: "rgba(0, 108, 223, 0.05)",

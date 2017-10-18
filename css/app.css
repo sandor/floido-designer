@@ -1571,4 +1571,39 @@ x-button[skin="tabnav"] x-label {
 }
 */
 
+
+
+/* ////////////////////page-flow */
+#page-flow-container{
+    position: relative;
+}
+
+.page-flow-item{
+
+    display: inline-flex;
+    margin:20px;
+    width: 200px;
+    height: 270px;
+    outline: 2px solid red;
+
+}
+
+
+#page-flow{
+    position: absolute;
+    z-index: 15;
+    outline: 2px solid blue;
+    height: 100vh;
+    width: 100%;
+    background-color: gray;
+}
+
+
+
+
+
+
+
+/* ///drag and drop css */
+
 /* CSS Added BY David Abgaryan End */

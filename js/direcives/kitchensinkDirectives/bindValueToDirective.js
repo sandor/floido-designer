@@ -1,7 +1,6 @@
 'use strict';
 
 var kitchensink = angular.module('kitchensink', ['ui.sortable']);
-
 /*kitchensink.config(function($interpolateProvider) {
   $interpolateProvider
     .startSymbol('{[')
