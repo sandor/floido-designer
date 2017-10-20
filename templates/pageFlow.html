@@ -1,4 +1,4 @@
-<div ng-drop="true" ng-drag="true" ng-drop-success="onDropComplete1($data,$event)" class="page-flow-item">
+<!-- <div ng-drop="true" ng-drag="true" ng-drop-success="onDropComplete1($data,$event)" class="page-flow-item">
     <div ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess1($data,$event)"
         ng-center-anchor="{{centerAnchor}}">
         <x-box class="thumbnail justify">
@@ -11,12 +11,30 @@
             </div>
         </x-box>
     </div>
+</div> -->
+<!-- <button ng-click="additem()"></button> -->
+<div ng-repeat="dropArea in dropAreas" class="drop-area-item">
+
+    <div ng-repeat="dropAreaLineItem in dropArea">
+
+        <div id="{{dropAreaLineItem.data.name}}" ng-drop="true" ng-drag="true" ng-drop-success="onDropComplete1($data,$event,dropAreaLineItem.name)"
+            class="page-flow-item">
+            <div ng-drag="true" ng-show="(this.dropAreaLineItem.data)" ng-drag-data="dropAreaLineItem.data" ng-drag-success="onDragSuccess1($data,$event)" ng-center-anchor="{{centerAnchor}}">
+                <button ng-show="(this.dropAreaLineItem.data)" ng-click="remove(this)">delete</button>
+                <x-box class="thumbnail justify">
+
+                    <img style="margin: auto;" ng-src="{{dropAreaLineItem.data.thumbnail}}" title="{{ dropAreaLineItem.data.name }}" />
+                </x-box>
+                <x-box>
+                    <div class="media-body" style="margin: auto;">
+                        <p contenteditable="true">{{ dropAreaLineItem.name}}</p>
+                    </div>
+                </x-box>
+            </div>
+        </div>
+    </div>
+
 </div>
-<!-- <div  ng-drop="true" ng-drop-success="onDropComplete($data,$event)" class="page-flow-item"></div>
-<div  ng-drop="true" ng-drop-success="onDropComplete($data,$event)" class="page-flow-item"></div>
-<div  ng-drop="true" ng-drop-success="onDropComplete($data,$event)" class="page-flow-item"></div>
-<div  ng-drop="true" ng-drop-success="onDropComplete($data,$event)" class="page-flow-item"></div>
-<div  ng-drop="true" ng-drop-success="onDropComplete($data,$event)" class="page-flow-item"></div> -->
 
 
 

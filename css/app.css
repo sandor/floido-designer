@@ -1571,21 +1571,27 @@ x-button[skin="tabnav"] x-label {
 }
 */
 
-
+#thumb_pages ul{
+    padding-left: 10px;
+}
 
 /* ////////////////////page-flow */
 #page-flow-container{
     position: relative;
 }
 
-.page-flow-item{
+.page-flow-item {
 
-    display: inline-flex;
+   
     margin:20px;
     width: 200px;
     height: 270px;
     outline: 2px solid red;
 
+}
+
+.drop-area-item{
+    display: inline-flex;
 }
 
 
