@@ -51,7 +51,7 @@ var fontBorderColor = "#ffffff";
 
 //move objects on the canvas with keyboard
 
-document.onkeydown = function (e) {
+document.onkeydown = function(e) {
 
     var step = 2;
 
@@ -132,14 +132,14 @@ function setCanvasActiveObjectData() {
         document.getElementById('cavas-object-corner').value = cavasObjectCorner;
         document.getElementById('canvas-object-corner-input').value = cavasObjectCorner;
         document.getElementById('obj-shadow-color').value = canvasObjectShadowColor;
-
+        document.getElementById('obj-shadow-blur').value = canvasObjectShadowBlur;
     }
 
     ///////////Typography//////////////
     if (canvas.getActiveObject() && canvas.getActiveObject().hasOwnProperty('text')) {
 
         fontSelectList = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fontFamily : "Arial";
-        textDecorating = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.textAlign : "left";//text styling
+        textDecorating = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.textAlign : "left"; //text styling
         fontStyleBold = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fontWeight : "";
         // fontStyleUnderline = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fontWeight : ""; //underline:true
         fontStyleItalic = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fontStyle : "";
@@ -205,7 +205,7 @@ function getCanvasActiveObjectData() {
 
         // if()
 
-//////////////////////font style
+        //////////////////////font style
         [].__proto__.forEach.call(document.getElementsByClassName("font-style"), (item) => {
 
             item.removeAttribute("disabled");
@@ -227,7 +227,7 @@ function getCanvasActiveObjectData() {
 
         });
 
-//////////////////text decorating
+        //////////////////text decorating
         [].__proto__.forEach.call(document.getElementsByClassName("text-decorating"), (item) => {
             // console.log(canvasItem.name);
 
@@ -378,11 +378,13 @@ function getCanvasActiveObjectData() {
 
             //////////////////obj-shadow-color
 
-            document.getElementById("obj-shadow-color").setAttribute("disabled", "true");
+
+            document.getElementById("obj-shadow-blur").setAttribute("disabled", "true");
             document.getElementById("shadow-Offset-X").setAttribute("disabled", "true");
             document.getElementById("shadow-Offset-Y").setAttribute("disabled", "true");
             //document.getElementById("obj-shadow-color").setAttribute("disabled", "true");
 
+            document.getElementById("obj-shadow-blur").value = '';
             document.getElementById("obj-shadow-color").value = "#ffffff";
             document.getElementById("shadow-Offset-X").value = '';
             document.getElementById("shadow-Offset-Y").value = '';
@@ -442,8 +444,8 @@ function enableDisableElement() {
     }
 
 
-    if (!canvas.getActiveObject() && document.getElementById('objectIn-canvas-background-colorselect')
-        && document.getElementById('objectIn-canvas-background-colorselect-down')) {
+    if (!canvas.getActiveObject() && document.getElementById('objectIn-canvas-background-colorselect') &&
+        document.getElementById('objectIn-canvas-background-colorselect-down')) {
 
 
         document.getElementById('objectIn-canvas-background-colorselect').setAttribute('disabled', true);
@@ -505,14 +507,14 @@ function copy() {
     // clone what are you copying since you may want copy and paste on different moment.
     // and you do not want the changes happened later to reflect on the copy.
     // maybe.
-    canvas.getActiveObject().clone(function (cloned) {
+    canvas.getActiveObject().clone(function(cloned) {
         _clipboard = cloned;
     }, customProperties);
 }
 
 function paste() {
     // clone again, so you can do multiple copies.
-    _clipboard.clone(function (clonedObj) {
+    _clipboard.clone(function(clonedObj) {
         canvas.discardActiveObject();
         clonedObj.set({
             left: clonedObj.left + 10,
@@ -522,7 +524,7 @@ function paste() {
         if (clonedObj.type === 'activeSelection') {
             // active selection needs a reference to the canvas.
             clonedObj.canvas = canvas;
-            clonedObj.forEachObject(function (obj) {
+            clonedObj.forEachObject(function(obj) {
                 canvas.add(obj);
             });
             // this should solve the unselectability
@@ -548,7 +550,7 @@ function remove() {
 
         if (activeGroup) {
             var objectsInGroup = canvas.getActiveObjects();
-            objectsInGroup.forEach(function (object) {
+            objectsInGroup.forEach(function(object) {
                 canvas.remove(object);
             });
         } else if (activeObject) {
@@ -670,7 +672,7 @@ function addAccessors($scope, $rootScope) {
 
     //	Filter Definition test
 
-    $scope.contrastFilter = function () {
+    $scope.contrastFilter = function() {
         var obj = canvas.getActiveObject();
         if (!obj) return;
         if (obj.filters[0]) {
@@ -684,7 +686,7 @@ function addAccessors($scope, $rootScope) {
         canvas.renderAll();
     };
 
-    $scope.blurFilter = function () {
+    $scope.blurFilter = function() {
         var obj = canvas.getActiveObject();
         if (!obj) return;
         if (obj.filters[0]) {
@@ -699,7 +701,7 @@ function addAccessors($scope, $rootScope) {
     };
 
 
-    $scope.setBlur = function (value) {
+    $scope.setBlur = function(value) {
         getActiveStyle('blur', value);
         canvas.renderAll();
     };
@@ -707,49 +709,49 @@ function addAccessors($scope, $rootScope) {
     //////////////////
 
 
-    $scope.setShadowOffsetX = function (value) {
+    $scope.setShadowOffsetX = function(value) {
 
         setActiveShadow('offsetX', value);
         //canvas.renderAll();
     };
 
-    $scope.getShadowOffsetX = function (value) {
+    $scope.getShadowOffsetX = function(value) {
 
         getActiveShadow('offsetX', value);
     };
 
 
-    $scope.setShadowOffsetY = function (value) {
+    $scope.setShadowOffsetY = function(value) {
 
         setActiveShadow('offsetY', value);
         canvas.renderAll();
     };
 
-    $scope.getShadowOffsetY = function (value) {
+    $scope.getShadowOffsetY = function(value) {
 
         getActiveShadow('offsetY', value);
     };
 
 
-    $scope.setShadowBlur = function (value) {
+    $scope.setShadowBlur = function(value) {
         setActiveShadow('blur', value);
         canvas.renderAll();
     };
 
-    $scope.getShadowBlur = function (value) {
+    $scope.getShadowBlur = function(value) {
         getActiveShadow('blur', value);
     };
 
-    $scope.setShadowColor = function (value) {
+    $scope.setShadowColor = function(value) {
         setActiveShadow('color', value);
         canvas.renderAll();
     };
 
-    $scope.getShadowColor = function (value) {
+    $scope.getShadowColor = function(value) {
         getActiveShadow('color', value);
     };
 
-    $scope.shadowify = function () {
+    $scope.shadowify = function() {
 
         var obj = canvas.getActiveObject();
         if (!obj) return;
@@ -771,91 +773,91 @@ function addAccessors($scope, $rootScope) {
     //////////////////
 
     $scope.getOpacity =
-        function () {
+        function() {
 
             return getActiveStyle('opacity') * 100;
         };
-    $scope.setOpacity = function (value) {
+    $scope.setOpacity = function(value) {
 
         cavasObjectOpacity = value;
         setActiveStyle('opacity', parseInt(value, 10) / 100);
     };
 
-    $scope.getFill = function () {
+    $scope.getFill = function() {
         return getActiveStyle('fill');
     };
-    $scope.setFill = function (value) {
+    $scope.setFill = function(value) {
         setActiveStyle('fill', value);
     };
 
-    $scope.isBold = function () {
+    $scope.isBold = function() {
         return getActiveStyle('fontWeight') === 'bold';
     };
-    $scope.toggleBold = function () {
+    $scope.toggleBold = function() {
         setActiveStyle('fontWeight',
             getActiveStyle('fontWeight') === 'bold' ? '' : 'bold');
     };
-    $scope.isItalic = function () {
+    $scope.isItalic = function() {
         return getActiveStyle('fontStyle') === 'italic';
     };
-    $scope.toggleItalic = function () {
+    $scope.toggleItalic = function() {
         setActiveStyle('fontStyle',
             getActiveStyle('fontStyle') === 'italic' ? '' : 'italic');
     };
 
-    $scope.isUnderline = function () {
+    $scope.isUnderline = function() {
         return getActiveStyle('textDecoration').indexOf('underline') > -1;
     };
-    $scope.toggleUnderline = function () {
+    $scope.toggleUnderline = function() {
         var value = $scope.isUnderline() ? getActiveStyle('textDecoration').replace('underline', '') : (getActiveStyle('textDecoration') + ' underline');
         var value = $scope.isUnderline() ? getActiveStyle('textDecoration').replace('underline', '') : (getActiveStyle('textDecoration') + ' underline');
 
         setActiveStyle('textDecoration', value);
     };
 
-    $scope.isLinethrough = function () {
+    $scope.isLinethrough = function() {
         return getActiveStyle('textDecoration').indexOf('line-through') > -1;
     };
-    $scope.toggleLinethrough = function () {
+    $scope.toggleLinethrough = function() {
         var value = $scope.isLinethrough() ? getActiveStyle('textDecoration').replace('line-through', '') : (getActiveStyle('textDecoration') + ' line-through');
 
         setActiveStyle('textDecoration', value);
     };
-    $scope.isOverline = function () {
+    $scope.isOverline = function() {
         return getActiveStyle('textDecoration').indexOf('overline') > -1;
     };
-    $scope.toggleOverline = function () {
+    $scope.toggleOverline = function() {
         var value = $scope.isOverline() ? getActiveStyle('textDecoration').replace('overline', '') : (getActiveStyle('textDecoration') + ' overline');
 
         setActiveStyle('textDecoration', value);
     };
 
-    $scope.getText = function () {
+    $scope.getText = function() {
         return getActiveProp('text');
     };
-    $scope.setText = function (value) {
+    $scope.setText = function(value) {
         setActiveProp('text', value);
     };
 
-    $scope.getTextAlign = function () {
+    $scope.getTextAlign = function() {
         return capitalize(getActiveProp('textAlign'));
     };
-    $scope.setTextAlign = function (value) {
+    $scope.setTextAlign = function(value) {
         setActiveProp('textAlign', value.toLowerCase());
     };
 
-    $scope.getFontFamily = function () {
+    $scope.getFontFamily = function() {
         return getActiveProp('fontFamily').toLowerCase();
     };
 
-    $scope.setFontFamily = function (value) {
+    $scope.setFontFamily = function(value) {
         setActiveProp('fontFamily', value.toLowerCase());
     };
 
     //    set text decorations like underline/overline/linethrough
     //    function for respecttive buttons is: changeTextStyle('underline')
 
-    $scope.changeTextStyle = function (val) {
+    $scope.changeTextStyle = function(val) {
         var text = canvas.getActiveObject();
         console.log(val);
         text[val] = !text[val];
@@ -865,8 +867,8 @@ function addAccessors($scope, $rootScope) {
 
     //	set active text family in the text listbox
 
-    $scope.setActive = function (item, list) {
-        list.some(function (item) {
+    $scope.setActive = function(item, list) {
+        list.some(function(item) {
             if (item.active) {
                 return item.active = false;
             }
@@ -874,84 +876,84 @@ function addAccessors($scope, $rootScope) {
         item.active = true;
     };
 
-    $scope.getBgColor = function () {
+    $scope.getBgColor = function() {
 
         getCanvasActiveObjectData();
         setCanvasActiveObjectData();
         enableDisableElement();
         return getActiveProp('backgroundColor');
     };
-    $scope.setBgColor = function (value) {
+    $scope.setBgColor = function(value) {
 
         setActiveProp('backgroundColor', value);
     };
 
-    $scope.getTextBgColor = function () {
+    $scope.getTextBgColor = function() {
         return getActiveProp('textBackgroundColor');
     };
-    $scope.setTextBgColor = function (value) {
+    $scope.setTextBgColor = function(value) {
         setActiveProp('textBackgroundColor', value);
     };
 
-    $scope.getStroke = function () {
+    $scope.getStroke = function() {
         return getActiveStyle('stroke');
     };
-    $scope.setStroke = function (value) {
+    $scope.setStroke = function(value) {
         setActiveStyle('stroke', value);
     };
 
-    $scope.getStrokeWidth = function () {
+    $scope.getStrokeWidth = function() {
         return getActiveStyle('strokeWidth');
     };
-    $scope.setStrokeWidth = function (value) {
+    $scope.setStrokeWidth = function(value) {
         setActiveStyle('strokeWidth', parseInt(value, 0));
     };
 
-    $scope.getPropLeft = function () {
+    $scope.getPropLeft = function() {
         return parseInt(getActiveProp('left'), 0) ? parseInt(getActiveProp('left'), 0) : '';
         console.log(value);
     };
 
-    $scope.setColorInputsColor = function () {
+    $scope.setColorInputsColor = function() {
 
 
     }
-    $scope.setPropLeft = function (value) {
+    $scope.setPropLeft = function(value) {
         setActiveProp('left', parseInt(value, 0));
         canvas.renderAll();
     };
 
-    $scope.getPropTop = function () {
+    $scope.getPropTop = function() {
         return parseInt(getActiveProp('top'), 0) ? parseInt(getActiveProp('top'), 0) : '';
         console.log(value);
     };
 
-    $scope.setPropTop = function (value) {
+    $scope.setPropTop = function(value) {
         setActiveProp('top', parseInt(value, 0));
         canvas.renderAll();
     };
 
-    $scope.getPropWidth = function () {
+    $scope.getPropWidth = function() {
         return parseInt(getActiveProp('width'), 0) ? parseInt(getActiveProp('width'), 0) : '';
         console.log(value);
     };
 
-    $scope.setPropWidth = function (value) {
+    $scope.setPropWidth = function(value) {
         setActiveProp('width', parseInt(value, 0));
         canvas.renderAll();
     };
 
-    $scope.getPropHeight = function () {
+    $scope.getPropHeight = function() {
         return parseInt(getActiveProp('height'), 10) ? parseInt(getActiveProp('height'), 10) : '';
         console.log(value);
     };
 
-    $scope.setPropHeight = function (value) {
+    $scope.setPropHeight = function(value) {
         setActiveProp('height', parseInt(value, 0));
         canvas.renderAll();
     };
 
-    $scope.getPropAngle = function () { /// if object a=inactive return ""must implement
+    $scope.getPropAngle = function() { /// if object a=inactive return ""must implement
         if (parseFloat(getActiveProp('angle')) == 0) {
             return parseFloat(getActiveProp('angle'));
         }
@@ -962,22 +964,22 @@ function addAccessors($scope, $rootScope) {
 
     };
 
-    $scope.customfunc1 = function () {
+    $scope.customfunc1 = function() {
         return !canvas._activeObject;
     }
 
-    $scope.setPropAngle = function (value) {
+    $scope.setPropAngle = function(value) {
         // value = Math.round(value)
         setActiveProp('angle', parseFloat(value.toFixed(2)));
         canvas.renderAll();
     };
 
 
-    $scope.getPropScaleX = function () {
+    $scope.getPropScaleX = function() {
         return parseFloat(getActiveProp('scaleX')) ? parseFloat(getActiveProp('scaleX').toFixed(2)) : '';
     };
 
-    $scope.setPropScaleX = function (value) {
+    $scope.setPropScaleX = function(value) {
         if (value) {
             setActiveProp('scaleX', parseFloat(value.toFixed(2)));
             canvas.renderAll();
@@ -988,11 +990,11 @@ function addAccessors($scope, $rootScope) {
 
     };
 
-    $scope.getPropScaleY = function () {
+    $scope.getPropScaleY = function() {
         return parseFloat(getActiveProp('scaleY')) ? parseFloat(getActiveProp('scaleY').toFixed(2)) : '';
     };
 
-    $scope.setPropScaleY = function (value) {
+    $scope.setPropScaleY = function(value) {
 
         if (value) {
             setActiveProp('scaleY', parseFloat(value.toFixed(2)));
@@ -1004,56 +1006,56 @@ function addAccessors($scope, $rootScope) {
     };
 
 
-    $scope.getRadius = function () {
+    $scope.getRadius = function() {
 
         return parseInt(getActiveProp('rx'), 10) ? parseInt(getActiveProp('rx'), 10) : '';
     };
 
-    $scope.getCornerWidth = function () {
+    $scope.getCornerWidth = function() {
         return parseInt(getActiveProp('rx'), 10) ? parseInt(getActiveProp('rx'), 10) : '';
         return parseInt(getActiveProp('ry'), 10) ? parseInt(getActiveProp('ry'), 10) : '';
     };
-    $scope.setCornerWidth = function (value) {
+    $scope.setCornerWidth = function(value) {
         cavasObjectCorner = value;
         setActiveProp('rx', parseInt(value, 10));
         setActiveProp('ry', parseInt(value, 10));
     };
 
-    $scope.getFontSize = function () {
+    $scope.getFontSize = function() {
         return parseInt(getActiveStyle('fontSize'), 10) ? parseInt(getActiveStyle('fontSize'), 10) : '';
     };
-    $scope.setFontSize = function (value) {
+    $scope.setFontSize = function(value) {
         setActiveStyle('fontSize', parseInt(value, 10));
     };
 
-    $scope.getLineHeight = function () {
+    $scope.getLineHeight = function() {
         return parseInt(getActiveStyle('lineHeight'), 10) ? parseInt(getActiveStyle('lineHeight'), 10) : '';
     };
-    $scope.setLineHeight = function (value) {
+    $scope.setLineHeight = function(value) {
         setActiveStyle('lineHeight', parseFloat(value, 10));
     };
-    $scope.getCharSpacing = function () {
+    $scope.getCharSpacing = function() {
         return parseInt(getActiveStyle('charSpacing'), 10) ? parseInt(getActiveStyle('charSpacing'), 10) : '';
     };
-    $scope.setCharSpacing = function (value) {
+    $scope.setCharSpacing = function(value) {
         setActiveStyle('charSpacing', value);
     };
 
-    $scope.getBold = function () {
+    $scope.getBold = function() {
         return getActiveStyle('fontWeight');
     };
-    $scope.setBold = function (value) {
+    $scope.setBold = function(value) {
         setActiveStyle('fontWeight', value ? 'bold' : '');
     };
 
-    $scope.getFontWeight = function () {
+    $scope.getFontWeight = function() {
         return getActiveStyle('fontWeight');
     };
-    $scope.setFontWeight = function (value) {
+    $scope.setFontWeight = function(value) {
         setActiveStyle('fontWeight', value);
     };
 
-    $scope.getCanvasBgColor = function () {
+    $scope.getCanvasBgColor = function() {
 
         if (canvasObjectFillColor) {
             document.getElementById("canvas-background-colorselect").value = canvasObjectFillColor;
@@ -1067,7 +1069,7 @@ function addAccessors($scope, $rootScope) {
     };
 
 
-    $scope.setCanvasBgColor = function (value) {
+    $scope.setCanvasBgColor = function(value) {
 
         canvasObjectFillColor = value;
         canvas.backgroundColor = value;
@@ -1075,11 +1077,11 @@ function addAccessors($scope, $rootScope) {
         canvas.renderAll();
     };
 
-    $scope.setCanvasObjectBgColor = function (value) {
+    $scope.setCanvasObjectBgColor = function(value) {
 
     }
 
-    $scope.flipX = function () {
+    $scope.flipX = function() {
         var obj = canvas.getActiveObject();
         if (obj) {
             obj.set('flipX', !obj.flipX);
@@ -1087,7 +1089,7 @@ function addAccessors($scope, $rootScope) {
         }
     }
 
-    $scope.flipY = function () {
+    $scope.flipY = function() {
         var obj = canvas.getActiveObject();
         if (obj) {
             obj.set('flipY', !obj.flipY);
@@ -1097,7 +1099,7 @@ function addAccessors($scope, $rootScope) {
 
     //Testing align functions here
 
-    $scope.alignLeft = function (e) {
+    $scope.alignLeft = function(e) {
 
         if (canvas.getActiveObject().type === 'activeSelection') {
 
@@ -1107,7 +1109,7 @@ function addAccessors($scope, $rootScope) {
             var groupHeight = myObj.getHeight();
 
 
-            myObjects.forEachObject(function (obj) {
+            myObjects.forEachObject(function(obj) {
                 var itemWidth = obj.getBoundingRect().width;
                 var itemHeight = obj.getBoundingRect().height;
 
@@ -1125,53 +1127,88 @@ function addAccessors($scope, $rootScope) {
     }
 
 
-/* Setting canvas background gradient with x/y to angle settings
- */
+    /* Setting canvas background gradient with x/y to angle settings
+     */
 
 
-$scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
-    var leftColor = document.getElementById('gradLeft').value;
-    var rightColor = document.getElementById('gradRight').value;
-    var angle = document.getElementById('canvas-angle').value;
-    var offset_1 = document.getElementById('offset_1').value;
-    var offset_2 = document.getElementById('offset_2').value;
-    
-    console.log(leftColor, rightColor, angle);
+    $scope.addBackgroundGradient = function(leftColor, rightColor, angle) {
+        var leftColor = document.getElementById('gradLeft').value;
+        var rightColor = document.getElementById('gradRight').value;
+        var angle = document.getElementById('canvas-angle').value;
+        var offset_1 = document.getElementById('offset_1').value;
+        var offset_2 = document.getElementById('offset_2').value;
 
-    var angleCoords = {
-        'x1': (Math.round(50 + Math.sin(angle) * 50) * canvas.width) / 100,
-        'y1': (Math.round(50 + Math.cos(angle) * 50) * canvas.height) / 100,
-        'x2': (Math.round(50 + Math.sin(angle + Math.PI) * 50) * canvas.width) / 100,
-        'y2': (Math.round(50 + Math.cos(angle + Math.PI) * 50) * canvas.height) / 100,
+        console.log(leftColor, rightColor, angle);
+
+        var angleCoords = {
+            'x1': (Math.round(50 + Math.sin(angle) * 50) * canvas.width) / 100,
+            'y1': (Math.round(50 + Math.cos(angle) * 50) * canvas.height) / 100,
+            'x2': (Math.round(50 + Math.sin(angle + Math.PI) * 50) * canvas.width) / 100,
+            'y2': (Math.round(50 + Math.cos(angle + Math.PI) * 50) * canvas.height) / 100,
+        }
+
+        var grad = new fabric.Gradient({
+            type: 'linear',
+            coords: {
+                x1: angleCoords.x1 || 0,
+                y1: angleCoords.y1 || 0,
+                x2: angleCoords.x2 || 0,
+                y2: angleCoords.y2 || 0,
+            },
+            colorStops: [{
+                    color: leftColor,
+                    offset: offset_1,
+                },
+                {
+                    color: rightColor,
+                    offset: offset_2,
+                }
+            ]
+        });
+        canvas.backgroundColor = grad.toLive(canvas.contextContainer);
+        canvas.renderAll();
     }
 
-    var grad = new fabric.Gradient({
-        type: 'linear',
-        coords: {
+    /* Setting canvas objects gradient with x/y to angle settings
+     */
+
+
+    $scope.gradientify = function() {
+        var obj = canvas.getActiveObject();
+        if (!obj) return;
+        var leftColor = document.getElementById('gradLeftO').value;
+        var rightColor = document.getElementById('gradRightO').value;
+        var angle = document.getElementById('canvas-angleO').value;
+        var offset_1 = document.getElementById('offset_1O').value;
+        var offset_2 = document.getElementById('offset_2O').value;
+
+        var angleCoords = {
+            'x1': (Math.round(50 + Math.sin(angle) * 50) * obj.width) / 100,
+            'y1': (Math.round(50 + Math.cos(angle) * 50) * obj.height) / 100,
+            'x2': (Math.round(50 + Math.sin(angle + Math.PI) * 50) * obj.width) / 100,
+            'y2': (Math.round(50 + Math.cos(angle + Math.PI) * 50) * obj.height) / 100,
+        }
+
+        obj.setGradient('fill', {
+            type: 'linear',
             x1: angleCoords.x1 || 0,
             y1: angleCoords.y1 || 0,
             x2: angleCoords.x2 || 0,
             y2: angleCoords.y2 || 0,
-        },
-        colorStops: [{
-            color: leftColor,
-            offset: offset_1,
-        },
-            {
-                color: rightColor,
-                offset: offset_2,
+            colorStops: {
+                0: leftColor,
+                1: rightColor,
             }
-        ]
-    });
-    canvas.backgroundColor = grad.toLive(canvas.contextContainer);
-    canvas.renderAll();
-}
+        });
+        canvas.renderAll();
+    };
 
 
-/* Adding primitives to canvas
- */
 
-    $scope.addRect = function () {
+    /* Adding primitives to canvas
+     */
+
+    $scope.addRect = function() {
         var coord = getRandomLeftTop();
 
         var rect = (new fabric.Rect({
@@ -1194,87 +1231,105 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
     };
 
 
-   
 
-    $scope.bgImage = function () {
+
+    $scope.bgImage = function() {
         const {
             ipcRenderer
         } = require('electron')
-        ipcRenderer.send('openFile', () => {
-        })
+        ipcRenderer.send('openFile', () => {})
         ipcRenderer.once('fileData', (event, filepath) => {
-            fabric.Image.fromURL(filepath, function (image) {
+            fabric.Image.fromURL(filepath, function(image) {
                 var hCent = canvas.height / 2;
-                var wCent = canvas.getWidth() / 2;
-                document.getElementById('bgButton').style.background = 'url('+filepath+') center center / cover';
+                var wCent = canvas.width / 2;
+                var myOffsetX = document.getElementById('offsetX').value;
+                var myOffsetY = document.getElementById('offsetY').value;
+                document.getElementById('bgButton').style.background = 'url(' + filepath + ') center center / cover';
                 document.getElementById('imgIcon').style.display = 'none';
-                console.log(filepath);
                 canvas.setBackgroundImage(filepath, canvas.renderAll.bind(canvas), {
-                  originX: 'center',
-                  originY: 'center',
-                  left: wCent,
-                  top: hCent,
-                  repeat: 'repeat',
-                  scaleX: 1,
-                  scaleY: 1
+                    originX: 'center',
+                    originY: 'center',
+                    left: wCent,
+                    top: hCent,
+                    repeat: 'repeat',
+                    scaleX: 1,
+                    scaleY: 1
                 });
             })
         })
     };
 
-    // $scope.bgImage = function () {
-    //     const {
-    //         ipcRenderer
-    //     } = require('electron')
-    //     ipcRenderer.send('openFile', () => {
-    //     })
-    //     ipcRenderer.once('fileData', (event, filepath) => {
-    //         fabric.Image.fromURL(filepath, function (image) {
-    //             var hCent = canvas.getHeight / 2;
-    //             var wCent = canvas.getWidth / 2;
-    //             canvas.setBackgroundColor({
-    //                 source: filepath,
-    //                 top: hCent,
-    //                 left: wCent,
-    //                 originX: 'center',
-    //                 originY: 'middle',
-    //                 repeat: 'no-repeat',
-    //                 scaleX: 10,
-    //                 scaleY: 10 
-    //             }, canvas.renderAll.bind(canvas));
-    //         })
-    //     })
-    // };
+    $scope.bgPattern = function() {
+        const {
+            ipcRenderer
+        } = require('electron')
+        ipcRenderer.send('openFile', () => {})
+        ipcRenderer.once('fileData', (event, filepath) => {
+            fabric.Image.fromURL(filepath, function(image) {
+                document.getElementById('bgPattern').style.background = 'url(' + filepath + ') center center / cover';
+                document.getElementById('imgIcon2').style.display = 'none';
+                canvas.setBackgroundColor({
+                    source: filepath,
+                    repeat: 'repeat'
+                }, canvas.renderAll.bind(canvas));
+            })
+        })
+    };
 
-    $scope.getBgSize = function () {
+    $scope.getBgPosX = function() {
+        return canvas.backgroundImage.left;
+    };
+
+    $scope.setBgPosX = function(value) {
+        canvas.backgroundImage.left = canvas.width * value;
+        canvas.renderAll();
+    };
+
+    $scope.getBgPosY = function() {
+        return canvas.backgroundImage.top;
+    };
+
+    $scope.setBgPosY = function(value) {
+        canvas.backgroundImage.top = canvas.height * value;
+        canvas.renderAll();
+    };
+
+    $scope.getBgSize = function() {
         return canvas.backgroundImage.scaleX;
     };
 
-    $scope.setBgSize = function (value) {
+    $scope.setBgSize = function(value) {
         canvas.backgroundImage.scaleX = value;
         canvas.backgroundImage.scaleY = value;
         canvas.renderAll();
     };
 
-    $scope.getBgRepeat = function () {
-        return canvas.backgroundImage.scaleX;
+    $scope.getBgRepeat = function() {
+        return canvas.backgroundColor.repeat;
     };
 
-    $scope.setBgRepeat = function (value) {
-        canvas.backgroundImage.scaleX = value;
+    $scope.setBgRepeat = function(value) {
+        canvas.backgroundColor.repeat = value;
         canvas.renderAll();
     };
 
 
-    $scope.resetBgImage = function () {
+    $scope.resetBgImage = function() {
         document.getElementById('bgButton').style.background = null;
         document.getElementById('imgIcon').style.display = 'block';
         canvas.backgroundImage = null;
         canvas.renderAll();
     };
 
+    $scope.resetBgPattern = function() {
+        document.getElementById('bgPattern').style.background = null;
+        document.getElementById('imgIcon2').style.display = 'block';
+        canvas.backgroundColor = null;
+        canvas.renderAll();
+    };
 
-    $scope.addRoundRect = function () {
+
+    $scope.addRoundRect = function() {
         var coord = getRandomLeftTop();
 
         var roundrect = (new fabric.Rect({
@@ -1297,7 +1352,7 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
         canvas.add(roundrect).setActiveObject(roundrect);
     };
 
-    $scope.addCircle = function () {
+    $scope.addCircle = function() {
         var coord = getRandomLeftTop();
 
         var circle = (new fabric.Circle({
@@ -1317,7 +1372,7 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
         canvas.add(circle).setActiveObject(circle);
     };
 
-    $scope.addTriangle = function () {
+    $scope.addTriangle = function() {
         var coord = getRandomLeftTop();
 
         var triangle = (new fabric.Triangle({
@@ -1338,7 +1393,7 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
         canvas.add(triangle).setActiveObject(triangle);
     };
 
-    $scope.addLine = function () {
+    $scope.addLine = function() {
         var coord = getRandomLeftTop();
         var line = new fabric.Line([50, 5, 200, 5], {
             includeDefaultValues: true,
@@ -1368,13 +1423,13 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
     };
 
 
-    $scope.addPolygon = function () {
+    $scope.addPolygon = function() {
         var coord = getRandomLeftTop();
 
         this.canvas.add(new fabric.Polygon([{
-            x: 185,
-            y: 0
-        },
+                x: 185,
+                y: 0
+            },
             {
                 x: 250,
                 y: 100
@@ -1394,7 +1449,7 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
         }));
     };
 
-    $scope.addText = function () {
+    $scope.addText = function() {
         var text = 'Lorem ipsum dolor sit amet,\nconsectetur adipisicing elit,\nsed do eiusmod tempor incididunt\nut labore et dolore magna aliqua.\n' +
             'Ut enim ad minim veniam,\nquis nostrud exercitation ullamco\nlaboris nisi ut aliquip ex ea commodo consequat.';
 
@@ -1414,7 +1469,7 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
         canvas.add(textSample);
     };
 
-    $scope.addTextbox = function () {
+    $scope.addTextbox = function() {
         var text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida orci eros, sodales imperdiet augue aliquet sed. Aenean finibus ' +
             'commodo mi a egestas. Sed quis lacinia nisl, sit amet maximus metus. Aenean nec vestibulum dolor. Aliquam vitae lectus pretium, tincidunt ' +
             'quam quis, venenatis diam. Aenean porta ipsum nisi, in bibendum lorem pretium non. Vestibulum id rhoncus velit. Morbi sit amet erat eu ' +
@@ -1443,7 +1498,7 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
         canvas.add(textSample).setActiveObject(textSample);
     };
 
-    $scope.addIText = function () {
+    $scope.addIText = function() {
         var text = 'Lorem ipsum dolor sit amet,\nconsectetur adipisicing elit,\nsed do eiusmod tempor incididunt\nut labore et dolore magna aliqua.\n' +
             'Ut enim ad minim veniam,\nquis nostrud exercitation ullamco\nlaboris nisi ut aliquip ex ea commodo consequat.';
 
@@ -1464,28 +1519,28 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
         canvas.add(textSample);
     };
 
-    var addShape = function (shapeName) {
+    var addShape = function(shapeName) {
 
         console.log('adding shape', shapeName);
 
         var coord = getRandomLeftTop();
 
-        fabric.loadSVGFromURL('../assets/' + shapeName + '.svg', function (objects, options) {
+        fabric.loadSVGFromURL('../assets/' + shapeName + '.svg', function(objects, options) {
 
             var loadedObject = fabric.util.groupSVGElements(objects, options);
 
             loadedObject.set({
-                left: coord.left,
-                top: coord.top,
-                angle: getRandomInt(-10, 10)
-            })
+                    left: coord.left,
+                    top: coord.top,
+                    angle: getRandomInt(-10, 10)
+                })
                 .setCoords();
 
             canvas.add(loadedObject);
         });
     };
 
-    $scope.maybeLoadShape = function (e) {
+    $scope.maybeLoadShape = function(e) {
         var $el = $(e.target).closest('button.shape');
         if (!$el[0]) return;
 
@@ -1502,15 +1557,14 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
     */
 
 
-    $scope.loadImage = function () {
+    $scope.loadImage = function() {
 
         const {
             ipcRenderer
         } = require('electron')
-        ipcRenderer.send('openFile', () => {
-        })
+        ipcRenderer.send('openFile', () => {})
         ipcRenderer.once('fileData', (event, filepath) => {
-            fabric.Image.fromURL(filepath, function (image) {
+            fabric.Image.fromURL(filepath, function(image) {
 
                 image.set({
                     scaleX: 1,
@@ -1537,19 +1591,19 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
     };
 
 
-    $scope.dropImage = function () {
-        var myAppModule = (function () {
+    $scope.dropImage = function() {
+        var myAppModule = (function() {
             var outObj = {};
 
             var file, fileReader, img;
             var cImg;
 
-            var init = function (newFile, newFileReader) {
+            var init = function(newFile, newFileReader) {
                 file = newFile;
                 fileReader = newFileReader;
             };
 
-            var onloadImage = function () {
+            var onloadImage = function() {
 
                 cImg = new fabric.Image(img, {
                     left: 0,
@@ -1562,7 +1616,7 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
                 canvas.add(cImg).setActiveObject(cImg);
             };
 
-            var onloadFile = function (e) {
+            var onloadFile = function(e) {
                 img = new Image();
                 img.onload = onloadImage;
                 img.src = fileReader.result;
@@ -1601,17 +1655,17 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
     */
 
     var holder = document.getElementById('wrapper');
-    holder.ondragover = function () {
+    holder.ondragover = function() {
         return false;
     };
-    holder.ondragleave = holder.ondragend = function () {
+    holder.ondragleave = holder.ondragend = function() {
         return false;
     };
-    holder.ondrop = function (e) {
+    holder.ondrop = function(e) {
         e.preventDefault();
         var file = e.dataTransfer.files[0];
         console.log('File you dragged here is', file.path);
-        fabric.Image.fromURL(file.path, function (image) {
+        fabric.Image.fromURL(file.path, function(image) {
 
             image.set({
                 left: 20,
@@ -1633,12 +1687,12 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
     function dlKeyCode() {
         return {
             restrict: 'A',
-            link: function ($scope, $element, $attrs) {
-                $element.bind("keypress", function (event) {
+            link: function($scope, $element, $attrs) {
+                $element.bind("keypress", function(event) {
                     var keyCode = event.which || event.keyCode;
 
                     if (keyCode == $attrs.code) {
-                        $scope.$apply(function () {
+                        $scope.$apply(function() {
                             $scope.$eval($attrs.dlKeyCode, {
                                 $event: event
                             });
@@ -1654,13 +1708,13 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
     function addImage(imageName) {
         var coord = getRandomLeftTop();
 
-        fabric.Image.fromURL(file.path, function (image) {
+        fabric.Image.fromURL(file.path, function(image) {
 
             image.set({
-                left: coord.left,
-                top: coord.top,
-                angle: getRandomInt(-10, 10)
-            })
+                    left: coord.left,
+                    top: coord.top,
+                    angle: getRandomInt(-10, 10)
+                })
                 .scale(getRandomNum(minScale, maxScale))
                 .setCoords();
 
@@ -1668,26 +1722,26 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
         });
     };
 
-    $scope.addImage1 = function () {
+    $scope.addImage1 = function() {
         addImage('fab.png', 0.1, 0.25);
     };
 
 
-    $scope.addImage2 = function () {
+    $scope.addImage2 = function() {
         addImage('logo.png', 0.1, 1);
     };
 
-    $scope.addImage3 = function () {
+    $scope.addImage3 = function() {
         addImage('printio.png', 0.5, 0.75);
     };
 
-    $scope.confirmClear = function () {
+    $scope.confirmClear = function() {
         if (confirm('Are you sure?')) {
             canvas.clear();
         }
     };
 
-    $scope.rasterize = function () {
+    $scope.rasterize = function() {
         if (!fabric.Canvas.supports('toDataURL')) {
             alert('This browser doesn\'t provide means to serialize canvas to an image');
         } else {
@@ -1695,28 +1749,28 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
         }
     };
 
-    $scope.rasterizeSVG = function () {
+    $scope.rasterizeSVG = function() {
         window.open(
             'data:image/svg+xml;utf8,' +
             encodeURIComponent(canvas.toSVG()));
     };
 
-    $scope.rasterizeJSON = function () {
+    $scope.rasterizeJSON = function() {
         $scope.setConsoleJSON(JSON.stringify(canvas));
     };
 
-    $scope.getSelected = function () {
+    $scope.getSelected = function() {
         return canvas.getActiveObject();
     };
 
-    $scope.removeSelected = function () {
+    $scope.removeSelected = function() {
         var activeObject = canvas.getActiveObject(),
             activeGroup = canvas.getActiveGroup();
 
         if (activeGroup) {
             var objectsInGroup = activeGroup.getObjects();
             canvas.discardActiveGroup();
-            objectsInGroup.forEach(function (object) {
+            objectsInGroup.forEach(function(object) {
                 canvas.remove(object);
             });
         } else if (activeObject) {
@@ -1724,120 +1778,120 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
         }
     };
 
-    $scope.getHorizontalLock = function () {
+    $scope.getHorizontalLock = function() {
         return getActiveProp('lockMovementX');
     };
-    $scope.setHorizontalLock = function (value) {
+    $scope.setHorizontalLock = function(value) {
         setActiveProp('lockMovementX', value);
     };
 
-    $scope.getVerticalLock = function () {
+    $scope.getVerticalLock = function() {
         return getActiveProp('lockMovementY');
     };
-    $scope.setVerticalLock = function (value) {
+    $scope.setVerticalLock = function(value) {
         setActiveProp('lockMovementY', value);
     };
 
-    $scope.getScaleLockX = function () {
-        return getActiveProp('lockScalingX');
-    },
-        $scope.setScaleLockX = function (value) {
+    $scope.getScaleLockX = function() {
+            return getActiveProp('lockScalingX');
+        },
+        $scope.setScaleLockX = function(value) {
             setActiveProp('lockScalingX', value);
         };
 
-    $scope.getScaleLockY = function () {
+    $scope.getScaleLockY = function() {
         return getActiveProp('lockScalingY');
     };
-    $scope.setScaleLockY = function (value) {
+    $scope.setScaleLockY = function(value) {
         setActiveProp('lockScalingY', value);
     };
 
-    $scope.getRotationLock = function () {
+    $scope.getRotationLock = function() {
         return getActiveProp('lockRotation');
     };
-    $scope.setRotationLock = function (value) {
+    $scope.setRotationLock = function(value) {
         setActiveProp('lockRotation', value);
     };
 
 
-    $scope.getOriginX = function () {
+    $scope.getOriginX = function() {
         return getActiveProp('originX');
     };
 
-    $scope.setOriginX = function (value) {
+    $scope.setOriginX = function(value) {
         setActiveProp('originX', value);
     };
 
-    $scope.getOriginY = function () {
+    $scope.getOriginY = function() {
         return getActiveProp('originY');
     };
-    $scope.setOriginY = function (value) {
+    $scope.setOriginY = function(value) {
         setActiveProp('originY', value);
     };
 
 
-    $scope.getObjectCaching = function () {
+    $scope.getObjectCaching = function() {
         return getActiveProp('objectCaching');
     };
 
-    $scope.setObjectCaching = function (value) {
+    $scope.setObjectCaching = function(value) {
         return setActiveProp('objectCaching', value);
     };
 
-    $scope.getNoScaleCache = function () {
+    $scope.getNoScaleCache = function() {
         return getActiveProp('noScaleCache');
     };
 
-    $scope.setNoScaleCache = function (value) {
+    $scope.setNoScaleCache = function(value) {
         return setActiveProp('noScaleCache', value);
     };
 
-    $scope.getTransparentCorners = function () {
+    $scope.getTransparentCorners = function() {
         return getActiveProp('transparentCorners');
     };
 
-    $scope.setTransparentCorners = function (value) {
+    $scope.setTransparentCorners = function(value) {
         return setActiveProp('transparentCorners', value);
     };
 
-    $scope.getHasBorders = function () {
+    $scope.getHasBorders = function() {
         return getActiveProp('hasBorders');
     };
 
-    $scope.setHasBorders = function (value) {
+    $scope.setHasBorders = function(value) {
         return setActiveProp('hasBorders', value);
     };
 
-    $scope.getHasControls = function () {
+    $scope.getHasControls = function() {
         return getActiveProp('hasControls');
     };
 
-    $scope.setHasControls = function (value) {
+    $scope.setHasControls = function(value) {
         return setActiveProp('hasControls', value);
     };
 
-    $scope.sendBackwards = function () {
+    $scope.sendBackwards = function() {
         var activeObject = canvas.getActiveObject();
         if (activeObject) {
             canvas.sendBackwards(activeObject);
         }
     };
 
-    $scope.sendToBack = function () {
+    $scope.sendToBack = function() {
         var activeObject = canvas.getActiveObject();
         if (activeObject) {
             canvas.sendToBack(activeObject);
         }
     };
 
-    $scope.bringForward = function () {
+    $scope.bringForward = function() {
         var activeObject = canvas.getActiveObject();
         if (activeObject) {
             canvas.bringForward(activeObject);
         }
     };
 
-    $scope.bringToFront = function () {
+    $scope.bringToFront = function() {
         var activeObject = canvas.getActiveObject();
         if (activeObject) {
             canvas.bringToFront(activeObject);
@@ -1849,7 +1903,7 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
         repeat: 'repeat'
     });
 
-    $scope.patternify = function () {
+    $scope.patternify = function() {
         var obj = canvas.getActiveObject();
 
         if (!obj) return;
@@ -1858,7 +1912,7 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
             obj.set('fill', null);
         } else {
             if (obj instanceof fabric.PathGroup) {
-                obj.getObjects().forEach(function (o) {
+                obj.getObjects().forEach(function(o) {
                     o.set('fill', pattern);
                 });
             } else {
@@ -1868,7 +1922,7 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
         canvas.renderAll();
     };
 
-    $scope.clip = function () {
+    $scope.clip = function() {
         var obj = canvas.getActiveObject();
         if (!obj) return;
 
@@ -1876,7 +1930,7 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
             obj.clipTo = null;
         } else {
             var radius = obj.width < obj.height ? (obj.width / 2) : (obj.height / 2);
-            obj.clipTo = function (ctx) {
+            obj.clipTo = function(ctx) {
                 ctx.arc(0, 0, radius, 0, Math.PI * 2, true);
             };
         }
@@ -1884,85 +1938,85 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
     };
 
 
-    $scope.gradientify = function () {
-        var obj = canvas.getActiveObject();
-        if (!obj) return;
+    /*     $scope.gradientify = function() {
+            var obj = canvas.getActiveObject();
+            if (!obj) return;
 
-        obj.setGradient('fill', {
-            x1: 0,
-            y1: 0,
-            x2: (getRandomInt(0, 1) ? 0 : obj.width),
-            y2: (getRandomInt(0, 1) ? 0 : obj.height),
-            colorStops: {
-                0: '#' + getRandomColor(),
-                1: '#' + getRandomColor()
-            }
-        });
-        canvas.renderAll();
-    };
+            obj.setGradient('fill', {
+                x1: 0,
+                y1: 0,
+                x2: (getRandomInt(0, 1) ? 0 : obj.width),
+                y2: (getRandomInt(0, 1) ? 0 : obj.height),
+                colorStops: {
+                    0: '#' + getRandomColor(),
+                    1: '#' + getRandomColor()
+                }
+            });
+            canvas.renderAll();
+        }; */
 
-    $scope.execute = function () {
+    $scope.execute = function() {
         if (!(/^\s+$/).test(consoleValue)) {
             eval(consoleValue);
         }
     };
 
 
-    $scope.getConsoleJSON = function () {
+    $scope.getConsoleJSON = function() {
         return consoleJSONValue;
     };
-    $scope.setConsoleJSON = function (value) {
+    $scope.setConsoleJSON = function(value) {
         consoleJSONValue = value;
     };
-    $scope.getConsoleSVG = function () {
+    $scope.getConsoleSVG = function() {
         return consoleSVGValue;
     };
-    $scope.setConsoleSVG = function (value) {
+    $scope.setConsoleSVG = function(value) {
         consoleSVGValue = value;
     };
-    $scope.getConsole = function () {
+    $scope.getConsole = function() {
         return consoleValue;
     };
-    $scope.setConsole = function (value) {
+    $scope.setConsole = function(value) {
         consoleValue = value;
     };
 
-    $scope.loadSVGWithoutGrouping = function () {
+    $scope.loadSVGWithoutGrouping = function() {
         _loadSVGWithoutGrouping(consoleSVGValue);
     };
-    $scope.loadSVG = function () {
+    $scope.loadSVG = function() {
         _loadSVG(consoleSVGValue);
     };
 
-    var _loadSVG = function (svg) {
-        fabric.loadSVGFromString(svg, function (objects, options) {
+    var _loadSVG = function(svg) {
+        fabric.loadSVGFromString(svg, function(objects, options) {
             var obj = fabric.util.groupSVGElements(objects, options);
             canvas.add(obj).centerObject(obj).renderAll();
             obj.setCoords();
         });
     };
 
-    var _loadSVGWithoutGrouping = function (svg) {
-        fabric.loadSVGFromString(svg, function (objects) {
+    var _loadSVGWithoutGrouping = function(svg) {
+        fabric.loadSVGFromString(svg, function(objects) {
             canvas.add.apply(canvas, objects);
             canvas.renderAll();
         });
     };
 
-    $scope.saveJSON = function () {
+    $scope.saveJSON = function() {
         _saveJSON(JSON.stringify(canvas));
     };
 
-    var _saveJSON = function (json) {
+    var _saveJSON = function(json) {
         $scope.setConsoleJSON(json);
     };
 
-    $scope.loadJSON = function () {
+    $scope.loadJSON = function() {
         _loadJSON(consoleJSONValue);
     };
 
-    var _loadJSON = function (json) {
-        canvas.loadFromJSON(json, function () {
+    var _loadJSON = function(json) {
+        canvas.loadFromJSON(json, function() {
             canvas.renderAll();
         });
     };
@@ -1988,27 +2042,27 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
     //	initCustomization();
 
 
-    $scope.getPreserveObjectStacking = function () {
+    $scope.getPreserveObjectStacking = function() {
         return canvas.preserveObjectStacking;
     };
-    $scope.setPreserveObjectStacking = function (value) {
+    $scope.setPreserveObjectStacking = function(value) {
         return canvas.preserveObjectStacking = value;
     };
 
-    $scope.getFreeDrawingMode = function () {
+    $scope.getFreeDrawingMode = function() {
         return canvas.isDrawingMode;
     };
-    $scope.setFreeDrawingMode = function (value) {
+    $scope.setFreeDrawingMode = function(value) {
         canvas.isDrawingMode = !!value;
         $scope.$$phase || $scope.$digest();
     };
 
     $scope.freeDrawingMode = 'Pencil';
 
-    $scope.getDrawingMode = function () {
+    $scope.getDrawingMode = function() {
         return $scope.freeDrawingMode;
     };
-    $scope.setDrawingMode = function (type) {
+    $scope.setDrawingMode = function(type) {
         $scope.freeDrawingMode = type;
 
         if (type === 'hline') {
@@ -2028,29 +2082,29 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
         $scope.$$phase || $scope.$digest();
     };
 
-    $scope.getDrawingLineWidth = function () {
+    $scope.getDrawingLineWidth = function() {
         if (canvas.freeDrawingBrush) {
             return canvas.freeDrawingBrush.width;
         }
     };
-    $scope.setDrawingLineWidth = function (value) {
+    $scope.setDrawingLineWidth = function(value) {
         if (canvas.freeDrawingBrush) {
             canvas.freeDrawingBrush.width = parseInt(value, 10) || 1;
         }
     };
 
-    $scope.getDrawingLineColor = function () {
+    $scope.getDrawingLineColor = function() {
         if (canvas.freeDrawingBrush) {
             return canvas.freeDrawingBrush.color;
         }
     };
-    $scope.setDrawingLineColor = function (value) {
+    $scope.setDrawingLineColor = function(value) {
         if (canvas.freeDrawingBrush) {
             canvas.freeDrawingBrush.color = value;
         }
     };
 
-    $scope.getDrawingLineShadowWidth = function () {
+    $scope.getDrawingLineShadowWidth = function() {
         if (canvas.freeDrawingBrush && canvas.freeDrawingBrush.shadow) {
             return canvas.freeDrawingBrush.shadow.blur || 1;
         } else {
@@ -2058,7 +2112,7 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
         }
     };
 
-    $scope.setDrawingLineShadowWidth = function (value) {
+    $scope.setDrawingLineShadowWidth = function(value) {
         if (canvas.freeDrawingBrush) {
             var blur = parseInt(value, 10) || 1;
             if (blur > 0) {
@@ -2095,7 +2149,7 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
 
     function initDiamondPatternBrush() {
         $scope.diamondPatternBrush = new fabric.PatternBrush(canvas);
-        $scope.diamondPatternBrush.getPatternSrc = function () {
+        $scope.diamondPatternBrush.getPatternSrc = function() {
 
             var squareWidth = 10,
                 squareDistance = 5;
@@ -2124,7 +2178,7 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
 
     function initSquarePatternBrush() {
         $scope.squarePatternBrush = new fabric.PatternBrush(canvas);
-        $scope.squarePatternBrush.getPatternSrc = function () {
+        $scope.squarePatternBrush.getPatternSrc = function() {
 
             var squareWidth = 10,
                 squareDistance = 2;
@@ -2142,7 +2196,7 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
 
     function initVLinePatternBrush() {
         $scope.vLinePatternBrush = new fabric.PatternBrush(canvas);
-        $scope.vLinePatternBrush.getPatternSrc = function () {
+        $scope.vLinePatternBrush.getPatternSrc = function() {
 
             var patternCanvas = fabric.document.createElement('canvas');
             patternCanvas.width = patternCanvas.height = 10;
@@ -2162,7 +2216,7 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
 
     function initHLinePatternBrush() {
         $scope.hLinePatternBrush = new fabric.PatternBrush(canvas);
-        $scope.hLinePatternBrush.getPatternSrc = function () {
+        $scope.hLinePatternBrush.getPatternSrc = function() {
 
             var patternCanvas = fabric.document.createElement('canvas');
             patternCanvas.width = patternCanvas.height = 10;

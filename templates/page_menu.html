@@ -1,287 +1,277 @@
-	<h1 class="title_left">Page Settings</h1>
-	<hr>
+<h1 class="title_left">Page Settings</h1>
+<hr>
 
 
-	<x-accordion expanded >
-		<header>
-			<x-label>Set page Size</x-label>
-		</header>
+<x-accordion expanded>
+    <header>
+        <x-label>Set page Size</x-label>
+    </header>
 
-		<main>
+    <main>
 
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 15px; width: 55px;">Presets</x-label>
+        <x-box>
+            <x-label style="margin-left:5px; margin-right: 15px; width: 55px;">Presets</x-label>
 
-				<x-select style="margin-right: 10px; margin-bottom: 5px; min-width:220px;">
-					<x-menu>
-						<x-menuitem value="no_bg" ng-click='setCanvasSize(size.width, size.height)' ng-repeat='size in presetSizes' selected="true">
-							<x-label>{{ size.name }}</x-label>
-						</x-menuitem>
-					</x-menu>
-				</x-select>
-			</x-box>
+            <x-select style="margin-right: 10px; margin-bottom: 5px; min-width:220px;">
+                <x-menu>
+                    <x-menuitem value="no_bg" ng-click='setCanvasSize(size.width, size.height)' ng-repeat='size in presetSizes' selected="true">
+                        <x-label>{{ size.name }}</x-label>
+                    </x-menuitem>
+                </x-menu>
+            </x-select>
+        </x-box>
 
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Edit Size</x-label>
+        <x-box>
+            <x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Edit Size</x-label>
 
-				<x-numberinput id="myWidth" style="margin-right: 5px; width: 130px;" skin="condensed" suffix=" px" ng-value="canvas.getWidth()" suffix=" px" ng-model="width">
-					<x-stepper></x-stepper>
-				</x-numberinput>
+            <x-numberinput id="myWidth" style="margin-right: 5px; width: 130px;" skin="condensed" suffix=" px" ng-value="canvas.getWidth()" suffix=" px" ng-model="width">
+                <x-stepper></x-stepper>
+            </x-numberinput>
 
-				<div style="width: 20px; margin-right: 5px;">
-				</div>
+            <div style="width: 20px; margin-right: 5px;">
+            </div>
 
-				<x-numberinput id="myHeight" style="width: 130px; margin-right: 10px;" skin="condensed" suffix=" px" ng-value="canvas.getHeight()" suffix=" px" ng-model="height">
-					<x-stepper></x-stepper>
-				</x-numberinput>
+            <x-numberinput id="myHeight" style="width: 130px; margin-right: 10px;" skin="condensed" suffix=" px" ng-value="canvas.getHeight()" suffix=" px" ng-model="height">
+                <x-stepper></x-stepper>
+            </x-numberinput>
 
-			</x-box>
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
-				<x-label class="centered_sm" style="margin-right: 15px; width: 130px;">Page Width</x-label>
-				<x-label class="centered_sm" style="width: 20px; margin-right: 5px;"></x-label>
-				<x-label class="centered_sm" style="width: 130px; margin-right: 10px;">Page Height</x-label>
-			</x-box>
-
-
-
-			<x-box>
-				<x-button skin="textured" style="margin-left: 75px; width:220px;" ng-click="setMySize()">
-					<x-box>
-						<x-label>Apply Setting</x-label>
-					</x-box>
-				</x-button>
-			</x-box>
-
-		</main>
-	</x-accordion>
-	<hr>
-
-
-	<x-accordion expanded>
-		<header>
-			<x-label>Background</x-label>
-		</header>
-
-		<main>
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Fill Color</x-label>
-
-				<x-colorselect id="canvas-background-colorselect" style="margin-left:5px; margin-right: 15px; width: 70px;">
-					<x-popover style="width: 320px;">
-						<x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="canvasBgColor"></x-rectcolorpicker>
-					</x-popover>
-				</x-colorselect>
-
-				<x-input id="select1" style="width: 130px;" bind-value-to="canvasBgColor">
-					<x-icon name="invert-colors"></x-icon>
-				</x-input>
-
-			</x-box>
-
-		</main>
-	</x-accordion>
-
-	<hr>
-
-	<x-accordion expanded>
-		<header>
-			<x-label>Background Gradient</x-label>
-		</header>
-
-		<main>
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 16px; width: 75px;">Colors</x-label>
-				<x-colorselect style="margin-right: 5px; width: 130px;">
-					<x-popover style="width: 320px;">
-						<x-rectcolorpicker id="gradLeft" value="#ffffff" style="width: 320px;" alphaslider ng-model="leftColor"></x-rectcolorpicker>
-					</x-popover>
-				</x-colorselect>
-
-				<div style="width: 20px; margin-right: 5px;">
-				</div>
-
-				<x-colorselect style="width: 130px; margin-right: 10px;">
-					<x-popover style="width: 320px;">
-						<x-rectcolorpicker id="gradRight" value="#000000" style="width: 320px;" alphaslider ng-model="rightColor"></x-rectcolorpicker>
-					</x-popover>
-				</x-colorselect>
-
-			</x-box>
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
-				<x-label class="centered_sm" style="margin-right: 15px; width: 130px;">Left Color</x-label>
-				<x-label class="centered_sm" style="width: 20px; margin-right: 5px;"></x-label>
-				<x-label class="centered_sm" style="width: 130px; margin-right: 10px;">Right Color</x-label>
-			</x-box>
-
-
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 16px; width: 80px;">Direction</x-label>
-
-				<x-numberinput id="canvas-angle" ng-value="0" style="margin-right: 15px; width: 137px;" skin="condensed" suffix=" °" ng-model="angle" min="0" max="360" step="1">
-					<x-stepper></x-stepper>
-				</x-numberinput>
-
-				<div style="width: 10px; margin-right: 5px;">
-				</div>
-
-				<x-buttons tracking="1" style="width: 140px; margin-right: 10px;">
-					<x-button style="width: 96px;" skin="textured-condensed" ng-click="flipX()">
-						<x-icon name="swap-horiz"></x-icon>
-					</x-button>
+        </x-box>
+        <x-box>
+            <x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
+            <x-label class="centered_sm" style="margin-right: 15px; width: 130px;">Page Width</x-label>
+            <x-label class="centered_sm" style="width: 20px; margin-right: 5px;"></x-label>
+            <x-label class="centered_sm" style="width: 130px; margin-right: 10px;">Page Height</x-label>
+        </x-box>
 
 
 
-				</x-buttons>
+        <x-box>
+            <x-button skin="textured" style="margin-left: 75px; width:220px;" ng-click="setMySize()">
+                <x-box>
+                    <x-label>Apply Setting</x-label>
+                </x-box>
+            </x-button>
+        </x-box>
 
-			</x-box>
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
-				<x-label class="centered_sm" style="margin-right: 15px; width: 137px;">Gradient Angle</x-label>
-				<x-label class="centered_sm" style="width: 10px; margin-right: 5px;"></x-label>
-				<x-label class="centered_sm" style="width: 140px; margin-right: 10px;">Swap Colors</x-label>
-			</x-box>
-
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Offset Left</x-label>
-
-				<x-slider id="offset_1" style="width: 220px; top: 8px; margin-right: 10px;" min="0" max="1" step="0.05" ng-value="0" ng-model="offset_1" skin="arrow">
-						<x-label value="0">0</x-label>
-						<x-label value=".1"></x-label>
-						<x-label value=".2"></x-label>
-						<x-label value=".3"></x-label>
-						<x-label value=".4"></x-label>
-						<x-label value=".5">0.5</x-label>
-						<x-label value=".6"></x-label>
-						<x-label value=".7"></x-label>
-						<x-label value=".8"></x-label>
-						<x-label value=".9"></x-label>
-						<x-label value="1">1</x-label>
-				</x-slider>
-			</x-box>
-
-			<x-box>
-				<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Offset right</x-label>
-
-				<x-slider id="offset_2" style="width: 220px; top: 8px; margin-right: 10px;" min="0" max="1" step="0.05" ng-value="1" ng-model="offset_2" skin="arrow">
-						<x-label value="0">0</x-label>
-						<x-label value=".1"></x-label>
-						<x-label value=".2"></x-label>
-						<x-label value=".3"></x-label>
-						<x-label value=".4"></x-label>
-						<x-label value=".5">0.5</x-label>
-						<x-label value=".6"></x-label>
-						<x-label value=".7"></x-label>
-						<x-label value=".8"></x-label>
-						<x-label value=".9"></x-label>
-						<x-label value="1">1</x-label>
-				</x-slider>
-			</x-box>
-
-			<x-box>
-				<x-button skin="textured" style="margin-top: 15px; margin-left: 75px; width:220px;" ng-click="addBackgroundGradient();">
-					<x-box>
-						<x-label>Apply Background</x-label>
-					</x-box>
-				</x-button>
-			</x-box>
-
-		</main>
-	</x-accordion>
-	<hr>
+    </main>
+</x-accordion>
+<hr>
 
 
-	<x-accordion expanded>
-		<header>
-			<x-label>Background Image</x-label>
-		</header>
+<x-accordion expanded>
+    <header>
+        <x-label>Background</x-label>
+    </header>
 
-		<main>
-			<x-box>
-				<x-label style="margin-left: 5px; margin-right: 10px; width: 60px;">Image</x-label>
+    <main>
+        <x-box>
+            <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Fill Color</x-label>
 
-				<x-button id="bgButton" style="width: 85px; height: 85px; margin-right: 10px;" ng-click="bgImage()">
-					<x-icon id="imgIcon" name="insert-drive-file"></x-icon>
-				</x-button>
+            <x-colorselect id="canvas-background-colorselect" style="margin-left:5px; margin-right: 15px; width: 70px;">
+                <x-popover style="width: 320px;">
+                    <x-rectcolorpicker style="width: 320px;" alphaslider bind-value-to="canvasBgColor"></x-rectcolorpicker>
+                </x-popover>
+            </x-colorselect>
+
+            <x-input id="select1" style="width: 130px;" bind-value-to="canvasBgColor">
+                <x-icon name="invert-colors"></x-icon>
+            </x-input>
+
+        </x-box>
+
+    </main>
+</x-accordion>
+
+<hr>
+
+<x-accordion expanded>
+    <header>
+        <x-label>Background Gradient</x-label>
+    </header>
+
+    <main>
+        <x-box>
+            <x-label style="margin-left:5px; margin-right: 16px; width: 75px;">Colors</x-label>
+            <x-colorselect style="margin-right: 5px; width: 130px;">
+                <x-popover style="width: 320px;">
+                    <x-rectcolorpicker id="gradLeft" value="#ffffff" style="width: 320px;" alphaslider ng-model="leftColor"></x-rectcolorpicker>
+                </x-popover>
+            </x-colorselect>
+
+            <div style="width: 20px; margin-right: 5px;">
+            </div>
+
+            <x-colorselect style="width: 130px; margin-right: 10px;">
+                <x-popover style="width: 320px;">
+                    <x-rectcolorpicker id="gradRight" value="#000000" style="width: 320px;" alphaslider ng-model="rightColor"></x-rectcolorpicker>
+                </x-popover>
+            </x-colorselect>
+
+        </x-box>
+        <x-box>
+            <x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
+            <x-label class="centered_sm" style="margin-right: 15px; width: 130px;">Left Color</x-label>
+            <x-label class="centered_sm" style="width: 20px; margin-right: 5px;"></x-label>
+            <x-label class="centered_sm" style="width: 130px; margin-right: 10px;">Right Color</x-label>
+        </x-box>
+
+
+        <x-box>
+            <x-label style="margin-left:5px; margin-right: 16px; width: 80px;">Direction</x-label>
+
+            <x-numberinput id="canvas-angle" ng-value="0" style="margin-right: 15px; width: 137px;" skin="condensed" suffix=" °" ng-model="angle" min="0" max="360" step="1">
+                <x-stepper></x-stepper>
+            </x-numberinput>
+
+            <div style="width: 10px; margin-right: 5px;">
+            </div>
+
+            <x-buttons tracking="1" style="width: 140px; margin-right: 10px;">
+                <x-button style="width: 96px;" skin="textured-condensed" ng-click="flipX()">
+                    <x-icon name="swap-horiz"></x-icon>
+                </x-button>
 
 
 
-				<x-box vertical style="width: 120px; margin-right: 10px;">
-						<x-slider id="bgSize" style="width: 120px; top: 8px; margin-right: 5px; margin-bottom: -14px;" min="0" max="10" step="0.01" ng-value="1" bind-value-to="bgSize" skin="arrow">
-								<x-label class="centered_sm" style="margin-left: 90px; margin-top: -15px;" value="1">Size</x-label>
-						</x-slider>
-						<x-slider id="offsetX" style="width: 120px; top: 8px; margin-right: 5px; margin-bottom: -14px;" min="0" max="1" step="0.01" ng-value="0.5" bind-value-to="offsetX" skin="arrow">
-								<x-label class="centered_sm" style="margin-left: 40px; margin-top: -15px;" value="0.5">OffsetX</x-label>
-						</x-slider>
-						<x-slider id="offsetY" style="width: 120px; top: 8px; margin-right: 5px; margin-bottom: 5px;" min="0" max="1" step="0.01" ng-value="0.5" bind-value-to="offsetY" skin="arrow">
-								<x-label class="centered_sm" style="margin-left: 40px; margin-top: -15px;" value="0.5">OffsetY</x-label>
-						</x-slider>
-				</x-box>
-				<x-box>
-					
-				</x-box>
-			</x-box>
-			<x-button skin="textured" style="margin-left: 75px; width: 220px; margin-right: 10px;" ng-click="resetBgImage()">
-					<x-box>
-						<x-label>Reset Background</x-label>
-					</x-box>
-				</x-button>
-			<x-box>
-				
-			</x-box>
+            </x-buttons>
 
-			<hr>
+        </x-box>
+        <x-box>
+            <x-label style="margin-left:5px; margin-right: 15px; width: 75px;"></x-label>
+            <x-label class="centered_sm" style="margin-right: 15px; width: 137px;">Gradient Angle</x-label>
+            <x-label class="centered_sm" style="width: 10px; margin-right: 5px;"></x-label>
+            <x-label class="centered_sm" style="width: 140px; margin-right: 10px;">Swap Colors</x-label>
+        </x-box>
 
-			<x-box>
-					<x-label style="margin-left: 5px; margin-right: 15px; width: 60px;">Image</x-label>
-	
-					<x-button id="bgButton" style="width: 55px; height: 55px;" ng-click="bgImage()">
-						<x-icon id="imgIcon" name="insert-drive-file"></x-icon>
-					</x-button>
-	
-					<div style="width: 20px; margin-right: 5px;">
-					</div>
-	
-					<x-box vertical style="width: 140px; margin-right: 10px;">
-						<x-select style="width: 140px; margin-right: 10px; margin-bottom: 8px;">
-							<x-menu>
-								<x-menuitem value="no-repeat">
-									<x-label>No Repeat</x-label>
-								</x-menuitem>
-	
-								<x-menuitem value="repeat">
-									<x-label>Repeat X/Y</x-label>
-								</x-menuitem>
-	
-								<x-menuitem value="repeat-x">
-									<x-label>Repeat X</x-label>
-								</x-menuitem>
-	
-								<x-menuitem value="repeat-y">
-									<x-label>Repeat Y</x-label>
-								</x-menuitem>
-							</x-menu>
-						</x-select>
-	
-						<x-button skin="textured" style="width: 140px; margin-right: 10px;" ng-click="resetBgImage()">
-							<x-box>
-								<x-label>Reset Background</x-label>
-							</x-box>
-						</x-button>
-					</x-box>
-				</x-box>
-	
-				<x-box>
-					<x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Image Size</x-label>
-	
-					<x-slider style="width: 140px; top: 8px; margin-right: 5px;" min="0.1" max="10" step="0.01" ng-value="0" bind-value-to="bgSize" skin="arrow">
-					</x-slider>
-	
-					<x-numberinput style="width: 70px;" suffix=" x" min="0.1" max="10" step="0.1" skin="condensed" ng-value="1" bind-value-to="bgSize">
-						<x-stepper></x-stepper>
-					</x-numberinput>
-				</x-box>
-		</main>
-	</x-accordion>
-	<hr>
+        <x-box>
+            <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Offset Left</x-label>
+
+            <x-slider id="offset_1" style="width: 220px; top: 8px; margin-right: 10px;" min="0" max="1" step="0.05" ng-value="0" ng-model="offset_1" skin="arrow">
+                <x-label value="0">0</x-label>
+                <x-label value=".1"></x-label>
+                <x-label value=".2"></x-label>
+                <x-label value=".3"></x-label>
+                <x-label value=".4"></x-label>
+                <x-label value=".5">0.5</x-label>
+                <x-label value=".6"></x-label>
+                <x-label value=".7"></x-label>
+                <x-label value=".8"></x-label>
+                <x-label value=".9"></x-label>
+                <x-label value="1">1</x-label>
+            </x-slider>
+        </x-box>
+
+        <x-box>
+            <x-label style="margin-left:5px; margin-right: 5px; width: 65px;">Offset right</x-label>
+
+            <x-slider id="offset_2" style="width: 220px; top: 8px; margin-right: 10px;" min="0" max="1" step="0.05" ng-value="1" ng-model="offset_2" skin="arrow">
+                <x-label value="0">0</x-label>
+                <x-label value=".1"></x-label>
+                <x-label value=".2"></x-label>
+                <x-label value=".3"></x-label>
+                <x-label value=".4"></x-label>
+                <x-label value=".5">0.5</x-label>
+                <x-label value=".6"></x-label>
+                <x-label value=".7"></x-label>
+                <x-label value=".8"></x-label>
+                <x-label value=".9"></x-label>
+                <x-label value="1">1</x-label>
+            </x-slider>
+        </x-box>
+
+        <x-box>
+            <x-button skin="textured" style="margin-top: 15px; margin-left: 75px; width:220px;" ng-click="addBackgroundGradient();">
+                <x-box>
+                    <x-label>Apply Background</x-label>
+                </x-box>
+            </x-button>
+        </x-box>
+
+    </main>
+</x-accordion>
+<hr>
+
+
+<x-accordion expanded>
+    <header>
+        <x-label>Background Image</x-label>
+    </header>
+
+    <main>
+        <x-box>
+            <x-label style="margin-left: 5px; margin-right: 10px; width: 60px;">Set Image</x-label>
+
+            <x-button id="bgButton" style="width: 85px; height: 85px; margin-right: 10px;" ng-click="bgImage()">
+                <x-icon id="imgIcon" name="insert-drive-file"></x-icon>
+            </x-button>
+
+
+
+            <x-box vertical style="width: 120px; margin-right: 10px;">
+                <x-slider id="bgSize" style="width: 120px; top: 8px; margin-right: 5px; margin-bottom: -14px;" min="0" max="10" step="0.001" ng-value="1" bind-value-to="bgSize" skin="arrow">
+                    <x-label class="centered_sm" style="margin-left: 47px; margin-top: -15px;" value="5">Size</x-label>
+                </x-slider>
+                <x-slider id="offsetX" style="width: 120px; top: 8px; margin-right: 5px; margin-bottom: -14px;" min="0" max="1" step="0.001" ng-value="0.5" bind-value-to="bgPosX" skin="arrow">
+                    <x-label class="centered_sm" style="margin-left: 40px; margin-top: -15px;" value="0.5">OffsetX</x-label>
+                </x-slider>
+                <x-slider id="offsetY" style="width: 120px; top: 8px; margin-right: 5px; margin-bottom: 5px;" min="0" max="1" step="0.001" ng-value="0.5" bind-value-to="bgPosY" skin="arrow">
+                    <x-label class="centered_sm" style="margin-left: 40px; margin-top: -15px;" value="0.5">OffsetY</x-label>
+                </x-slider>
+            </x-box>
+            <x-box>
+
+            </x-box>
+        </x-box>
+        <x-button skin="textured" style="margin-left: 75px; width: 220px; margin-right: 10px;" ng-click="resetBgImage()">
+            <x-box>
+                <x-label>Reset Background</x-label>
+            </x-box>
+        </x-button>
+        <x-box>
+
+        </x-box>
+
+        <hr style="margin-top: 10px; margin-bottom: 10px;">
+
+        <x-box>
+            <x-label style="margin-left: 5px; margin-right: 15px; width: 60px;">Set Pattern</x-label>
+
+            <x-button id="bgPattern" style="width: 55px; height: 55px;" ng-click="bgPattern()">
+                <x-icon id="imgIcon2" name="insert-drive-file"></x-icon>
+            </x-button>
+
+            <div style="width: 20px; margin-right: 5px;">
+            </div>
+
+            <x-box vertical style="width: 140px; margin-right: 10px;">
+                <x-select style="width: 140px; margin-right: 10px; margin-bottom: 8px;" ng-value="bgRepeat" bind-value-to="bgRepeat">
+                    <x-menu>
+                        <x-menuitem value="no-repeat">
+                            <x-label>No Repeat</x-label>
+                        </x-menuitem>
+
+                        <x-menuitem value="repeat">
+                            <x-label>Repeat X/Y</x-label>
+                        </x-menuitem>
+
+                        <x-menuitem value="repeat-x">
+                            <x-label>Repeat X</x-label>
+                        </x-menuitem>
+
+                        <x-menuitem value="repeat-y">
+                            <x-label>Repeat Y</x-label>
+                        </x-menuitem>
+                    </x-menu>
+                </x-select>
+
+                <x-button skin="textured" style="width: 140px; margin-right: 10px;" ng-click="resetBgPattern()">
+                    <x-box>
+                        <x-label>Reset Background</x-label>
+                    </x-box>
+                </x-button>
+            </x-box>
+        </x-box>
+
+    </main>
+</x-accordion>
+<hr>
