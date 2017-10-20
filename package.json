@@ -1,32 +1,32 @@
 {
-  "name": "xel-electron-demo",
-  "productName": "Floido Designer",
-  "version": "0.0.1",
-  "description": "Democratizing Tablet Publishing...",
-  "main": "main.js",
-  "repository": "https://github.com/sandor/floido-designer",
-  "keywords": [
-    "Electron",
-    "AngularJS",
-    "FarbricJS",
-    "floido",
-    "designer",
-    "FramerJS",
-    "Tablet",
-    "Publishing"
-  ],
-  "author": "Sandor Rozsa  | sharksinn gmbh",
-  "license": "MIT",
-  "dependencies": {
-    "angular-custom-elements": "^2.1.0",
-    "angular-ui-sortable": "^0.17.2",
-    "electron-context-menu": "^0.9.1",
-    "electron-reload": "^1.2.1",
-    "electron-version": "^1.1.1",
-    "ruler.js": "^1.0.1",
-    "xel": "0.0.15"
-  },
-  "devDependencies": {
-    "electron": "^1.7.6"
-  }
+    "name": "xel-electron-demo",
+    "productName": "Floido Designer",
+    "version": "0.0.1",
+    "description": "Democratizing Tablet Publishing...",
+    "main": "main.js",
+    "repository": "https://github.com/sandor/floido-designer",
+    "keywords": [
+        "Electron",
+        "AngularJS",
+        "FarbricJS",
+        "floido",
+        "designer",
+        "FramerJS",
+        "Tablet",
+        "Publishing"
+    ],
+    "author": "Sandor Rozsa  | sharksinn gmbh",
+    "license": "MIT",
+    "dependencies": {
+        "angular-custom-elements": "^2.1.0",
+        "angular-ui-sortable": "^0.17.2",
+        "electron-context-menu": "^0.9.1",
+        "electron-reload": "^1.2.1",
+        "electron-version": "^1.1.1",
+        "ruler.js": "^1.0.1",
+        "xel": "0.0.65"
+    },
+    "devDependencies": {
+        "electron": "^1.7.6"
+    }
 }

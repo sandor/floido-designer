@@ -1,0 +1,278 @@
+<!-- Insert this line above script imports  -->
+<script>
+    if (typeof module === 'object') {
+        window.module = module;
+        module = undefined;
+    }
+</script>
+<link rel="stylesheet" href="node_modules/xel/stylesheets/macos.theme.css">
+
+<link rel="stylesheet" href="css/app.css">
+
+<script src='node_modules/xel/xel.min.js'></script>
+<script src='js/angular/angular.min.js'></script>
+
+<!-- Insert this line after script imports -->
+<script>
+    if (window.module) module = window.module;
+</script>
+
+<style>
+    .toolbar-header {
+        height: 38px;
+        background: black;
+    }
+    
+    x-label {
+        font-size: 12px;
+        /*    color: #5a5a5a;
+    */
+        font-weight: 100;
+    }
+</style>
+<!-- <script>
+    const remote = require('electron').remote;
+
+    var window = remote.getCurrentWindow();
+    var myX = window.getSize();
+    var center = myX[0];
+    myDimension = document.getElementById('dimension');
+    myDimension.innerHTML = center;
+    console.log(center);
+</script> -->
+
+
+<div class="window" ng-app="">
+    <header id="toolbar" class="toolbar toolbar-header">
+        <x-box class="middle">
+            <x-box style="width: 60px;"></x-box>
+            <x-box>
+                <x-button id="dropdown" skin="flat" style=" color: white; margin-right:15px; top: -8px;">
+                    <x-box>
+                        <x-label>iPad Landscape | 1024x768</x-label>
+                        <x-icon name="keyboard-arrow-down"></x-icon>
+                    </x-box>
+                </x-button>
+            </x-box>
+            <x-box>
+                <x-button id="resize-btn" skin="flat" style="color: white; margin-right:15px; margin-top: 6px;">
+                    <x-icon style="color: white;" name="refresh"></x-icon>
+                </x-button>
+
+                <x-button id="resize-btn2" skin="flat" style="color: white; margin-right:15px; margin-top: 6px;">
+                    <x-icon name="fullscreen"></x-icon>
+                </x-button>
+
+            </x-box>
+
+        </x-box>
+    </header>
+    <div class="window-content" ng-include="'framer.html'">
+    </div>
+</div>
+
+
+
+<script>
+    const remote = require('electron').remote;
+
+    document.getElementById("resize-btn").addEventListener("click", function(e) {
+        var window = remote.getCurrentWindow();
+        window.setContentSize(768, 1064);
+    });
+
+    document.getElementById("resize-btn2").addEventListener("click", function(e) {
+        var window = remote.getCurrentWindow();
+        window.setContentSize(1024, 808);
+    });
+
+    function setCanvasSize(height, width) {
+        //;
+
+        document.getElementById('myWidth').value = width;
+        document.getElementById('myHeight').value = height;
+
+
+        var setWidth = document.getElementById('myWidth').value;
+        var setHeight = document.getElementById('myHeight').value;
+        canvas.setWidth(setWidth);
+        canvas.setHeight(setHeight);
+        console.info(setWidth, setHeight);
+        canvas.calcOffset();
+
+    }
+</script>
+
+<script>
+    const {
+        Menu,
+        MenuItem
+    } = remote
+
+    const menu = new Menu()
+
+    // Build menu one item at a time, unlike
+
+
+    menu.append(new MenuItem({
+        label: 'Canvas                      ',
+        type: 'radio',
+        checked: false,
+        click() {
+            var window = remote.getCurrentWindow();
+            window.setSize(1366, 1024);
+        }
+    }))
+
+    menu.append(new MenuItem({
+        type: 'separator'
+    }))
+
+    menu.append(new MenuItem({
+        label: 'iPad Air',
+        submenu: [{
+            label: 'Landscape',
+            type: 'radio',
+            checked: false,
+
+            click() {
+                var window = remote.getCurrentWindow();
+                window.setSize(1024, 806);
+            }
+        }, {
+            label: 'Portrait',
+            type: 'radio',
+            checked: false,
+
+            click() {
+                var window = remote.getCurrentWindow();
+                window.setSize(768, 1064);
+            }
+        }]
+    }))
+
+    menu.append(new MenuItem({
+        label: 'iPad Mini',
+        submenu: [{
+            label: 'Landscape',
+            type: 'radio',
+            checked: false,
+
+            click() {
+                miniLandscape();
+            }
+        }, {
+            label: 'Portrait',
+            type: 'radio',
+            checked: false,
+
+            click() {
+                miniPortrait();
+            }
+        }]
+    }))
+
+
+    menu.append(new MenuItem({
+        label: 'iPad Pro',
+        submenu: [{
+            label: 'Landscape',
+            type: 'radio',
+            checked: false,
+
+            click() {
+                proLandscape();
+            }
+        }, {
+            label: 'Portrait',
+            type: 'radio',
+            checked: false,
+
+            click() {
+                proPortrait();
+            }
+        }]
+    }))
+
+    menu.append(new MenuItem({
+        type: 'separator'
+    }))
+
+    menu.append(new MenuItem({
+        label: 'Apple iMac',
+        type: 'radio',
+        checked: false,
+
+        click() {
+            iMac();
+        }
+    }))
+
+    menu.append(new MenuItem({
+        type: 'separator'
+    }))
+
+    menu.append(new MenuItem({
+        label: 'Apple MacBook',
+        submenu: [{
+            label: 'MacBook',
+            type: 'radio',
+            checked: false,
+
+            click() {
+                macBook();
+            }
+        }, {
+            label: 'MacBook Air',
+            type: 'radio',
+            checked: false,
+
+            click() {
+                macBookAir();
+            }
+        }, {
+            label: 'MacBook Pro',
+            type: 'radio',
+            checked: false,
+
+            click() {
+                macBookPro();
+            }
+        }, ]
+    }))
+
+    menu.append(new MenuItem({
+        type: 'separator'
+    }))
+
+    menu.append(new MenuItem({
+        label: 'Nexus Tablet',
+        type: 'radio',
+        checked: false,
+
+        click() {
+            iMac();
+        }
+    }))
+
+    menu.append(new MenuItem({
+        label: 'TV',
+        type: 'radio',
+        checked: false,
+
+        click() {
+            iMac();
+        }
+    }))
+
+
+
+    // Prevent default action of right click in chromium. Replace with our menu.
+    document.getElementById("dropdown").addEventListener('click', (e) => {
+        e.preventDefault()
+        var window = remote.getCurrentWindow();
+        var myX = window.getSize();
+        var center = myX[0] / 2 - 110;
+        menu.popup(remote.getCurrentWindow(), center, 38)
+    }, false)
+</script>

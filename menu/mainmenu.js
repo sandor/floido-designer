@@ -516,7 +516,7 @@ const template = [{
                         titleBarStyle: 'hiddenInset'
                     })
                     win.loadURL(url.format({
-                        pathname: path.join(__dirname, '../windows/simulator.html'),
+                        pathname: path.join(__dirname, '../simulator.html'),
                         protocol: 'file:',
                         slashes: true
                     }))
