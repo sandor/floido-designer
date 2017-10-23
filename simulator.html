@@ -12,6 +12,15 @@
 <script src='node_modules/xel/xel.min.js'></script>
 <script src='js/angular/angular.min.js'></script>
 
+<link rel="stylesheet" type="text/css" href="framer/framer/style.css">
+
+<script src="framer/framer/coffee-script.js"></script>
+<script src="framer/framer/framer.js"></script>
+<script src="framer/framer/framer.generated.js"></script>
+<script src="framer/framer/framer.modules.js"></script>
+<script src="framer/framer/framer.vekter.js"></script>
+<script src="framer/framer/framer.init.js"></script>
+
 <!-- Insert this line after script imports -->
 <script>
     if (window.module) module = window.module;
@@ -21,6 +30,7 @@
     .toolbar-header {
         height: 38px;
         background: black;
+        z-index: 20000;
     }
     
     x-label {
@@ -29,27 +39,21 @@
     */
         font-weight: 100;
     }
+    
+    .framerContext {
+        top: 39px !Important;
+    }
 </style>
-<!-- <script>
-    const remote = require('electron').remote;
-
-    var window = remote.getCurrentWindow();
-    var myX = window.getSize();
-    var center = myX[0];
-    myDimension = document.getElementById('dimension');
-    myDimension.innerHTML = center;
-    console.log(center);
-</script> -->
 
 
-<div class="window" ng-app="">
+<div class="window" ng-app="" style="background-color: #000000">
     <header id="toolbar" class="toolbar toolbar-header">
         <x-box class="middle">
             <x-box style="width: 60px;"></x-box>
             <x-box>
                 <x-button id="dropdown" skin="flat" style=" color: white; margin-right:15px; top: -8px;">
                     <x-box>
-                        <x-label>iPad Landscape | 1024x768</x-label>
+                        <x-label id="device">iPad Landscape | 1024x768</x-label>
                         <x-icon name="keyboard-arrow-down"></x-icon>
                     </x-box>
                 </x-button>
@@ -67,8 +71,8 @@
 
         </x-box>
     </header>
-    <div class="window-content" ng-include="'framer.html'">
-    </div>
+    <!-- <div class="window-content" ng-include="'framer.html'"> -->
+</div>
 </div>
 
 
@@ -78,12 +82,12 @@
 
     document.getElementById("resize-btn").addEventListener("click", function(e) {
         var window = remote.getCurrentWindow();
-        window.setContentSize(768, 1064);
+        window.reload();
     });
 
     document.getElementById("resize-btn2").addEventListener("click", function(e) {
         var window = remote.getCurrentWindow();
-        window.setContentSize(1024, 808);
+        window.maximize();
     });
 
     function setCanvasSize(height, width) {
@@ -116,11 +120,15 @@
 
     menu.append(new MenuItem({
         label: 'Canvas                      ',
-        type: 'radio',
-        checked: false,
+
+
         click() {
             var window = remote.getCurrentWindow();
-            window.setSize(1366, 1024);
+            window.setContentSize(2048, 1192);
+            window.setAspectRatio(16 / 9);
+            window.reload();
+            document.getElementById("device").innerHTML = "Canvas | 2048x1192";
+
         }
     }))
 
@@ -132,21 +140,25 @@
         label: 'iPad Air',
         submenu: [{
             label: 'Landscape',
-            type: 'radio',
-            checked: false,
+
+
 
             click() {
                 var window = remote.getCurrentWindow();
-                window.setSize(1024, 806);
+                window.setContentSize(1024, 806);
+                window.setAspectRatio(4 / 3);
+                window.reload();
             }
         }, {
             label: 'Portrait',
-            type: 'radio',
-            checked: false,
+
+
 
             click() {
                 var window = remote.getCurrentWindow();
-                window.setSize(768, 1064);
+                window.setContentSize(768, 1064);
+                window.setAspectRatio(3 / 4);
+                window.reload();
             }
         }]
     }))
@@ -155,16 +167,16 @@
         label: 'iPad Mini',
         submenu: [{
             label: 'Landscape',
-            type: 'radio',
-            checked: false,
+
+
 
             click() {
                 miniLandscape();
             }
         }, {
             label: 'Portrait',
-            type: 'radio',
-            checked: false,
+
+
 
             click() {
                 miniPortrait();
@@ -177,16 +189,16 @@
         label: 'iPad Pro',
         submenu: [{
             label: 'Landscape',
-            type: 'radio',
-            checked: false,
+
+
 
             click() {
                 proLandscape();
             }
         }, {
             label: 'Portrait',
-            type: 'radio',
-            checked: false,
+
+
 
             click() {
                 proPortrait();
@@ -200,8 +212,8 @@
 
     menu.append(new MenuItem({
         label: 'Apple iMac',
-        type: 'radio',
-        checked: false,
+
+
 
         click() {
             iMac();
@@ -216,24 +228,24 @@
         label: 'Apple MacBook',
         submenu: [{
             label: 'MacBook',
-            type: 'radio',
-            checked: false,
+
+
 
             click() {
                 macBook();
             }
         }, {
             label: 'MacBook Air',
-            type: 'radio',
-            checked: false,
+
+
 
             click() {
                 macBookAir();
             }
         }, {
             label: 'MacBook Pro',
-            type: 'radio',
-            checked: false,
+
+
 
             click() {
                 macBookPro();
@@ -247,8 +259,8 @@
 
     menu.append(new MenuItem({
         label: 'Nexus Tablet',
-        type: 'radio',
-        checked: false,
+
+
 
         click() {
             iMac();
@@ -257,8 +269,8 @@
 
     menu.append(new MenuItem({
         label: 'TV',
-        type: 'radio',
-        checked: false,
+
+
 
         click() {
             iMac();

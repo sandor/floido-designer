@@ -1179,8 +1179,8 @@ function addAccessors($scope, $rootScope) {
         var leftColor = document.getElementById('gradLeftO').value;
         var rightColor = document.getElementById('gradRightO').value;
         var angle = document.getElementById('canvas-angleO').value;
-        var offset_1 = document.getElementById('offset_1O').value;
-        var offset_2 = document.getElementById('offset_2O').value;
+        /*         var offset_1 = document.getElementById('offset_1O').value;
+                var offset_2 = document.getElementById('offset_2O').value; */
 
         var angleCoords = {
             'x1': (Math.round(50 + Math.sin(angle) * 50) * obj.width) / 100,

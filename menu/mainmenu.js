@@ -512,7 +512,9 @@ const template = [{
                         height: 798,
                         alwaysOnTop: false,
                         hasShadow: true,
-                        resizable: false,
+                        resizable: true,
+                        maximizable: true,
+                        backgroundColor: "#000000",
                         titleBarStyle: 'hiddenInset'
                     })
                     win.loadURL(url.format({
@@ -523,7 +525,7 @@ const template = [{
                 }
             },
             {
-                label: 'manage External Assets',
+                label: 'Manage External Assets',
                 click() {
                     let win = new BrowserWindow({
                         title: 'Simulator',
