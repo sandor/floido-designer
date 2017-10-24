@@ -1592,6 +1592,7 @@ x-button[skin="tabnav"] x-label {
 
 .drop-area-item{
     display: inline-flex;
+    width: 100%;
 }
 
 

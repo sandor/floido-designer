@@ -205,7 +205,7 @@ function getCanvasActiveObjectData() {
 
         // if()
 
-//////////////////////font style
+        //////////////////////font style
         [].__proto__.forEach.call(document.getElementsByClassName("font-style"), (item) => {
 
             item.removeAttribute("disabled");
@@ -227,7 +227,7 @@ function getCanvasActiveObjectData() {
 
         });
 
-//////////////////text decorating
+        //////////////////text decorating
         [].__proto__.forEach.call(document.getElementsByClassName("text-decorating"), (item) => {
             // console.log(canvasItem.name);
 
@@ -1020,11 +1020,38 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getFontSize = function () {
+        debugger;
         return parseInt(getActiveStyle('fontSize'), 10) ? parseInt(getActiveStyle('fontSize'), 10) : '';
     };
     $scope.setFontSize = function (value) {
+        debugger;
         setActiveStyle('fontSize', parseInt(value, 10));
     };
+
+    $scope.getColumnsCount = function () {
+        debugger;
+        return parseInt(getActiveStyle('fontSize'), 10) ? parseInt(getActiveStyle('fontSize'), 10) : '';
+    };
+    $scope.setColumnsCount = function (value) {
+        debugger;
+        pageFlowScope.addRemoveColumns(value);
+       // setActiveStyle('fontSize', parseInt(value, 10));
+    };
+
+    $scope.getRowsCount = function () {
+        debugger;
+        return parseInt(getActiveStyle('fontSize'), 10) ? parseInt(getActiveStyle('fontSize'), 10) : '';
+    };
+    $scope.setRowsCount = function (value) {
+        debugger;
+        pageFlowScope.addRemoveRows(value);
+        //setActiveStyle('fontSize', parseInt(value, 10));
+    };
+
+
+
+
+
 
     $scope.getLineHeight = function () {
         return parseInt(getActiveStyle('lineHeight'), 10) ? parseInt(getActiveStyle('lineHeight'), 10) : '';
@@ -1125,51 +1152,51 @@ function addAccessors($scope, $rootScope) {
     }
 
 
-/* Setting canvas background gradient with x/y to angle settings
- */
+    /* Setting canvas background gradient with x/y to angle settings
+     */
 
 
-$scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
-    var leftColor = document.getElementById('gradLeft').value;
-    var rightColor = document.getElementById('gradRight').value;
-    var angle = document.getElementById('canvas-angle').value;
-    var offset_1 = document.getElementById('offset_1').value;
-    var offset_2 = document.getElementById('offset_2').value;
-    
-    console.log(leftColor, rightColor, angle);
+    $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
+        var leftColor = document.getElementById('gradLeft').value;
+        var rightColor = document.getElementById('gradRight').value;
+        var angle = document.getElementById('canvas-angle').value;
+        var offset_1 = document.getElementById('offset_1').value;
+        var offset_2 = document.getElementById('offset_2').value;
 
-    var angleCoords = {
-        'x1': (Math.round(50 + Math.sin(angle) * 50) * canvas.width) / 100,
-        'y1': (Math.round(50 + Math.cos(angle) * 50) * canvas.height) / 100,
-        'x2': (Math.round(50 + Math.sin(angle + Math.PI) * 50) * canvas.width) / 100,
-        'y2': (Math.round(50 + Math.cos(angle + Math.PI) * 50) * canvas.height) / 100,
-    }
+        console.log(leftColor, rightColor, angle);
 
-    var grad = new fabric.Gradient({
-        type: 'linear',
-        coords: {
-            x1: angleCoords.x1 || 0,
-            y1: angleCoords.y1 || 0,
-            x2: angleCoords.x2 || 0,
-            y2: angleCoords.y2 || 0,
-        },
-        colorStops: [{
-            color: leftColor,
-            offset: offset_1,
-        },
+        var angleCoords = {
+            'x1': (Math.round(50 + Math.sin(angle) * 50) * canvas.width) / 100,
+            'y1': (Math.round(50 + Math.cos(angle) * 50) * canvas.height) / 100,
+            'x2': (Math.round(50 + Math.sin(angle + Math.PI) * 50) * canvas.width) / 100,
+            'y2': (Math.round(50 + Math.cos(angle + Math.PI) * 50) * canvas.height) / 100,
+        }
+
+        var grad = new fabric.Gradient({
+            type: 'linear',
+            coords: {
+                x1: angleCoords.x1 || 0,
+                y1: angleCoords.y1 || 0,
+                x2: angleCoords.x2 || 0,
+                y2: angleCoords.y2 || 0,
+            },
+            colorStops: [{
+                color: leftColor,
+                offset: offset_1,
+            },
             {
                 color: rightColor,
                 offset: offset_2,
             }
-        ]
-    });
-    canvas.backgroundColor = grad.toLive(canvas.contextContainer);
-    canvas.renderAll();
-}
+            ]
+        });
+        canvas.backgroundColor = grad.toLive(canvas.contextContainer);
+        canvas.renderAll();
+    }
 
 
-/* Adding primitives to canvas
- */
+    /* Adding primitives to canvas
+     */
 
     $scope.addRect = function () {
         var coord = getRandomLeftTop();
@@ -1212,7 +1239,7 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
                     originY: 'middle',
                     repeat: 'no-repeat',
                     scaleX: 10,
-                    scaleY: 10 
+                    scaleY: 10
                 }, canvas.renderAll.bind(canvas));
             })
         })
@@ -1334,23 +1361,23 @@ $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
             x: 185,
             y: 0
         },
-            {
-                x: 250,
-                y: 100
-            },
-            {
-                x: 385,
-                y: 170
-            },
-            {
-                x: 0,
-                y: 245
-            }
+        {
+            x: 250,
+            y: 100
+        },
+        {
+            x: 385,
+            y: 170
+        },
+        {
+            x: 0,
+            y: 245
+        }
         ], {
-            left: coord.left,
-            top: coord.top,
-            fill: '#' + getRandomColor()
-        }));
+                left: coord.left,
+                top: coord.top,
+                fill: '#' + getRandomColor()
+            }));
     };
 
     $scope.addText = function () {

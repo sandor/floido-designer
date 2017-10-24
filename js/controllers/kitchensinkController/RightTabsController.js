@@ -1,6 +1,6 @@
 kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
 
-    const {dialog} = require('electron').remote;
+    const { dialog } = require('electron').remote;
 
     var fs = require('fs');
 
@@ -58,7 +58,7 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
 
     function download(text, name, type) {
         var a = document.createElement("a");
-        var file = new Blob([text], {type: type});
+        var file = new Blob([text], { type: type });
         a.href = URL.createObjectURL(file);
         a.download = name;
         a.click();
@@ -67,14 +67,16 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
     var fileSavedPath = "";
 
 
+  
+    $scope.columnsCount = columnsCount;
 
 
     //////////////
 
-
-
-
-
-
-
 }])
+function columnsCount(params) {
+
+    debugger;
+}
+
+// bind-value-to="fontSize"

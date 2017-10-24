@@ -93,14 +93,14 @@
 				<x-box>
 						<x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Flow Grid</x-label>
 			
-						<x-numberinput id="flow_cols" style="margin-right: 5px; width: 130px;" skin="condensed" suffix=" cols" value="1" suffix=" px">
+						<x-numberinput  bind-value-to="columnsCount" id="flow_cols" style="margin-right: 5px; width: 130px;" skin="condensed" suffix=" cols" value="4" suffix=" px">
 							<x-stepper></x-stepper>
 						</x-numberinput>
 			
 						<div style="width: 20px; margin-right: 5px;">
 						</div>
 			
-						<x-numberinput id="flow_rows" style="width: 130px; margin-right: 10px;" skin="condensed" value="1" suffix=" rows">
+						<x-numberinput bind-value-to="rowsCount" id="flow_rows" style="width: 130px; margin-right: 10px;" skin="condensed" value="3" suffix=" rows">
 							<x-stepper></x-stepper>
 						</x-numberinput>
 			
