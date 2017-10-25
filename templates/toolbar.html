@@ -2,8 +2,7 @@
     <x-box class="middle">
 
         <x-buttons tracking="1">
-            <x-button ng-repeat="tab in leftTab" skin="iconic" ng-class="{active1:isActiveTab(tab.url,'l')}"
-                      ng-click="onClickLeftTab(tab)">
+            <x-button ng-repeat="tab in leftTab" skin="iconic" ng-class="{active1:isActiveTab(tab.url,'l')}" ng-click="onClickLeftTab(tab)">
                 <x-box vertical>
                     <x-icon name="{{tab.micon}}"></x-icon>
                     <x-label style="color: #5a5a5a !Important">{{tab.title}}</x-label>
@@ -100,7 +99,7 @@
             </x-button>
 
 
-            <x-button skin="iconic" ng-click="pageFlow()">
+            <x-button skin="iconic" ng-click="pageFlow()" id="page-flow-button">
                 <x-box vertical>
                     <x-icon name="view-module"></x-icon>
                     <x-label style="color: #5a5a5a !Important">Page Flow</x-label>
@@ -127,9 +126,7 @@
         </x-buttons>
 
         <x-buttons tracking="2">
-            <x-button ng-repeat="tab in rightTab" skin="iconic" class="right-tab"
-                      ng-class="{active1:isActiveTab(tab.url,'r')}"
-                      ng-click="onClickRightTab(tab)">
+            <x-button ng-repeat="tab in rightTab" skin="iconic" class="right-tab" ng-class="{active1:isActiveTab(tab.url,'r')}" ng-click="onClickRightTab(tab)">
                 <x-box vertical>
                     <x-icon name="{{tab.micon}}"></x-icon>
                     <x-label style="color: #5a5a5a !Important">{{tab.title}}</x-label>

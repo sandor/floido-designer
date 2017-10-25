@@ -21,6 +21,7 @@ var canvasObjectShadowOffsetX = 0;
 var canvasObjectShadowOffsetY = 0;
 var canvasObjectShadowBlur = 0;
 
+
 ///////////Typography//////////////
 
 var fontSelectDropdown = "iOS Fonts";
@@ -1020,35 +1021,37 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getFontSize = function () {
-        debugger;
+
         return parseInt(getActiveStyle('fontSize'), 10) ? parseInt(getActiveStyle('fontSize'), 10) : '';
     };
     $scope.setFontSize = function (value) {
-        debugger;
+
         setActiveStyle('fontSize', parseInt(value, 10));
     };
 
     $scope.getColumnsCount = function () {
-        debugger;
-        return parseInt(getActiveStyle('fontSize'), 10) ? parseInt(getActiveStyle('fontSize'), 10) : '';
+        //debugger;
+        return document.getElementById("flow_cols").value;
+        // return parseInt(getActiveStyle('fontSize'), 10) ? parseInt(getActiveStyle('fontSize'), 10) : '';
     };
     $scope.setColumnsCount = function (value) {
-        debugger;
+        //debugger;
+       // document.getElementById("flow_cols").value = value;
         pageFlowScope.addRemoveColumns(value);
-       // setActiveStyle('fontSize', parseInt(value, 10));
+        // setActiveStyle('fontSize', parseInt(value, 10));
     };
 
     $scope.getRowsCount = function () {
-        debugger;
-        return parseInt(getActiveStyle('fontSize'), 10) ? parseInt(getActiveStyle('fontSize'), 10) : '';
+       // debugger;
+        return document.getElementById("flow_rows").value;
+        //return parseInt(getActiveStyle('fontSize'), 10) ? parseInt(getActiveStyle('fontSize'), 10) : '';
     };
     $scope.setRowsCount = function (value) {
-        debugger;
+       // debugger;
+      //  document.getElementById("flow_rows").value = value;
         pageFlowScope.addRemoveRows(value);
         //setActiveStyle('fontSize', parseInt(value, 10));
     };
-
-
 
 
 
