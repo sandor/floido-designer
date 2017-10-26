@@ -24,7 +24,6 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
     //$scope.dropAreas = [[][]];
     $scope.dropAreas = {};
 
-    debugger;
 
     $scope.dropAreas = pageFlowService.getPageFlowData() ? pageFlowService.getPageFlowData() : {};
 
@@ -34,7 +33,6 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
     // $scope.CreateDropArea = function () {
     if (Object.keys($scope.dropAreas).length == 0) {
-        debugger;
         $scope.dropAreaCounter = 0;
         $scope.dropAreaLinesCount = 3;
 
@@ -93,9 +91,7 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
         if (index == -1 && $scope.droppedObjects1.length < 2) {
             // $scope.droppedObjects1.push(data);
 
-
             if (data) {
-                debugger;
                 for (let keydropAreaLine in $scope.dropAreas) {
                     if ($scope.dropAreas.hasOwnProperty(keydropAreaLine)) {
 
@@ -135,7 +131,6 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
     }
     $scope.onDragSuccess1 = function (data, evt) {
-        debugger;
         console.log("133", "$scope", "onDragSuccess1", "", evt);
         var index = $scope.droppedObjects1.indexOf(data);
         if (index > -1) {
@@ -143,14 +138,12 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
         }
     }
     $scope.onDragSuccess2 = function (data, evt) {
-        debugger;
         var index = $scope.droppedObjects2.indexOf(data);
         if (index > -1) {
             $scope.droppedObjects2.splice(index, 1);
         }
     }
     $scope.onDropComplete2 = function (data, evt) {
-        debugger;
         var index = $scope.droppedObjects2.indexOf(data);
         if (index == -1) {
             $scope.droppedObjects2.push(data);
@@ -161,7 +154,6 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
     }
 
     $scope.remove = function (param) {
-        debugger;
         //param.dropAreaLineItem.data;
         if (param && param.dropAreaLineItem.data) {
             for (let keydropAreaLine in $scope.dropAreas) {
@@ -206,7 +198,6 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
     }
     $scope.removeRow = function (rowCount) {
-        debugger;
         let rowCountTemp = rowCount ? rowCount : 1;
         let objPropCount = Object.keys($scope.dropAreas).length;
 
@@ -232,7 +223,6 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
 
     $scope.addRow = function (rowCount) {
-        debugger;
         let rowCountTemp = rowCount ? rowCount : 1;
         let objPropCount = Object.keys($scope.dropAreas).length;
         let allItemCount = 0;
@@ -248,7 +238,6 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
             for (let lineN = 0; lineN < objPropCount + 1; lineN++) {
                 if (!$scope.dropAreas["line" + lineN]) {
-                    debugger;
                     $scope.dropAreas["line" + lineN] = [];
                     for (let ii = 0; ii < $scope.dropAreaElCountOnLIne; ii++) {
                         $scope.dropAreas["line" + lineN].push({ name: 'dropArea' + allItemCount });
@@ -273,7 +262,6 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
     //remove  latest * Columns columnCount
     $scope.addRemoveColumns = function (columnCount) {
-        debugger;
         if (columnCount) {
             let columnCountTemp = columnCount ? columnCount : 4;
             let objPropArraylength = $scope.dropAreas['line0'].length
@@ -291,7 +279,6 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
     }
 
     $scope.removeColumn = function (columnCount) {
-        debugger;
         for (let keydropAreaLine in $scope.dropAreas) {
 
             columnsCountTemp = $scope.dropAreas[keydropAreaLine].length;
@@ -306,7 +293,6 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
     }
 
     $scope.addColumn = function (columnCount) {
-        debugger;
         let allItemCount = 0;
 
         for (let keydropAreaLine in $scope.dropAreas) {

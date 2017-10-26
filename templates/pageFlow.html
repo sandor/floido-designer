@@ -17,7 +17,7 @@
 
     <div ng-repeat="dropAreaLineItem in dropArea">
 
-        <div id="{{dropAreaLineItem.data.name}}" ng-drop="true" ng-drag="true" ng-drop-success="onDropComplete1($data,$event,dropAreaLineItem.name)"
+        <div id="{{dropAreaLineItem.data.name}}" ng-drop="true" ng-drag="false" ng-drop-success="onDropComplete1($data,$event,dropAreaLineItem.name)"
             class="page-flow-item">
             <div ng-drag="true" ng-show="(this.dropAreaLineItem.data)" ng-drag-data="dropAreaLineItem.data" ng-drag-success="onDragSuccess1($data,$event)" ng-center-anchor="{{centerAnchor}}">
                 <button ng-show="(this.dropAreaLineItem.data)" ng-click="remove(this)">delete</button>

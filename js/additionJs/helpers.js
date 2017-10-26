@@ -1030,25 +1030,25 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getColumnsCount = function () {
-        //debugger;
+
         return document.getElementById("flow_cols").value;
         // return parseInt(getActiveStyle('fontSize'), 10) ? parseInt(getActiveStyle('fontSize'), 10) : '';
     };
     $scope.setColumnsCount = function (value) {
-        //debugger;
-       // document.getElementById("flow_cols").value = value;
+
+        // document.getElementById("flow_cols").value = value;
         pageFlowScope.addRemoveColumns(value);
         // setActiveStyle('fontSize', parseInt(value, 10));
     };
 
     $scope.getRowsCount = function () {
-       // debugger;
+
         return document.getElementById("flow_rows").value;
         //return parseInt(getActiveStyle('fontSize'), 10) ? parseInt(getActiveStyle('fontSize'), 10) : '';
     };
     $scope.setRowsCount = function (value) {
-       // debugger;
-      //  document.getElementById("flow_rows").value = value;
+
+        //  document.getElementById("flow_rows").value = value;
         pageFlowScope.addRemoveRows(value);
         //setActiveStyle('fontSize', parseInt(value, 10));
     };
@@ -2183,3 +2183,5 @@ function watchCanvas($scope) {
         .on('path:created', updateScope)
         .on('selection:cleared', updateScope);
 }
+
+

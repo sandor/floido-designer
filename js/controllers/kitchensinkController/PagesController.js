@@ -155,13 +155,11 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
         $scope.droppedObjects1 = [];
         $scope.droppedObjects2 = [];
         $scope.onDropComplete1 = function (data, evt) {
-            debugger;
             var index = $scope.droppedObjects1.indexOf(data);
             if (index == -1)
                 $scope.droppedObjects1.push(data);
         }
         $scope.onDragSuccess1 = function (data, evt) {
-            debugger;
             console.log("133", "$scope", "onDragSuccess1", "", evt);
             var index = $scope.droppedObjects1.indexOf(data);
             if (index > -1) {
@@ -169,14 +167,12 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
             }
         }
         $scope.onDragSuccess2 = function (data, evt) {
-            debugger;
             var index = $scope.droppedObjects2.indexOf(data);
             if (index > -1) {
                 $scope.droppedObjects2.splice(index, 1);
             }
         }
         $scope.onDropComplete2 = function (data, evt) {
-            debugger;
             var index = $scope.droppedObjects2.indexOf(data);
             if (index == -1) {
                 $scope.droppedObjects2.push(data);

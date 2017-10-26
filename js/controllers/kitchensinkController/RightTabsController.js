@@ -91,7 +91,7 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
 }])
 function columnsCount(params) {
 
-    debugger;
+
 }
 
 // bind-value-to="fontSize"

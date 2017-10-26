@@ -5,14 +5,12 @@ kitchensink.service('pageFlowService', function () {
 
 
     pageFlowService.setPageFlowData = function (param) {
-        debugger;
         pageFlowService.allPages = param;
 
     }
 
 
     pageFlowService.getPageFlowData = function () {
-        debugger;
         return pageFlowService.pageFlowData;
 
     }
