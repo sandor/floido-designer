@@ -26,6 +26,7 @@
     if (window.module) module = window.module;
 </script>
 
+
 <style>
     .toolbar-header {
         height: 38px;
@@ -46,14 +47,15 @@
 </style>
 
 
+
 <div class="window" ng-app="" style="background-color: #000000">
     <header id="toolbar" class="toolbar toolbar-header">
         <x-box class="middle">
-            <x-box style="width: 60px;"></x-box>
+            <x-box style="width: 100px;"></x-box>
             <x-box>
                 <x-button id="dropdown" skin="flat" style=" color: white; margin-right:15px; top: -8px;">
                     <x-box>
-                        <x-label id="device">iPad Landscape | 1024x768</x-label>
+                        <x-label id="device">1024 x 768</x-label>
                         <x-icon name="keyboard-arrow-down"></x-icon>
                     </x-box>
                 </x-button>
@@ -75,7 +77,19 @@
 </div>
 </div>
 
+<script>
+    var width = window.innerWidth ||
+        document.documentElement.clientWidth ||
+        document.body.clientWidth;
 
+    var height = window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.body.clientHeight;
+
+    console.log(width, height)
+
+    document.getElementById("device").innerHTML = (width + " x " + height);
+</script>
 
 <script>
     const remote = require('electron').remote;

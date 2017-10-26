@@ -506,6 +506,7 @@ const template = [{
             {
                 label: 'Simulator',
                 click() {
+                    const { BrowserView, BrowserWindow } = require('electron')
                     let win = new BrowserWindow({
                         title: 'Simulator',
                         width: 1024,
@@ -522,6 +523,17 @@ const template = [{
                         protocol: 'file:',
                         slashes: true
                     }))
+
+                    let view = new BrowserView({
+                        webPreferences: {
+                            nodeIntegration: false
+                        }
+                    })
+
+                    win.setBrowserView(view)
+                    view.setBounds({ x: 0, y: 40, width: 1024, height: 768 })
+                    view.setAutoResize({ width: true, height: true })
+                    view.webContents.loadURL('https://electron.atom.io')
                 }
             },
             {
