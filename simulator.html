@@ -12,14 +12,14 @@
 <script src='node_modules/xel/xel.min.js'></script>
 <script src='js/angular/angular.min.js'></script>
 
-<link rel="stylesheet" type="text/css" href="framer/framer/style.css">
+<!-- <link rel="stylesheet" type="text/css" href="framer/framer/style.css">
 
 <script src="framer/framer/coffee-script.js"></script>
 <script src="framer/framer/framer.js"></script>
 <script src="framer/framer/framer.generated.js"></script>
 <script src="framer/framer/framer.modules.js"></script>
 <script src="framer/framer/framer.vekter.js"></script>
-<script src="framer/framer/framer.init.js"></script>
+<script src="framer/framer/framer.init.js"></script> -->
 
 <!-- Insert this line after script imports -->
 <script>
@@ -29,7 +29,7 @@
 
 <style>
     .toolbar-header {
-        height: 38px;
+        height: 39px;
         background: black;
         z-index: 20000;
     }
@@ -73,8 +73,6 @@
 
         </x-box>
     </header>
-    <!-- <div class="window-content" ng-include="'framer.html'"> -->
-</div>
 </div>
 
 <script>
@@ -88,7 +86,7 @@
 
     console.log(width, height)
 
-    document.getElementById("device").innerHTML = (width + " x " + height);
+    // document.getElementById("device").innerHTML = (width + " x " + height);
 </script>
 
 <script>
@@ -138,10 +136,9 @@
 
         click() {
             var window = remote.getCurrentWindow();
-            window.setContentSize(2048, 1192);
+            window.setSize(2048, 1193);
             window.setAspectRatio(16 / 9);
-            window.reload();
-            document.getElementById("device").innerHTML = "Canvas | 2048x1192";
+            document.getElementById("device").innerHTML = "Canvas | 2048 x 1152";
 
         }
     }))
@@ -154,25 +151,19 @@
         label: 'iPad Air',
         submenu: [{
             label: 'Landscape',
-
-
-
             click() {
                 var window = remote.getCurrentWindow();
-                window.setContentSize(1024, 806);
+                window.setSize(1024, 809);
                 window.setAspectRatio(4 / 3);
-                window.reload();
+                document.getElementById("device").innerHTML = "iPad Air Landscape | 1024 x 768";
             }
         }, {
             label: 'Portrait',
-
-
-
             click() {
                 var window = remote.getCurrentWindow();
-                window.setContentSize(768, 1064);
+                window.setSize(809, 1064);
                 window.setAspectRatio(3 / 4);
-                window.reload();
+                document.getElementById("device").innerHTML = "iPad Air Portrait | 768 x 1024";
             }
         }]
     }))
@@ -181,19 +172,19 @@
         label: 'iPad Mini',
         submenu: [{
             label: 'Landscape',
-
-
-
             click() {
-                miniLandscape();
+                var window = remote.getCurrentWindow();
+                window.setSize(1024, 809);
+                window.setAspectRatio(4 / 3);
+                document.getElementById("device").innerHTML = "iPad Air Mini | 1024 x 768";
             }
         }, {
             label: 'Portrait',
-
-
-
             click() {
-                miniPortrait();
+                var window = remote.getCurrentWindow();
+                window.setSize(809, 1024);
+                window.setAspectRatio(3 / 4);
+                document.getElementById("device").innerHTML = "iPad Air Mini | 1024 x 768";
             }
         }]
     }))
@@ -203,19 +194,19 @@
         label: 'iPad Pro',
         submenu: [{
             label: 'Landscape',
-
-
-
             click() {
-                proLandscape();
+                var window = remote.getCurrentWindow();
+                window.setSize(1366, 1065);
+                window.setAspectRatio(12 / 9);
+                document.getElementById("device").innerHTML = "iPad Air Pro | 1366 x 1024";
             }
         }, {
             label: 'Portrait',
-
-
-
             click() {
-                proPortrait();
+                var window = remote.getCurrentWindow();
+                window.setSize(1065, 1366);
+                window.setAspectRatio(9 / 12);
+                document.getElementById("device").innerHTML = "iPad Air Pro | 1024 x 1366";
             }
         }]
     }))
@@ -226,11 +217,11 @@
 
     menu.append(new MenuItem({
         label: 'Apple iMac',
-
-
-
         click() {
-            iMac();
+            var window = remote.getCurrentWindow();
+            window.setSize(2560, 1440);
+            window.setAspectRatio(16 / 9);
+            document.getElementById("device").innerHTML = "Apple iMac | 2560 x 1440";
         }
     }))
 
@@ -242,27 +233,27 @@
         label: 'Apple MacBook',
         submenu: [{
             label: 'MacBook',
-
-
-
             click() {
-                macBook();
+                var window = remote.getCurrentWindow();
+                window.setSize(1152, 761);
+                window.setAspectRatio(16 / 10);
+                document.getElementById("device").innerHTML = "Apple MacBook | 1152 x 720";
             }
         }, {
             label: 'MacBook Air',
-
-
-
             click() {
-                macBookAir();
+                var window = remote.getCurrentWindow();
+                window.setSize(1440, 941);
+                window.setAspectRatio(16 / 10);
+                document.getElementById("device").innerHTML = "Apple MacBook Air | 1440 x 900";
             }
         }, {
             label: 'MacBook Pro',
-
-
-
             click() {
-                macBookPro();
+                var window = remote.getCurrentWindow();
+                window.setSize(1440, 941);
+                window.setAspectRatio(16 / 10);
+                document.getElementById("device").innerHTML = "Apple MacBook Pro | 1440 x 900";
             }
         }, ]
     }))
@@ -273,21 +264,21 @@
 
     menu.append(new MenuItem({
         label: 'Nexus Tablet',
-
-
-
         click() {
-            iMac();
+            var window = remote.getCurrentWindow();
+            window.setSize(768, 1065);
+            window.setAspectRatio(3 / 4);
+            document.getElementById("device").innerHTML = "Nexus Tablet | 768 x 1024";
         }
     }))
 
     menu.append(new MenuItem({
-        label: 'TV',
-
-
-
+        label: 'Apple TV',
         click() {
-            iMac();
+            var window = remote.getCurrentWindow();
+            window.setSize(1280, 761);
+            window.setAspectRatio(16 / 9);
+            document.getElementById("device").innerHTML = "Apple TV | 1280 x 720";
         }
     }))
 
@@ -298,6 +289,7 @@
         e.preventDefault()
         var window = remote.getCurrentWindow();
         var myX = window.getSize();
+        console.log(myX);
         var center = myX[0] / 2 - 110;
         menu.popup(remote.getCurrentWindow(), center, 38)
     }, false)

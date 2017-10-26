@@ -510,13 +510,14 @@ const template = [{
                     let win = new BrowserWindow({
                         title: 'Simulator',
                         width: 1024,
-                        height: 798,
+                        height: 809,
                         alwaysOnTop: false,
                         hasShadow: true,
                         resizable: true,
                         maximizable: true,
                         backgroundColor: "#000000",
-                        titleBarStyle: 'hiddenInset'
+                        titleBarStyle: 'hiddenInset',
+                        enableLargerThanScreen: true
                     })
                     win.loadURL(url.format({
                         pathname: path.join(__dirname, '../simulator.html'),
@@ -531,9 +532,14 @@ const template = [{
                     })
 
                     win.setBrowserView(view)
-                    view.setBounds({ x: 0, y: 40, width: 1024, height: 768 })
+                    view.setBounds({ x: 0, y: 41, width: 1024, height: 768 })
+                        // view.webContents.loadURL('https://electron.atom.io')
+                    view.webContents.loadURL(url.format({
+                        pathname: path.join(__dirname, '../framer/index.html'),
+                        protocol: 'file:',
+                        slashes: true
+                    }))
                     view.setAutoResize({ width: true, height: true })
-                    view.webContents.loadURL('https://electron.atom.io')
                 }
             },
             {
