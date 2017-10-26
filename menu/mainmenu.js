@@ -535,7 +535,7 @@ const template = [{
                     view.setBounds({ x: 0, y: 41, width: 1024, height: 768 })
                         // view.webContents.loadURL('https://electron.atom.io')
                     view.webContents.loadURL(url.format({
-                        pathname: path.join(__dirname, '../framer/index.html'),
+                        pathname: path.join(__dirname, '../0_framer/index.html'),
                         protocol: 'file:',
                         slashes: true
                     }))
