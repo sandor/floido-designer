@@ -320,7 +320,7 @@ function getCanvasActiveObjectData() {
 
 
             if (canvas._activeObject.shadow) {
-
+                debugger;
                 document.getElementById("obj-shadow-color").value = canvasObjectShadowColor;
                 document.getElementById("shadow-Offset-X").value = canvasObjectShadowOffsetX;
                 document.getElementById("shadow-Offset-Y").value = canvasObjectShadowOffsetY;
@@ -1028,17 +1028,27 @@ function addAccessors($scope, $rootScope) {
 
         setActiveStyle('fontSize', parseInt(value, 10));
     };
-
+   // var tempValu;
     $scope.getColumnsCount = function () {
 
+
+        // document.getElementById('flow_cols').addEventListener('keydown', (param) => {
+        //     tempValu = parseInt(event.key);
+        //     debugger;
+        // })
+        // debugger;
         return document.getElementById("flow_cols").value;
         // return parseInt(getActiveStyle('fontSize'), 10) ? parseInt(getActiveStyle('fontSize'), 10) : '';
     };
+
+
     $scope.setColumnsCount = function (value) {
 
-        // document.getElementById("flow_cols").value = value;
+        // debugger;
+        // pageFlowScope.addRemoveColumns(tempValu ? tempValu : value);
+        // document.getElementById('flow_cols').value = tempValu ? tempValu : value;
         pageFlowScope.addRemoveColumns(value);
-        // setActiveStyle('fontSize', parseInt(value, 10));
+        //// setActiveStyle('fontSize', parseInt(value, 10));
     };
 
     $scope.getRowsCount = function () {

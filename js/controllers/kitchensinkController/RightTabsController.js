@@ -51,6 +51,8 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
                 if (document.getElementById("page-flow-button").hasAttribute('toggled')) {
                     document.getElementById("flow_cols").removeAttribute('disabled');
                     document.getElementById("flow_rows").removeAttribute('disabled');
+
+
                 }
             }, 0)
 

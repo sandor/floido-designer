@@ -50,12 +50,6 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
     ///
 
-
-
-
-
-
-
     // for (let i = 0; i < $scope.dropAreaLinesCount; i++) {
     //     for (let j = 0; j < $scope.dropAreaElCountOnLIne; j++) {
     //         debugger;
@@ -131,24 +125,28 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
     }
     $scope.onDragSuccess1 = function (data, evt) {
+        debugger;
         console.log("133", "$scope", "onDragSuccess1", "", evt);
         var index = $scope.droppedObjects1.indexOf(data);
         if (index > -1) {
             $scope.droppedObjects1.splice(index, 1);
         }
+        console.log("is working + onDragSuccess1")
     }
-    $scope.onDragSuccess2 = function (data, evt) {
-        var index = $scope.droppedObjects2.indexOf(data);
-        if (index > -1) {
-            $scope.droppedObjects2.splice(index, 1);
-        }
-    }
-    $scope.onDropComplete2 = function (data, evt) {
-        var index = $scope.droppedObjects2.indexOf(data);
-        if (index == -1) {
-            $scope.droppedObjects2.push(data);
-        }
-    }
+    // $scope.onDragSuccess2 = function (data, evt) {
+    //     var index = $scope.droppedObjects2.indexOf(data);
+    //     if (index > -1) {
+    //         $scope.droppedObjects2.splice(index, 1);
+    //     }
+    //     console.log("is working + onDragSuccess2")
+    // }
+    // $scope.onDropComplete2 = function (data, evt) {
+    //     var index = $scope.droppedObjects2.indexOf(data);
+    //     if (index == -1) {
+    //         $scope.droppedObjects2.push(data);
+    //     }
+    //     console.log("is working + onDropComplete2")
+    // }
     var inArray = function (array, obj) {
         var index = array.indexOf(obj);
     }
@@ -264,6 +262,12 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
     $scope.addRemoveColumns = function (columnCount) {
         if (columnCount) {
             let columnCountTemp = columnCount ? columnCount : 4;
+            // /////////////
+            // for (let drpAr in $scope.dropAreas) {
+            //     objPropArraylength = drpAr.length;
+            //     break;
+            // }
+            // ///////////////
             let objPropArraylength = $scope.dropAreas['line0'].length
 
             if (columnCount < objPropArraylength) {
