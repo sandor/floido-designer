@@ -21,7 +21,6 @@ kitchensink.directive('bindValueTo', function () {
                 setter = 'set' + prop;
 
             $element.on('change keyup select', function () {
-                debugger;
                 if ($element[0].type !== 'checkbox') {
                     //line below added for buinding works  with xel-toolkit.org
                     this.value = parseInt($element[0]._shadowRoot.getElementById('editor').innerText) ;

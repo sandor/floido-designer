@@ -320,7 +320,6 @@ function getCanvasActiveObjectData() {
 
 
             if (canvas._activeObject.shadow) {
-                debugger;
                 document.getElementById("obj-shadow-color").value = canvasObjectShadowColor;
                 document.getElementById("shadow-Offset-X").value = canvasObjectShadowOffsetX;
                 document.getElementById("shadow-Offset-Y").value = canvasObjectShadowOffsetY;

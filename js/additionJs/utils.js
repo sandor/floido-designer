@@ -59,6 +59,5 @@
 
 
 function setColumnsCountChange(param) {
-  debugger;
   console.log(this);
 }
