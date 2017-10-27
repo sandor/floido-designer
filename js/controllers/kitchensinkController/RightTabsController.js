@@ -1,6 +1,6 @@
 kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
 
-    const {dialog} = require('electron').remote;
+    const { dialog } = require('electron').remote;
 
     var fs = require('fs');
 
@@ -44,7 +44,24 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
 
     $scope.onClickLeftTab = function (tab) {
 
+
         $scope.currentLeftTab = tab.url;
+        if (tab.title == 'One') {
+            setTimeout(function () {
+                if (document.getElementById("page-flow-button").hasAttribute('toggled')) {
+                    document.getElementById("flow_cols").removeAttribute('disabled');
+                    document.getElementById("flow_rows").removeAttribute('disabled');
+
+
+                }
+            }, 0)
+
+        }
+        else {
+            document.getElementById("flow_cols").setAttribute('disabled', 'true');
+            document.getElementById("flow_rows").setAttribute('disabled', 'true');
+
+        }
         //document.getElementById("objectIn-canvas-background-colorselect").value = canvasObjectBackColor;
     }
 
@@ -58,7 +75,7 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
 
     function download(text, name, type) {
         var a = document.createElement("a");
-        var file = new Blob([text], {type: type});
+        var file = new Blob([text], { type: type });
         a.href = URL.createObjectURL(file);
         a.download = name;
         a.click();
@@ -68,13 +85,15 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
 
 
 
+    $scope.columnsCount = columnsCount;
+
 
     //////////////
 
-
-
-
-
-
-
 }])
+function columnsCount(params) {
+
+
+}
+
+// bind-value-to="fontSize"
