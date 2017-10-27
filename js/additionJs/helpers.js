@@ -462,8 +462,8 @@ function enableDisableElement() {
         canvasObjectBorderColor = canvas._activeObject && canvas._activeObject.stroke ? canvas._activeObject.stroke : "";
         canvasObjectBackgroundColor = canvas._activeObject && canvas._activeObject.backgroundColor ? canvas._activeObject.backgroundColor : "";
     }
-
-    if (document.getElementById('enableShadow') && !document.getElementById('enableShadow').hasAttribute("toggled")) {
+debugger;
+    if (canvas._activeObject &&  document.getElementById('enableShadow') && !document.getElementById('enableShadow').hasAttribute("toggled")) {
 
         document.getElementById('obj-shadow-color').setAttribute('disabled', true);
         document.getElementById('shadow-blur').setAttribute('disabled', true);
@@ -474,8 +474,15 @@ function enableDisableElement() {
     }
 
     // removing data from  filters and shadows fields /////////////////
-    if ((document.getElementById('shadow-Offset-X') && document.getElementById('shadow-Offset-Y') && !canvas.getActiveObject()) || (document.getElementById('shadow-Offset-X') && document.getElementById('shadow-Offset-Y') && !canvas.getActiveObject().shadow)) {
-
+    if ((document.getElementById('shadow-Offset-X') 
+    && document.getElementById('shadow-blur') 
+    && document.getElementById('shadow-Offset-Y') 
+    && !canvas.getActiveObject()) 
+    || 
+    (document.getElementById('shadow-Offset-X') 
+    && document.getElementById('shadow-Offset-Y') 
+    && canvas.getActiveObject()
+    && !canvas.getActiveObject().shadow)) {
 
         document.getElementById('shadow-Offset-X').value = '';
         document.getElementById('shadow-Offset-Y').value = '';
