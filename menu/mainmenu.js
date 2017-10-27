@@ -13,18 +13,16 @@ const BrowserWindow = electron.BrowserWindow
 const path = require('path')
 const url = require('url')
 
-const template = [
-    {
+const template = [{
         label: 'File',
-        submenu: [
-            {
+        submenu: [{
                 label: 'New Project',
                 accelerator: 'CmdOrCtrl+N'
             },
             {
                 label: 'Open Project...',
                 accelerator: 'CmdOrCtrl+O',
-                click: function () {/// must be implemented fpr project now orking for file.json
+                click: function() { /// must be implemented fpr project now orking for file.json
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('open', 'loading JSON');
                 }
@@ -32,15 +30,15 @@ const template = [
             {
                 label: 'Save Project',
                 accelerator: 'CmdOrCtrl+S',
-                click: function () {
+                click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('save', 'saving');
                 }
             },
             {
                 label: 'Save Project As...',
-              //  accelerator: 'Shift+CmdOrCtrl+S',
-                click: function () {
+                //  accelerator: 'Shift+CmdOrCtrl+S',
+                click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('saveAs', 'saving as');
                 }
@@ -55,16 +53,14 @@ const template = [
 
             {
                 label: 'Open Recent Project ',
-                submenu: [
-                    {
-                        label: 'Open Recent Project',
-                        accelerator: 'Shift+CmdOrCtrl+S',
-                        // click: function () {   ////////////////to be imlemented
-                        //     var focusedWindow = BrowserWindow.getFocusedWindow();
-                        //     focusedWindow.webContents.send('saveAs', 'saving as');
-                        // }
-                    },
-                ]
+                submenu: [{
+                    label: 'Open Recent Project',
+                    accelerator: 'Shift+CmdOrCtrl+S',
+                    // click: function () {   ////////////////to be imlemented
+                    //     var focusedWindow = BrowserWindow.getFocusedWindow();
+                    //     focusedWindow.webContents.send('saveAs', 'saving as');
+                    // }
+                }, ]
             },
             {
                 type: 'separator'
@@ -76,7 +72,7 @@ const template = [
             {
                 label: 'Open Page...',
                 accelerator: 'CmdOrCtrl+O',
-                click: function () {
+                click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('open', 'loading JSON');
                 }
@@ -86,18 +82,18 @@ const template = [
             {
                 label: 'Save Page',
                 accelerator: 'CmdOrCtrl+S',
-                click: function () {
+                click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('save', 'saving');
                 }
             },
             {
                 label: 'Save Page As...',
-                accelerator: 'Shift+CmdOrCtrl+S'//,
-                // click: function () {
-                //     var focusedWindow = BrowserWindow.getFocusedWindow();
-                //     focusedWindow.webContents.send('saveAs', 'saving as');
-                // }
+                accelerator: 'Shift+CmdOrCtrl+S' //,
+                    // click: function () {
+                    //     var focusedWindow = BrowserWindow.getFocusedWindow();
+                    //     focusedWindow.webContents.send('saveAs', 'saving as');
+                    // }
             }, {
                 label: 'Rename Page...',
                 accelerator: 'Shift+CmdOrCtrl+S',
@@ -108,16 +104,14 @@ const template = [
             },
             {
                 label: 'Open Recent Page',
-                submenu: [
-                    {
-                        label: 'Open Recent Project',
-                        accelerator: 'Shift+CmdOrCtrl+S',
-                        // click: function () {   ////////////////to be imlemented
-                        //     var focusedWindow = BrowserWindow.getFocusedWindow();
-                        //     focusedWindow.webContents.send('saveAs', 'saving as');
-                        // }
-                    },
-                ]
+                submenu: [{
+                    label: 'Open Recent Project',
+                    accelerator: 'Shift+CmdOrCtrl+S',
+                    // click: function () {   ////////////////to be imlemented
+                    //     var focusedWindow = BrowserWindow.getFocusedWindow();
+                    //     focusedWindow.webContents.send('saveAs', 'saving as');
+                    // }
+                }, ]
             },
             {
                 type: 'separator'
@@ -138,11 +132,10 @@ const template = [
 
     {
         label: 'Edit',
-        submenu: [
-            {
+        submenu: [{
                 label: 'Undo',
                 accelerator: 'CmdOrCtrl+Z',
-                click: function () {
+                click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('undo', 'undo');
                 }
@@ -150,7 +143,7 @@ const template = [
             {
                 label: 'Redo',
                 accelerator: 'CmdOrCtrl+Y',
-                click: function () {
+                click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('redo', 'redo');
                 }
@@ -161,7 +154,7 @@ const template = [
             {
                 label: 'Delete',
                 accelerator: 'Backspace',
-                click: function () {
+                click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('remove', 'removing');
                 }
@@ -172,7 +165,7 @@ const template = [
             {
                 label: 'Cut',
                 accelerator: 'CmdOrCtrl+X',
-                click: function () {
+                click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('cut', 'cutting');
                 }
@@ -180,7 +173,7 @@ const template = [
             {
                 label: 'Copy',
                 accelerator: 'CmdOrCtrl+C',
-                click: function () {
+                click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('copy', 'copying');
                 }
@@ -188,7 +181,7 @@ const template = [
             {
                 label: 'Paste',
                 accelerator: 'CmdOrCtrl+V',
-                click: function () {
+                click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('paste', 'pasting');
                 }
@@ -196,7 +189,7 @@ const template = [
             {
                 label: 'Select All',
                 accelerator: 'CmdOrCtrl+A',
-                click: function () {
+                click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('selectAll', 'selecting All Objects');
                 }
@@ -207,7 +200,7 @@ const template = [
             {
                 label: 'Duplicate',
                 accelerator: 'CmdOrCtrl+D',
-                click: function () {
+                click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('duplicate');
                 }
@@ -217,8 +210,7 @@ const template = [
 
     {
         label: 'Insert',
-        submenu: [
-            {
+        submenu: [{
                 label: 'Add Textfield'
             },
             {
@@ -251,8 +243,7 @@ const template = [
 
     {
         label: 'Typography',
-        submenu: [
-            {
+        submenu: [{
                 label: 'Bold'
             },
             {
@@ -281,11 +272,10 @@ const template = [
 
     {
         label: 'Arrange',
-        submenu: [
-            {
+        submenu: [{
                 label: 'Bring Forward',
                 accelerator: 'Alt+Shift+CmdOrCtrl+F',
-                click: function () {
+                click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('bringForward', 'bringing forward');
                 }
@@ -293,7 +283,7 @@ const template = [
             {
                 label: 'Bring to Front',
                 accelerator: 'Shift+CmdOrCtrl+F',
-                click: function () {
+                click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('bringToFront', 'bringing to front');
                 }
@@ -301,7 +291,7 @@ const template = [
             {
                 label: 'Send Backwards',
                 accelerator: 'Alt+Shift+CmdOrCtrl+B',
-                click: function () {
+                click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('sendBackwards', 'sending backwards');
                 }
@@ -309,7 +299,7 @@ const template = [
             {
                 label: 'Send to Back',
                 accelerator: 'Shift+CmdOrCtrl+B',
-                click: function () {
+                click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('sendToBack', 'sending to back');
                 }
@@ -319,8 +309,7 @@ const template = [
             },
             {
                 label: 'Align',
-                submenu: [
-                    {
+                submenu: [{
                         label: 'Left'
                     },
                     {
@@ -345,8 +334,7 @@ const template = [
             },
             {
                 label: 'Distribute',
-                submenu: [
-                    {
+                submenu: [{
                         label: 'Horizontal'
                     },
                     {
@@ -360,7 +348,7 @@ const template = [
             {
                 label: 'Group Selected',
                 accelerator: 'CmdOrCtrl+G',
-                click: function () {
+                click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('group', 'grouping');
                 }
@@ -368,7 +356,7 @@ const template = [
             {
                 label: 'Ungroup Selected',
                 accelerator: 'CmdOrCtrl+U',
-                click: function () {
+                click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('ungroup', 'ungrouping');
                 }
@@ -388,8 +376,7 @@ const template = [
 
     {
         label: 'Zoom Canvas',
-        submenu: [
-            {
+        submenu: [{
                 label: 'Zoom In',
                 accelerator: 'CmdOrCtrl++'
             },
@@ -453,8 +440,7 @@ const template = [
     },
     {
         role: 'window',
-        submenu: [
-            {
+        submenu: [{
                 label: 'Reload',
                 accelerator: 'CmdOrCtrl+R',
                 click(item, focusedWindow) {
@@ -520,20 +506,44 @@ const template = [
             {
                 label: 'Simulator',
                 click() {
+                    const { BrowserView, BrowserWindow } = require('electron')
                     let win = new BrowserWindow({
                         title: 'Simulator',
                         width: 1024,
-                        height: 798
+                        height: 809,
+                        alwaysOnTop: false,
+                        hasShadow: true,
+                        resizable: true,
+                        maximizable: true,
+                        backgroundColor: "#000000",
+                        titleBarStyle: 'hiddenInset',
+                        enableLargerThanScreen: true
                     })
                     win.loadURL(url.format({
-                        pathname: path.join(__dirname, '../windows/simulator.html'),
+                        pathname: path.join(__dirname, '../simulator.html'),
                         protocol: 'file:',
                         slashes: true
                     }))
+
+                    let view = new BrowserView({
+                        webPreferences: {
+                            nodeIntegration: false
+                        }
+                    })
+
+                    win.setBrowserView(view)
+                    view.setBounds({ x: 0, y: 41, width: 1024, height: 768 })
+                        // view.webContents.loadURL('https://electron.atom.io')
+                    view.webContents.loadURL(url.format({
+                        pathname: path.join(__dirname, '../framer/index.html'),
+                        protocol: 'file:',
+                        slashes: true
+                    }))
+                    view.setAutoResize({ width: true, height: true })
                 }
             },
             {
-                label: 'manage External Assets',
+                label: 'Manage External Assets',
                 click() {
                     let win = new BrowserWindow({
                         title: 'Simulator',
@@ -582,31 +592,29 @@ const template = [
     },
     {
         role: 'help',
-        submenu: [
-            {
-                label: 'Show Shortcuts',
-                click() {
-                    let win = new BrowserWindow({
-                        title: 'Shortcuts',
-                        width: 600,
-                        height: 400,
-                        backgroundColor: '#6b0098',
-                        alwaysOnTop: true,
-                        minimizable: false,
-                        maximizable: false,
-                        fullscreenable: false,
-                        resizable: false,
-                        titleBarStyle: 'hidden',
-                        icon: '../icons/mac/icon.icns'
-                    })
-                    win.loadURL(url.format({
-                        pathname: path.join(__dirname, '../windows/settings.html'),
-                        protocol: 'file:',
-                        slashes: true
-                    }))
-                }
+        submenu: [{
+            label: 'Show Shortcuts',
+            click() {
+                let win = new BrowserWindow({
+                    title: 'Shortcuts',
+                    width: 600,
+                    height: 400,
+                    backgroundColor: '#6b0098',
+                    alwaysOnTop: true,
+                    minimizable: false,
+                    maximizable: false,
+                    fullscreenable: false,
+                    resizable: false,
+                    titleBarStyle: 'hidden',
+                    icon: '../icons/mac/icon.icns'
+                })
+                win.loadURL(url.format({
+                    pathname: path.join(__dirname, '../windows/settings.html'),
+                    protocol: 'file:',
+                    slashes: true
+                }))
             }
-        ]
+        }]
     }
 ]
 
@@ -614,8 +622,7 @@ if (process.platform === 'darwin') {
     const name = app.getName()
     template.unshift({
         label: name,
-        submenu: [
-            {
+        submenu: [{
                 //                    role: 'about',
                 label: 'About Floido Designer',
                 click() {
@@ -685,11 +692,10 @@ if (process.platform === 'darwin') {
 
     // Edit menu.
     template[1].submenu.push({
-        type: 'separator'
-    }, {
+            type: 'separator'
+        }, {
             label: 'Speech',
-            submenu: [
-                {
+            submenu: [{
                     role: 'startspeaking'
                 },
                 {
@@ -697,9 +703,8 @@ if (process.platform === 'darwin') {
                 }
             ]
         })
-    // Window menu.
-    template[7].submenu = [
-        {
+        // Window menu.
+    template[7].submenu = [{
             label: 'Show Layers',
             accelerator: 'Shift+CmdOrCtrl+1'
         },

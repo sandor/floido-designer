@@ -1,70 +1,69 @@
-
 <link rel="stylesheet" href="../css/macos.theme.css">
 
 <link rel="stylesheet" href="../css/app.css">
 
 <link rel='stylesheet prefetch' href='../css/font-awesome.min.css'>
 
-<link rel="stylesheet" href="../css/style.css">	
+<link rel="stylesheet" href="../css/style.css">
 
 <!-- Insert this line above script imports  -->
-	<script>
-		if (typeof module === 'object') {
-			window.module = module;
-			module = undefined;
-		}
-	</script>
+<script>
+    if (typeof module === 'object') {
+        window.module = module;
+        module = undefined;
+    }
+</script>
 
 
-	<script src='../js/jquery/jquery.min.js'></script>
-	<script src='../js/jquery/jquery.nestable.js'></script>
-	<script src='../js/jquery/jquery-ui.min.js'></script>
-	<script src='../js/fabric/fabric.min.js'></script>
+<script src='../js/jquery/jquery.min.js'></script>
+<script src='../js/jquery/jquery.nestable.js'></script>
+<script src='../js/jquery/jquery-ui.min.js'></script>
+<script src='../js/fabric/fabric.min.js'></script>
 
 
-	<script src='../js/additionJs/xel.min.js'></script>
+<script src='../js/additionJs/xel.min.js'></script>
 
-	<script src='../js/angular/angular.min.js'></script>
+<script src='../js/angular/angular.min.js'></script>
 
-	<script src='../js/additionJs/electAngular.js'></script>
-	<!-- loading Services -->
-	<!-- this services must loaded after electAngular -->
-	<script src='../js/service/electangularServiceIpc.js'></script>
-	<script src='../js/service/electronService.js'></script>
-
-
-	<script src='../node_modules/angular-ui-sortable/dist/sortable.min.js'></script>
-	<script src='../js/additionJs/aligning_guidelines.js'></script>
-	<script src='../js/additionJs/centering_guidelines.js'></script>
+<script src='../js/additionJs/electAngular.js'></script>
+<!-- loading Services -->
+<!-- this services must loaded after electAngular -->
+<script src='../js/service/electangularServiceIpc.js'></script>
+<script src='../js/service/electronService.js'></script>
 
 
-	<script src="../js/additionJs/utils.js"></script>
-	<!-- <script src="js/direcives/kitchensinkDirectives/app_config.js"></script> -->
-
-	<!-- loading Directives -->
-	<script src="../js/direcives/kitchensinkDirectives/bindValueToDirective.js"></script>
-	<script src="../js/direcives/kitchensinkDirectives/edObjectsPanelSortableDirective.js"></script>
-	<script src="../js/direcives/kitchensinkDirectives/objectButtonsEnabledDirective.js"></script>
+<script src='../node_modules/angular-ui-sortable/dist/sortable.min.js'></script>
+<script src='../js/additionJs/aligning_guidelines.js'></script>
+<script src='../js/additionJs/centering_guidelines.js'></script>
 
 
-	<script src="../js/additionJs/helpers.js"></script>
-	<script src="../js/controllers/kitchensinkController/bgContrlController.js"></script>
-	<script src="../js/controllers/kitchensinkController/CanvasControlsController.js"></script>
-	<script src="../js/controllers/kitchensinkController/LayersController.js"></script>
-	<script src="../js/controllers/kitchensinkController/RightTabsController.js"></script>
-	<script src="../js/controllers/kitchensinkController/LeftTabsController.js"></script>
-	<script src="../js/controllers/kitchensinkController/FontsController.js"></script>
-    <script src="../js/controllers/kitchensinkController/ProjectListController.js"></script>
-	<script src="../js/controllers/kitchensinkController/PagesController.js"></script>
+<script src="../js/additionJs/utils.js"></script>
+<!-- <script src="js/direcives/kitchensinkDirectives/app_config.js"></script> -->
+
+<!-- loading Directives -->
+<script src="../js/direcives/kitchensinkDirectives/bindValueToDirective.js"></script>
+<script src="../js/direcives/kitchensinkDirectives/edObjectsPanelSortableDirective.js"></script>
+<script src="../js/direcives/kitchensinkDirectives/objectButtonsEnabledDirective.js"></script>
 
 
+<script src="../js/additionJs/helpers.js"></script>
+<script src="../js/controllers/kitchensinkController/bgContrlController.js"></script>
+<script src="../js/controllers/kitchensinkController/CanvasControlsController.js"></script>
+<script src="../js/controllers/kitchensinkController/LayersController.js"></script>
+<script src="../js/controllers/kitchensinkController/RightTabsController.js"></script>
+<script src="../js/controllers/kitchensinkController/LeftTabsController.js"></script>
+<script src="../js/controllers/kitchensinkController/FontsController.js"></script>
+<script src="../js/controllers/kitchensinkController/ProjectListController.js"></script>
+<script src="../js/controllers/kitchensinkController/PagesController.js"></script>
 
 
 
-	<!-- Insert this line after script imports -->
-	<script>
-		if (window.module) module = window.module;
-	</script>
+
+
+<!-- Insert this line after script imports -->
+<script>
+    if (window.module) module = window.module;
+</script>
 
 
 
@@ -110,6 +109,7 @@
         background-image: url(../icons/project_bg_sm.png);
         background-repeat: repeat-x;
     }
+    
     .nav-group-item .icon {
         width: 20px;
         height: 20px;
@@ -196,7 +196,7 @@
     }
 </style>
 
-<div ng-app="kitchensink" class="window" style="background: #6b0098;"  ng-controller="ProjectListCtrl">
+<div ng-app="kitchensink" class="window" style="background: #6b0098;" ng-controller="ProjectListCtrl">
     <header class="toolbar toolbar-header dark-header" style="background-color: #160022 !Important; height: 30px; border: 0px;">
         <h1 class="title" style="color: rgba(255, 255, 255, 0.74) !Important; margin-top: 5px;">floido designer | Project Window</h1>
     </header>
@@ -247,11 +247,11 @@
                 </x-box>
                 <x-box>
                 </x-box>
-                <x-box >
+                <x-box>
                     <ul class="project-list-group" ng-model="projects">
 
                         <li class="project-list-group-item" ng-class="{active: project.active}" class="list-pages-item" ng-repeat="project in projects" ng-click="setAsActive(object); setAsActiveLayer(project, projects)" ng-if="!object.ignore">
-                            
+
                             <img class="img-circle project-media-object pull-left" ng-src="{{project.thumbnail}}" width="32" height="32">
                             <div class="project-media-body">
                                 <strong>{{project.title}}</strong>
@@ -291,7 +291,7 @@
                         </x-box>
                     </x-button>
 
-                    <x-button style="margin-top:2px; margin-left:2px; margin-right:15px; background-color: rgba(153, 99, 175, 0.35);">
+                    <x-button id="close-btn" style="margin-top:2px; margin-left:2px; margin-right:15px; background-color: rgba(153, 99, 175, 0.35);">
                         <x-box>
                             <x-label style=" color: #c0a6cb;">Cancel</x-label>
                         </x-box>
@@ -301,3 +301,13 @@
         </x-box>
     </footer>
 </div>
+
+<script>
+    const remote = require('electron').remote;
+
+
+    document.getElementById("close-btn").addEventListener("click", function(e) {
+        var window = remote.getCurrentWindow();
+        window.close();
+    });
+</script>

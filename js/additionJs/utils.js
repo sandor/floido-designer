@@ -1,4 +1,4 @@
-(function (global) {
+(function(global) {
 
   function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -32,19 +32,19 @@
     };
   }
 
-  var supportsInputOfType = function (type) {
-    return function () {
+  var supportsInputOfType = function(type) {
+    return function() {
       var el = document.createElement('input');
       try {
         el.type = type;
       }
-      catch (err) { }
+      catch(err) { }
       return el.type === type;
     };
   };
 
   var supportsSlider = supportsInputOfType('range'),
-    supportsColorpicker = supportsInputOfType('color');
+      supportsColorpicker = supportsInputOfType('color');
 
   global.getRandomNum = getRandomNum;
   global.getRandomInt = getRandomInt;
@@ -59,5 +59,6 @@
 
 
 function setColumnsCountChange(param) {
+  debugger;
   console.log(this);
 }
