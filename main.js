@@ -64,34 +64,38 @@ function createWindow() {
         mainWindow.show()
     })
 
-    mainWindow.webContents.on('did-finish-load', function () {
+    mainWindow.webContents.on('did-finish-load', function() {
         mainWindow.webContents.send('ping', 'whoooooooh!');
     })
 
-//    projectWindow = new BrowserWindow({
-//            frame: false,
-//            width: 800,
-//            height: 600,
-//            minWidth: 800,
-//            minHeight: 600,
-//            backgroundColor: '#312450',
-//            show: false,
-//            icon: path.join(__dirname, 'icons/png/64x64.png'),
-//            parent: mainWindow
-//        })
-//    
-//    projectWindow.loadURL(url.format({
-//            pathname: path.join(__dirname, 'windows/project.html'),
-//            protocol: 'file:',
-//            slashes: true
-//    ))
+    /*     let project = new BrowserWindow({
+            title: 'Project Window',
+            width: 800,
+            height: 600,
+            backgroundColor: '#6b0098',
+            alwaysOnTop: true,
+            minimizable: false,
+            maximizable: false,
+            fullscreenable: false,
+            resizable: true,
+            titleBarStyle: 'hidden',
+            parent: mainWindow,
+            icon: 'icons/mac/icon.icns'
+        })
+        project.loadURL(url.format({
+            pathname: path.join(__dirname, 'windows/project.html'),
+            protocol: 'file:',
+            slashes: true
+        }))
+
+     */
 
 
     // Open the DevTools.
     // mainWindow.webContents.openDevTools()
 
     // Emitted when the window is closed.
-    mainWindow.on('closed', function () {
+    mainWindow.on('closed', function() {
         // Dereference the window object, usually you would store windows
         // in an array if your app supports multi windows, this is the time
         // when you should delete the corresponding element.
@@ -109,7 +113,7 @@ ipcMain.on('openFile', (event, path) => {
         dialog
     } = require('electron')
     const fs = require('fs')
-    dialog.showOpenDialog(function (fileNames) {
+    dialog.showOpenDialog(function(fileNames) {
         // fileNames is an array that contains all the selected
         if (fileNames === undefined) {
             console.log("No file selected");
@@ -130,11 +134,11 @@ ipcMain.on('openFile', (event, path) => {
     }
 })
 
-ipcMain.on('open-second-window', (event, arg)=> {
+ipcMain.on('open-second-window', (event, arg) => {
     mainWindow.show()
 })
 
-ipcMain.on('close-second-window', (event, arg)=> {
+ipcMain.on('close-second-window', (event, arg) => {
     projectWindow.hide()
 })
 
@@ -144,7 +148,7 @@ ipcMain.on('close-second-window', (event, arg)=> {
 app.on('ready', createWindow)
 
 // Quit when all windows are closed.
-app.on('window-all-closed', function () {
+app.on('window-all-closed', function() {
     // On OS X it is common for applications and their menu bar
     // to stay active until the user quits explicitly with Cmd + Q
     if (process.platform !== 'darwin') {
@@ -152,7 +156,7 @@ app.on('window-all-closed', function () {
     }
 })
 
-app.on('activate', function () {
+app.on('activate', function() {
     // On OS X it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (mainWindow === null) {
