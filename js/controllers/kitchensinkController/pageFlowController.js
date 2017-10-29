@@ -125,7 +125,6 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
     }
     $scope.onDragSuccess1 = function (data, evt) {
-        debugger;
         console.log("133", "$scope", "onDragSuccess1", "", evt);
         var index = $scope.droppedObjects1.indexOf(data);
         if (index > -1) {

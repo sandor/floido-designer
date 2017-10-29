@@ -32,7 +32,7 @@ const template = [{
                 accelerator: 'CmdOrCtrl+S',
                 click: function() {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
-                    focusedWindow.webContents.send('save', 'saving');
+                    focusedWindow.webContents.send('saveProject', 'saving');
                 }
             },
             {

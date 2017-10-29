@@ -462,7 +462,7 @@ function enableDisableElement() {
         canvasObjectBorderColor = canvas._activeObject && canvas._activeObject.stroke ? canvas._activeObject.stroke : "";
         canvasObjectBackgroundColor = canvas._activeObject && canvas._activeObject.backgroundColor ? canvas._activeObject.backgroundColor : "";
     }
-debugger;
+
     if (canvas._activeObject &&  document.getElementById('enableShadow') && !document.getElementById('enableShadow').hasAttribute("toggled")) {
 
         document.getElementById('obj-shadow-color').setAttribute('disabled', true);

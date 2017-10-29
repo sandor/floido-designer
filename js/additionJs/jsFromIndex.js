@@ -20,6 +20,7 @@ var fs = require('fs');
 
 var fileSavedPath = "";
 var appfolderPath = "";
+var TempFileNameforWriting = ""
 //// for save json ////
 
 
@@ -227,25 +228,32 @@ var undo = function () {
     }
 }
 
-var saveAS = function (fromDir) {
+var savedProjectPath;
+var saveProject = function () {
+    if (appfolderPath) {
+        debugger;
+        saveAS(appfolderPath);
+    }
+    else {
+        debugger;
+        saveAS();
+    }
+}
 
-    // var tempFile = JSON.stringify(canvas);
-    //
-    // download(tempFile, 'test.json', 'text/plain');
+var saveAS = function (inDirectory) {
+    debugger;
 
-    if (fromDir) {
-        var fileName = slash + "tempProjectJson.json";
-
-        fileName = rootFolder + fileName;
-        fileSavedPath = fileName;
-        //createDirectory(fileName);
-
-        if (fileName === undefined) {
+    if (inDirectory) {
+        createDirectory(inDirectory, true);
+        debugger;
+        console.log(" createDirectory(fileName, true); iftrue case " + inDirectory)
+        //TempFileNameforWriting = fileName + slash + "tempProjectJson.json"
+        if (TempFileNameforWriting === undefined) {
             console.log("You didn't save the file");
             return;
         }
 
-        fs.writeFile(fileName, JSON.stringify(GenerateCanvasJson()), function (err) {
+        fs.writeFile(TempFileNameforWriting, JSON.stringify(GenerateCanvasJson()), function (err) {
 
             if (err) {
                 alert("An error ocurred creating the file " + err.message)
@@ -255,15 +263,18 @@ var saveAS = function (fromDir) {
         });
 
     } else {
+        debugger;
         dialog.showSaveDialog(function (fileName) {
 
             createDirectory(fileName, true);
-            var TempFileNameforWriting = fileName + slash + "tempProjectJson.json"
+            console.log(" createDirectory(fileName, true); else case " + fileName)
+            debugger;
+            TempFileNameforWriting = fileName + slash + "tempProjectJson.json"
             if (TempFileNameforWriting === undefined) {
                 console.log("You didn't save the file");
                 return;
             }
-
+            debugger;
             fs.writeFile(TempFileNameforWriting, JSON.stringify(GenerateCanvasJson()), function (err) {
 
                 if (err) {
@@ -277,51 +288,38 @@ var saveAS = function (fromDir) {
 
 }
 
-// you must uncoment it and after save functionality will work 
-// var path = dialog.showOpenDialog({
-//     properties: ['openDirectory']
-// });
-//var rootFolder = path + slash + 'MyDesignProject';
 
+
+
+var path;
+var rootFolder = "";
 function createDirectory(appfolderPath, cutomFolder) {
 
     if (cutomFolder) {
-        var appDirTemp = (JSON.parse(JSON.stringify(appfolderPath))).toString();
+        //  var appDirTemp = (JSON.parse(JSON.stringify(appfolderPath))).toString();
+        rootFolder = "";
+        var res = appfolderPath.split(slash);
+        debugger;
+        window.appfolderPath = appfolderPath;
 
-
-        var res = appDirTemp.split(slash);
-
-        appfolderPath = appDirTemp;
-
-        rootFolder = path + slash + res[res.length - 1];
-
-        // for (let i = -1; i++ < res.length - 2;) {
-        //     if (i != res.length - 3) {
-        //         appfolderPath += res[i] + slash;
-        //     }
-        //     appfolderPath += res[i];
-        //
-        // }
-
-
-        if (!fs.existsSync(rootFolder)) {
-            fs.mkdirSync(rootFolder);
+        if (path) {
+            // rootFolder = path + slash + res[res.length - 1];
         }
-    }
+        else {
+            for (let i = 0; i < res.length - 1; i++) {
 
+                rootFolder += res[i] + slash;
 
-    // var path = dialog.showOpenDialog({
-    //     properties: ['openDirectory']
-    // });
+            }
 
+        }
 
-    //var dir = appfolderPath + './Assets';
+        if (!fs.existsSync(appfolderPath)) {
+            fs.mkdirSync(appfolderPath);
+        }
 
-
-
-    if (cutomFolder) {
         var directoriesTobeCreated = {
-            rootFolder: rootFolder,
+            // rootFolder: rootFolder,
             assets: appfolderPath + slash + 'Assets',
             assetsSubImages: appfolderPath + slash + 'Assets' + slash + 'images',
             assetsSubMovies: appfolderPath + slash + 'Assets' + slash + 'movies',
@@ -332,22 +330,9 @@ function createDirectory(appfolderPath, cutomFolder) {
 
 
         };
-
-    } else {
-
-        var directoriesTobeCreated = {
-            rootFolder: rootFolder,
-            assets: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets',
-            assetsSubImages: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets' + slash + 'images',
-            assetsSubMovies: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets' + slash + 'movies',
-            assetsSubThumbnails: appfolderPath + slash + 'MyDesignProject' + slash + 'Assets' + slash + 'thumbnails',
-            framerExport: appfolderPath + slash + 'MyDesignProject' + slash + 'framerExport',
-            json: appfolderPath + slash + 'MyDesignProject' + slash + 'json',
-            pages: appfolderPath + slash + 'MyDesignProject' + slash + 'pages',
-
-
-        };
     }
+
+
 
     for (let directoriKey in directoriesTobeCreated) {
         if (directoriesTobeCreated[directoriKey]) {
@@ -361,7 +346,7 @@ function createDirectory(appfolderPath, cutomFolder) {
 
     }
 
-    save(true);
+    // save(true);
 
 }
 
@@ -379,8 +364,7 @@ function GenerateCanvasJson() {
 }
 
 function save(fromDir) {
-
-
+    debugger;
 
     if (fileSavedPath) {
         fs.writeFile(fileSavedPath, JSON.stringify(GenerateCanvasJson()), function (err) {
@@ -393,12 +377,10 @@ function save(fromDir) {
         });
     }
     else {
-
+        debugger;
         saveAS(fromDir);
     }
 }
-
-
 
 
 var loadJSON = function () {
@@ -526,11 +508,11 @@ Utility functions for selecting and aranging objects on the canvas
 function selectAll() {
     canvas.discardActiveObject();
     var sel = new fabric.ActiveSelection(canvas.getObjects(), {
-      canvas: canvas,
+        canvas: canvas,
     });
     canvas.setActiveObject(sel);
     canvas.requestRenderAll();
-  };
+};
 
 
 //sen the objects forward and backward
@@ -573,9 +555,10 @@ require('electron').ipcRenderer.on('open', function (event, message) {
     console.log(message);
     loadJSON();
 });
-require('electron').ipcRenderer.on('save', function (event, message) {
+require('electron').ipcRenderer.on('saveProject', function (event, message) {
     console.log(message);
-    save();
+    // save();
+    saveProject();
 });
 
 
@@ -770,6 +753,8 @@ menu.append(new MenuItem({
 menu.append(new MenuItem({
     label: 'Save',
     click() {
+        // debugger;
+        // saveProject();
         save();
     }
 }))
@@ -782,12 +767,14 @@ menu.append(new MenuItem({
 
 
 
-menu.append(new MenuItem({
-    label: 'Save',
-    click() {
-        save();
-    }
-}))
+// menu.append(new MenuItem({
+//     label: 'Save',
+//     click() {
+//         debugger;
+//         saveProject();
+//         //save();
+//     }
+// }))
 
 menu.append(new MenuItem({
     label: 'Redo',
