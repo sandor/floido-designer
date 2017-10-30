@@ -436,7 +436,7 @@ function enableDisableElement() {
         document.getElementById('canvas-border-object-colorSelect').removeAttribute('disabled');
         document.getElementById('canvas-object-corner').removeAttribute('disabled');
         // document.getElementById('obj-shadow-color').removeAttribute('disabled');
-        // document.getElementById('shadow-blur').removeAttribute('disabled');
+        // document.getElementById('obj-shadow-blur').removeAttribute('disabled');
         // document.getElementById('shadow-Offset-X').removeAttribute('disabled');
         // document.getElementById('shadow-Offset-Y').removeAttribute('disabled');
 
@@ -466,7 +466,7 @@ function enableDisableElement() {
     if (canvas._activeObject &&  document.getElementById('enableShadow') && !document.getElementById('enableShadow').hasAttribute("toggled")) {
 
         document.getElementById('obj-shadow-color').setAttribute('disabled', true);
-        document.getElementById('shadow-blur').setAttribute('disabled', true);
+        document.getElementById('obj-shadow-blur').setAttribute('disabled', true);
         document.getElementById('shadow-Offset-X').setAttribute('disabled', true);
         document.getElementById('shadow-Offset-Y').setAttribute('disabled', true);
 
@@ -475,7 +475,7 @@ function enableDisableElement() {
 
     // removing data from  filters and shadows fields /////////////////
     if ((document.getElementById('shadow-Offset-X') 
-    && document.getElementById('shadow-blur') 
+    && document.getElementById('obj-shadow-blur') 
     && document.getElementById('shadow-Offset-Y') 
     && !canvas.getActiveObject()) 
     || 
@@ -486,15 +486,15 @@ function enableDisableElement() {
 
         document.getElementById('shadow-Offset-X').value = '';
         document.getElementById('shadow-Offset-Y').value = '';
-        document.getElementById('shadow-blur').value = '';
+        document.getElementById('obj-shadow-blur').value = '';
     }
 
     if (canvas.getActiveObject() && canvas.getActiveObject.name != "Image" && canvas.getActiveObject.name != "Text") {
 
 
-        if (document.getElementById('obj-shadow-color') && document.getElementById('shadow-blur')) {
+        if (document.getElementById('obj-shadow-color') && document.getElementById('obj-shadow-blur')) {
             document.getElementById('obj-shadow-color').removeAttribute('disabled');
-            document.getElementById('shadow-blur').removeAttribute('disabled');
+            document.getElementById('obj-shadow-blur').removeAttribute('disabled');
             document.getElementById('shadow-Offset-X').removeAttribute('disabled');
             document.getElementById('shadow-Offset-Y').removeAttribute('disabled');
         }

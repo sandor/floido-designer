@@ -13,6 +13,9 @@ initAligningGuidelines(canvas);
 initCenteringGuidelines(canvas);
 
 
+////for Current Active Left Tab///////
+var currentActiveLeftTab;
+
 //// for save  json ////
 const { dialog } = require('electron').remote;
 
@@ -420,10 +423,11 @@ var loadJSON = function () {
 
             canvas.loadFromJSON(tempCanvas, function () {
                 canvas.renderAll();
+                setCanvasSize(tempOPenedCanvas.canvasHeight, tempOPenedCanvas.canvasWidth);
+                addGradient(tempOPenedCanvas.leftColor, tempOPenedCanvas.rightColor);
+
             });
 
-            setCanvasSize(tempOPenedCanvas.canvasHeight, tempOPenedCanvas.canvasWidth);
-            addGradient(tempOPenedCanvas.leftColor, tempOPenedCanvas.rightColor);
 
         })
 
@@ -435,13 +439,15 @@ var loadJSON = function () {
 function setCanvasSize(height, width) {
     //;
 
-    document.getElementById('myWidth').value = width;
-    document.getElementById('myHeight').value = height;
+    if (currentActiveLeftTab && currentActiveLeftTab.title == "projectSettings") {
+        document.getElementById('myWidth').value = width;
+        document.getElementById('myHeight').value = height;
+    }
 
 
-    var setWidth = document.getElementById('myWidth').value;
-    var setHeight = document.getElementById('myHeight').value;
-    canvas.setWidth(setWidth);
+
+    var setWidth = width
+    var setHeight = height
     canvas.setHeight(setHeight);
     console.info(setWidth, setHeight);
     canvas.calcOffset();
@@ -450,11 +456,14 @@ function setCanvasSize(height, width) {
 
 function addGradient(left, right) {
 
-    document.getElementById('gradLeft').value = left;
-    document.getElementById('gradRight').value = right;
+    if (currentActiveLeftTab && currentActiveLeftTab.title == "pageSettings") {
+        document.getElementById('gradLeft').value = left;
+        document.getElementById('gradRight').value = right;
+    }
 
-    var leftColor = document.getElementById('gradLeft').value;
-    var rightColor = document.getElementById('gradRight').value;
+
+    var leftColor = left
+    var rightColor = right
     console.log(leftColor, rightColor);
 
     var grad = new fabric.Gradient({

@@ -73,7 +73,7 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
 
             document.getElementById('shadow-Offset-X').value = canvasObjectShadowOffsetX;
             document.getElementById('shadow-Offset-Y').value = canvasObjectShadowOffsetY;
-            document.getElementById('shadow-blur').value = canvasObjectShadowBlur;
+            document.getElementById('obj-shadow-blur').value = canvasObjectShadowBlur;
 
         }
 
