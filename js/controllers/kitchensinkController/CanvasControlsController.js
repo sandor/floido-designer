@@ -320,23 +320,63 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
 
 
 
-    $scope.pageFlow = function () {
-        $scope.pageFlowShow = !$scope.pageFlowShow;
-        pageFlowActive = $scope.pageFlowShow;
+    $scope.setMainTab = function (tabName) {
+
+        if (tabName == 'pageFlow') {
+            debugger;
+            $scope.pageFlowShow = !$scope.pageFlowShow;
+            pageFlowActive = $scope.pageFlowShow;
 
 
 
-        if ($scope.pageFlowShow && document.getElementById("flow_cols")) {
-            document.getElementById("flow_cols").removeAttribute('disabled');
-            document.getElementById("flow_rows").removeAttribute('disabled');
-      
+            if ($scope.pageFlowShow && document.getElementById("flow_cols")) {
+                document.getElementById("flow_cols").removeAttribute('disabled');
+                document.getElementById("flow_rows").removeAttribute('disabled');
+
+            }
+            if (!$scope.pageFlowShow && document.getElementById("flow_cols")) {
+                document.getElementById("flow_cols").setAttribute('disabled', 'true');
+                document.getElementById("flow_rows").setAttribute('disabled', 'true');
+
+            }
         }
-        if (!$scope.pageFlowShow && document.getElementById("flow_cols")) {
-            document.getElementById("flow_cols").setAttribute('disabled', 'true');
-            document.getElementById("flow_rows").setAttribute('disabled', 'true');
 
+    }
+
+    $scope.setMainTab1 = function (tabName) {
+        debugger;
+        currentActiveLeftTab;
+
+        if (tabName == 'pageFlow') {
+            debugger;
+            $scope.pageFlowShow = true;
+            pageFlowActive = $scope.pageFlowShow;
+
+
+
+            if (pageFlowActive && (currentActiveLeftTab.title == 'projectSettings')) {
+                document.getElementById("flow_cols").removeAttribute('disabled');
+                document.getElementById("flow_rows").removeAttribute('disabled');
+
+            }
+            if (!pageFlowActive && (currentActiveLeftTab.title == 'projectSettings')) {
+                document.getElementById("flow_cols").setAttribute('disabled', 'true');
+                document.getElementById("flow_rows").setAttribute('disabled', 'true');
+
+            }
+        }
+        if (tabName == 'pageEditor') {
+            debugger;
+            $scope.pageFlowShow = false;
+            pageFlowActive = $scope.pageFlowShow;
+
+            if (!pageFlowActive && (currentActiveLeftTab.title == 'projectSettings')) {
+                document.getElementById("flow_cols").setAttribute('disabled', 'true');
+                document.getElementById("flow_rows").setAttribute('disabled', 'true');
+            }
         }
     }
+
 
 
     $scope.pageFlowTab = 'templates/pageFlow.html';

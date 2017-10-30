@@ -41,6 +41,7 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
     ];
 
     $scope.currentLeftTab = 'templates/style_menu.html';
+    currentActiveLeftTab = $scope.currentLeftTab;
 
     $scope.onClickLeftTab = function (tab) {
         debugger;
