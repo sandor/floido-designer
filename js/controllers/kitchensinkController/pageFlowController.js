@@ -87,7 +87,7 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
     $scope.droppedObjects2 = [];
 
     $scope.onDropComplete1 = function (data, evt, dropAreaName) {
-
+        debugger;
         if (data) {
             data.dropAreaName = dropAreaName;
         }
@@ -131,6 +131,41 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
             }
 
             ////
+        }
+
+        canvas.getHeight()
+        768
+        canvas.getWidth()
+        1024
+        1024 / 768 * 100
+        133.33333333333331
+        1024 / 768
+        1.3333333333333333
+
+
+
+        for (var key in document.getElementsByClassName("thumbnail-inner-img")) {
+            if (document.getElementsByClassName("thumbnail-inner-img").hasOwnProperty(key)) {
+
+                var element = document.getElementsByClassName("thumbnail-inner-img")[key];
+
+                if (canvas.getHeight() > canvas.getWidth())
+                ///landscape case
+                {
+                    let widthTemp = (canvas.getWidth() / canvas.getHeight()) * 100;
+                    let heigthTemp = 100;
+                    debugger;
+                    element.setAttribute("style", "height:" + heigthTemp + "%;width:" + widthTemp + "%");
+                }
+                else {
+                    let heigthTemp = (canvas.getHeight() / canvas.getWidth()) * 100;
+                    let widthTemp = 100;
+                    debugger;
+                    element.setAttribute("style", "height:" + heigthTemp + "%;width:" + widthTemp + "%");
+                }
+
+
+            }
         }
 
     }
@@ -356,12 +391,14 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
 
 
-    setTimeout(() => {
-        console.log(document.getElementById("page-flow"));
-        document.getElementById("page-flow").addEventListener("resize", (event) => {
 
-            pageFlowScope.windowRes(event);
-        })
+    setTimeout(() => {
+        // $scope.setpageFlowoItemRatio();
+        // console.log(document.getElementById("page-flow"));
+        // document.getElementById("page-flow").addEventListener("resize", (event) => {
+
+        //     pageFlowScope.windowRes(event);
+        // })
     }, 20)
 
 
