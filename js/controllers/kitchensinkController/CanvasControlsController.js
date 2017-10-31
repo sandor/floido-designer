@@ -323,7 +323,6 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
     $scope.setMainTab = function (tabName) {
 
         if (tabName == 'pageFlow') {
-            debugger;
             $scope.pageFlowShow = !$scope.pageFlowShow;
             pageFlowActive = $scope.pageFlowShow;
 
@@ -344,14 +343,11 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
     }
 
     $scope.setMainTab1 = function (tabName) {
-        debugger;
         currentActiveLeftTab;
 
         if (tabName == 'pageFlow') {
-            debugger;
             $scope.pageFlowShow = true;
             pageFlowActive = $scope.pageFlowShow;
-
 
 
             if (pageFlowActive && (currentActiveLeftTab.title == 'projectSettings')) {
@@ -362,11 +358,10 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
             if (!pageFlowActive && (currentActiveLeftTab.title == 'projectSettings')) {
                 document.getElementById("flow_cols").setAttribute('disabled', 'true');
                 document.getElementById("flow_rows").setAttribute('disabled', 'true');
-
             }
+            
         }
         if (tabName == 'pageEditor') {
-            debugger;
             $scope.pageFlowShow = false;
             pageFlowActive = $scope.pageFlowShow;
 

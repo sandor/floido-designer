@@ -44,7 +44,6 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
     currentActiveLeftTab = $scope.currentLeftTab;
 
     $scope.onClickLeftTab = function (tab) {
-        debugger;
         currentActiveLeftTab = tab;
         $scope.currentLeftTab = tab.url;
         if (tab.title == 'projectSettings') {

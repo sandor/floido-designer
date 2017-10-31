@@ -15,15 +15,15 @@
 <!-- <button ng-click="additem()"></button> -->
 <div ng-repeat="dropArea in dropAreas" class="drop-area-item">
 
-    <div ng-repeat="dropAreaLineItem in dropArea">
+    <div ng-repeat="dropAreaLineItem in dropArea" id="page-flow-item-container">
 
         <div id="{{dropAreaLineItem.data.name}}" ng-drop="true" ng-drag="false" ng-drop-success="onDropComplete1($data,$event,dropAreaLineItem.name)"
             class="page-flow-item">
-            <div ng-drag="true" ng-show="(this.dropAreaLineItem.data)" ng-drag-data="dropAreaLineItem.data" ng-drag-success="onDragSuccess1($data,$event)" ng-center-anchor="{{centerAnchor}}">
-                <button ng-show="(this.dropAreaLineItem.data)" ng-click="remove(this)">delete</button>
+            <div ng-drag="true" ng-show="(this.dropAreaLineItem.data)" ng-drag-data="dropAreaLineItem.data" ng-drag-success="onDragSuccess1($data,$event)" ng-center-anchor="{{centerAnchor}}" class="draged-item">
+                <button ng-show="(this.dropAreaLineItem.data)" ng-click="remove(this)" class="remove-pageflow-item">X</button>
                 <x-box class="thumbnail justify">
 
-                    <img style="margin: auto;" ng-src="{{dropAreaLineItem.data.thumbnail}}" title="{{ dropAreaLineItem.data.name }}" />
+                    <img style="margin: auto;" ng-src="{{dropAreaLineItem.data.thumbnail}}" title="{{ dropAreaLineItem.data.name }}" class="thumbnail-inner-img"/>
                 </x-box>
                 <x-box>
                     <div class="media-body" style="margin: auto;">
@@ -52,7 +52,7 @@
 <!-- //////// -->
 
 <div ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
-    <span class="title">Drop area #1</span>
+    <!-- <span class="title">Drop area #1</span> -->
 
     <div ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess1($data,$event)"
         ng-center-anchor="{{centerAnchor}}">
