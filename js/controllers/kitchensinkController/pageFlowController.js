@@ -34,8 +34,11 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
         $scope.dropAreaHeight = Math.round((($scope.pageflowHeight - 50) / 4));
         $scope.dropAreaWidth = Math.round((($scope.pageflowWidth - 50) / 4));
     }
-
-    $scope.dropAreas = pageFlowService.getPageFlowData() ? pageFlowService.getPageFlowData() : {};
+    $scope.getdropAreasFromService = () => {
+        debugger;
+        $scope.dropAreas = pageFlowService.getPageFlowData() ? pageFlowService.getPageFlowData() : {};
+    }
+    $scope.getdropAreasFromService();
 
 
 
@@ -87,7 +90,7 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
     $scope.droppedObjects2 = [];
 
     $scope.onDropComplete1 = function (data, evt, dropAreaName) {
-        debugger;
+
         if (data) {
             data.dropAreaName = dropAreaName;
         }
@@ -133,16 +136,6 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
             ////
         }
 
-        canvas.getHeight()
-        768
-        canvas.getWidth()
-        1024
-        1024 / 768 * 100
-        133.33333333333331
-        1024 / 768
-        1.3333333333333333
-
-
 
         for (var key in document.getElementsByClassName("thumbnail-inner-img")) {
             if (document.getElementsByClassName("thumbnail-inner-img").hasOwnProperty(key)) {
@@ -154,13 +147,11 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
                 {
                     let widthTemp = (canvas.getWidth() / canvas.getHeight()) * 100;
                     let heigthTemp = 100;
-                    debugger;
                     element.setAttribute("style", "height:" + heigthTemp + "%;width:" + widthTemp + "%");
                 }
                 else {
                     let heigthTemp = (canvas.getHeight() / canvas.getWidth()) * 100;
                     let widthTemp = 100;
-                    debugger;
                     element.setAttribute("style", "height:" + heigthTemp + "%;width:" + widthTemp + "%");
                 }
 
@@ -257,7 +248,6 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
         }
         $scope.$apply();
-        ///
         dropAreas = null;
         dropAreas = $scope.dropAreas;
 
@@ -277,7 +267,6 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
             itemCountOn1Line = $scope.dropAreas[keydropAreaLine].length;
         }
 
-        debugger;
         for (let i = 0; i <= rowCount - objPropCount; i++) {
 
             for (let lineN = 0; lineN < objPropCount + 1; lineN++) {
@@ -296,11 +285,9 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
 
         $scope.$apply();
-        ///
         dropAreas = null;
         dropAreas = $scope.dropAreas;
         pageFlowService.setPageFlowData($scope.dropAreas);
-        debugger;
     }
 
 
@@ -308,12 +295,6 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
     $scope.addRemoveColumns = function (columnCount) {
         if (columnCount) {
             let columnCountTemp = columnCount ? columnCount : 4;
-            // /////////////
-            // for (let drpAr in $scope.dropAreas) {
-            //     objPropArraylength = drpAr.length;
-            //     break;
-            // }
-            // ///////////////
             let objPropArraylength = $scope.dropAreas['line0'].length
 
             if (columnCount < objPropArraylength) {
@@ -332,14 +313,11 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
         for (let keydropAreaLine in $scope.dropAreas) {
 
             columnsCountTemp = $scope.dropAreas[keydropAreaLine].length;
-            // ///
-            // $scope.dropAreaElCountOnLIne = $scope.dropAreaElCountOnLIne - columnsCountTemp - columnCount;
-            // ///
             $scope.dropAreas[keydropAreaLine].splice(columnCount, columnsCountTemp - columnCount)
 
         }
         $scope.$apply();
-        ///
+
         dropAreas = null;
         dropAreas = $scope.dropAreas;
 
@@ -358,25 +336,18 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
         for (let keydropAreaLine in $scope.dropAreas) {
 
             columnsCountTemp = $scope.dropAreas[keydropAreaLine].length;
-            ///
-            //$scope.dropAreaElCountOnLIne++;
-            ///
             for (let i = 0; i < columnCount - columnsCountTemp; i++) {
                 $scope.dropAreas[keydropAreaLine].push({ name: 'dropArea' + allItemCount });
                 allItemCount++;
 
-
             }
-
 
         }
 
         $scope.$apply();
-        ///
         dropAreas = null;
         dropAreas = $scope.dropAreas;
         pageFlowService.setPageFlowData($scope.dropAreas);
-        debugger;
     }
 
 
@@ -384,23 +355,7 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
     dropAreas = null;
     dropAreas = $scope.dropAreas;
-
-
-
     pageFlowScope = $scope;
-
-
-
-
-    setTimeout(() => {
-        // $scope.setpageFlowoItemRatio();
-        // console.log(document.getElementById("page-flow"));
-        // document.getElementById("page-flow").addEventListener("resize", (event) => {
-
-        //     pageFlowScope.windowRes(event);
-        // })
-    }, 20)
-
 
 
 })

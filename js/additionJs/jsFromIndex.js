@@ -25,7 +25,8 @@ var fileSavedPath = "";
 var appfolderPath = "";
 var TempFileNameforWriting = ""
 //// for save json ////
-
+//projectSettings//
+var projectSettings = {};
 
 var os = require('os');
 var platf = os.platform();
@@ -232,23 +233,20 @@ var undo = function () {
 }
 
 var savedProjectPath;
+var savedFilePath;
 var saveProject = function () {
     if (appfolderPath) {
-        debugger;
-        saveAS(appfolderPath);
+        saveAsProject(appfolderPath);
     }
     else {
-        debugger;
-        saveAS();
+        saveAsProject();
     }
 }
 
-var saveAS = function (inDirectory) {
+var saveAsProject = function (inDirectory) {
     debugger;
-
     if (inDirectory) {
         createDirectory(inDirectory, true);
-        debugger;
         console.log(" createDirectory(fileName, true); iftrue case " + inDirectory)
         //TempFileNameforWriting = fileName + slash + "tempProjectJson.json"
         if (TempFileNameforWriting === undefined) {
@@ -266,18 +264,15 @@ var saveAS = function (inDirectory) {
         });
 
     } else {
-        debugger;
         dialog.showSaveDialog(function (fileName) {
 
             createDirectory(fileName, true);
             console.log(" createDirectory(fileName, true); else case " + fileName)
-            debugger;
             TempFileNameforWriting = fileName + slash + "tempProjectJson.json"
             if (TempFileNameforWriting === undefined) {
                 console.log("You didn't save the file");
                 return;
             }
-            debugger;
             fs.writeFile(TempFileNameforWriting, JSON.stringify(GenerateCanvasJson()), function (err) {
 
                 if (err) {
@@ -302,7 +297,6 @@ function createDirectory(appfolderPath, cutomFolder) {
         //  var appDirTemp = (JSON.parse(JSON.stringify(appfolderPath))).toString();
         rootFolder = "";
         var res = appfolderPath.split(slash);
-        debugger;
         window.appfolderPath = appfolderPath;
 
         if (path) {
@@ -357,16 +351,34 @@ function createDirectory(appfolderPath, cutomFolder) {
 //createDirectory(path);
 
 function GenerateCanvasJson() {
+    debugger;
+    rightTabControllerScope.getProjectSettings();
+
     return {
         leftColor: document.getElementById('gradLeft') ? document.getElementById('gradLeft').value : "#ffffff",
         rightColor: document.getElementById('gradRight') ? document.getElementById('gradRight').value : "#ffffff",
         canvasWidth: canvas ? canvas.width : 1024,
         canvasHeight: canvas ? canvas.height : 768,
+        // projectSettings: projectSettingsTemp,
+        projectSettings: getPageFullSettings(),
         state: canvas.toJSON()
     }
 }
 
-function save(fromDir) {
+function getPageFullSettings() {
+    var projectSettingsTemp = {
+        dropAreas: dropAreas,
+        projectSettingsWidth: projectSettings.projectSettingsWidth,
+        projectSettingsHeight: projectSettings.projectSettingsHeight,
+        projectSettingsName: projectSettings.projectSettingsName,
+        projectSettingsDescription: projectSettings.projectSettingsDescription
+    }
+    debugger;
+    return projectSettingsTemp;
+
+}
+
+function save() {
     debugger;
 
     if (fileSavedPath) {
@@ -381,8 +393,29 @@ function save(fromDir) {
     }
     else {
         debugger;
-        saveAS(fromDir);
+        // saveAsProject(fromDir);
+        saveAs();
     }
+}
+
+function saveAs() {
+    dialog.showSaveDialog(function (fileName) {
+        debugger;
+        fileName = (fileName + ".json");
+        fileSavedPath = fileName;
+        if (fileSavedPath) {
+            fs.writeFile(fileSavedPath, JSON.stringify(GenerateCanvasJson()), function (err) {
+
+                if (err) {
+                    alert("An error ocurred creating the file " + err.message)
+                }
+
+                alert("The file has been succesfully saved");
+            });
+        }
+
+    });
+
 }
 
 
@@ -425,6 +458,25 @@ var loadJSON = function () {
                 canvas.renderAll();
                 setCanvasSize(tempOPenedCanvas.canvasHeight, tempOPenedCanvas.canvasWidth);
                 addGradient(tempOPenedCanvas.leftColor, tempOPenedCanvas.rightColor);
+                dropAreas = tempOPenedCanvas.projectSettings.dropAreas;
+                projectSettings = tempOPenedCanvas.projectSettings;
+                if (Object.keys(projectSettings).length != 0 && currentActiveLeftTab.title == "projectSettings") {
+                    rightTabControllerScope.setPageFlowRowAndColumn();
+                    rightTabControllerScope.setProjectSettings();
+
+
+                }
+                if (Object.keys(pageFlowScope).length != 0) {
+                    debugger;
+                    pageFlowScope.getdropAreasFromService();
+                    pageFlowScope.$apply();
+                    debugger;
+                    rightTabControllerScope.setPageFlowRowAndColumn();
+                    rightTabControllerScope.setProjectSettings();
+
+                } else {
+                    debugger;
+                }
 
             });
 
@@ -570,11 +622,25 @@ require('electron').ipcRenderer.on('saveProject', function (event, message) {
     saveProject();
 });
 
+//saveAsProjectProject
+require('electron').ipcRenderer.on('saveAsProject', function (event, message) {
+    console.log(message);
+    saveAsProject();
+});
+
+require('electron').ipcRenderer.on('save', function (event, message) {
+    debugger;
+    console.log(message);
+    save();
+});
 
 require('electron').ipcRenderer.on('saveAs', function (event, message) {
+    debugger;
     console.log(message);
-    saveAS();
+    saveAs();
 });
+
+
 
 //edit menu
 

@@ -1,5 +1,6 @@
 kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
 
+
     const { dialog } = require('electron').remote;
 
     var fs = require('fs');
@@ -41,6 +42,7 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
     ];
 
     $scope.currentLeftTab = 'templates/style_menu.html';
+
     currentActiveLeftTab = $scope.currentLeftTab;
 
     $scope.onClickLeftTab = function (tab) {
@@ -48,19 +50,26 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
         $scope.currentLeftTab = tab.url;
         if (tab.title == 'projectSettings') {
             setTimeout(function () {
-                if (document.getElementById("page-flow-button").hasAttribute('toggled')) {
-                    document.getElementById("flow_cols").removeAttribute('disabled');
-                    document.getElementById("flow_rows").removeAttribute('disabled');
+                // if (document.getElementById("page-flow-button").hasAttribute('toggled')) {
+                document.getElementById("flow_cols").removeAttribute('disabled');
+                document.getElementById("flow_rows").removeAttribute('disabled');
+                $scope.setPageFlowRowAndColumn();
 
-                }
-            }, 0)
+                //store projetc settings data to projectSettings variable in jsFromIndex
+                // $scope.getProjectSettings();
+                // }
 
+                $scope.setProjectSettings();
+
+
+            }, 30)
         }
         else {
             document.getElementById("flow_cols").setAttribute('disabled', 'true');
             document.getElementById("flow_rows").setAttribute('disabled', 'true');
 
         }
+        debugger;
         //document.getElementById("objectIn-canvas-background-colorselect").value = canvasObjectBackColor;
     }
 
@@ -82,17 +91,56 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
 
     var fileSavedPath = "";
 
+    ///set project settings page flow  row and column count after openeing project///
+    $scope.setPageFlowRowAndColumn = () => {
+        if (currentActiveLeftTab.title == "projectSettings") {
+
+            let rowCount = 0;
+            let colCount = 0;
+            for (let keydropAreaLine in dropAreas) {
+                rowCount++;
+                colCount = dropAreas[keydropAreaLine].length;
+            }
 
 
-    $scope.columnsCount = columnsCount;
+            document.getElementById("flow_cols").value = colCount == 0 ? 4 : colCount;
+            document.getElementById("flow_rows").value = rowCount == 0 ? 3 : rowCount;
+            debugger;
+        }
 
+    }
+    $scope.getProjectSettings = () => {
+        if (currentActiveLeftTab.title == "projectSettings") {
+            projectSettings.projectSettingsWidth = document.getElementById("myWidth").value;
+            projectSettings.projectSettingsHeight = document.getElementById("myHeight").value;
+            projectSettings.projectSettingsName = document.getElementById("project-sett-name").value;
+            projectSettings.projectSettingsDescription = document.getElementById("project-sett-description").value;
+            debugger;
+        }
 
+    }
+
+    $scope.setProjectSettings = () => {
+        debugger;
+        document.getElementById("myWidth").value = projectSettings.projectSettingsWidth;
+        document.getElementById("myHeight").value = projectSettings.projectSettingsHeight;
+        document.getElementById("project-sett-name").value = projectSettings.projectSettingsName;
+        document.getElementById("project-sett-description").value = projectSettings.projectSettingsDescription;
+        debugger;
+
+    }
+
+    //$scope.columnsCount = columnsCount;
     //////////////
 
+    rightTabControllerScope = $scope;
 }])
-function columnsCount(params) {
+// function columnsCount(params) {
 
 
-}
+// }
 
-// bind-value-to="fontSize"
+// // bind-value-to="fontSize"
+
+rightTabControllerScope = {};
+
