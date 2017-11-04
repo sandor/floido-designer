@@ -35,7 +35,6 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
         $scope.dropAreaWidth = Math.round((($scope.pageflowWidth - 50) / 4));
     }
     $scope.getdropAreasFromService = () => {
-        debugger;
         $scope.dropAreas = pageFlowService.getPageFlowData() ? pageFlowService.getPageFlowData() : {};
     }
     $scope.getdropAreasFromService();
@@ -54,7 +53,7 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
             for (let k = 0; k < $scope.dropAreaElCountOnLIne; k++) {
                 $scope.dropAreaCounter++
-                $scope.dropAreas["line" + i].push({ name: 'dropArea' + $scope.dropAreaCounter });
+                $scope.dropAreas["line" + i].push({ name: 'dropArea' + $scope.dropAreaCounter + "_L" + k });
 
             }
 
@@ -135,13 +134,15 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
             ////
         }
+        $scope.setPageFlowItemAspectRatio();
 
+    }
 
+    $scope.setPageFlowItemAspectRatio = () => {
         for (var key in document.getElementsByClassName("thumbnail-inner-img")) {
             if (document.getElementsByClassName("thumbnail-inner-img").hasOwnProperty(key)) {
 
                 var element = document.getElementsByClassName("thumbnail-inner-img")[key];
-
                 if (canvas.getHeight() > canvas.getWidth())
                 ///landscape case
                 {
@@ -273,7 +274,7 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
                 if (!$scope.dropAreas["line" + lineN]) {
                     $scope.dropAreas["line" + lineN] = [];
                     for (let ii = 0; ii < itemCountOn1Line; ii++) {
-                        $scope.dropAreas["line" + lineN].push({ name: 'dropArea' + allItemCount });
+                        $scope.dropAreas["line" + lineN].push({ name: 'dropArea' + allItemCount + "_L" + lineN });
                         allItemCount++;
                     }
 
@@ -337,7 +338,7 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
             columnsCountTemp = $scope.dropAreas[keydropAreaLine].length;
             for (let i = 0; i < columnCount - columnsCountTemp; i++) {
-                $scope.dropAreas[keydropAreaLine].push({ name: 'dropArea' + allItemCount });
+                $scope.dropAreas[keydropAreaLine].push({ name: 'dropArea' + allItemCount + "_L" + keydropAreaLine });
                 allItemCount++;
 
             }

@@ -244,7 +244,6 @@ var saveProject = function () {
 }
 
 var saveAsProject = function (inDirectory) {
-    debugger;
     if (inDirectory) {
         createDirectory(inDirectory, true);
         console.log(" createDirectory(fileName, true); iftrue case " + inDirectory)
@@ -351,7 +350,6 @@ function createDirectory(appfolderPath, cutomFolder) {
 //createDirectory(path);
 
 function GenerateCanvasJson() {
-    debugger;
     rightTabControllerScope.getProjectSettings();
 
     return {
@@ -373,13 +371,11 @@ function getPageFullSettings() {
         projectSettingsName: projectSettings.projectSettingsName,
         projectSettingsDescription: projectSettings.projectSettingsDescription
     }
-    debugger;
     return projectSettingsTemp;
 
 }
 
 function save() {
-    debugger;
 
     if (fileSavedPath) {
         fs.writeFile(fileSavedPath, JSON.stringify(GenerateCanvasJson()), function (err) {
@@ -392,7 +388,6 @@ function save() {
         });
     }
     else {
-        debugger;
         // saveAsProject(fromDir);
         saveAs();
     }
@@ -400,7 +395,6 @@ function save() {
 
 function saveAs() {
     dialog.showSaveDialog(function (fileName) {
-        debugger;
         fileName = (fileName + ".json");
         fileSavedPath = fileName;
         if (fileSavedPath) {
@@ -467,15 +461,13 @@ var loadJSON = function () {
 
                 }
                 if (Object.keys(pageFlowScope).length != 0) {
-                    debugger;
                     pageFlowScope.getdropAreasFromService();
                     pageFlowScope.$apply();
-                    debugger;
                     rightTabControllerScope.setPageFlowRowAndColumn();
                     rightTabControllerScope.setProjectSettings();
 
                 } else {
-                    debugger;
+
                 }
 
             });
@@ -629,13 +621,11 @@ require('electron').ipcRenderer.on('saveAsProject', function (event, message) {
 });
 
 require('electron').ipcRenderer.on('save', function (event, message) {
-    debugger;
     console.log(message);
     save();
 });
 
 require('electron').ipcRenderer.on('saveAs', function (event, message) {
-    debugger;
     console.log(message);
     saveAs();
 });

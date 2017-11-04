@@ -1,4 +1,4 @@
-kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTabService, rightPanelTabService) {
+kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTabService, rightPanelTabService, $timeout) {
 
     $scope.currentLeftTab = leftPanelTabService.tab.url;
     $scope.currentRightTab = rightPanelTabService.tab.url;
@@ -95,15 +95,17 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
     // ================================================================
 
 
-    $scope.setMySize = function () {
-        //;
-        var setWidth = document.getElementById('myWidth').value;
-        var setHeight = document.getElementById('myHeight').value;
-        canvas.setWidth(setWidth);
-        canvas.setHeight(setHeight);
-        console.info(setWidth, setHeight);
-        canvas.calcOffset();
-    };
+    // $scope.setMySize = function () {
+    //     //;
+    //     var setWidth = document.getElementById('myWidth').value;
+    //     var setHeight = document.getElementById('myHeight').value;
+    //     canvas.setWidth(setWidth);
+    //     canvas.setHeight(setHeight);
+    //     console.info(setWidth, setHeight);
+    //     canvas.calcOffset();
+
+
+    // };
 
     $scope.presetSizes = [{
         name: 'iPad Landscape',
@@ -359,7 +361,11 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
                 document.getElementById("flow_cols").setAttribute('disabled', 'true');
                 document.getElementById("flow_rows").setAttribute('disabled', 'true');
             }
-            
+            $timeout(() => {
+                pageFlowScope.setPageFlowItemAspectRatio();
+            }, 20)
+
+
         }
         if (tabName == 'pageEditor') {
             $scope.pageFlowShow = false;
