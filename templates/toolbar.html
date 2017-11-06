@@ -84,14 +84,14 @@
         </x-buttons>
 
         <x-buttons tracking="1">
-            <x-button skin="iconic" toggled>
+            <x-button skin="iconic" ng-click="setMainTab1('pageEditor')" toggled id="page-editor-button">
                 <x-box vertical>
                     <x-icon name="edit"></x-icon>
                     <x-label style="color: #5a5a5a !Important">Page Editor</x-label>
                 </x-box>
             </x-button>
 
-            <x-button skin="iconic" disabled>
+            <x-button skin="iconic"  disabled id="page-actions-editor-button">
                 <x-box vertical>
                     <x-icon name="actions" iconset="images/icons.svg"></x-icon>
                     <x-label style="color: #5a5a5a !Important">Actions Editor</x-label>
@@ -99,7 +99,7 @@
             </x-button>
 
 
-            <x-button skin="iconic" ng-click="pageFlow()" id="page-flow-button">
+            <x-button skin="iconic" ng-click="setMainTab1('pageFlow')" id="page-flow-button">
                 <x-box vertical>
                     <x-icon name="view-module"></x-icon>
                     <x-label style="color: #5a5a5a !Important">Page Flow</x-label>
