@@ -517,7 +517,8 @@ const template = [{
                 maximizable: true,
                 backgroundColor: "#000000",
                 titleBarStyle: 'hiddenInset',
-                enableLargerThanScreen: true
+                        enableLargerThanScreen: true,
+                        zoomToPageWidth: false
             })
             win.loadURL(url.format({
                 pathname: path.join(__dirname, '../simulator.html'),

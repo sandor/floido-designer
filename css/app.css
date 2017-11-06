@@ -1616,28 +1616,33 @@ x-button[skin="tabnav"] x-label {
 
 
 .drop-area-item{
-    /* margin:20px; */
-    margin: 1% !important;
+    margin: 15px !important;
+    /* margin: 1% !important; */
     display: inline-flex;
     width: 100%;
-    height: 27vh;
+    height: 23vh;
 }
 
 
 #page-flow{
+    left: 15px;
+    top: 15px;
     position: absolute;
     z-index: 15;
-    outline: 2px solid blue;
+    /* outline: 2px solid blue; */
     height: 115vh;
-    width: 100%;
+    /* width: 100%; */
+    width: auto;
     /* background-color: gray; */
 }
 
 #page-flow-item-container{
-    /* margin: 20px; */
-    margin: 2%;
-    width: 20%;
-    height: 100%;
+    margin: 15px !important;
+    /* margin: 2%; */
+    /* width: 20%;
+    height: 100%; */
+    width: 273px;
+    height: 221px;
     outline: 1px solid #172ed4;
 }
 

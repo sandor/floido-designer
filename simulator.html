@@ -55,7 +55,7 @@
             <x-box>
                 <x-button id="dropdown" skin="flat" style=" color: white; margin-right:15px; top: -8px;">
                     <x-box>
-                        <x-label id="device">1024 x 768</x-label>
+                        <x-label id="device">iPad Landscape | 1024 x 768</x-label>
                         <x-icon name="keyboard-arrow-down"></x-icon>
                     </x-box>
                 </x-button>
@@ -97,10 +97,31 @@
         window.reload();
     });
 
-    document.getElementById("resize-btn2").addEventListener("click", function(e) {
+    var toggle = function(a, b) {
+        var togg = false;
+        return function() {
+            // passes return value back to caller
+            return (togg = !togg) ? a() : b();
+        };
+    };
+
+    document.getElementById("resize-btn2").addEventListener('click', toggle(function() {
         var window = remote.getCurrentWindow();
-        window.maximize();
-    });
+        return window.maximize();
+    }, function() {
+        var window = remote.getCurrentWindow();
+        return window.unmaximize();
+    }));
+
+    /*     document.getElementById("resize-btn2").addEventListener("click", function(e) {
+            var window = remote.getCurrentWindow();
+            if (window.isMaximized) {
+                window.unmaximize()
+            } else {
+                window.maximize()
+            }
+
+        }); */
 
     function setCanvasSize(height, width) {
         //;
@@ -287,10 +308,15 @@
     // Prevent default action of right click in chromium. Replace with our menu.
     document.getElementById("dropdown").addEventListener('click', (e) => {
         e.preventDefault()
-        var window = remote.getCurrentWindow();
-        var myX = window.getSize();
-        console.log(myX);
-        var center = myX[0] / 2 - 110;
-        menu.popup(remote.getCurrentWindow(), center, 38)
+            /*                     var window = remote.getCurrentWindow();
+                                var myX = window.getSize();
+                                console.log(myX);
+                                var center = myX[0] / 2 - 110; */
+
+        var element = document.getElementById('dropdown');
+        var position = element.getBoundingClientRect();
+        var x = position.left;
+        var y = position.top;
+        menu.popup(remote.getCurrentWindow(), Math.round(x), 38)
     }, false)
 </script>
