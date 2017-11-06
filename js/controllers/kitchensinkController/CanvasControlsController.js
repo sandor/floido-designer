@@ -1,15 +1,15 @@
-kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTabService, rightPanelTabService) {
+kitchensink.controller('CanvasControlsController', function($scope, leftPanelTabService, rightPanelTabService) {
 
     $scope.currentLeftTab = leftPanelTabService.tab.url;
     $scope.currentRightTab = rightPanelTabService.tab.url;
     $scope.canvas = canvas;
     $scope.getActiveStyle = getActiveStyle;
-    $scope.zoom = 0;//default zoom
+    $scope.zoom = 0; //default zoom
 
-    $scope.insideRulerWidth = document.getElementsByClassName("rul_wrapper")[0].offsetWidth
-        - document.getElementsByClassName("rul_ruler_Vertical")[0].offsetHeight - 70;
-    $scope.insideRulerheight = document.getElementsByClassName("rul_wrapper")[0].offsetHeight - document.getElementsByClassName("toolbar-header")[0].offsetHeight
-        - document.getElementsByClassName("toolbar-footer")[0].offsetHeight - 90;
+    $scope.insideRulerWidth = document.getElementsByClassName("rul_wrapper")[0].offsetWidth -
+        document.getElementsByClassName("rul_ruler_Vertical")[0].offsetHeight - 70;
+    $scope.insideRulerheight = document.getElementsByClassName("rul_wrapper")[0].offsetHeight - document.getElementsByClassName("toolbar-header")[0].offsetHeight -
+        document.getElementsByClassName("toolbar-footer")[0].offsetHeight - 90;
 
 
     $scope.leftTab = leftPanelTabService.leftTab;
@@ -19,16 +19,16 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
     addAccessors($scope);
     watchCanvas($scope);
 
-//get canvas Angle and set it
+    //get canvas Angle and set it
 
-    canvas.on('object:rotating', function (options) {
+    canvas.on('object:rotating', function(options) {
 
         console.log(options.target);
         if (document.getElementById("canvas-angle")) {
             document.getElementById("canvas-angle").value =
-                parseFloat(options.target.angle)
-                    ? parseFloat(options.target.angle).toFixed(2)
-                    : document.getElementById("canvas-angle").value;
+                parseFloat(options.target.angle) ?
+                parseFloat(options.target.angle).toFixed(2) :
+                document.getElementById("canvas-angle").value;
 
             document.getElementById("canvas-angle").value = parseFloat(options.target.angle.toFixed(2));
         }
@@ -36,13 +36,13 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
 
         //document.getElementById("position-y").value = Math.round(options.target.angle);
     });
-    canvas.on('object:modified', function (options) {
+    canvas.on('object:modified', function(options) {
         if (document.getElementById("position-x")) {
 
             document.getElementById("transform-angle").value =
-                parseFloat(options.target.angle)
-                    ? parseFloat(options.target.angle).toFixed(2)
-                    : document.getElementById("transform-angle").value;
+                parseFloat(options.target.angle) ?
+                parseFloat(options.target.angle).toFixed(2) :
+                document.getElementById("transform-angle").value;
 
 
             document.getElementById("position-x").value = parseFloat(options.target.left.toFixed(2));
@@ -51,18 +51,18 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
             document.getElementById("size-propHeight").value = Math.round(options.target.height);
 
             document.getElementById("scale-scaleX").value =
-                parseFloat(options.target.scaleX)
-                    ? parseFloat(options.target.scaleX.toFixed(2))
-                    : document.getElementById("scale-scaleX").value;
+                parseFloat(options.target.scaleX) ?
+                parseFloat(options.target.scaleX.toFixed(2)) :
+                document.getElementById("scale-scaleX").value;
 
             document.getElementById("scale-scaleY").value =
-                parseFloat(options.target.scaleY)
-                    ? parseFloat(options.target.scaleY.toFixed(2))
-                    : document.getElementById("scale-scaleY").value;
+                parseFloat(options.target.scaleY) ?
+                parseFloat(options.target.scaleY.toFixed(2)) :
+                document.getElementById("scale-scaleY").value;
 
         }
-        if ((!canvas.getActiveObject() && document.getElementById('enableShadow'))
-            || (canvas.getActiveObject() && !canvas.getActiveObject().shadow && document.getElementById('enableShadow'))) {
+        if ((!canvas.getActiveObject() && document.getElementById('enableShadow')) ||
+            (canvas.getActiveObject() && !canvas.getActiveObject().shadow && document.getElementById('enableShadow'))) {
             document.getElementById('enableShadow').removeAttribute('toggled');
         }
 
@@ -70,14 +70,14 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
 
             document.getElementById('shadow-Offset-X').value = canvasObjectShadowOffsetX;
             document.getElementById('shadow-Offset-Y').value = canvasObjectShadowOffsetY;
-            document.getElementById('shadow-blur').value = canvasObjectShadowBlur;
+            document.getElementById('obj-shadow-blur').value = canvasObjectShadowBlur;
 
         }
 
 
     });
 
-    canvas.on('after:render', function (option) {
+    canvas.on('after:render', function(option) {
 
         getCanvasActiveObjectData();
         setCanvasActiveObjectData();
@@ -92,7 +92,7 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
     // ================================================================
 
 
-    $scope.setMySize = function () {
+    $scope.setMySize = function() {
         //;
         var setWidth = document.getElementById('myWidth').value;
         var setHeight = document.getElementById('myHeight').value;
@@ -103,10 +103,10 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
     };
 
     $scope.presetSizes = [{
-        name: 'iPad Landscape',
-        height: 768,
-        width: 1024
-    },
+            name: 'iPad Landscape',
+            height: 768,
+            width: 1024
+        },
         {
             name: 'iPad Portrait',
             height: 1024,
@@ -125,7 +125,7 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
     ];
 
 
-    $scope.setCanvasSize = function (width, height) {
+    $scope.setCanvasSize = function(width, height) {
         canvas.setWidth(width);
         canvas.setHeight(height);
         canvas.calcOffset();
@@ -134,7 +134,7 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
     };
 
 
-    $scope.setZoom = function (param) {
+    $scope.setZoom = function(param) {
 
         [].__proto__.forEach.call(canvas._objects, (canvasItem) => {
 
@@ -158,9 +158,7 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
             canvas.setWidth(canvas.getZoom() * canvas.getActiveObject().width);
             canvas.setHeight(canvas.getZoom() * canvas.getActiveObject().height);
 
-        }
-
-        else {
+        } else {
 
             console.log("there is now active objects");
         }
@@ -170,7 +168,7 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
     };
 
 
-    $scope.originalSize = function (param) {
+    $scope.originalSize = function(param) {
         [].__proto__.forEach.call(canvas._objects, (canvasItem) => {
             console.log(canvasItem.name);
             if (canvas.getActiveObject().name != 'Image' && canvasItem.name == 'Image') {
@@ -193,15 +191,14 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
             canvas.setWidth(canvas.getZoom() * canvas.getActiveObject().width);
             canvas.setHeight(canvas.getZoom() * canvas.getActiveObject().height);
             $scope.zoom = (1) * 100;
-        }
-        else {
+        } else {
             alert("there is now active objects");
         }
 
 
     };
 
-    $scope.fitToWin = function (param) {
+    $scope.fitToWin = function(param) {
 
         [].__proto__.forEach.call(canvas._objects, (canvasItem) => {
 
@@ -213,11 +210,11 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
 
         });
 
-        $scope.insideRulerWidth = document.getElementsByClassName("rul_wrapper")[0].offsetWidth
-            - document.getElementsByClassName("rul_ruler_Vertical")[0].offsetHeight - 70;
-        $scope.insideRulerheight = document.getElementsByClassName("rul_wrapper")[0].offsetHeight
-            - document.getElementsByClassName("toolbar-header")[0].offsetHeight
-            - document.getElementsByClassName("toolbar-footer")[0].offsetHeight - 90;
+        $scope.insideRulerWidth = document.getElementsByClassName("rul_wrapper")[0].offsetWidth -
+            document.getElementsByClassName("rul_ruler_Vertical")[0].offsetHeight - 70;
+        $scope.insideRulerheight = document.getElementsByClassName("rul_wrapper")[0].offsetHeight -
+            document.getElementsByClassName("toolbar-header")[0].offsetHeight -
+            document.getElementsByClassName("toolbar-footer")[0].offsetHeight - 90;
 
 
         if (canvas._objects && !canvas.getActiveObject()) {
@@ -239,26 +236,23 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
 
 
                 // $scope.zoom = ((canvas.width ) / canvas._activeObject.width) * 100;
-                $scope.zoom = ((canvas.width ) / canvas._activeObject.width) > ((canvas.height ) / canvas._activeObject.height)
-                    ? (((canvas.height ) / canvas._activeObject.height) * 100) : (((canvas.width ) / canvas._activeObject.width) * 100);
+                $scope.zoom = ((canvas.width) / canvas._activeObject.width) > ((canvas.height) / canvas._activeObject.height) ?
+                    (((canvas.height) / canvas._activeObject.height) * 100) : (((canvas.width) / canvas._activeObject.width) * 100);
 
 
                 let scaleFactorWidth = ((canvas.width / canvas._activeObject.width) * canvas._activeObject.width);
                 let scaleFactorHeight = ((canvas.height / canvas._activeObject.height) * canvas._activeObject.height);
 
-            }
-            else {
+            } else {
                 let tempScale = (window.innerHeight - 170) / canvas.getActiveObject().height;
-                let tempZoom = ((canvas.width ) / canvas._activeObject.width) > ((canvas.height ) / canvas._activeObject.height)
-                    ? (tempScale * 100) : (tempScale * 100);
+                let tempZoom = ((canvas.width) / canvas._activeObject.width) > ((canvas.height) / canvas._activeObject.height) ?
+                    (tempScale * 100) : (tempScale * 100);
                 $scope.zoom = tempZoom
 
             }
 
 
-        }
-
-        else {
+        } else {
             alert("there is now active objects");
         }
 
@@ -275,7 +269,7 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
     $scope.currentLeftTab = leftPanelTabService.tab.url;
     $scope.currentRightTab = rightPanelTabService.tab.url;
 
-    $scope.onClickRightTab = function (tab) {
+    $scope.onClickRightTab = function(tab) {
 
 
         rightPanelTabService.setTab(tab);
@@ -286,7 +280,7 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
     }
 
 
-    $scope.onClickLeftTab = function (tab) {
+    $scope.onClickLeftTab = function(tab) {
 
 
         leftPanelTabService.setTab(tab);
@@ -295,7 +289,7 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
         $scope.currentLeftTab = leftPanelTabService.getTab().url;
     }
 
-    $scope.isActiveTab = function (tabUrl, side) {
+    $scope.isActiveTab = function(tabUrl, side) {
 
 
         if (side && side == 'l') {

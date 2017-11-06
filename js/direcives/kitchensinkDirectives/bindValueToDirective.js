@@ -10,23 +10,23 @@ var kitchensink = angular.module('kitchensink', ['ui.sortable']);
 
 
 
-kitchensink.directive('bindValueTo', function () {
+kitchensink.directive('bindValueTo', function() {
     return {
         restrict: 'A',
 
-        link: function ($scope, $element, $attrs) {
+        link: function($scope, $element, $attrs) {
 
             var prop = capitalize($attrs.bindValueTo),
                 getter = 'get' + prop,
                 setter = 'set' + prop;
 
-            $element.on('change keyup select', function () {
+            $element.on('change keyup select', function() {
                 if ($element[0].type !== 'checkbox') {
                     $scope[setter] && $scope[setter](this.value);
                 }
             });
 
-            $element.on('click', function () {
+            $element.on('click', function() {
                 if ($element[0].type === 'checkbox') {
                     if ($element[0].checked) {
                         $scope[setter] && $scope[setter](true);
@@ -36,7 +36,7 @@ kitchensink.directive('bindValueTo', function () {
                 }
             })
 
-            $scope.$watch($scope[getter], function (newVal) {
+            $scope.$watch($scope[getter], function(newVal) {
                 if ($element[0].type === 'radio') {
                     var radioGroup = document.getElementsByName($element[0].name);
                     for (var i = 0, len = radioGroup.length; i < len; i++) {
