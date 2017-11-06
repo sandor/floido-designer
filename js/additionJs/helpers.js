@@ -462,8 +462,8 @@ function enableDisableElement() {
         canvasObjectBorderColor = canvas._activeObject && canvas._activeObject.stroke ? canvas._activeObject.stroke : "";
         canvasObjectBackgroundColor = canvas._activeObject && canvas._activeObject.backgroundColor ? canvas._activeObject.backgroundColor : "";
     }
-
-    if (document.getElementById('enableShadow') && !document.getElementById('enableShadow').hasAttribute("toggled")) {
+debugger;
+    if (canvas._activeObject &&  document.getElementById('enableShadow') && !document.getElementById('enableShadow').hasAttribute("toggled")) {
 
         document.getElementById('obj-shadow-color').setAttribute('disabled', true);
         document.getElementById('obj-shadow-blur').setAttribute('disabled', true);
@@ -474,8 +474,15 @@ function enableDisableElement() {
     }
 
     // removing data from  filters and shadows fields /////////////////
-    if ((document.getElementById('shadow-Offset-X') && document.getElementById('shadow-Offset-Y') && !canvas.getActiveObject()) || (document.getElementById('shadow-Offset-X') && document.getElementById('shadow-Offset-Y') && !canvas.getActiveObject().shadow)) {
-
+    if ((document.getElementById('shadow-Offset-X') 
+    && document.getElementById('shadow-blur') 
+    && document.getElementById('shadow-Offset-Y') 
+    && !canvas.getActiveObject()) 
+    || 
+    (document.getElementById('shadow-Offset-X') 
+    && document.getElementById('shadow-Offset-Y') 
+    && canvas.getActiveObject()
+    && !canvas.getActiveObject().shadow)) {
 
         document.getElementById('shadow-Offset-X').value = '';
         document.getElementById('shadow-Offset-Y').value = '';
@@ -1027,6 +1034,43 @@ function addAccessors($scope, $rootScope) {
     $scope.setFontSize = function(value) {
         setActiveStyle('fontSize', parseInt(value, 10));
     };
+   // var tempValu;
+    $scope.getColumnsCount = function () {
+
+
+        // document.getElementById('flow_cols').addEventListener('keydown', (param) => {
+        //     tempValu = parseInt(event.key);
+        //     debugger;
+        // })
+        // debugger;
+        return document.getElementById("flow_cols").value;
+        // return parseInt(getActiveStyle('fontSize'), 10) ? parseInt(getActiveStyle('fontSize'), 10) : '';
+    };
+
+
+    $scope.setColumnsCount = function (value) {
+
+        // debugger;
+        // pageFlowScope.addRemoveColumns(tempValu ? tempValu : value);
+        // document.getElementById('flow_cols').value = tempValu ? tempValu : value;
+        pageFlowScope.addRemoveColumns(value);
+        //// setActiveStyle('fontSize', parseInt(value, 10));
+    };
+
+    $scope.getRowsCount = function () {
+
+        return document.getElementById("flow_rows").value;
+        //return parseInt(getActiveStyle('fontSize'), 10) ? parseInt(getActiveStyle('fontSize'), 10) : '';
+    };
+    $scope.setRowsCount = function (value) {
+
+        //  document.getElementById("flow_rows").value = value;
+        pageFlowScope.addRemoveRows(value);
+        //setActiveStyle('fontSize', parseInt(value, 10));
+    };
+
+
+
 
     $scope.getLineHeight = function() {
         return parseInt(getActiveStyle('lineHeight'), 10) ? parseInt(getActiveStyle('lineHeight'), 10) : '';

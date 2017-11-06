@@ -1571,4 +1571,46 @@ x-button[skin="tabnav"] x-label {
 }
 */
 
+#thumb_pages ul{
+    padding-left: 10px;
+}
+
+/* ////////////////////page-flow */
+#page-flow-container{
+    position: relative;
+}
+
+.page-flow-item {
+
+   
+    margin:20px;
+    width: 200px;
+    height: 270px;
+    outline: 2px solid red;
+
+}
+
+.drop-area-item{
+    display: inline-flex;
+    width: 100%;
+}
+
+
+#page-flow{
+    position: absolute;
+    z-index: 15;
+    outline: 2px solid blue;
+    height: 100vh;
+    width: 100%;
+    background-color: gray;
+}
+
+
+
+
+
+
+
+/* ///drag and drop css */
+
 /* CSS Added BY David Abgaryan End */

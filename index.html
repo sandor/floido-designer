@@ -62,7 +62,8 @@
 	<script src="js/controllers/kitchensinkController/FontsController.js"></script>
     <script src="js/controllers/kitchensinkController/ProjectListController.js"></script>
 	<script src="js/controllers/kitchensinkController/PagesController.js"></script>
-
+	<script src="js/controllers/kitchensinkController/pageFlowController.js"></script>
+	<script src='js/angular/ngDraggable.js'></script>
 	<script src="js/additionJs/keymaster.js"></script>
 
 	<script src="lib/font_definitions.js"></script>
@@ -77,6 +78,7 @@
 
 	<script src='js/service/leftPanelTabService.js'></script>
 	<script src='js/service/rightPanelTabService.js'></script>
+	<script src='js/service/pageFlowService.js'></script>
 
 
 
@@ -130,7 +132,12 @@
 				</div>
 
 				<div class="pane content-empty image-builder-container">
+					<div id="page-flow-container" class="" ng-if="pageFlowShow" ng-controller="pageFlowController">
 
+						<div id="page-flow" ng-include="pageFlowTab"></div>
+
+
+					</div>
 					<div id="wrapper" class='image-builder' parent-click="fabric.deactivateAll()">
 						<div class='fabric-container'>
 							<canvas id="canvas" width="1024" height="768"></canvas>

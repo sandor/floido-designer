@@ -55,3 +55,10 @@
   global.capitalize = capitalize;
 
 })(this);
+
+
+
+function setColumnsCountChange(param) {
+  debugger;
+  console.log(this);
+}
