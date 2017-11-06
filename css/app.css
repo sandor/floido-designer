@@ -1630,7 +1630,7 @@ x-button[skin="tabnav"] x-label {
     outline: 2px solid blue;
     height: 115vh;
     width: 100%;
-    background-color: gray;
+    /* background-color: gray; */
 }
 
 #page-flow-item-container{
