@@ -382,6 +382,16 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
 
     $scope.pageFlowTab = 'templates/pageFlow.html';
 
+    $scope.generatePngFromCanvas = () => {
+        debugger;
+        canvas.isDrawingMode = false;
+
+        if (!window.localStorage) { alert ("This function is not supported by your browser."); return; }
+        // to PNG
+        window.open(canvas.toDataURL('png'));
+
+    }
+
     // $scope.onDragComplete = function (data, evt) {
     //     debugger;
     //     console.log("drag success, data:", data);

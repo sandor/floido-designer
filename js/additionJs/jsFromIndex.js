@@ -414,7 +414,7 @@ function saveAs() {
 
 
 var loadJSON = function () {
-
+debugger;
 
     const {
         ipcRenderer
