@@ -1,6 +1,7 @@
 
 // var kitchensink = {};
 
+var lastLoadedProject = {};
 
 var canvas = new fabric.Canvas('canvas', {
     backgroundColor: "#FFFFFF",
@@ -9,6 +10,7 @@ var canvas = new fabric.Canvas('canvas', {
     selectionDashArray: [2, 2],
     preserveObjectStacking: true
 });
+
 initAligningGuidelines(canvas);
 initCenteringGuidelines(canvas);
 
@@ -272,7 +274,7 @@ var saveAsProject = function (inDirectory) {
                 console.log("You didn't save the file");
                 return;
             }
-            fs.writeFile(TempFileNameforWriting, JSON.stringify(GenerateCanvasJson()), function (err) {
+            fs.writeFile(TempFileNameforWriting, JSON.stringify(GenerateCanvasJson(true)), function (err) {
 
                 if (err) {
                     alert("An error ocurred creating the file " + err.message)
@@ -346,21 +348,43 @@ function createDirectory(appfolderPath, cutomFolder) {
 
 }
 
-// you must uncoment it and after save functionality will work 
-//createDirectory(path);
 
-function GenerateCanvasJson() {
-    rightTabControllerScope.getProjectSettings();
+function GenerateCanvasJson(saveAsPoject) {
 
-    return {
-        leftColor: document.getElementById('gradLeft') ? document.getElementById('gradLeft').value : "#ffffff",
-        rightColor: document.getElementById('gradRight') ? document.getElementById('gradRight').value : "#ffffff",
-        canvasWidth: canvas ? canvas.width : 1024,
-        canvasHeight: canvas ? canvas.height : 768,
-        // projectSettings: projectSettingsTemp,
-        projectSettings: getPageFullSettings(),
-        state: canvas.toJSON()
+
+
+    let project = {
+        projectSettings: {
+            leftColor: document.getElementById('gradLeft') ? document.getElementById('gradLeft').value : "#ffffff",
+            rightColor: document.getElementById('gradRight') ? document.getElementById('gradRight').value : "#ffffff",
+            dropAreas: dropAreas,
+            projectSettingsWidth: projectSettings.projectSettingsWidth ? projectSettings.projectSettingsWidth : 1024,
+            projectSettingsHeight: projectSettings.projectSettingsHeight ? projectSettings.projectSettingsHeight : 768,
+            projectSettingsName: projectSettings.projectSettingsName ? projectSettings.projectSettingsName : "Project Name",
+            projectSettingsDescription: projectSettings.projectSettingsDescription ? projectSettings.projectSettingsDescription : "Project Description"
+        },
+        pages: PagesControllerScope && PagesControllerScope.objects ? PagesControllerScope.objects :
+            [{
+                pageSettings: {
+                    name: 'Page 1',
+                    thumbnail: 'project/assets/thumbnails/page1.png',
+                    path: 'project/pages/'
+                },
+                canvas: {
+                    canvasWidth: canvas ? canvas.width : 1024,
+                    canvasHeight: canvas ? canvas.height : 768,
+                    canvasData: canvas.toJSON()
+
+                }
+            }]
     }
+    debugger;
+    PagesControllerScope && PagesControllerScope.refreshSavePage();
+
+    // rightTabControllerScope.getProjectSettings();
+    return project;
+
+
 }
 
 function getPageFullSettings() {
@@ -377,8 +401,12 @@ function getPageFullSettings() {
 
 function save() {
 
+    PagesControllerScope && PagesControllerScope.savePageToObjects();
+    PagesControllerScope && PagesControllerScope.refreshSavePage();
+
     if (fileSavedPath) {
         fs.writeFile(fileSavedPath, JSON.stringify(GenerateCanvasJson()), function (err) {
+            debugger;
 
             if (err) {
                 alert("An error ocurred creating the file " + err.message)
@@ -414,7 +442,7 @@ function saveAs() {
 
 
 var loadJSON = function () {
-debugger;
+
 
     const {
         ipcRenderer
@@ -445,22 +473,34 @@ debugger;
         }
 
         readTextFile(filepath).then(function (resolvedPAram) {
-            var tempOPenedCanvas = JSON.parse(resolvedPAram)
-            var tempCanvas = tempOPenedCanvas.state;
+            debugger;
+            lastLoadedProject = null;
+            lastLoadedProject = JSON.parse(resolvedPAram);
+            var tempOPenedCanvas = JSON.parse(resolvedPAram);
+            // var tempCanvas = tempOPenedCanvas.canvas.state;
+            var tempCanvas = tempOPenedCanvas.pages[0].canvas.canvasData
 
             canvas.loadFromJSON(tempCanvas, function () {
                 canvas.renderAll();
-                setCanvasSize(tempOPenedCanvas.canvasHeight, tempOPenedCanvas.canvasWidth);
-                addGradient(tempOPenedCanvas.leftColor, tempOPenedCanvas.rightColor);
+                setCanvasSize(tempOPenedCanvas.pages[0].canvas.canvasHeight, tempOPenedCanvas.pages[0].canvas.canvasWidth);
+
+                tempOPenedCanvas.pages[0].canvas.leftColor &&
+                    tempOPenedCanvas.pages[0].canvas.rightColor &&
+                    addGradient(tempOPenedCanvas.pages[0].canvas.leftColor, tempOPenedCanvas.pages[0].canvas.rightColor);
                 dropAreas = tempOPenedCanvas.projectSettings.dropAreas;
-                projectSettings = tempOPenedCanvas.projectSettings;
+
+                PagesControllerScope && PagesControllerScope.objects && tempOPenedCanvas.pages &&
+                    PagesControllerScope.replaceObjects(tempOPenedCanvas.pages);
+                debugger;
+                //  canvas =
+
                 if (Object.keys(projectSettings).length != 0 && currentActiveLeftTab.title == "projectSettings") {
+                    debugger;
                     rightTabControllerScope.setPageFlowRowAndColumn();
                     rightTabControllerScope.setProjectSettings();
-
-
                 }
                 if (Object.keys(pageFlowScope).length != 0) {
+                    debugger;
                     pageFlowScope.getdropAreasFromService();
                     pageFlowScope.$apply();
                     rightTabControllerScope.setPageFlowRowAndColumn();

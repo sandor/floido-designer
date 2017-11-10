@@ -89,7 +89,7 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
     $scope.droppedObjects2 = [];
 
     $scope.onDropComplete1 = function (data, evt, dropAreaName) {
-
+        debugger;
         if (data) {
             data.dropAreaName = dropAreaName;
         }
@@ -162,6 +162,7 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
     }
     $scope.onDragSuccess1 = function (data, evt) {
+        debugger;
         console.log("133", "$scope", "onDragSuccess1", "", evt);
         var index = $scope.droppedObjects1.indexOf(data);
         if (index > -1) {

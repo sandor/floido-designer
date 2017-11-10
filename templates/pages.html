@@ -3,7 +3,7 @@
 	<x-box class="middle">
 		<h1 class="title_left">Pages</h1>
 		<x-buttons tracking="-1">
-			<x-button skin="mini">
+			<x-button skin="mini" ng-click="addPage()">
 				<x-icon name="add"></x-icon>
 			</x-button>
 
@@ -11,7 +11,7 @@
 				<x-icon name="remove"></x-icon>
 			</x-button>
 
-			<x-button skin="mini">
+			<x-button skin="mini" ng-click="refreshSavePage()">
 				<x-icon name="refresh"></x-icon>
 			</x-button>
 		</x-buttons>
@@ -28,20 +28,20 @@
 	<hr>
 -->
 
-	<ul class="draggable-objects" class="list-group middle" ui-sortable ng-model="objects">
+	<ul id="left-tab-pages-container" class="draggable-objects" class="list-group middle" ui-sortable ng-model="objects">
 
-		<li style="list-style-type: none; " ng-drag="true" ng-drag-data="object" ng-drag-success="onDragComplete($data,$event)" ng-center-anchor="true" ng-class="{active: object.active}"
-		 class="list-pages-item" ng-repeat="object in objects" ng-click="setAsActive(object); setAsActiveLayer(object, objects)"
+		<li id="left-tab-page-item" style="list-style-type: none; " ng-drag="true" ng-drag-data="object" ng-drag-success="onDragComplete($data,$event)"
+		 ng-center-anchor="true" ng-class="{active: object.active}" class="list-pages-item" ng-repeat="object in objects" ng-click="setAsActive(object); setAsActiveLayer(object, objects)"
 		 ng-if="!object.ignore">
 			<!-- <li ng-class="{active: object.active}" class="list-pages-item" ng-repeat="object in objects" ng-click="setAsActive(object); setAsActiveLayer(object, objects)" ng-if="!object.ignore"> -->
 			<div ng-drag="true" ng-drag-data="obj" data-allow-transform="false" class="thumbnail-container">
 				<x-box class="thumbnail justify">
 
-					<img style="margin: auto;" ng-src="{{object.thumbnail}}" title="{{ object.name }}" />
+					<img style="margin: auto;" ng-src="{{object.pageSettings.thumbnail}}" title="{{ object.pageSettings.name }}" />
 				</x-box>
 				<x-box>
 					<div class="media-body" style="margin: auto;">
-						<p contenteditable="true">{{ object.name}}</p>
+						<p contenteditable="true">{{ object.pageSettings.name}}</p>
 					</div>
 
 

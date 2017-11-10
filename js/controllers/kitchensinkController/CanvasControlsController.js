@@ -295,9 +295,15 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
 
 
         leftPanelTabService.setTab(tab);
-
         //$scope.currentLeftTab = tab.url;
         $scope.currentLeftTab = leftPanelTabService.getTab().url;
+
+        if (tab.title == "Pages") {
+            $timeout(() => {
+                debugger;
+                PagesControllerScope.refreshSavePage();
+            }, 20)
+        }
     }
 
     $scope.isActiveTab = function (tabUrl, side) {
@@ -383,14 +389,9 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
     $scope.pageFlowTab = 'templates/pageFlow.html';
 
     $scope.generatePngFromCanvas = () => {
-        debugger;
-        canvas.isDrawingMode = false;
-
-        if (!window.localStorage) { alert ("This function is not supported by your browser."); return; }
-        // to PNG
-        window.open(canvas.toDataURL('png'));
-
+        PagesControllerScope.addPage();
     }
+
 
     // $scope.onDragComplete = function (data, evt) {
     //     debugger;

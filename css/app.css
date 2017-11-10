@@ -1645,7 +1645,9 @@ x-button[skin="tabnav"] x-label {
     height: 221px;
     outline: 1px solid #172ed4;
 }
-
+.thumbnail img{
+    width:215px;
+}
 
 
 

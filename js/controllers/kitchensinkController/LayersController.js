@@ -17,7 +17,6 @@ kitchensink.controller('LayersController', ['$scope', '$rootScope', '$timeout', 
                 var start = ui.item.data('start'),
                     end = ui.item.index();
 
-
                 obj = canvas.getObjects()[start];
 
                 if (!obj) return;
