@@ -348,7 +348,7 @@ function createDirectory(appfolderPath, cutomFolder) {
 
 }
 
-
+// for save project
 function GenerateCanvasJson(saveAsPoject) {
 
 
@@ -378,7 +378,45 @@ function GenerateCanvasJson(saveAsPoject) {
                 }
             }]
     }
-    debugger;
+
+    PagesControllerScope && PagesControllerScope.refreshSavePage();
+
+    // rightTabControllerScope.getProjectSettings();
+    return project;
+
+
+}
+// for save page only
+function GenerateCanvasJsonPage(saveAsPoject) {
+
+
+
+    let project = {
+        projectSettings: {
+            leftColor: document.getElementById('gradLeft') ? document.getElementById('gradLeft').value : "#ffffff",
+            rightColor: document.getElementById('gradRight') ? document.getElementById('gradRight').value : "#ffffff",
+            dropAreas: dropAreas,
+            projectSettingsWidth: projectSettings.projectSettingsWidth ? projectSettings.projectSettingsWidth : 1024,
+            projectSettingsHeight: projectSettings.projectSettingsHeight ? projectSettings.projectSettingsHeight : 768,
+            projectSettingsName: projectSettings.projectSettingsName ? projectSettings.projectSettingsName : "Project Name",
+            projectSettingsDescription: projectSettings.projectSettingsDescription ? projectSettings.projectSettingsDescription : "Project Description"
+        },
+        pages: PagesControllerScope && PagesControllerScope.objects ? PagesControllerScope.objects :
+            [{
+                pageSettings: {
+                    name: 'Page 1',
+                    thumbnail: 'project/assets/thumbnails/page1.png',
+                    path: 'project/pages/'
+                },
+                canvas: {
+                    canvasWidth: canvas ? canvas.width : 1024,
+                    canvasHeight: canvas ? canvas.height : 768,
+                    canvasData: canvas.toJSON()
+
+                }
+            }]
+    }
+
     PagesControllerScope && PagesControllerScope.refreshSavePage();
 
     // rightTabControllerScope.getProjectSettings();
@@ -399,32 +437,34 @@ function getPageFullSettings() {
 
 }
 
-function save() {
 
+
+function save(page) {
+    debugger;
     PagesControllerScope && PagesControllerScope.savePageToObjects();
     PagesControllerScope && PagesControllerScope.refreshSavePage();
 
-    if (fileSavedPath) {
-        fs.writeFile(fileSavedPath, JSON.stringify(GenerateCanvasJson()), function (err) {
-            debugger;
 
-            if (err) {
-                alert("An error ocurred creating the file " + err.message)
-            }
+    if (page) {
+        // save page case
+        if (fileSavedPath) {
+            fs.writeFile(fileSavedPath, JSON.stringify(GenerateCanvasJsonPage()), function (err) {
 
-            alert("The file has been succesfully saved");
-        });
-    }
-    else {
-        // saveAsProject(fromDir);
-        saveAs();
-    }
-}
+                if (err) {
+                    alert("An error ocurred creating the file " + err.message)
+                }
 
-function saveAs() {
-    dialog.showSaveDialog(function (fileName) {
-        fileName = (fileName + ".json");
-        fileSavedPath = fileName;
+                alert("The file has been succesfully saved");
+            });
+        }
+        else {
+            // saveAsProject(fromDir);
+
+            // call saveAs function with true param for saveing as page only not a project
+            saveAs(true);
+        }
+    } else {
+        // save project case
         if (fileSavedPath) {
             fs.writeFile(fileSavedPath, JSON.stringify(GenerateCanvasJson()), function (err) {
 
@@ -435,13 +475,65 @@ function saveAs() {
                 alert("The file has been succesfully saved");
             });
         }
+        else {
+            // saveAsProject(fromDir);
+            saveAs();
+        }
+    }
 
-    });
+
+
+}
+
+function saveAs(page) {
+    debugger;
+    if (page) {
+        // case for saveing only page 
+        dialog.showSaveDialog(function (fileName) {
+            if (fileName.search(".json") == -1) {
+                fileName = (fileName + ".json");
+            }
+            fileSavedPath = fileName;
+            if (fileSavedPath) {
+                fs.writeFile(fileSavedPath, JSON.stringify(GenerateCanvasJsonPage()), function (err) {
+
+                    if (err) {
+                        alert("An error ocurred creating the file " + err.message)
+                    }
+
+                    alert("The file has been succesfully saved");
+                });
+            }
+
+        });
+    } else {
+        // case for saveing project
+        dialog.showSaveDialog(function (fileName) {
+            if (fileName.search(".json") == -1) {
+                fileName = (fileName + ".json");
+            }
+            fileSavedPath = fileName;
+            if (fileSavedPath) {
+                fs.writeFile(fileSavedPath, JSON.stringify(GenerateCanvasJson()), function (err) {
+
+                    if (err) {
+                        alert("An error ocurred creating the file " + err.message)
+                    }
+
+                    alert("The file has been succesfully saved");
+                });
+            }
+
+        });
+    }
+
 
 }
 
 
-var loadJSON = function () {
+//openProject for opening project
+//var loadJSON = function () {
+var openProject = function () {
 
 
     const {
@@ -473,7 +565,6 @@ var loadJSON = function () {
         }
 
         readTextFile(filepath).then(function (resolvedPAram) {
-            debugger;
             lastLoadedProject = null;
             lastLoadedProject = JSON.parse(resolvedPAram);
             var tempOPenedCanvas = JSON.parse(resolvedPAram);
@@ -491,16 +582,13 @@ var loadJSON = function () {
 
                 PagesControllerScope && PagesControllerScope.objects && tempOPenedCanvas.pages &&
                     PagesControllerScope.replaceObjects(tempOPenedCanvas.pages);
-                debugger;
                 //  canvas =
 
                 if (Object.keys(projectSettings).length != 0 && currentActiveLeftTab.title == "projectSettings") {
-                    debugger;
                     rightTabControllerScope.setPageFlowRowAndColumn();
                     rightTabControllerScope.setProjectSettings();
                 }
                 if (Object.keys(pageFlowScope).length != 0) {
-                    debugger;
                     pageFlowScope.getdropAreasFromService();
                     pageFlowScope.$apply();
                     rightTabControllerScope.setPageFlowRowAndColumn();
@@ -517,6 +605,101 @@ var loadJSON = function () {
 
 
     })
+
+}
+
+var openPage = () => {
+    debugger;
+    const {
+        ipcRenderer
+    } = require('electron')
+    ipcRenderer.send('openFile', () => {
+    })
+    ipcRenderer.once('fileData', (event, filepath) => {
+
+        var reader = new FileReader();
+
+        function readTextFile(file) {
+            return new Promise(function (resolve, reject, ) {
+                var rawFile = new XMLHttpRequest();
+
+                rawFile.open("GET", file, false);
+                rawFile.onreadystatechange = function () {
+                    if (rawFile.readyState === 4) {
+                        if (rawFile.status === 200 || rawFile.status == 0) {
+                            resolve(rawFile.responseText);
+
+                            // alert(allText);
+                        }
+                    }
+                }
+                rawFile.send(null);
+            })
+
+        }
+
+        readTextFile(filepath).then(function (resolvedPAram) {
+            debugger;
+            //lastLoadedProject = null;
+            // lastLoadedProject = JSON.parse(resolvedPAram);
+            var tempOPenedCanvas = JSON.parse(resolvedPAram);
+            // var tempCanvas = tempOPenedCanvas.canvas.state;
+            var tempCanvas = tempOPenedCanvas.pages[0].canvas.canvasData
+
+            // canvas.loadFromJSON(tempCanvas, function () {
+            //     canvas.renderAll();
+            //     setCanvasSize(tempOPenedCanvas.pages[0].canvas.canvasHeight, tempOPenedCanvas.pages[0].canvas.canvasWidth);
+
+            //     tempOPenedCanvas.pages[0].canvas.leftColor &&
+            //         tempOPenedCanvas.pages[0].canvas.rightColor &&
+            //         addGradient(tempOPenedCanvas.pages[0].canvas.leftColor, tempOPenedCanvas.pages[0].canvas.rightColor);
+            //     //dropAreas = tempOPenedCanvas.projectSettings.dropAreas;
+
+            PagesControllerScope && PagesControllerScope.objects && tempOPenedCanvas.pages &&
+                PagesControllerScope.addPage(tempOPenedCanvas.pages[0]);
+            //  canvas =
+
+            // if (Object.keys(projectSettings).length != 0 && currentActiveLeftTab.title == "projectSettings") {
+            //     rightTabControllerScope.setPageFlowRowAndColumn();
+            //     rightTabControllerScope.setProjectSettings();
+            // }
+            // if (Object.keys(pageFlowScope).length != 0) {
+            //     pageFlowScope.getdropAreasFromService();
+            //     pageFlowScope.$apply();
+            //     rightTabControllerScope.setPageFlowRowAndColumn();
+            //     rightTabControllerScope.setProjectSettings();
+
+            // } else {
+
+            // }
+
+            //});
+
+
+        })
+
+
+    })
+
+
+}
+
+var newPage = () => {
+    debugger;
+    let pagesTab = {
+        title: 'Pages',
+        url: 'templates/pages.html',
+        micon: 'pages',
+        custom: 'images/icons.svg'
+
+    }
+    // canvasControlsControllerScope.onClickLeftTab(leftPanelTabService.leftTab[1]);
+    // setTimeout(() => {
+    //     debugger;
+        PagesControllerScope.addPage();
+        PagesControllerScope.safeScopeApply();
+   // }, 20)
+
 
 }
 
@@ -644,10 +827,22 @@ setup IPC communication/functions with mainmenu.js
 
 //File Menu
 
-require('electron').ipcRenderer.on('open', function (event, message) {
+require('electron').ipcRenderer.on('openProject', function (event, message) {
     console.log(message);
-    loadJSON();
+    openProject();//openProject
 });
+require('electron').ipcRenderer.on('newPage', function (event, message) {
+    debugger;
+    console.log(message);
+    newPage();//openProject
+});
+require('electron').ipcRenderer.on('openPage', function (event, message) {
+    debugger;
+    console.log(message);
+    openPage();//openProject
+});
+
+
 require('electron').ipcRenderer.on('saveProject', function (event, message) {
     console.log(message);
     // save();
@@ -662,7 +857,8 @@ require('electron').ipcRenderer.on('saveAsProject', function (event, message) {
 
 require('electron').ipcRenderer.on('save', function (event, message) {
     console.log(message);
-    save();
+    //call save function with true param for saveing only page 
+    save(true);
 });
 
 require('electron').ipcRenderer.on('saveAs', function (event, message) {

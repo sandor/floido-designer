@@ -42,24 +42,24 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
         }
 
     }];
+    $scope.safeScopeApply = () => {
+        var phase = $scope.$root.$$phase;
+        if (phase == '$apply' || phase == '$digest') {
+
+        } else {
+            $scope.$apply();
+        }
+    }
 
     // in loading  project case we need to replace objects array to loaded project pages array
     $scope.replaceObjects = (paramArray) => {
-        debugger;
+
         $scope.objects = paramArray;
         $scope.activePage = $scope.objects[0];
-        var fn = () => {
-            var phase = $scope.$root.$$phase;
-            if (phase == '$apply' || phase == '$digest') {
 
-            } else {
-                $scope.$apply();
-            }
-        }
-        fn();
-
+        $scope.safeScopeApply();
     }
-    debugger;
+
     // if there is lastLoadedProjectFile variabel where  saved last project we must load it 
     lastLoadedProject && lastLoadedProject.pages &&
         $scope.replaceObjects(lastLoadedProject.pages);
@@ -67,16 +67,15 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
     $scope.activePage = $scope.objects[0];
 
 
-    $scope.savePageToObjects = () => { 
-        $scope.activePage.canvas.canvasData = JSON.parse(JSON.stringify(canvas)); 
+    $scope.savePageToObjects = () => {
+        $scope.activePage.canvas.canvasData = JSON.parse(JSON.stringify(canvas));
     }
 
 
-    $scope.addPage = () => {
+    $scope.addPage = (openedPage) => {
         $scope.refreshSavePage();
         $scope.savePageToObjects();
         // $scope.activePage.canvas.canvasData = JSON.parse(JSON.stringify(canvas));
-        debugger;
         let TempPage = {
             pageSettings: {
                 name: 'Page 1',
@@ -93,21 +92,37 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
         }
 
         TempPage.pageSettings.name = 'Page ' + PagesControllerScope.objects.length;
-        debugger;
         canvas.clear();
-        debugger;
-        var imageBase64 = canvas.toDataURL('png');
-
-        TempPage.pageSettings.thumbnail = imageBase64;
-        //clear canvas and setting it on new page
-        TempPage.canvas.canvasData = {};
 
 
-        $scope.objects.push(TempPage);
+        if (openedPage) {
+            debugger;
+            // open page case
+            // let imageBase64 = openedPage.canvas.canvasData.toDataURL('png');
+            // TempPage.pageSettings.thumbnail = openedPage.pageSettings.thumbnail;
+            // //clear canvas and setting it on new page
+            // TempPage.canvas.canvasData = openedPage.canvas.canvasData
+            $scope.objects.push(openedPage);
+            $scope.safeScopeApply();
+
+        } else {
+            debugger;
+            //create page case
+            let imageBase64 = canvas.toDataURL('png');
+            TempPage.pageSettings.thumbnail = imageBase64;
+            //clear canvas and setting it on new page
+            TempPage.canvas.canvasData = {};
+            $scope.objects.push(TempPage);
+        }
+
+
+
+
 
         $scope.setAsActive($scope.objects[$scope.objects.length - 1]);
 
     }
+
 
     $scope.refreshSavePage = () => {
 
@@ -116,15 +131,7 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
         //var base64Data = imageBase64.replace(/^data:image\/png;base64,/, "");
 
         $scope.activePage.pageSettings.thumbnail = imageBase64;
-        var fn = () => {
-            var phase = $scope.$root.$$phase;
-            if (phase == '$apply' || phase == '$digest') {
-
-            } else {
-                $scope.$apply();
-            }
-        }
-        fn();
+        $scope.safeScopeApply();
         // toJSON()
     }
 
@@ -136,13 +143,11 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
                 $scope.activePage.canvas.canvasData &&
                 $scope.activePage.canvas.canvasData.hasOwnProperty("objects") &&
                 $scope.activePage.canvas.canvasData.objects.length > 0) {
-                debugger;
                 canvas.loadFromJSON($scope.activePage.canvas.canvasData, () => {
                     canvas.renderAll();
                 })
 
             } else {
-                debugger;
                 canvas.clear();
                 canvas.renderAll();
             }

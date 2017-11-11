@@ -24,7 +24,7 @@ const template = [{
         accelerator: 'CmdOrCtrl+O',
         click: function () { /// must be implemented fpr project now orking for file.json
             var focusedWindow = BrowserWindow.getFocusedWindow();
-            focusedWindow.webContents.send('open', 'loading JSON');
+            focusedWindow.webContents.send('openProject', 'Open Project');
         }
     },
     {
@@ -67,14 +67,18 @@ const template = [{
     },
     {
         label: 'New Page',
-        accelerator: 'CmdOrCtrl+N'
+        accelerator: 'CmdOrCtrl+N',
+        click: function () {
+            var focusedWindow = BrowserWindow.getFocusedWindow();
+            focusedWindow.webContents.send('newPage', 'create new Page');
+        }
     },
     {
         label: 'Open Page...',
         accelerator: 'CmdOrCtrl+O',
         click: function () {
             var focusedWindow = BrowserWindow.getFocusedWindow();
-            focusedWindow.webContents.send('open', 'loading JSON');
+            focusedWindow.webContents.send('openPage', 'loading Page');
         }
     },
 
@@ -517,8 +521,8 @@ const template = [{
                 maximizable: true,
                 backgroundColor: "#000000",
                 titleBarStyle: 'hiddenInset',
-                        enableLargerThanScreen: true,
-                        zoomToPageWidth: false
+                enableLargerThanScreen: true,
+                zoomToPageWidth: false
             })
             win.loadURL(url.format({
                 pathname: path.join(__dirname, '../simulator.html'),
