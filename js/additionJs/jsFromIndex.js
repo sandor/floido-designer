@@ -244,8 +244,9 @@ var saveProject = function () {
         saveAsProject();
     }
 }
-
+var jsonFilesDirectory
 var saveAsProject = function (inDirectory) {
+
     if (inDirectory) {
         createDirectory(inDirectory, true);
         console.log(" createDirectory(fileName, true); iftrue case " + inDirectory)
@@ -264,6 +265,7 @@ var saveAsProject = function (inDirectory) {
             alert("The file has been succesfully saved");
         });
 
+
     } else {
         dialog.showSaveDialog(function (fileName) {
 
@@ -274,7 +276,9 @@ var saveAsProject = function (inDirectory) {
                 console.log("You didn't save the file");
                 return;
             }
-            fs.writeFile(TempFileNameforWriting, JSON.stringify(GenerateCanvasJson(true)), function (err) {
+            let jsonForWriteTemp = GenerateCanvasJson(true);
+            debugger;
+            fs.writeFile(TempFileNameforWriting, JSON.stringify(jsonForWriteTemp), function (err) {
 
                 if (err) {
                     alert("An error ocurred creating the file " + err.message)
@@ -282,6 +286,25 @@ var saveAsProject = function (inDirectory) {
 
                 alert("The file has been succesfully saved");
             });
+            debugger;
+            for (let i = 0; i < jsonForWriteTemp.pages.length; i++) {
+
+                // jsonForWriteTemp.pages.forEach(function (page) {
+
+                jsonFilesDirectoryTemp = jsonFilesDirectory + slash + "page" + i + ".json"
+                debugger;
+                let pageTemp = { pages: [jsonForWriteTemp.pages[i]] };
+                fs.writeFile(jsonFilesDirectoryTemp, JSON.stringify(pageTemp), function (err) {
+                    if (err) {
+                        alert("An error ocurred creating the file " + err.message)
+                    }
+                    alert("The file has been succesfully saved");
+                });
+
+
+            }
+            // , this);
+
         });
     }
 
@@ -328,6 +351,7 @@ function createDirectory(appfolderPath, cutomFolder) {
 
 
         };
+        jsonFilesDirectory = directoriesTobeCreated.json;
     }
 
 
@@ -685,20 +709,41 @@ var openPage = () => {
 }
 
 var newPage = () => {
-    debugger;
-    let pagesTab = {
-        title: 'Pages',
-        url: 'templates/pages.html',
-        micon: 'pages',
-        custom: 'images/icons.svg'
+    let jsonData = canvas.toJSON();
+    let canvasAsJson = JSON.stringify(jsonData);
 
+    debugger;
+    lastLoadedProject.pages[lastLoadedProject.pages.length - 1].canvas.canvasData = JSON.parse(canvasAsJson);
+    debugger;
+    let pageTemplate = {
+        pageSettings: {
+            name: 'Page 0',
+            thumbnail: 'project/assets/thumbnails/page1.png',
+            path: 'project/pages/'
+        },
+        canvas: {
+            canvasWidth: canvas ? canvas.width : 1024,
+            canvasHeight: canvas ? canvas.height : 768,
+            canvasData: {}
+
+        }
     }
-    // canvasControlsControllerScope.onClickLeftTab(leftPanelTabService.leftTab[1]);
-    // setTimeout(() => {
-    //     debugger;
+
+
+    if (PagesControllerScope) {
+        debugger;
         PagesControllerScope.addPage();
         PagesControllerScope.safeScopeApply();
-   // }, 20)
+    } {
+        debugger;
+        pageTemplate.pageSettings.name = "Page " + lastLoadedProject.pages.length;
+
+        lastLoadedProject.pages.push(pageTemplate);
+        layersControllerScope.clearObject();
+
+    }
+
+    // }, 20)
 
 
 }

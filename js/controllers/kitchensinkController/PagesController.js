@@ -30,7 +30,7 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
 
     $scope.objects = [{
         pageSettings: {
-            name: 'Page 1',
+            name: 'Page 0',
             thumbnail: 'project/assets/thumbnails/page1.png',
             path: 'project/pages/'
         },
@@ -102,6 +102,7 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
             // TempPage.pageSettings.thumbnail = openedPage.pageSettings.thumbnail;
             // //clear canvas and setting it on new page
             // TempPage.canvas.canvasData = openedPage.canvas.canvasData
+            openedPage.pageSettings.name = 'Page ' + PagesControllerScope.objects.length;
             $scope.objects.push(openedPage);
             $scope.safeScopeApply();
 
@@ -132,22 +133,30 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
 
         $scope.activePage.pageSettings.thumbnail = imageBase64;
         $scope.safeScopeApply();
+        $scope.savePageToObjects();
         // toJSON()
     }
 
     $scope.setAsActive = (page) => {
-
+        debugger;
         if (page) {
             $scope.activePage = page;
             if ($scope.activePage.canvas &&
                 $scope.activePage.canvas.canvasData &&
-                $scope.activePage.canvas.canvasData.hasOwnProperty("objects") &&
-                $scope.activePage.canvas.canvasData.objects.length > 0) {
+                $scope.activePage.canvas.canvasData.hasOwnProperty("_objects") &&
+                $scope.activePage.canvas.canvasData._objects.length > 0) {
+                debugger;
                 canvas.loadFromJSON($scope.activePage.canvas.canvasData, () => {
                     canvas.renderAll();
                 })
 
-            } else {
+            } if ($scope.activePage.canvas &&
+                $scope.activePage.canvas.canvasData) {
+                canvas.loadFromJSON($scope.activePage.canvas.canvasData, () => {
+                    canvas.renderAll();
+                })
+            }
+            else {
                 canvas.clear();
                 canvas.renderAll();
             }

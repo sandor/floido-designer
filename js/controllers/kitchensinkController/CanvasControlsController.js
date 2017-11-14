@@ -294,14 +294,14 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
     $scope.onClickLeftTab = function (tab) {
 
 
-        leftPanelTabService.setTab(tab);
+        leftPanelTabService && leftPanelTabService.setTab(tab);
         //$scope.currentLeftTab = tab.url;
-        $scope.currentLeftTab = leftPanelTabService.getTab().url;
+        $scope.currentLeftTab = leftPanelTabService && leftPanelTabService.getTab().url;
 
         if (tab.title == "Pages") {
             $timeout(() => {
                 debugger;
-                PagesControllerScope.refreshSavePage();
+                PagesControllerScope && PagesControllerScope.refreshSavePage();
             }, 20)
         }
     }
