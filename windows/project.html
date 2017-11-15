@@ -74,7 +74,7 @@
     }
     
     . dark-header {
-        background-color: #160022 !Important;
+        background-color: #d1d2d6 !Important;
         color: white;
         height: 50px;
     }
@@ -89,20 +89,18 @@
         padding-bottom: 5px;
         padding-right: 10px;
         font-size: 13px;
-        color: #cdb0d8 !Important;
-        border-top: 1px solid #672381;
+        border-top: 1px solid #1f1f1f;
     }
     
     .nav-group-item:nth-child(even) {
-        background-color: rgba(104, 61, 121, 0.28);
     }
     
     .nav-group-item:last-child {
-        border-bottom: 1px solid #683d79;
+        border-bottom: 1px solid #1f1f1f;
     }
     
     .li {
-        color: #683d79;
+        color: #1f1f1f;
     }
     
     .bg_sm {
@@ -197,7 +195,7 @@
 </style>
 
 <div ng-app="kitchensink" class="window" style="background: #6b0098;" ng-controller="ProjectListCtrl">
-    <header class="toolbar toolbar-header dark-header" style="background-color: #160022 !Important; height: 30px; border: 0px;">
+    <header class="toolbar toolbar-header dark-header" style="background-color: #d1d2d6 !Important; height: 30px; border: 0px;">
         <h1 class="title" style="color: rgba(255, 255, 255, 0.74) !Important; margin-top: 5px;">floido designer | Project Window</h1>
     </header>
     <div class="window-content">
@@ -268,32 +266,32 @@
 
         </div>
     </div>
-    <footer class="toolbar toolbar-footer" style="background-color: #660091 !Important; height: 40px; border: 0px;">
+    <footer class="toolbar toolbar-footer" style="background-color: #d1d2d6 !Important; height: 40px; border: 0px;">
         <x-box class="middle">
-            <x-box style="margin-left: 15px; margin-top:12px; padding-bottom: 5px; color: #8a6e95;">
+            <x-box style="margin-left: 15px; margin-top:12px; padding-bottom: 5px;">
                 <x-checkbox id="checkbox" toggled></x-checkbox>
                 <x-label for="checkbox" id="label-1">Show this Window on startup</x-label>
             </x-box>
             <x-buttons id="ipcremote" tracking="1">
                 <x-box>
-                    <x-button id="open-secondwindow-button" style="margin-top:2px; margin-left:20px; margin-right:40px; background-color: rgba(153, 99, 175, 0.35);" onclick="function () {
+                    <x-button id="open-secondwindow-button" style="margin-top:2px; margin-left:20px; margin-right:40px" onclick="function () {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('saveAs', 'saving as');
                 }">
                         <x-box>
-                            <x-label style=" color: #c0a6cb;">New Project...</x-label>
+                            <x-label>New Project...</x-label>
                         </x-box>
                     </x-button>
 
-                    <x-button style="margin-top:2px; margin-left:2px; margin-right:10px;  background-color: rgba(153, 99, 175, 0.35);">
+                    <x-button style="margin-top:2px; margin-left:2px; margin-right:10px;">
                         <x-box>
-                            <x-label style=" color: #c0a6cb;">Open Project...</x-label>
+                            <x-label>Open Project...</x-label>
                         </x-box>
                     </x-button>
 
-                    <x-button id="close-btn" style="margin-top:2px; margin-left:2px; margin-right:15px; background-color: rgba(153, 99, 175, 0.35);">
+                    <x-button id="close-btn" style="margin-top:2px; margin-left:2px; margin-right:15px;">
                         <x-box>
-                            <x-label style=" color: #c0a6cb;">Cancel</x-label>
+                            <x-label>Cancel</x-label>
                         </x-box>
                     </x-button>
                 </x-box>

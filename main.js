@@ -35,7 +35,6 @@ const reload = require('electron-reload')(__dirname)
 
 
 let mainWindow
-let projectWindow
     //let secondWindow
 
 function createWindow() {
@@ -50,6 +49,7 @@ function createWindow() {
         vibrancy: 'medium-light',
         show: true,
         icon: path.join(__dirname, 'icons/png/64x64.png'),
+        title: 'hallo'
     })
 
 
@@ -62,14 +62,20 @@ function createWindow() {
 
     mainWindow.once('ready-to-show', () => {
         mainWindow.show()
+        project.show()
     })
 
     mainWindow.webContents.on('did-finish-load', function() {
         mainWindow.webContents.send('ping', 'whoooooooh!');
     })
 
-    /*     let project = new BrowserWindow({
+    mainWindow.setSheetOffset(95)
+
+
+         let project = new BrowserWindow({
             title: 'Project Window',
+            parent: mainWindow, 
+            modal: true,
             width: 800,
             height: 600,
             backgroundColor: '#6b0098',
@@ -78,7 +84,7 @@ function createWindow() {
             maximizable: false,
             fullscreenable: false,
             resizable: true,
-            titleBarStyle: 'hidden',
+            titleBarStyle: 'hiddenInset',
             parent: mainWindow,
             icon: 'icons/mac/icon.icns'
         })
@@ -88,7 +94,7 @@ function createWindow() {
             slashes: true
         }))
 
-     */
+     
 
 
     // Open the DevTools.

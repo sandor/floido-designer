@@ -1433,7 +1433,7 @@ x-button[skin="tabnav"] x-label {
 }
 
 .toolbar-header {
-    border-bottom: 1px solid #c2c0c2;
+    border-bottom: 1px solid #c2c0c22a;
     -webkit-app-region: drag;
 }
 
