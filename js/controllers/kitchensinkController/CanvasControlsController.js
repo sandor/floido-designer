@@ -1,4 +1,4 @@
-kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTabService, rightPanelTabService) {
+kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTabService, rightPanelTabService, $timeout) {
 
     $scope.currentLeftTab = leftPanelTabService.tab.url;
     $scope.currentRightTab = rightPanelTabService.tab.url;
@@ -73,7 +73,7 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
 
             document.getElementById('shadow-Offset-X').value = canvasObjectShadowOffsetX;
             document.getElementById('shadow-Offset-Y').value = canvasObjectShadowOffsetY;
-            document.getElementById('shadow-blur').value = canvasObjectShadowBlur;
+            document.getElementById('obj-shadow-blur').value = canvasObjectShadowBlur;
 
         }
 
@@ -95,15 +95,17 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
     // ================================================================
 
 
-    $scope.setMySize = function () {
-        //;
-        var setWidth = document.getElementById('myWidth').value;
-        var setHeight = document.getElementById('myHeight').value;
-        canvas.setWidth(setWidth);
-        canvas.setHeight(setHeight);
-        console.info(setWidth, setHeight);
-        canvas.calcOffset();
-    };
+    // $scope.setMySize = function () {
+    //     //;
+    //     var setWidth = document.getElementById('myWidth').value;
+    //     var setHeight = document.getElementById('myHeight').value;
+    //     canvas.setWidth(setWidth);
+    //     canvas.setHeight(setHeight);
+    //     console.info(setWidth, setHeight);
+    //     canvas.calcOffset();
+
+
+    // };
 
     $scope.presetSizes = [{
         name: 'iPad Landscape',
@@ -320,23 +322,62 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
 
 
 
-    $scope.pageFlow = function () {
-        $scope.pageFlowShow = !$scope.pageFlowShow;
-        pageFlowActive = $scope.pageFlowShow;
+    $scope.setMainTab = function (tabName) {
+
+        if (tabName == 'pageFlow') {
+            $scope.pageFlowShow = !$scope.pageFlowShow;
+            pageFlowActive = $scope.pageFlowShow;
 
 
 
-        if ($scope.pageFlowShow && document.getElementById("flow_cols")) {
-            document.getElementById("flow_cols").removeAttribute('disabled');
-            document.getElementById("flow_rows").removeAttribute('disabled');
-      
+            if ($scope.pageFlowShow && document.getElementById("flow_cols")) {
+                document.getElementById("flow_cols").removeAttribute('disabled');
+                document.getElementById("flow_rows").removeAttribute('disabled');
+
+            }
+            if (!$scope.pageFlowShow && document.getElementById("flow_cols")) {
+                document.getElementById("flow_cols").setAttribute('disabled', 'true');
+                document.getElementById("flow_rows").setAttribute('disabled', 'true');
+
+            }
         }
-        if (!$scope.pageFlowShow && document.getElementById("flow_cols")) {
-            document.getElementById("flow_cols").setAttribute('disabled', 'true');
-            document.getElementById("flow_rows").setAttribute('disabled', 'true');
 
+    }
+
+    $scope.setMainTab1 = function (tabName) {
+        currentActiveLeftTab;
+
+        if (tabName == 'pageFlow') {
+            $scope.pageFlowShow = true;
+            pageFlowActive = $scope.pageFlowShow;
+
+
+            if (pageFlowActive && (currentActiveLeftTab.title == 'projectSettings')) {
+                document.getElementById("flow_cols").removeAttribute('disabled');
+                document.getElementById("flow_rows").removeAttribute('disabled');
+
+            }
+            if (!pageFlowActive && (currentActiveLeftTab.title == 'projectSettings')) {
+                document.getElementById("flow_cols").setAttribute('disabled', 'true');
+                document.getElementById("flow_rows").setAttribute('disabled', 'true');
+            }
+            $timeout(() => {
+                pageFlowScope.setPageFlowItemAspectRatio();
+            }, 20)
+
+
+        }
+        if (tabName == 'pageEditor') {
+            $scope.pageFlowShow = false;
+            pageFlowActive = $scope.pageFlowShow;
+
+            if (!pageFlowActive && (currentActiveLeftTab.title == 'projectSettings')) {
+                document.getElementById("flow_cols").setAttribute('disabled', 'true');
+                document.getElementById("flow_rows").setAttribute('disabled', 'true');
+            }
         }
     }
+
 
 
     $scope.pageFlowTab = 'templates/pageFlow.html';

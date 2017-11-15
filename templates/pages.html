@@ -34,7 +34,7 @@
 		 class="list-pages-item" ng-repeat="object in objects" ng-click="setAsActive(object); setAsActiveLayer(object, objects)"
 		 ng-if="!object.ignore">
 			<!-- <li ng-class="{active: object.active}" class="list-pages-item" ng-repeat="object in objects" ng-click="setAsActive(object); setAsActiveLayer(object, objects)" ng-if="!object.ignore"> -->
-			<div ng-drag="true" ng-drag-data="obj" data-allow-transform="false">
+			<div ng-drag="true" ng-drag-data="obj" data-allow-transform="false" class="thumbnail-container">
 				<x-box class="thumbnail justify">
 
 					<img style="margin: auto;" ng-src="{{object.thumbnail}}" title="{{ object.name }}" />
