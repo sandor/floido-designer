@@ -277,7 +277,6 @@ var saveAsProject = function (inDirectory) {
                 return;
             }
             let jsonForWriteTemp = GenerateCanvasJson(true);
-            debugger;
             fs.writeFile(TempFileNameforWriting, JSON.stringify(jsonForWriteTemp), function (err) {
 
                 if (err) {
@@ -286,7 +285,6 @@ var saveAsProject = function (inDirectory) {
 
                 alert("The file has been succesfully saved");
             });
-            debugger;
             for (let i = 0; i < jsonForWriteTemp.pages.length; i++) {
 
                 // jsonForWriteTemp.pages.forEach(function (page) {
@@ -298,7 +296,7 @@ var saveAsProject = function (inDirectory) {
                     if (err) {
                         alert("An error ocurred creating the file " + err.message)
                     }
-                    alert("The file has been succesfully saved");
+                    // alert("The file has been succesfully saved");
                 });
 
 
@@ -351,7 +349,8 @@ function createDirectory(appfolderPath, cutomFolder) {
 
 
         };
-        jsonFilesDirectory = directoriesTobeCreated.json;
+        // select dir where shuld be created json files for each pages in project
+        jsonFilesDirectory = directoriesTobeCreated.pages;
     }
 
 
@@ -669,6 +668,9 @@ var openPage = () => {
             var tempOPenedCanvas = JSON.parse(resolvedPAram);
             // var tempCanvas = tempOPenedCanvas.canvas.state;
             var tempCanvas = tempOPenedCanvas.pages[0].canvas.canvasData
+
+            // this function is in helper.js
+            setCanvasBackGradient(tempOPenedCanvas.pages[0]);
 
             // canvas.loadFromJSON(tempCanvas, function () {
             //     canvas.renderAll();

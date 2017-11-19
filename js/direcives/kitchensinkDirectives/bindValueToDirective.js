@@ -23,7 +23,9 @@ kitchensink.directive('bindValueTo', function () {
             $element.on('change keyup select', function () {
                 if ($element[0].type !== 'checkbox') {
                     //line below added for buinding works  with xel-toolkit.org
-                    this.value = parseInt($element[0]._shadowRoot.getElementById('editor').innerText) ;
+                    if ($element[0].type == 'input') {
+                        this.value = parseInt($element[0]._shadowRoot.getElementById('editor').innerText);
+                    }
                     $scope[setter] && $scope[setter](this.value);
                 }
             });
@@ -47,7 +49,7 @@ kitchensink.directive('bindValueTo', function () {
                 } else if ($element[0].type === 'checkbox') {
                     $element[0].checked = newVal;
                 } else {
-                    $element.val(newVal);
+                    newVal && $element.val(newVal);
                 }
             });
         }

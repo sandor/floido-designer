@@ -78,8 +78,14 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
         }
 
 
+        PagesControllerScope && PagesControllerScope.refreshSavePage();
     });
 
+
+    canvas.on('object:added', function (option) {
+
+        PagesControllerScope && PagesControllerScope.refreshSavePage();
+    });
     canvas.on('after:render', function (option) {
 
         getCanvasActiveObjectData();

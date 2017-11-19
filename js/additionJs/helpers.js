@@ -1,3 +1,5 @@
+
+
 //		var kitchensink = {};
 //		var canvas = new fabric.Canvas('canvas', {
 //			backgroundColor: "#FFFFFF",
@@ -1175,12 +1177,16 @@ function addAccessors($scope, $rootScope) {
      */
 
 
-    $scope.addBackgroundGradient = function (leftColor, rightColor, angle) {
-        var leftColor = document.getElementById('gradLeft').value;
-        var rightColor = document.getElementById('gradRight').value;
-        var angle = document.getElementById('canvas-angle').value;
-        var offset_1 = document.getElementById('offset_1').value;
-        var offset_2 = document.getElementById('offset_2').value;
+    $scope.addBackgroundGradient = function (page, leftColor, rightColor, angle) {
+        debugger;
+        var leftColor = page && page.canvas.backgroundColor.leftColor ? page.canvas.backgroundColor.leftColor : document.getElementById('gradLeft').value;
+        var rightColor = page && page.canvas.backgroundColor.rightColor ? page.canvas.backgroundColor.rightColor : document.getElementById('gradRight').value;
+
+        var angle = (page && page.canvas.backgroundColor.angle)
+            || (page && page.canvas.backgroundColor.angle && page.canvas.backgroundColor.angle == 0) ? page.canvas.backgroundColor.angle : document.getElementById('canvas-angle').value;
+
+        var offset_1 = document.getElementById('offset_1') ? document.getElementById('offset_1').value : page.canvas.backgroundColor.offset_1;
+        var offset_2 = document.getElementById('offset_2') ? document.getElementById('offset_2').value : page.canvas.backgroundColor.offset_2;
 
         console.log(leftColor, rightColor, angle);
 
@@ -1209,9 +1215,41 @@ function addAccessors($scope, $rootScope) {
             }
             ]
         });
+
+        var tempGradientForSaveing = {
+            leftColor: leftColor,
+            rightColor: rightColor,
+            angle: angle,
+            offset: offset_1,
+            offset_1: offset_1,
+            offset_2: offset_2,
+            angleCoords: angleCoords,
+            grad: grad
+        }
+        debugger;
         canvas.backgroundColor = grad.toLive(canvas.contextContainer);
+        if (PagesControllerScope && PagesControllerScope.objects) {
+            debugger;
+            //PagesControllerScope.activePage.canvas.canvasData.backgroundColor = grad.toLive(canvas.contextContainer);
+            PagesControllerScope.activePage.canvas.backgroundColor = tempGradientForSaveing;
+        } else {
+            debugger;
+            if (lastLoadedProject.pages && lastLoadedProject.pages.length > 0) {
+                debugger;
+                // lastLoadedProject.pages[lastLoadedProject.pages.length - 1].canvas.canvasData.backgroundColor = grad.toLive(canvas.contextContainer);
+                lastLoadedProject.pages[lastLoadedProject.pages.length - 1].canvas.backgroundColor = tempGradientForSaveing;
+                debugger;
+            }
+        }
+
         canvas.renderAll();
     }
+
+
+
+
+
+
 
     /* Setting canvas objects gradient with x/y to angle settings
      */
@@ -1244,6 +1282,8 @@ function addAccessors($scope, $rootScope) {
                 1: rightColor,
             }
         });
+
+
         canvas.renderAll();
     };
 
@@ -2172,6 +2212,7 @@ function addAccessors($scope, $rootScope) {
         }
     };
 
+    helperScope = $scope;
     function initBrushes() {
         if (!fabric.PatternBrush) return;
 
@@ -2303,3 +2344,26 @@ function isEmpty(obj) {
     }
     return true;
 }
+
+
+// set canvas gradient background
+var setCanvasBackGradient = (page) => {
+    debugger;
+    helperScope.addBackgroundGradient(page);
+
+
+    // if (PagesControllerScope && PagesControllerScope.objects) {
+    //     debugger;
+    //     PagesControllerScope.activePage.canvas.canvasData.backgroundColor = page.canvas.backgroundColor.grad.toLive(canvas.contextContainer);
+    // } else {
+    //     debugger;
+    //     if (lastLoadedProject.pages && lastLoadedProject.pages.length > 0) {
+    //         debugger;
+    //         lastLoadedProject.pages[lastLoadedProject.pages.length - 1].canvas.canvasData.backgroundColor = page.canvas.backgroundColor.grad.toLive(canvas.contextContainer);
+    //         debugger;
+    //     }
+    // }
+
+}
+
+var helperScope;
