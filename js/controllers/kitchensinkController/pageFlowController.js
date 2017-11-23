@@ -89,7 +89,7 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
     $scope.droppedObjects2 = [];
 
     $scope.onDropComplete1 = function (data, evt, dropAreaName) {
-
+        debugger;
         if (data) {
             data.dropAreaName = dropAreaName;
         }
@@ -105,7 +105,7 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
                         dropAreaLine.forEach((dropAreaLineItem) => {
 
-                            if (dropAreaLineItem.data && (dropAreaLineItem.data.name == data.name)) {
+                            if (dropAreaLineItem.data && (dropAreaLineItem.data.dropAreaName == data.dropAreaName)) {
 
                                 delete dropAreaLineItem.data;
                             } else {

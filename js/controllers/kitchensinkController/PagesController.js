@@ -68,7 +68,10 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
 
 
     $scope.savePageToObjects = () => {
-        $scope.activePage.canvas.canvasData = JSON.parse(JSON.stringify(canvas));
+        $timeout(() => {
+            $scope.activePage.canvas.canvasData = JSON.parse(JSON.stringify(canvas));
+        }, 30);
+
     }
 
 
@@ -145,7 +148,6 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
                 $scope.activePage.canvas.canvasData &&
                 $scope.activePage.canvas.canvasData.hasOwnProperty("_objects") &&
                 $scope.activePage.canvas.canvasData._objects.length > 0) {
-                debugger;
                 canvas.loadFromJSON($scope.activePage.canvas.canvasData, () => {
                     canvas.renderAll();
                 })
@@ -161,6 +163,11 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
                 canvas.renderAll();
             }
 
+            debugger;
+
+            if (page.canvas.backgroundColor) {
+                $scope.addBackgroundGradient(page);
+            }
             // $scope.objects.push(page);
         } else {
 

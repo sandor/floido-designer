@@ -1243,6 +1243,8 @@ function addAccessors($scope, $rootScope) {
         }
 
         canvas.renderAll();
+
+        PagesControllerScope && PagesControllerScope.refreshSavePage();
     }
 
 

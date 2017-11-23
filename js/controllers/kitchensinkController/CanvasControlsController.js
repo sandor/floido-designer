@@ -95,6 +95,41 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
 
     });
 
+    canvas.on('object:modified', function (option) {
+
+        PagesControllerScope && PagesControllerScope.refreshSavePage();
+    });
+
+    canvas.on('object:moving', function (option) {
+
+        PagesControllerScope && PagesControllerScope.refreshSavePage();
+    });
+    canvas.on('object:over', function (option) {
+
+        PagesControllerScope && PagesControllerScope.refreshSavePage();
+    });
+    canvas.on('object:out', function (option) {
+
+        PagesControllerScope && PagesControllerScope.refreshSavePage();
+    });
+    canvas.on('object:removed', function (option) {
+
+        PagesControllerScope && PagesControllerScope.refreshSavePage();
+    });
+    canvas.on('object:rotating', function (option) {
+
+        PagesControllerScope && PagesControllerScope.refreshSavePage();
+    });
+    canvas.on('object:scaling', function (option) {
+
+        PagesControllerScope && PagesControllerScope.refreshSavePage();
+    });
+    canvas.on('path:created', function (option) {
+
+        PagesControllerScope && PagesControllerScope.refreshSavePage();
+    });
+
+
 
     // $scope.canvasAngle = canvasAngle;
     // Editing manipulating the Canvas Size

@@ -49,7 +49,7 @@ kitchensink.directive('bindValueTo', function () {
                 } else if ($element[0].type === 'checkbox') {
                     $element[0].checked = newVal;
                 } else {
-                    newVal && $element.val(newVal);
+                    newVal && !isEmpty(newVal) && $element.val(newVal);
                 }
             });
         }
