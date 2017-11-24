@@ -43,12 +43,15 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
 
     }];
     $scope.safeScopeApply = () => {
-        var phase = $scope.$root.$$phase;
-        if (phase == '$apply' || phase == '$digest') {
+        if ($scope && $scope.$root) {
+            var phase = $scope.$root.$$phase;
+            if (phase == '$apply' || phase == '$digest') {
 
-        } else {
-            $scope.$apply();
+            } else {
+                $scope.$apply();
+            }
         }
+
     }
 
     // in loading  project case we need to replace objects array to loaded project pages array
@@ -68,9 +71,9 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
 
 
     $scope.savePageToObjects = () => {
-        $timeout(() => {
+     //   $timeout(() => {
             $scope.activePage.canvas.canvasData = JSON.parse(JSON.stringify(canvas));
-        }, 30);
+      //  }, 30);
 
     }
 
@@ -99,7 +102,6 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
 
 
         if (openedPage) {
-            debugger;
             // open page case
             // let imageBase64 = openedPage.canvas.canvasData.toDataURL('png');
             // TempPage.pageSettings.thumbnail = openedPage.pageSettings.thumbnail;
@@ -110,7 +112,6 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
             $scope.safeScopeApply();
 
         } else {
-            debugger;
             //create page case
             let imageBase64 = canvas.toDataURL('png');
             TempPage.pageSettings.thumbnail = imageBase64;
@@ -141,7 +142,6 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
     }
 
     $scope.setAsActive = (page) => {
-        debugger;
         if (page) {
             $scope.activePage = page;
             if ($scope.activePage.canvas &&
@@ -163,7 +163,6 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
                 canvas.renderAll();
             }
 
-            debugger;
 
             if (page.canvas.backgroundColor) {
                 $scope.addBackgroundGradient(page);
@@ -292,11 +291,11 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
     }
 
     // $scope.onDragComplete = function (data, evt) {
-    //     debugger;
+    //     
     //     console.log("drag success, data:", data);
     // }
     // $scope.onDropComplete = function (data, evt) {
-    //     debugger;
+    //     
     //     console.log("drop success, data:", data);
     // }
 

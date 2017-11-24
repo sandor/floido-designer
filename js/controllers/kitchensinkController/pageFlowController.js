@@ -8,11 +8,11 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
     // $scope.droppedObjects2 = [];
 
     // $scope.onDragComplete = function (data, evt) {
-    //     debugger;
+    //     
     //     console.log("drag success, data:", data);
     // }
     // $scope.onDropComplete = function (data, evt) {
-    //     debugger;
+    //     
     //     console.log("drop success, data:", data);
     // }
 
@@ -64,7 +64,7 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
     // for (let i = 0; i < $scope.dropAreaLinesCount; i++) {
     //     for (let j = 0; j < $scope.dropAreaElCountOnLIne; j++) {
-    //         debugger;
+    //         
     //         $scope.dropAreas[i].push({ name: 'dropArea' + $scope.dropAreaCounter });
     //         $scope.dropAreaCounter++;
     //     }
@@ -89,7 +89,6 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
     $scope.droppedObjects2 = [];
 
     $scope.onDropComplete1 = function (data, evt, dropAreaName) {
-        debugger;
         if (data) {
             data.dropAreaName = dropAreaName;
         }

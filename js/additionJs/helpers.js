@@ -149,7 +149,6 @@ function setCanvasActiveObjectData() {
         fontColor = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fill : "#000000";
         fontBackgroundColor = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') && canvas._activeObject.backgroundColor != "" ? canvas._activeObject.backgroundColor : "#ffffff";
 
-
         fontSize = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.fontSize : 20;
         lineHeight = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.lineHeight : 1;
         fontSpacing = canvas._activeObject && canvas._activeObject.hasOwnProperty('text') ? canvas._activeObject.charSpacing : 1;
@@ -797,6 +796,7 @@ function addAccessors($scope, $rootScope) {
     };
     $scope.setFill = function (value) {
         setActiveStyle('fill', value);
+        PagesControllerScope && PagesControllerScope.refreshSavePage();
     };
 
     $scope.isBold = function () {
@@ -890,6 +890,7 @@ function addAccessors($scope, $rootScope) {
         getCanvasActiveObjectData();
         setCanvasActiveObjectData();
         enableDisableElement();
+        PagesControllerScope && PagesControllerScope.refreshSavePage();
         return getActiveProp('backgroundColor');
     };
     $scope.setBgColor = function (value) {
@@ -898,6 +899,8 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getTextBgColor = function () {
+        
+        PagesControllerScope && PagesControllerScope.refreshSavePage();
         return getActiveProp('textBackgroundColor');
     };
     $scope.setTextBgColor = function (value) {
@@ -1042,9 +1045,9 @@ function addAccessors($scope, $rootScope) {
 
         // document.getElementById('flow_cols').addEventListener('keydown', (param) => {
         //     tempValu = parseInt(event.key);
-        //     debugger;
+        //     
         // })
-        // debugger;
+        // 
         return document.getElementById("flow_cols").value;
         // return parseInt(getActiveStyle('fontSize'), 10) ? parseInt(getActiveStyle('fontSize'), 10) : '';
     };
@@ -1052,7 +1055,7 @@ function addAccessors($scope, $rootScope) {
 
     $scope.setColumnsCount = function (value) {
 
-        // debugger;
+        // 
         // pageFlowScope.addRemoveColumns(tempValu ? tempValu : value);
         // document.getElementById('flow_cols').value = tempValu ? tempValu : value;
         pageFlowScope.addRemoveColumns(value);
@@ -1121,6 +1124,7 @@ function addAccessors($scope, $rootScope) {
         canvas.backgroundColor = value;
         document.getElementById("select1").value = value;
         canvas.renderAll();
+        PagesControllerScope && PagesControllerScope.refreshSavePage();
     };
 
     $scope.setCanvasObjectBgColor = function (value) {
@@ -1178,7 +1182,7 @@ function addAccessors($scope, $rootScope) {
 
 
     $scope.addBackgroundGradient = function (page, leftColor, rightColor, angle) {
-        debugger;
+        
         var leftColor = page && page.canvas.backgroundColor.leftColor ? page.canvas.backgroundColor.leftColor : document.getElementById('gradLeft').value;
         var rightColor = page && page.canvas.backgroundColor.rightColor ? page.canvas.backgroundColor.rightColor : document.getElementById('gradRight').value;
 
@@ -1226,19 +1230,19 @@ function addAccessors($scope, $rootScope) {
             angleCoords: angleCoords,
             grad: grad
         }
-        debugger;
+        
         canvas.backgroundColor = grad.toLive(canvas.contextContainer);
         if (PagesControllerScope && PagesControllerScope.objects) {
-            debugger;
+            
             //PagesControllerScope.activePage.canvas.canvasData.backgroundColor = grad.toLive(canvas.contextContainer);
             PagesControllerScope.activePage.canvas.backgroundColor = tempGradientForSaveing;
         } else {
-            debugger;
+            
             if (lastLoadedProject.pages && lastLoadedProject.pages.length > 0) {
-                debugger;
+                
                 // lastLoadedProject.pages[lastLoadedProject.pages.length - 1].canvas.canvasData.backgroundColor = grad.toLive(canvas.contextContainer);
                 lastLoadedProject.pages[lastLoadedProject.pages.length - 1].canvas.backgroundColor = tempGradientForSaveing;
-                debugger;
+                
             }
         }
 
@@ -2350,19 +2354,19 @@ function isEmpty(obj) {
 
 // set canvas gradient background
 var setCanvasBackGradient = (page) => {
-    debugger;
+    
     helperScope.addBackgroundGradient(page);
 
 
     // if (PagesControllerScope && PagesControllerScope.objects) {
-    //     debugger;
+    //     
     //     PagesControllerScope.activePage.canvas.canvasData.backgroundColor = page.canvas.backgroundColor.grad.toLive(canvas.contextContainer);
     // } else {
-    //     debugger;
+    //     
     //     if (lastLoadedProject.pages && lastLoadedProject.pages.length > 0) {
-    //         debugger;
+    //         
     //         lastLoadedProject.pages[lastLoadedProject.pages.length - 1].canvas.canvasData.backgroundColor = page.canvas.backgroundColor.grad.toLive(canvas.contextContainer);
-    //         debugger;
+    //         
     //     }
     // }
 

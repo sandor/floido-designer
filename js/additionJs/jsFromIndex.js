@@ -290,7 +290,7 @@ var saveAsProject = function (inDirectory) {
                 // jsonForWriteTemp.pages.forEach(function (page) {
 
                 jsonFilesDirectoryTemp = jsonFilesDirectory + slash + "page" + i + ".json"
-                debugger;
+                
                 let pageTemp = { pages: [jsonForWriteTemp.pages[i]] };
                 fs.writeFile(jsonFilesDirectoryTemp, JSON.stringify(pageTemp), function (err) {
                     if (err) {
@@ -463,7 +463,7 @@ function getPageFullSettings() {
 
 
 function save(page) {
-    debugger;
+    
     PagesControllerScope && PagesControllerScope.savePageToObjects();
     PagesControllerScope && PagesControllerScope.refreshSavePage();
 
@@ -509,7 +509,7 @@ function save(page) {
 }
 
 function saveAs(page) {
-    debugger;
+    
     if (page) {
         // case for saveing only page 
         dialog.showSaveDialog(function (fileName) {
@@ -632,7 +632,7 @@ var openProject = function () {
 }
 
 var openPage = () => {
-    debugger;
+    
     const {
         ipcRenderer
     } = require('electron')
@@ -662,7 +662,7 @@ var openPage = () => {
         }
 
         readTextFile(filepath).then(function (resolvedPAram) {
-            debugger;
+            
             //lastLoadedProject = null;
             // lastLoadedProject = JSON.parse(resolvedPAram);
             var tempOPenedCanvas = JSON.parse(resolvedPAram);
@@ -714,9 +714,9 @@ var newPage = () => {
     let jsonData = canvas.toJSON();
     let canvasAsJson = JSON.stringify(jsonData);
 
-    debugger;
+    
     lastLoadedProject.pages[lastLoadedProject.pages.length - 1].canvas.canvasData = JSON.parse(canvasAsJson);
-    debugger;
+    
     let pageTemplate = {
         pageSettings: {
             name: 'Page 0',
@@ -733,11 +733,11 @@ var newPage = () => {
 
 
     if (PagesControllerScope) {
-        debugger;
+        
         PagesControllerScope.addPage();
         PagesControllerScope.safeScopeApply();
     } {
-        debugger;
+        
         pageTemplate.pageSettings.name = "Page " + lastLoadedProject.pages.length;
 
         lastLoadedProject.pages.push(pageTemplate);
@@ -879,12 +879,12 @@ require('electron').ipcRenderer.on('openProject', function (event, message) {
     openProject();//openProject
 });
 require('electron').ipcRenderer.on('newPage', function (event, message) {
-    debugger;
+    
     console.log(message);
     newPage();//openProject
 });
 require('electron').ipcRenderer.on('openPage', function (event, message) {
-    debugger;
+    
     console.log(message);
     openPage();//openProject
 });
@@ -1101,7 +1101,7 @@ menu.append(new MenuItem({
 menu.append(new MenuItem({
     label: 'Save',
     click() {
-        // debugger;
+        // 
         // saveProject();
         save();
     }
@@ -1118,7 +1118,7 @@ menu.append(new MenuItem({
 // menu.append(new MenuItem({
 //     label: 'Save',
 //     click() {
-//         debugger;
+//         
 //         saveProject();
 //         //save();
 //     }

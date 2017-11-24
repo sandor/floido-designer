@@ -51,7 +51,6 @@ kitchensink.controller('LayersController', ['$scope', '$rootScope', '$timeout', 
     }
 
     $scope.setAsActive = function (object) {
-        debugger;
         if (object) {
             canvas.setActiveObject(object);
         }
@@ -163,7 +162,6 @@ kitchensink.controller('LayersController', ['$scope', '$rootScope', '$timeout', 
     }
 
     $scope.clearObject = () => {
-        debugger;
         // $scope.objects = canvas._objects || [];
         // for (let i = 0; i < $scope.objects.length + 1; i++) {
         //     $scope.objects.pop();

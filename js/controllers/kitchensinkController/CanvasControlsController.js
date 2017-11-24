@@ -95,23 +95,19 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
 
     });
 
-    canvas.on('object:modified', function (option) {
 
-        PagesControllerScope && PagesControllerScope.refreshSavePage();
-    });
+    // canvas.on('object:moving', function (option) {
 
-    canvas.on('object:moving', function (option) {
+    //     PagesControllerScope && PagesControllerScope.refreshSavePage();
+    // });
+    // canvas.on('object:over', function (option) {
 
-        PagesControllerScope && PagesControllerScope.refreshSavePage();
-    });
-    canvas.on('object:over', function (option) {
+    //     PagesControllerScope && PagesControllerScope.refreshSavePage();
+    // });
+    // canvas.on('object:out', function (option) {
 
-        PagesControllerScope && PagesControllerScope.refreshSavePage();
-    });
-    canvas.on('object:out', function (option) {
-
-        PagesControllerScope && PagesControllerScope.refreshSavePage();
-    });
+    //     PagesControllerScope && PagesControllerScope.refreshSavePage();
+    // });
     canvas.on('object:removed', function (option) {
 
         PagesControllerScope && PagesControllerScope.refreshSavePage();
@@ -128,6 +124,14 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
 
         PagesControllerScope && PagesControllerScope.refreshSavePage();
     });
+    canvas.on('text:changed', function (option) {
+
+        PagesControllerScope && PagesControllerScope.refreshSavePage();
+    });
+    // canvas.on('text:selection:changed', function (option) {
+
+    //     PagesControllerScope && PagesControllerScope.refreshSavePage();
+    // });
 
 
 
@@ -341,7 +345,6 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
 
         if (tab.title == "Pages") {
             $timeout(() => {
-                debugger;
                 PagesControllerScope && PagesControllerScope.refreshSavePage();
             }, 20)
         }
@@ -435,11 +438,11 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
 
 
     // $scope.onDragComplete = function (data, evt) {
-    //     debugger;
+    //     
     //     console.log("drag success, data:", data);
     // }
     // $scope.onDropComplete = function (data, evt) {
-    //     debugger;
+    //     
     //     console.log("drop success, data:", data);
     // }
 });

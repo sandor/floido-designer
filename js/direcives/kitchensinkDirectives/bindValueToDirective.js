@@ -52,6 +52,9 @@ kitchensink.directive('bindValueTo', function () {
                     newVal && !isEmpty(newVal) && $element.val(newVal);
                 }
             });
+            PagesControllerScope && PagesControllerScope.refreshSavePage();
         }
+
     };
+
 });
