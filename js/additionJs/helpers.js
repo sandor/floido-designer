@@ -899,7 +899,7 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getTextBgColor = function () {
-        
+
         PagesControllerScope && PagesControllerScope.refreshSavePage();
         return getActiveProp('textBackgroundColor');
     };
@@ -1182,12 +1182,12 @@ function addAccessors($scope, $rootScope) {
 
 
     $scope.addBackgroundGradient = function (page, leftColor, rightColor, angle) {
-        
+
         var leftColor = page && page.canvas.backgroundColor.leftColor ? page.canvas.backgroundColor.leftColor : document.getElementById('gradLeft').value;
         var rightColor = page && page.canvas.backgroundColor.rightColor ? page.canvas.backgroundColor.rightColor : document.getElementById('gradRight').value;
-
         var angle = (page && page.canvas.backgroundColor.angle)
-            || (page && page.canvas.backgroundColor.angle && page.canvas.backgroundColor.angle == 0) ? page.canvas.backgroundColor.angle : document.getElementById('canvas-angle').value;
+            || (page && page.canvas.backgroundColor.angle && page.canvas.backgroundColor.angle == 0) ? page.canvas.backgroundColor.angle :
+            document.getElementById('canvas-angle') ? document.getElementById('canvas-angle').value : 0;
 
         var offset_1 = document.getElementById('offset_1') ? document.getElementById('offset_1').value : page.canvas.backgroundColor.offset_1;
         var offset_2 = document.getElementById('offset_2') ? document.getElementById('offset_2').value : page.canvas.backgroundColor.offset_2;
@@ -1230,19 +1230,19 @@ function addAccessors($scope, $rootScope) {
             angleCoords: angleCoords,
             grad: grad
         }
-        
+
         canvas.backgroundColor = grad.toLive(canvas.contextContainer);
         if (PagesControllerScope && PagesControllerScope.objects) {
-            
+
             //PagesControllerScope.activePage.canvas.canvasData.backgroundColor = grad.toLive(canvas.contextContainer);
             PagesControllerScope.activePage.canvas.backgroundColor = tempGradientForSaveing;
         } else {
-            
+
             if (lastLoadedProject.pages && lastLoadedProject.pages.length > 0) {
-                
+
                 // lastLoadedProject.pages[lastLoadedProject.pages.length - 1].canvas.canvasData.backgroundColor = grad.toLive(canvas.contextContainer);
                 lastLoadedProject.pages[lastLoadedProject.pages.length - 1].canvas.backgroundColor = tempGradientForSaveing;
-                
+
             }
         }
 
@@ -2354,7 +2354,7 @@ function isEmpty(obj) {
 
 // set canvas gradient background
 var setCanvasBackGradient = (page) => {
-    
+
     helperScope.addBackgroundGradient(page);
 
 

@@ -35,8 +35,8 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
             path: 'project/pages/'
         },
         canvas: {
-            canvasWidth: canvas ? canvas.width : 1024,
-            canvasHeight: canvas ? canvas.height : 768,
+            canvasWidth: projectSettings.projectSettingsWidth ? projectSettings.projectSettingsWidth : 1024,
+            canvasHeight: projectSettings.projectSettingsHeight ? projectSettings.projectSettingsHeight : 768,
             canvasData: canvas.toJSON()
 
         }
@@ -71,9 +71,9 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
 
 
     $scope.savePageToObjects = () => {
-     //   $timeout(() => {
-            $scope.activePage.canvas.canvasData = JSON.parse(JSON.stringify(canvas));
-      //  }, 30);
+        //   $timeout(() => {
+        $scope.activePage.canvas.canvasData = JSON.parse(JSON.stringify(canvas));
+        //  }, 30);
 
     }
 
@@ -89,9 +89,8 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
                 path: 'project/pages/'
             },
             canvas: {
-                canvasWidth: canvas ? canvas.width : 1024,
-                canvasHeight: canvas ? canvas.height : 768,
-                // canvasData: canvas.toJSON()
+                canvasWidth: projectSettings.projectSettingsWidth ? projectSettings.projectSettingsWidth : 1024,
+                canvasHeight: projectSettings.projectSettingsHeight ? projectSettings.projectSettingsHeight : 768,
                 canvasData: {}
 
             }
@@ -138,6 +137,73 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
         $scope.activePage.pageSettings.thumbnail = imageBase64;
         $scope.safeScopeApply();
         $scope.savePageToObjects();
+
+
+        if (PagesControllerScope.refreshSavePage) {
+
+            for (const key in document.getElementsByClassName("thumbnail")) {
+                if (document.getElementsByClassName("thumbnail").hasOwnProperty(key)) {
+                    const item = document.getElementsByClassName("thumbnail")[key].firstChild.nextElementSibling;
+                    if ($scope.objects[key].canvas.canvasHeight > $scope.objects[key].canvas.canvasWidth) {
+                        /* width: 245px; */
+                        /* height: 161px; */
+                        item.style.height = "161px";
+                        // item.style.height = $scope.activePage.canvas.canvasHeight
+                        item.style.width = (($scope.objects[key].canvas.canvasWidth / $scope.objects[key].canvas.canvasHeight) * 161).toString() + "px";
+                    } else {
+                        item.style.width = "245px";
+                        // item.style.height = $scope.activePage.canvas.canvasHeight
+                        item.style.height = (($scope.objects[key].canvas.canvasHeight / $scope.objects[key].canvas.canvasWidth) * 245).toString() + "px";
+                    }
+
+                }
+            }
+
+            // if (document.getElementsByClassName("pageflowThumbnail ").length > 0) {
+
+            //     let pageflowThumbnailArr = document.getElementsByClassName("pageflowThumbnail");
+            //     // document.getElementsByClassName("pageflowThumbnail ")[0].firstChild.nextElementSibling.style.height = "150px"
+
+
+            //     for (const key in pageflowThumbnailArr) {
+            //         debugger;
+            //         if (pageflowThumbnailArr.hasOwnProperty(key)) {
+            //             const item = pageflowThumbnailArr[key].firstChild.nextElementSibling;
+            //             debugger;
+            //             if ($scope.objects[key].canvas.canvasHeight > $scope.objects[key].canvas.canvasWidth) {
+            //                 /* width: 245px; */
+            //                 /* height: 161px; */
+            //                 item.style.height = "161px";
+            //                 // item.style.height = $scope.activePage.canvas.canvasHeight
+            //                 item.style.width = (($scope.objects[key].canvas.canvasWidth / $scope.objects[key].canvas.canvasHeight) * 161).toString() + "px";
+            //             } else {
+            //                 item.style.width = "245px";
+            //                 // item.style.height = $scope.activePage.canvas.canvasHeight
+            //                 item.style.height = (($scope.objects[key].canvas.canvasHeight / $scope.objects[key].canvas.canvasWidth) * 245).toString() + "px";
+            //             }
+
+            //         }
+            //     }
+            // }
+
+            // var item = document.getElementsByClassName("thumbnail")[0].firstChild.nextElementSibling;
+            // debugger;
+            // if ($scope.activePage.canvas.canvasHeight > $scope.activePage.canvas.canvasWidth) {
+            //     /* width: 245px; */
+            //     /* height: 161px; */
+            //     item.style.height = "161px"
+            //     // item.style.height = $scope.activePage.canvas.canvasHeight
+            //     item.style.width = (($scope.activePage.canvas.canvasWidth / $scope.activePage.canvas.canvasHeight) * 161).toString() + "px";
+            // } else {
+            //     item.style.width = "245px"
+            //     // item.style.height = $scope.activePage.canvas.canvasHeight
+            //     item.style.height = (($scope.activePage.canvas.canvasHeight / $scope.activePage.canvas.canvasWidth) * 245).toString() + "px";
+            // }
+
+
+
+        }
+
         // toJSON()
     }
 
@@ -148,15 +214,20 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
                 $scope.activePage.canvas.canvasData &&
                 $scope.activePage.canvas.canvasData.hasOwnProperty("_objects") &&
                 $scope.activePage.canvas.canvasData._objects.length > 0) {
+
                 canvas.loadFromJSON($scope.activePage.canvas.canvasData, () => {
                     canvas.renderAll();
                 })
+                canvas.setHeight(canvas.canvasHeight);
+                canvas.setWidth(canvas.canvasWidth);
 
             } if ($scope.activePage.canvas &&
                 $scope.activePage.canvas.canvasData) {
                 canvas.loadFromJSON($scope.activePage.canvas.canvasData, () => {
                     canvas.renderAll();
                 })
+                canvas.setHeight($scope.activePage.canvas.canvasHeight);
+                canvas.setWidth($scope.activePage.canvas.canvasWidth);
             }
             else {
                 canvas.clear();

@@ -137,29 +137,54 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
     }
 
+
+
     $scope.setPageFlowItemAspectRatio = () => {
-        for (var key in document.getElementsByClassName("thumbnail-inner-img")) {
-            if (document.getElementsByClassName("thumbnail-inner-img").hasOwnProperty(key)) {
+        debugger;
 
-                var element = document.getElementsByClassName("thumbnail-inner-img")[key];
-                if (canvas.getHeight() > canvas.getWidth())
-                ///landscape case
-                {
-                    let widthTemp = (canvas.getWidth() / canvas.getHeight()) * 100;
-                    let heigthTemp = 100;
-                    element.setAttribute("style", "height:" + heigthTemp + "%;width:" + widthTemp + "%");
+
+        $timeout(() => {
+
+            let pageflowThumbnailArr = document.getElementsByClassName("pageflowThumbnail");
+            debugger;
+
+
+            PagesControllerScope && PagesControllerScope.objects.forEach(element => {
+
+                for (const key in pageflowThumbnailArr) {
+                    if (pageflowThumbnailArr.hasOwnProperty(key)) {
+                        const item = pageflowThumbnailArr[key].firstChild.nextElementSibling;
+                        debugger;
+                        if (item.src == element.pageSettings.thumbnail) {
+                            if (element.canvas.canvasHeight > element.canvas.canvasWidth) {
+
+                                item.style.height = "161px";
+                                //             // item.style.height = $scope.activePage.canvas.canvasHeight
+                                item.style.width = ((element.canvas.canvasWidth / element.canvas.canvasHeight) * 161).toString() + "px";
+                            } else {
+
+                                item.style.width = "245px";
+                                //                 // item.style.height = $scope.activePage.canvas.canvasHeight
+                                item.style.height = ((element.canvas.canvasHeight / element.canvas.canvasWidth) * 245).toString() + "px";
+                            }
+                            continue;
+                        }
+
+                    }
+
                 }
-                else {
-                    let heigthTemp = (canvas.getHeight() / canvas.getWidth()) * 100;
-                    let widthTemp = 100;
-                    element.setAttribute("style", "height:" + heigthTemp + "%;width:" + widthTemp + "%");
-                }
+
+            });
 
 
-            }
-        }
+
+        }, 20)
+
 
     }
+
+
+
     $scope.onDragSuccess1 = function (data, evt) {
 
         console.log("133", "$scope", "onDragSuccess1", "", evt);
@@ -168,6 +193,8 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
             $scope.droppedObjects1.splice(index, 1);
         }
         console.log("is working + onDragSuccess1")
+        $scope.setPageFlowItemAspectRatio();
+
     }
     // $scope.onDragSuccess2 = function (data, evt) {
     //     var index = $scope.droppedObjects2.indexOf(data);

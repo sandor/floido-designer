@@ -1,4 +1,5 @@
-kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
+
+kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope, $timeout) {
 
 
     const { dialog } = require('electron').remote;
@@ -65,11 +66,14 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
                 $scope.setProjectSettings();
 
 
+
             }, 30)
         }
         else {
-            document.getElementById("flow_cols").setAttribute('disabled', 'true');
-            document.getElementById("flow_rows").setAttribute('disabled', 'true');
+            if (document.getElementById("flow_cols")) {
+                document.getElementById("flow_cols").setAttribute('disabled', 'true');
+                document.getElementById("flow_rows").setAttribute('disabled', 'true');
+            }
 
         }
         //document.getElementById("objectIn-canvas-background-colorselect").value = canvasObjectBackColor;
@@ -79,18 +83,80 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope) {
         return tabUrl == $scope.currentLeftTab;
     }
 
-    $scope.setMySize = function () {
-        //;
+    $scope.setProjectSize = function () {
+
         var setWidth = document.getElementById('myWidth').value;
         var setHeight = document.getElementById('myHeight').value;
+
+        projectSettings.projectSettingsWidth = setWidth
+        projectSettings.projectSettingsHeight = setHeight
+
+
+        // projectSettings: {
+        //     leftColor: document.getElementById('gradLeft') ? document.getElementById('gradLeft').value : "#ffffff",
+        //         rightColor: document.getElementById('gradRight') ? document.getElementById('gradRight').value : "#ffffff",
+        //             dropAreas: dropAreas,
+        //                 projectSettingsWidth: projectSettings.projectSettingsWidth ? projectSettings.projectSettingsWidth : 1024,
+        //                     projectSettingsHeight: projectSettings.projectSettingsHeight ? projectSettings.projectSettingsHeight : 768,
+        //                         projectSettingsName: projectSettings.projectSettingsName ? projectSettings.projectSettingsName : "Project Name",
+        //                             projectSettingsDescription: projectSettings.projectSettingsDescription ? projectSettings.projectSettingsDescription : "Project Description"
+        // },
+        // pages: PagesControllerScope && PagesControllerScope.objects ? PagesControllerScope.objects :
+        //     [{
+        //         pageSettings: {
+        //             name: 'Page 1',
+        //             thumbnail: 'project/assets/thumbnails/page1.png',
+        //             path: 'project/pages/'
+        //         },
+        //         canvas: {
+        //             canvasWidth: canvas ? canvas.width : 1024,
+        //             canvasHeight: canvas ? canvas.height : 768,
+        //             canvasData: canvas.toJSON()
+
+        //         }
+        //     }]
+
+
+
+
         canvas.setWidth(setWidth);
         canvas.setHeight(setHeight);
         console.info(setWidth, setHeight);
         canvas.calcOffset();
-        pageFlowScope.setPageFlowItemAspectRatio();
+        //pageFlowScope.setPageFlowItemAspectRatio();
+
+    };
+
+    $scope.setPageSize = function () {
+        debugger;
+        let currentPage;
+        var setWidth = document.getElementById('myWidth').value;
+        var setHeight = document.getElementById('myHeight').value;
+        if (PagesControllerScope) {
+            debugger;
+            PagesControllerScope.activePage.canvas.canvasHeight = setHeight;
+            PagesControllerScope.activePage.canvas.canvasWidth = setWidth;
+
+        } {
+            currentPage = lastLoadedProject.pages[lastLoadedProject.pages.length - 1]
+            canvas.setWidth(setWidth);
+            canvas.setHeight(setHeight);
+            currentPage.canvas.canvasHeight = setHeight;
+            currentPage.canvas.canvasWidth = setWidth;
+            canvas.calcOffset();
+
+            layersControllerScope.clearObject();
+
+        }
+
+        setTimeout(() => {
+            PagesControllerScope && PagesControllerScope.refreshSavePage();
+        }, 0)
 
 
     };
+
+
     $scope.getInputState = function () {
         return canvas._activeObject ? false : true;
     }

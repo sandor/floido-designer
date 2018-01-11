@@ -290,7 +290,7 @@ var saveAsProject = function (inDirectory) {
                 // jsonForWriteTemp.pages.forEach(function (page) {
 
                 jsonFilesDirectoryTemp = jsonFilesDirectory + slash + "page" + i + ".json"
-                
+
                 let pageTemp = { pages: [jsonForWriteTemp.pages[i]] };
                 fs.writeFile(jsonFilesDirectoryTemp, JSON.stringify(pageTemp), function (err) {
                     if (err) {
@@ -463,7 +463,7 @@ function getPageFullSettings() {
 
 
 function save(page) {
-    
+
     PagesControllerScope && PagesControllerScope.savePageToObjects();
     PagesControllerScope && PagesControllerScope.refreshSavePage();
 
@@ -509,7 +509,7 @@ function save(page) {
 }
 
 function saveAs(page) {
-    
+
     if (page) {
         // case for saveing only page 
         dialog.showSaveDialog(function (fileName) {
@@ -632,7 +632,7 @@ var openProject = function () {
 }
 
 var openPage = () => {
-    
+
     const {
         ipcRenderer
     } = require('electron')
@@ -662,7 +662,7 @@ var openPage = () => {
         }
 
         readTextFile(filepath).then(function (resolvedPAram) {
-            
+
             //lastLoadedProject = null;
             // lastLoadedProject = JSON.parse(resolvedPAram);
             var tempOPenedCanvas = JSON.parse(resolvedPAram);
@@ -714,9 +714,12 @@ var newPage = () => {
     let jsonData = canvas.toJSON();
     let canvasAsJson = JSON.stringify(jsonData);
 
-    
+
+
+    canvas.setWidth()
+
     lastLoadedProject.pages[lastLoadedProject.pages.length - 1].canvas.canvasData = JSON.parse(canvasAsJson);
-    
+
     let pageTemplate = {
         pageSettings: {
             name: 'Page 0',
@@ -724,8 +727,8 @@ var newPage = () => {
             path: 'project/pages/'
         },
         canvas: {
-            canvasWidth: canvas ? canvas.width : 1024,
-            canvasHeight: canvas ? canvas.height : 768,
+            canvasWidth: projectSettings.projectSettingsWidth ? projectSettings.projectSettingsWidth : 1024,
+            canvasHeight: projectSettings.projectSettingsHeight ? projectSettings.projectSettingsHeight : 768,
             canvasData: {}
 
         }
@@ -733,11 +736,11 @@ var newPage = () => {
 
 
     if (PagesControllerScope) {
-        
+
         PagesControllerScope.addPage();
         PagesControllerScope.safeScopeApply();
     } {
-        
+
         pageTemplate.pageSettings.name = "Page " + lastLoadedProject.pages.length;
 
         lastLoadedProject.pages.push(pageTemplate);
@@ -745,13 +748,10 @@ var newPage = () => {
 
     }
 
-    // }, 20)
-
 
 }
 
 function setCanvasSize(height, width) {
-    //;
 
     if (currentActiveLeftTab && currentActiveLeftTab.title == "projectSettings") {
         document.getElementById('myWidth').value = width;
@@ -879,12 +879,12 @@ require('electron').ipcRenderer.on('openProject', function (event, message) {
     openProject();//openProject
 });
 require('electron').ipcRenderer.on('newPage', function (event, message) {
-    
+
     console.log(message);
     newPage();//openProject
 });
 require('electron').ipcRenderer.on('openPage', function (event, message) {
-    
+
     console.log(message);
     openPage();//openProject
 });

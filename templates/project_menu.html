@@ -52,7 +52,7 @@
 			<x-label style="margin-left:5px; margin-right: 15px; width: 75px;">Edit Size</x-label>
 			<!-- projectSettings -->
 			<x-numberinput id="myWidth" style="margin-right: 5px; width: 130px;" skin="condensed" suffix=" px" ng-value="canvas.getWidth()"
-			 suffix=" px" ng-model="width">
+			 suffix=" px" ng-model="projectWidth">
 				<x-stepper></x-stepper>
 			</x-numberinput>
 
@@ -60,7 +60,7 @@
 			</div>
 
 			<x-numberinput id="myHeight" style="width: 130px; margin-right: 10px;" skin="condensed" suffix=" px" ng-value="canvas.getHeight()"
-			 suffix=" px" ng-model="height">
+			 suffix=" px" ng-model="projectHeight">
 				<x-stepper></x-stepper>
 			</x-numberinput>
 
@@ -75,7 +75,7 @@
 
 
 		<x-box>
-			<x-button skin="textured" style="margin-left: 75px; width:220px;" ng-click="setMySize()">
+			<x-button skin="textured" style="margin-left: 75px; width:220px;" ng-click="setProjectSize()">
 				<x-box>
 					<x-label>Apply Setting</x-label>
 				</x-box>
