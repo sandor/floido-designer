@@ -128,12 +128,12 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope, $timeout) {
     };
 
     $scope.setPageSize = function () {
-        debugger;
+
         let currentPage;
         var setWidth = document.getElementById('myWidth').value;
         var setHeight = document.getElementById('myHeight').value;
         if (PagesControllerScope) {
-            debugger;
+
             PagesControllerScope.activePage.canvas.canvasHeight = setHeight;
             PagesControllerScope.activePage.canvas.canvasWidth = setWidth;
 

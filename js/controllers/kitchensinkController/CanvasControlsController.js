@@ -89,7 +89,7 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
     canvas.on('after:render', function (option) {
 
         getCanvasActiveObjectData();
-        setCanvasActiveObjectData();
+        // setCanvasActiveObjectData();
         enableDisableElement();
 
 

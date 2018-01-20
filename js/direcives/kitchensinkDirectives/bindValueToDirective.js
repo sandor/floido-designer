@@ -26,6 +26,9 @@ kitchensink.directive('bindValueTo', function () {
                     if ($element[0].type == 'input') {
                         this.value = parseInt($element[0]._shadowRoot.getElementById('editor').innerText);
                     }
+                    if (typeof (parseInt($element[0]._shadowRoot.getElementById('editor').innerText)) == "number") {
+                        this.value = parseInt($element[0]._shadowRoot.getElementById('editor').innerText);
+                    }
                     $scope[setter] && $scope[setter](this.value);
                 }
             });
@@ -41,6 +44,7 @@ kitchensink.directive('bindValueTo', function () {
             })
 
             $scope.$watch($scope[getter], function (newVal) {
+                debugger;
                 if ($element[0].type === 'radio') {
                     var radioGroup = document.getElementsByName($element[0].name);
                     for (var i = 0, len = radioGroup.length; i < len; i++) {

@@ -140,13 +140,13 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
 
 
     $scope.setPageFlowItemAspectRatio = () => {
-        debugger;
+
 
 
         $timeout(() => {
 
             let pageflowThumbnailArr = document.getElementsByClassName("pageflowThumbnail");
-            debugger;
+
 
 
             PagesControllerScope && PagesControllerScope.objects.forEach(element => {
@@ -154,7 +154,7 @@ kitchensink.controller('pageFlowController', function ($scope, leftPanelTabServi
                 for (const key in pageflowThumbnailArr) {
                     if (pageflowThumbnailArr.hasOwnProperty(key)) {
                         const item = pageflowThumbnailArr[key].firstChild.nextElementSibling;
-                        debugger;
+    
                         if (item.src == element.pageSettings.thumbnail) {
                             if (element.canvas.canvasHeight > element.canvas.canvasWidth) {
 

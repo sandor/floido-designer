@@ -134,6 +134,7 @@ function setCanvasActiveObjectData() {
         document.getElementById('cavas-object-corner').value = cavasObjectCorner;
         document.getElementById('canvas-object-corner-input').value = cavasObjectCorner;
         document.getElementById('obj-shadow-color').value = canvasObjectShadowColor;
+
         document.getElementById('obj-shadow-blur').value = canvasObjectShadowBlur;
     }
 
@@ -171,6 +172,7 @@ function getCanvasActiveObjectData() {
 
     canvasObjectShadowOffsetX = canvas._activeObject && canvas._activeObject.shadow ? canvas._activeObject.shadow.offsetX : 0;
     canvasObjectShadowOffsetY = canvas._activeObject && canvas._activeObject.shadow ? canvas._activeObject.shadow.offsetY : 0;
+
     canvasObjectShadowBlur = canvas._activeObject && canvas._activeObject.shadow ? canvas._activeObject.shadow.Blur : 0;
 
 
@@ -643,13 +645,31 @@ function getActiveShadow(name) {
     }
 
 
+    if (canvas.getActiveObject() && canvas.getActiveObject().shadow && canvas.getActiveObject().shadow.blur) {
+
+        // document.getElementById()
+
+        document.getElementById('obj-shadow-blur').value = canvas.getActiveObject().shadow.blur 
+    } else {
+        return '';
+    }
+
+    if (canvas.getActiveObject() && canvas.getActiveObject().shadow && canvas.getActiveObject().shadow.blur) {
+
+        // document.getElementById()
+
+        document.getElementById('obj-shadow-color').value = canvas.getActiveObject().shadow.color 
+    } else {
+        return '#ffffff';
+    }
+    
     if (canvas.getActiveObject() && canvas.getActiveObject().shadow) {
 
         // document.getElementById()
 
         return canvas.getActiveObject().shadow;
     } else {
-        return '';
+        // return '';
     }
 
 
@@ -742,11 +762,13 @@ function addAccessors($scope, $rootScope) {
 
 
     $scope.setShadowBlur = function (value) {
+
         setActiveShadow('blur', value);
         canvas.renderAll();
     };
 
     $scope.getShadowBlur = function (value) {
+
         getActiveShadow('blur', value);
     };
 
@@ -888,7 +910,7 @@ function addAccessors($scope, $rootScope) {
     $scope.getBgColor = function () {
 
         getCanvasActiveObjectData();
-        setCanvasActiveObjectData();
+        // setCanvasActiveObjectData();
         enableDisableElement();
         PagesControllerScope && PagesControllerScope.refreshSavePage();
         return getActiveProp('backgroundColor');
