@@ -121,15 +121,15 @@ function ungroup() {
 
 function setCanvasActiveObjectData() {
 
-    if (document.getElementById('objectIn-canvas-background-colorselect')) {
-        document.getElementById('objectIn-canvas-background-colorselect').value = canvasObjectBackColor;
-        document.getElementById('canv-obj-fill-color').value = canvasObjectBackColor;
-        document.getElementById('canvas-border-object-colorSelect').value = canvasObjectBorderColor;
+    if (obgInCanvasBackColorSelectTeg) {
+        obgInCanvasBackColorSelectTeg.value = canvasObjectBackColor;
+        canvasObjectFillColorTeg.value = canvasObjectBackColor;
+        canvasObjectborderObjColSelectTeg.value = canvasObjectBorderColor;
         document.getElementById('canvas-border-object-colorSelect-input').value = canvasObjectBorderColor;
-        document.getElementById('canvas-object-border').value = canvasObjectBorderStrokeWidth;
+        canvasObjectBorderTeg.value = canvasObjectBorderStrokeWidth;
         document.getElementById('canvas-object-border-input').value = canvasObjectBorderStrokeWidth;
-        document.getElementById('canv-obj-back-color').value = canvasObjectBackgroundColor;
-        document.getElementById('objectIn-canvas-background-colorselect-down').value = canvasObjectBackgroundColor;
+        canvasObjectBackColorTeg.value = canvasObjectBackgroundColor;
+        obgInCanvasBackColorSelectDownTeg.value = canvasObjectBackgroundColor;
         document.getElementById('cavas-object-opacity-input').value = cavasObjectOpacity;
         document.getElementById('cavas-object-corner').value = cavasObjectCorner;
         document.getElementById('canvas-object-corner-input').value = cavasObjectCorner;
@@ -426,18 +426,46 @@ function getCanvasActiveObjectData() {
 }
 
 
+
+
+
+var obgInCanvasBackColorSelectTeg;
+var obgInCanvasBackColorSelectDownTeg;
+var canvasObjectFillColorTeg;
+var canvasObjectBackColorTeg;
+var canvasObjectBorderTeg;
+var canvasObjectborderObjColSelectTeg;
+
+//need to used like upper vars
+var canvasObjectShadowColorTeg;
+var canvasObjectShadowBlurTeg;
+var canvasObjectShadowOffsetXTeg;
+var canvasObjectShadowOffsetYTeg;
+
+
+
 // disable inputs and color picker
 function enableDisableElement() {
+    debugger;
+    obgInCanvasBackColorSelectTeg = document.getElementById('objectIn-canvas-background-colorselect');
+    obgInCanvasBackColorSelectDownTeg = document.getElementById('objectIn-canvas-background-colorselect-down');
+    canvasObjectFillColorTeg = document.getElementById('canv-obj-fill-color');
+    canvasObjectBackColorTeg = document.getElementById('canv-obj-back-color');
+    canvasObjectBorderTeg = document.getElementById('canvas-object-border');
+    canvasObjectborderObjColSelectTeg = document.getElementById('canvas-border-object-colorSelect');
+    canvasObjectCornerTeg = document.getElementById('canvas-object-corner');
 
-    if (canvas.getActiveObject() && document.getElementById('objectIn-canvas-background-colorselect') && document.getElementById('objectIn-canvas-background-colorselect-down')) {
 
-        document.getElementById('objectIn-canvas-background-colorselect').removeAttribute('disabled');
-        document.getElementById('objectIn-canvas-background-colorselect-down').removeAttribute('disabled');
-        document.getElementById('canv-obj-fill-color').removeAttribute('disabled');
-        document.getElementById('canv-obj-back-color').removeAttribute('disabled');
-        document.getElementById('canvas-object-border').removeAttribute('disabled');
-        document.getElementById('canvas-border-object-colorSelect').removeAttribute('disabled');
-        document.getElementById('canvas-object-corner').removeAttribute('disabled');
+
+    if (canvas.getActiveObject() && obgInCanvasBackColorSelectTeg && obgInCanvasBackColorSelectDownTeg) {
+
+        obgInCanvasBackColorSelectTeg.removeAttribute('disabled');
+        obgInCanvasBackColorSelectDownTeg.removeAttribute('disabled');
+        canvasObjectFillColorTeg.removeAttribute('disabled');
+        canvasObjectBackColorTeg.removeAttribute('disabled');
+        canvasObjectBorderTeg.removeAttribute('disabled');
+        canvasObjectborderObjColSelectTeg.removeAttribute('disabled');
+        canvasObjectCornerTeg.removeAttribute('disabled');
         // document.getElementById('obj-shadow-color').removeAttribute('disabled');
         // document.getElementById('obj-shadow-blur').removeAttribute('disabled');
         // document.getElementById('shadow-Offset-X').removeAttribute('disabled');
@@ -447,17 +475,17 @@ function enableDisableElement() {
     }
 
 
-    if (!canvas.getActiveObject() && document.getElementById('objectIn-canvas-background-colorselect') &&
-        document.getElementById('objectIn-canvas-background-colorselect-down')) {
+    if (!canvas.getActiveObject() && obgInCanvasBackColorSelectTeg &&
+        obgInCanvasBackColorSelectDownTeg) {
 
 
-        document.getElementById('objectIn-canvas-background-colorselect').setAttribute('disabled', true);
-        document.getElementById('objectIn-canvas-background-colorselect-down').setAttribute('disabled', true);
-        document.getElementById('canv-obj-fill-color').setAttribute('disabled', true);
-        document.getElementById('canv-obj-back-color').setAttribute('disabled', true);
-        document.getElementById('canvas-object-border').setAttribute('disabled', true);
-        document.getElementById('canvas-border-object-colorSelect').setAttribute('disabled', true);
-        document.getElementById('canvas-object-corner').setAttribute('disabled', true);
+        obgInCanvasBackColorSelectTeg.setAttribute('disabled', true);
+        obgInCanvasBackColorSelectDownTeg.setAttribute('disabled', true);
+        canvasObjectFillColorTeg.setAttribute('disabled', true);
+        canvasObjectBackColorTeg.setAttribute('disabled', true);
+        canvasObjectBorderTeg.setAttribute('disabled', true);
+        canvasObjectborderObjColSelectTeg.setAttribute('disabled', true);
+        canvasObjectCornerTeg.setAttribute('disabled', true);
         document.getElementById('obj-shadow-color').setAttribute('disabled', true);
 
         ///
@@ -649,7 +677,7 @@ function getActiveShadow(name) {
 
         // document.getElementById()
 
-        document.getElementById('obj-shadow-blur').value = canvas.getActiveObject().shadow.blur 
+        document.getElementById('obj-shadow-blur').value = canvas.getActiveObject().shadow.blur
     } else {
         return '';
     }
@@ -658,11 +686,11 @@ function getActiveShadow(name) {
 
         // document.getElementById()
 
-        document.getElementById('obj-shadow-color').value = canvas.getActiveObject().shadow.color 
+        document.getElementById('obj-shadow-color').value = canvas.getActiveObject().shadow.color
     } else {
         return '#ffffff';
     }
-    
+
     if (canvas.getActiveObject() && canvas.getActiveObject().shadow) {
 
         // document.getElementById()

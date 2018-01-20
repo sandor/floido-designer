@@ -44,7 +44,7 @@ kitchensink.directive('bindValueTo', function () {
             })
 
             $scope.$watch($scope[getter], function (newVal) {
-                debugger;
+
                 if ($element[0].type === 'radio') {
                     var radioGroup = document.getElementsByName($element[0].name);
                     for (var i = 0, len = radioGroup.length; i < len; i++) {

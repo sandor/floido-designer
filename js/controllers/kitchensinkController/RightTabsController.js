@@ -46,9 +46,12 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope, $timeout) {
 
     currentActiveLeftTab = $scope.currentLeftTab;
 
+
+
     $scope.onClickLeftTab = function (tab) {
         currentActiveLeftTab = tab;
         $scope.currentLeftTab = tab.url;
+
         if (tab.title == 'projectSettings') {
             setTimeout(function () {
                 // if (document.getElementById("page-flow-button").hasAttribute('toggled')) {
@@ -69,6 +72,16 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope, $timeout) {
 
             }, 30)
         }
+        if (tab.title == 'pageSettings') {
+            setTimeout(() => {
+                debugger;
+                myWidthTeg = document.getElementById("myWidth");
+                myHeightTeg = document.getElementById("myHeight");
+                projectSettNameTag = document.getElementById("project-sett-name");
+                projectSettDescription = document.getElementById("project-sett-description");
+            }, 30);
+
+        }
         else {
             if (document.getElementById("flow_cols")) {
                 document.getElementById("flow_cols").setAttribute('disabled', 'true');
@@ -84,9 +97,9 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope, $timeout) {
     }
 
     $scope.setProjectSize = function () {
-
-        var setWidth = document.getElementById('myWidth').value;
-        var setHeight = document.getElementById('myHeight').value;
+        debugger;
+        var setWidth = myWidthTeg.value;
+        var setHeight = myHeightTeg.value;
 
         projectSettings.projectSettingsWidth = setWidth
         projectSettings.projectSettingsHeight = setHeight
@@ -130,8 +143,8 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope, $timeout) {
     $scope.setPageSize = function () {
 
         let currentPage;
-        var setWidth = document.getElementById('myWidth').value;
-        var setHeight = document.getElementById('myHeight').value;
+        var setWidth = myWidthTeg.value;
+        var setHeight = myHeightTeg.value;
         if (PagesControllerScope) {
 
             PagesControllerScope.activePage.canvas.canvasHeight = setHeight;
@@ -190,11 +203,12 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope, $timeout) {
 
     }
     $scope.getProjectSettings = () => {
+
         if (currentActiveLeftTab.title == "projectSettings") {
-            projectSettings.projectSettingsWidth = document.getElementById("myWidth").value;
-            projectSettings.projectSettingsHeight = document.getElementById("myHeight").value;
-            projectSettings.projectSettingsName = document.getElementById("project-sett-name").value;
-            projectSettings.projectSettingsDescription = document.getElementById("project-sett-description").value;
+            projectSettings.projectSettingsWidth = myWidthTeg.value;
+            projectSettings.projectSettingsHeight = myHeightTeg.value;
+            projectSettings.projectSettingsName = projectSettNameTag.value;
+            projectSettings.projectSettingsDescription = projectSettDescription.value;
 
         }
 
@@ -203,10 +217,10 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope, $timeout) {
 
     $scope.setProjectSettings = () => {
         if (currentActiveLeftTab.title == "projectSettings") {
-            document.getElementById("myWidth").value = projectSettings.projectSettingsWidth ? projectSettings.projectSettingsWidth : 1024;
-            document.getElementById("myHeight").value = projectSettings.projectSettingsHeight ? projectSettings.projectSettingsHeight : 768;
-            document.getElementById("project-sett-name").value = projectSettings.projectSettingsName ? projectSettings.projectSettingsName : "Project Name";
-            document.getElementById("project-sett-description").value = projectSettings.projectSettingsDescription ? projectSettings.projectSettingsDescription : "Project Description";
+            myWidthTeg.value = projectSettings.projectSettingsWidth ? projectSettings.projectSettingsWidth : 1024;
+            myHeightTeg.value = projectSettings.projectSettingsHeight ? projectSettings.projectSettingsHeight : 768;
+            projectSettNameTag.value = projectSettings.projectSettingsName ? projectSettings.projectSettingsName : "Project Name";
+            projectSettDescription.value = projectSettings.projectSettingsDescription ? projectSettings.projectSettingsDescription : "Project Description";
         }
     }
 
@@ -223,4 +237,9 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope, $timeout) {
 // // bind-value-to="fontSize"
 
 rightTabControllerScope = {};
+
+var myWidthTeg;
+var myHeightTeg;
+var projectSettNameTag;
+var projectSettDescription;
 
