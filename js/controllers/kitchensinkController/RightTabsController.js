@@ -74,7 +74,6 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope, $timeout) {
         }
         if (tab.title == 'pageSettings') {
             setTimeout(() => {
-                debugger;
                 myWidthTeg = document.getElementById("myWidth");
                 myHeightTeg = document.getElementById("myHeight");
                 projectSettNameTag = document.getElementById("project-sett-name");
@@ -97,7 +96,6 @@ kitchensink.controller('RightTabsCtrl', ['$scope', function ($scope, $timeout) {
     }
 
     $scope.setProjectSize = function () {
-        debugger;
         var setWidth = myWidthTeg.value;
         var setHeight = myHeightTeg.value;
 

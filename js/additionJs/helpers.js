@@ -446,7 +446,6 @@ var canvasObjectShadowOffsetYTeg;
 
 // disable inputs and color picker
 function enableDisableElement() {
-    debugger;
     obgInCanvasBackColorSelectTeg = document.getElementById('objectIn-canvas-background-colorselect');
     obgInCanvasBackColorSelectDownTeg = document.getElementById('objectIn-canvas-background-colorselect-down');
     canvasObjectFillColorTeg = document.getElementById('canv-obj-fill-color');
@@ -1706,6 +1705,18 @@ function addAccessors($scope, $rootScope) {
         ipcRenderer.send('openFile', () => { })
         ipcRenderer.once('fileData', (event, filepath) => {
             fabric.Image.fromURL(filepath, function (image) {
+                // let imageAspect;
+
+                // if (image.height > image.width) {
+                //     imageAspect = image.width / image.height;
+                //     image.height = canvas.width / 4;
+                //     image.width = imageAspect * image.height
+                // } else {
+                //     imageAspect = image.height / image.width;
+                //     image.height = canvas.height / 4;
+                //     image.width = imageAspect * image.width;
+                // }
+
 
                 image.set({
                     scaleX: 1,
@@ -1718,8 +1729,8 @@ function addAccessors($scope, $rootScope) {
                 canvas.add(image).setActiveObject(image);
 
                 if (canvas && canvas._objects.length === 1) {
-                    canvas.setHeight(image.height);
-                    canvas.setWidth(image.width);
+                    // canvas.setHeight(image.height);
+                    // canvas.setWidth(image.width);
                 }
 
                 canvas._activeObject._element.addEventListener('rotating', () => {
