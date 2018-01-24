@@ -128,7 +128,10 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
     }
 
 
+
     $scope.refreshSavePage = () => {
+        var thumbnailTeg;
+        thumbnailTeg = document.getElementsByClassName("thumbnail");
 
 
         var imageBase64 = canvas.toDataURL('png');
@@ -141,9 +144,9 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
 
         if (PagesControllerScope.refreshSavePage) {
 
-            for (const key in document.getElementsByClassName("thumbnail")) {
-                if (document.getElementsByClassName("thumbnail").hasOwnProperty(key)) {
-                    const item = document.getElementsByClassName("thumbnail")[key].firstChild.nextElementSibling;
+            for (const key in thumbnailTeg) {
+                if (thumbnailTeg.hasOwnProperty(key)) {
+                    const item = thumbnailTeg[key].firstChild.nextElementSibling;
                     if ($scope.objects[key].canvas.canvasHeight > $scope.objects[key].canvas.canvasWidth) {
                         /* width: 245px; */
                         /* height: 161px; */
@@ -204,7 +207,6 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
 
         }
 
-        // toJSON()
     }
 
     $scope.setAsActive = (page) => {

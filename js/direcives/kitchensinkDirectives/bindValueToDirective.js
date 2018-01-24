@@ -22,13 +22,24 @@ kitchensink.directive('bindValueTo', function () {
 
             $element.on('change keyup select', function () {
                 if ($element[0].type !== 'checkbox') {
+                    if (typeof ($element[0].value) == "string" && $element[0].value.search("hsl") != -1) {
+                        this.value = $element[0].value;
+                    }
+
+                    if ($element[0]._shadowRoot.getElementById('tracks') != undefined) {
+                        //// tracker 
+                        this.value = $element[0]._shadowRoot.getElementById('tracks').childNodes[3].scrollWidth;
+                    }
+
                     //line below added for buinding works  with xel-toolkit.org
                     if ($element[0].type == 'input') {
                         this.value = parseInt($element[0]._shadowRoot.getElementById('editor').innerText);
                     }
-                    if (typeof (parseInt($element[0]._shadowRoot.getElementById('editor').innerText)) == "number") {
+
+                    if ($element[0]._shadowRoot.getElementById('tracks') == undefined && $element[0]._shadowRoot.getElementById('editor') && typeof (parseInt($element[0]._shadowRoot.getElementById('editor').innerText)) == "number") {
                         this.value = parseInt($element[0]._shadowRoot.getElementById('editor').innerText);
                     }
+
                     $scope[setter] && $scope[setter](this.value);
                 }
             });

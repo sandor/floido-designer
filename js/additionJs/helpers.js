@@ -446,13 +446,17 @@ var canvasObjectShadowOffsetYTeg;
 
 // disable inputs and color picker
 function enableDisableElement() {
-    obgInCanvasBackColorSelectTeg = document.getElementById('objectIn-canvas-background-colorselect');
-    obgInCanvasBackColorSelectDownTeg = document.getElementById('objectIn-canvas-background-colorselect-down');
-    canvasObjectFillColorTeg = document.getElementById('canv-obj-fill-color');
-    canvasObjectBackColorTeg = document.getElementById('canv-obj-back-color');
-    canvasObjectBorderTeg = document.getElementById('canvas-object-border');
-    canvasObjectborderObjColSelectTeg = document.getElementById('canvas-border-object-colorSelect');
-    canvasObjectCornerTeg = document.getElementById('canvas-object-corner');
+    if (obgInCanvasBackColorSelectTeg || obgInCanvasBackColorSelectDownTeg || canvasObjectFillColorTeg || canvasObjectBackColorTeg) {
+
+        obgInCanvasBackColorSelectTeg = document.getElementById('objectIn-canvas-background-colorselect');
+        obgInCanvasBackColorSelectDownTeg = document.getElementById('objectIn-canvas-background-colorselect-down');
+        canvasObjectFillColorTeg = document.getElementById('canv-obj-fill-color');
+        canvasObjectBackColorTeg = document.getElementById('canv-obj-back-color');
+        canvasObjectBorderTeg = document.getElementById('canvas-object-border');
+        canvasObjectborderObjColSelectTeg = document.getElementById('canvas-border-object-colorSelect');
+        canvasObjectCornerTeg = document.getElementById('canvas-object-corner');
+    }
+
 
 
 
@@ -654,6 +658,8 @@ function setActiveProp(name, value) {
 
 
 function getActiveShadow(name) {
+
+
 
     if (canvas.getActiveObject() && canvas.getActiveObject().shadow && document.getElementById('enableShadow') && !document.getElementById('enableShadow').hasAttribute('toggled')) {
 
