@@ -50,8 +50,8 @@ kitchensink.controller('CanvasControlsController', function ($scope, leftPanelTa
 
             document.getElementById("position-x").value = parseFloat(options.target.left.toFixed(2));
             document.getElementById("position-y").value = parseFloat(options.target.top.toFixed(2));
-            document.getElementById("size-propWidth").value = Math.round(options.target.width);
-            document.getElementById("size-propHeight").value = Math.round(options.target.height);
+            document.getElementById("size-propWidth").value = Math.round(options.target.width * options.target.scaleX);
+            document.getElementById("size-propHeight").value = Math.round(options.target.height * options.target.scaleY);
 
             document.getElementById("scale-scaleX").value =
                 parseFloat(options.target.scaleX)

@@ -128,7 +128,6 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
     }
 
 
-
     $scope.refreshSavePage = () => {
         var thumbnailTeg;
         thumbnailTeg = document.getElementsByClassName("thumbnail");

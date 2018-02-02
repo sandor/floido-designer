@@ -1001,33 +1001,43 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.getPropWidth = function () {
-        return parseInt(getActiveProp('width'), 0) ? parseInt(getActiveProp('width'), 0) : '';
+
+        // return parseInt(getActiveProp('width'), 0) ? parseInt(getActiveProp('width'), 0) : '';
+        let tempWidth = getActiveProp('width') * getActiveProp('scaleX');
+
+        return parseInt(tempWidth, 0) ? parseInt(tempWidth, 0) : '';
         console.log(value);
     };
 
     $scope.setPropWidth = function (value) {
-        setActiveProp('width', parseInt(value, 0));
+
+        let tempWidth = value / getActiveProp('scaleX');
+
+        // setActiveProp('width', parseInt(value, 0));
+        setActiveProp('width', parseInt(tempWidth, 0));
         canvas.renderAll();
     };
 
     $scope.getPropHeight = function () {
-        return parseInt(getActiveProp('height'), 10) ? parseInt(getActiveProp('height'), 10) : '';
+
+        // return parseInt(getActiveProp('height'), 10) ? parseInt(getActiveProp('height'), 10) : '';
+        let tempHeight = getActiveProp('height') * getActiveProp('scaleY');
+
+        return parseInt(tempHeight, 10) ? parseInt(tempHeight, 10) : '';
         console.log(value);
     };
 
     $scope.setPropHeight = function (value) {
-        setActiveProp('height', parseInt(value, 0));
+
+        // setActiveProp('height', parseInt(value, 0));
+        let tempHeight = value / getActiveProp('scaleY');
+        setActiveProp('height', parseInt(tempHeight, 0));
         canvas.renderAll();
     };
 
     $scope.getPropAngle = function () { /// if object a=inactive return ""must implement
-        if (parseFloat(getActiveProp('angle')) == 0) {
-            return parseFloat(getActiveProp('angle'));
-        }
-        if (getActiveProp('angle')) {
-            return parseFloat(getActiveProp('angle')) ? parseFloat(getActiveProp('angle')).toFixed(2) : '';
-        }
-        return "";
+
+        return parseInt(getActiveProp('angle'), 0) ? parseInt(getActiveProp('angle'), 0) : 0;
 
     };
 
@@ -1036,8 +1046,9 @@ function addAccessors($scope, $rootScope) {
     }
 
     $scope.setPropAngle = function (value) {
-        // value = Math.round(value)
-        setActiveProp('angle', parseFloat(value.toFixed(2)));
+
+            setActiveProp('angle', parseFloat(value.toFixed(2)));
+
         canvas.renderAll();
     };
 
@@ -1047,6 +1058,7 @@ function addAccessors($scope, $rootScope) {
     };
 
     $scope.setPropScaleX = function (value) {
+
         if (value) {
             setActiveProp('scaleX', parseFloat(value.toFixed(2)));
             canvas.renderAll();

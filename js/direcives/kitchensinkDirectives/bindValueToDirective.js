@@ -33,11 +33,11 @@ kitchensink.directive('bindValueTo', function () {
 
                     //line below added for buinding works  with xel-toolkit.org
                     if ($element[0].type == 'input') {
-                        this.value = parseInt($element[0]._shadowRoot.getElementById('editor').innerText);
+                        this.value = Number($element[0]._shadowRoot.getElementById('editor').innerText);
                     }
 
-                    if ($element[0]._shadowRoot.getElementById('tracks') == undefined && $element[0]._shadowRoot.getElementById('editor') && typeof (parseInt($element[0]._shadowRoot.getElementById('editor').innerText)) == "number") {
-                        this.value = parseInt($element[0]._shadowRoot.getElementById('editor').innerText);
+                    if ($element[0]._shadowRoot.getElementById('tracks') == undefined && $element[0]._shadowRoot.getElementById('editor') && typeof (Number($element[0]._shadowRoot.getElementById('editor').innerText)) == "number") {
+                        this.value = Number($element[0]._shadowRoot.getElementById('editor').innerText);
                     }
 
                     $scope[setter] && $scope[setter](this.value);
@@ -63,7 +63,11 @@ kitchensink.directive('bindValueTo', function () {
                     }
                 } else if ($element[0].type === 'checkbox') {
                     $element[0].checked = newVal;
-                } else {
+                } else if ($element.length > 0 && $element[0] && $element[0].tagName == "X-NUMBERINPUT") {
+                    newVal = (newVal == " " || newVal == "" || newVal == '') ? 0 : Number(newVal);
+                        $element[0].value = newVal;
+                }
+                else {
                     newVal && !isEmpty(newVal) && $element.val(newVal);
                 }
             });
