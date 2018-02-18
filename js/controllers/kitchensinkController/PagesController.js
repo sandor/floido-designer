@@ -168,10 +168,10 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
 
 
             //     for (const key in pageflowThumbnailArr) {
-            //         debugger;
+            //         ;
             //         if (pageflowThumbnailArr.hasOwnProperty(key)) {
             //             const item = pageflowThumbnailArr[key].firstChild.nextElementSibling;
-            //             debugger;
+            //             ;
             //             if ($scope.objects[key].canvas.canvasHeight > $scope.objects[key].canvas.canvasWidth) {
             //                 /* width: 245px; */
             //                 /* height: 161px; */
@@ -189,7 +189,7 @@ kitchensink.controller('PagesController', ['$scope', '$rootScope', '$timeout', f
             // }
 
             // var item = document.getElementsByClassName("thumbnail")[0].firstChild.nextElementSibling;
-            // debugger;
+            // ;
             // if ($scope.activePage.canvas.canvasHeight > $scope.activePage.canvas.canvasWidth) {
             //     /* width: 245px; */
             //     /* height: 161px; */

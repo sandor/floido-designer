@@ -846,13 +846,109 @@ function addAccessors($scope, $rootScope) {
         setActiveStyle('opacity', parseInt(value, 10) / 100);
     };
 
+    var objectInCanvasBackgroundColorselect;
     $scope.getFill = function () {
-        return getActiveStyle('fill');
+        if (!objectInCanvasBackgroundColorselect) {
+            objectInCanvasBackgroundColorselect = document.getElementById("objectIn-canvas-background-colorselect");
+            // objectInCanvasBackgroundColorselect =  document.getElementById("objectIn-canvas-background-colorselect");
+        }
+        ;
+        var tempF = getActiveStyle('fill') == "" ? "#ffffff" : getActiveStyle('fill');
+        if (typeof (tempF) == "object") {
+            // canvas.getActiveObject().fill = tempF
+            objectInCanvasBackgroundColorselect.value = "#ffffff";
+            // document.getElementById('gradLeftO').value =tempF.colorStops[0].color;
+            // document.getElementById('gradRightO').value =tempF.colorStops[1].color;
+            return "#ffffff";
+        }
+        else if (typeof (tempF) == "string") {
+
+            objectInCanvasBackgroundColorselect.value = tempF;
+            return tempF;
+        }
+
+
     };
     $scope.setFill = function (value) {
+        ;
+        if (!objectInCanvasBackgroundColorselect) {
+            objectInCanvasBackgroundColorselect = document.getElementById("objectIn-canvas-background-colorselect");
+        }
+        objectInCanvasBackgroundColorselect.value = value
         setActiveStyle('fill', value);
         PagesControllerScope && PagesControllerScope.refreshSavePage();
     };
+
+
+    $scope.getObjGradRightCol = function () {
+
+
+        let tempT = getActiveStyle('fill');
+
+        if (typeof (tempT) == 'object') {
+            return tempT.colorStops[1].color
+        } else {
+            return '#ffffff'
+        }
+
+    }
+
+    $scope.setObjGradRightCol = function (value) {
+
+    }
+
+    $scope.getObjGradleftCol = function () {
+
+        let tempT = getActiveStyle('fill');
+
+
+        if (typeof (tempT) == 'object') {
+            return tempT.colorStops[0].color
+        } else {
+            return '#ffffff'
+        }
+
+
+    }
+
+    $scope.setObjGradleftCol = function (value) {
+
+
+    }
+
+    $scope.getObjGradleftCol = function (value) {
+
+        let tempT = getActiveStyle('fill');
+
+
+        if (typeof (tempT) == 'object') {
+            return tempT.colorStops[0].color
+        } else {
+            return '#ffffff'
+        }
+
+    }
+
+
+    $scope.setAngle = function (value) {
+
+
+        if (canvas._activeObject) {
+            canvas._activeObject.grndGradientAngle = value;
+        } else {
+            canvas._activeObject.grndGradientAngle = 0;
+        }
+
+
+    }
+
+    $scope.getAngle = function () {
+
+        ;
+        console.log("getAngle");
+        return canvas._activeObject && canvas._activeObject.grndGradientAngle ? canvas._activeObject.grndGradientAngle : 0;
+
+    }
 
     $scope.isBold = function () {
         return getActiveStyle('fontWeight') === 'bold';
@@ -940,17 +1036,41 @@ function addAccessors($scope, $rootScope) {
         item.active = true;
     };
 
+    var objectInCanvasBackgroundColorselectDown;
+    var bgColor;
     $scope.getBgColor = function () {
 
-        getCanvasActiveObjectData();
+        // getCanvasActiveObjectData();
         // setCanvasActiveObjectData();
         enableDisableElement();
-        PagesControllerScope && PagesControllerScope.refreshSavePage();
-        return getActiveProp('backgroundColor');
+
+        if (!objectInCanvasBackgroundColorselectDown) {
+
+            objectInCanvasBackgroundColorselectDown = document.getElementById("objectIn-canvas-background-colorselect-down");
+            bgColor = document.getElementById("canv-obj-back-color");
+            ;
+        }
+        ;
+        var tempF = getActiveStyle('backgroundColor') == "" ? "#ffffff" : getActiveStyle('backgroundColor');
+        objectInCanvasBackgroundColorselectDown.value = tempF;
+        bgColor.value = tempF;
+        return tempF;
+
+        //   PagesControllerScope && PagesControllerScope.refreshSavePage();
+        // return getActiveProp('backgroundColor');
     };
     $scope.setBgColor = function (value) {
+        ;
+        if (!objectInCanvasBackgroundColorselectDown) {
+            objectInCanvasBackgroundColorselectDown = document.getElementById("objectIn-canvas-background-colorselect-down");
+            bgColor = document.getElementById("canv-obj-back-color");
+        }
+        objectInCanvasBackgroundColorselectDown.value = value
+        setActiveStyle('backgroundColor', value);
+        bgColor.value = value;
+        setActiveStyle('bgColor', value);
 
-        setActiveProp('backgroundColor', value);
+        // setActiveProp('backgroundColor', value);
     };
 
     $scope.getTextBgColor = function () {
@@ -1047,7 +1167,7 @@ function addAccessors($scope, $rootScope) {
 
     $scope.setPropAngle = function (value) {
 
-            setActiveProp('angle', parseFloat(value.toFixed(2)));
+        setActiveProp('angle', parseFloat(value.toFixed(2)));
 
         canvas.renderAll();
     };

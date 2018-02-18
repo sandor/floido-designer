@@ -15,7 +15,7 @@ kitchensink.directive('bindValueTo', function () {
         restrict: 'A',
 
         link: function ($scope, $element, $attrs) {
-
+            ;
             var prop = capitalize($attrs.bindValueTo),
                 getter = 'get' + prop,
                 setter = 'set' + prop;
@@ -55,7 +55,7 @@ kitchensink.directive('bindValueTo', function () {
             })
 
             $scope.$watch($scope[getter], function (newVal) {
-
+                ;
                 if ($element[0].type === 'radio') {
                     var radioGroup = document.getElementsByName($element[0].name);
                     for (var i = 0, len = radioGroup.length; i < len; i++) {
@@ -65,7 +65,7 @@ kitchensink.directive('bindValueTo', function () {
                     $element[0].checked = newVal;
                 } else if ($element.length > 0 && $element[0] && $element[0].tagName == "X-NUMBERINPUT") {
                     newVal = (newVal == " " || newVal == "" || newVal == '') ? 0 : Number(newVal);
-                        $element[0].value = newVal;
+                    $element[0].value = newVal;
                 }
                 else {
                     newVal && !isEmpty(newVal) && $element.val(newVal);

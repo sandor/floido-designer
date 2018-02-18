@@ -22,7 +22,7 @@ kitchensink.controller('LeftTabsCtrl', function ($scope, leftPanelTabService) {
     //
     //
     // // $scope.currentLeftTab = 'templates/layers.html';
-    // debugger
+    // 
     // $scope.currentLeftTab = leftPanelTabService.tab.url;
     //
     // $scope.onClickLeftTab = function (tab) {
